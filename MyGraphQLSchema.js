@@ -1,10 +1,18 @@
 const { GraphQLObjectType, GraphQLString, GraphQLInt, GraphQLList, GraphQLSchema } = require('graphql')
 const axios = require('axios')
 
+const instance = axios.create({
+  baseURL: 'https://www.haloapi.com/',
+  headers: { 'Ocp-Apim-Subscription-Key': '' },
+})
+
+
+
 const SpartanType = new GraphQLObjectType({
   name: 'Spartan',
   fields: () => ({
-    summary: {type: GraphQLString}
+    Gamertag: {type: GraphQLString},
+    ServiceTag: {type: GraphQLString}
   })
 })
 
@@ -17,7 +25,8 @@ const RootQuery = new GraphQLObjectType({
         player_name: { type: GraphQLString } 
       },
       resolve(parent, args) {
-        return axios.get(`https://www.haloapi.com/profile/h5/profiles/${args.player_name}/appearance`)
+        return instance
+        .get(`profile/h5/profiles/${args.player_name}/appearance`)
           .then(res => res.data)
       }
     }
