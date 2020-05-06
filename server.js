@@ -6,10 +6,11 @@ const app = express();
 
 app.use(
   '/graphql', graphqlHTTP({
-  schema: MyGraphQLSchema,
-  graphiql: true
-}));
+    schema: MyGraphQLSchema,
+    graphiql: true,
+  }),
+);
 
 const PORT = process.env.PORT || 5000;
 
-app.listen(PORT, () => console.log(`Server start on port ${PORT}`))
+app.listen(PORT, () => console.log(`Server start on port ${PORT}`));
