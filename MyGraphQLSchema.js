@@ -1,4 +1,4 @@
-const api_key = require('./apikey');
+const api_key = require('./client/src/apikey');
 const axios = require('axios');
 const {
   GraphQLObjectType, 
