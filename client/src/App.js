@@ -18,18 +18,17 @@ export default class App extends Component {
     
   }
 
-  componentDidMount() {
+  componentWillMount() {
     axios.create({
       headers: {'Ocp-Apim-Subscription-Key': api_key }
     })
-      .get(proxyurl +`https://www.haloapi.com/profile/h5/profiles/rosebud303/spartan`)
+      .get(proxyurl +`https://www.haloapi.com/profile/h5/profiles/daymanf0tnm/spartan`)
       .then(data => this.setState({imageHere: data.headers['x-final-url']}))
   }
 
   render() {
     return (
       <div>
-        {/* {console.log(testing)} */}
         <img alt='image should be here but isnt it?' src={this.state.imageHere}/>
         <Testcomp />
       </div>

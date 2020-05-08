@@ -7,6 +7,8 @@ const {
   GraphQLSchema
 } = require('graphql');
 
+//**************************************************** RE-USED INSTANCE VARIABLES */
+
 const instance = axios.create({
   baseURL: 'https://www.haloapi.com/',
   headers: { 'Ocp-Apim-Subscription-Key': api_key },
@@ -24,6 +26,22 @@ const SpartanType = new GraphQLObjectType({
     ServiceTag: { type: GraphQLString },
   }),
 });
+
+//**************************************************** MAP METADATA */
+
+const MapMetadataType = new GraphQLObjectType({
+  name: 'MapMetadata',
+  fields: () => ({
+    name: { type: GraphQLString },
+    description: { type: GraphQLString },
+    supportedGameModes: { type: new GraphQLList(GraphQLString) },
+    imageUrl: { type: GraphQLString },
+    id: { type: GraphQLString },
+  }),
+})
+
+//**************************************************** ACCESSING ARENA STATS */
+
 
 const ArenaStatsType = new GraphQLObjectType({
   name: 'ArenaStats',
@@ -162,6 +180,14 @@ const MedalTypes = new GraphQLObjectType({
 const RootQuery = new GraphQLObjectType({
   name: 'RootQueryType',
   fields: {
+    mapMetadata: {
+      type: new GraphQLList(MapMetadataType),
+      resolve() {
+        return instanceWithAcceptedLanguage
+          .get(`metadata/h5/metadata/maps`)
+          .then(res => res.data)
+      }
+    },
     spartan: {
       type: SpartanType,
       args: {
@@ -169,8 +195,8 @@ const RootQuery = new GraphQLObjectType({
       },
       resolve(parent, args) {
         return instance
-        .get(`profile/h5/profiles/${args.player_name}/appearance`)
-        .then((res) => res.data);
+          .get(`profile/h5/profiles/${args.player_name}/appearance`)
+          .then((res) => res.data);
       }      
     },
     arenaStats: {
