@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import api_key from './apikey';
+import api_key from '../../apikey';
 import gql from 'graphql-tag';
-import Testcomp from './Testcomp'
+import Testcomp from '../../Testcomp'
 
 const proxyurl = "https://cors-anywhere.herokuapp.com/";
 
