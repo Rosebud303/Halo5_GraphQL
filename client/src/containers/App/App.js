@@ -3,8 +3,10 @@ import axios from 'axios';
 import api_key from '../../apikey';
 import proxyurl from '../../proxyurl';
 import gql from 'graphql-tag';
-import WelcomePage from '../WelcomePage/WelcomePage';
 import { Route, Switch } from 'react-router-dom';
+import WelcomePage from '../WelcomePage/WelcomePage';
+import Homepage from '../HomePage/Homepage';
+
 
 
 export default class App extends Component {
@@ -30,6 +32,7 @@ export default class App extends Component {
       <body>
         <Switch>
           <Route exact path='/welcome' component={WelcomePage} />
+          <Route exact path='/homepage' component={Homepage} />
 
         </Switch>
       </body>
