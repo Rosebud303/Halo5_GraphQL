@@ -23,7 +23,7 @@ class WelcomePage extends Component {
   handleSubmit = (e, state) => {
     this.props.currentSearchedPlayer(state)
     e.preventDefault()
-    return <Link to='jfafja'></Link>
+    return (<Link to='jfafja'></Link>)
   }
 
   render() {
@@ -33,13 +33,13 @@ class WelcomePage extends Component {
           <input 
             className='welcome-search'
             name='search'
-            onChange={() => this.handleChange}
+            onChange={this.handleChange}
             placeholder='Search Your Spartan...' 
             type='search' 
             value={this.state.searchedPlayer}
           />
         </form>
-    </div>
+      </div>
     )
   }
 }
