@@ -20,28 +20,39 @@ class Homepage extends Component {
   }
   
   componentWillMount() {
-    this.setUrl();
+    this.setUrlSpartan();
   };
 
-  setUrl = () => {
-    axios.create({
-      headers: {'Ocp-Apim-Subscription-Key': api_key }
-    })
-      .get(proxyurl +`https://www.haloapi.com/profile/h5/profiles/${this.props.currentPlayer}/spartan`)
-      .then(data => this.props.setImgUrlSpartan(data.headers['x-final-url']))
-  };
-
+  
   handleChange = (event) => {
     this.setState({
       searchedPlayer: event.target.value
     });
   };
-
-  handleSubmit = (event) => {
+  
+  handleSubmit = async (event) => {
     event.preventDefault();
-    this.props.currentSearchedPlayer(this.state.searchedPlayer);
-    this.setUrl();
+    await this.props.currentSearchedPlayer(this.state.searchedPlayer);
+    this.setUrlSpartan();
+    setTimeout(this.setUrlEmblem(), 3000);
   };
+  
+  setUrlSpartan = () => {
+    axios.create({
+      headers: {'Ocp-Apim-Subscription-Key': api_key }
+    })
+      .get(proxyurl +`https://www.haloapi.com/profile/h5/profiles/${this.props.currentPlayer}/spartan`)
+      .then(data => this.props.setImgUrlSpartans(data.headers['x-final-url']))
+  };
+
+  setUrlEmblem = () => {
+    axios.create({
+      headers: {'Ocp-Apim-Subscription-Key': api_key }
+    })
+      .get(proxyurl +`https://www.haloapi.com/profile/h5/profiles/${this.props.currentPlayer}/emblem`)
+      .then(data => this.props.setImgUrlEmblem(data.headers['x-final-url']))
+  };
+
 
   render() {
     return (
@@ -64,7 +75,7 @@ class Homepage extends Component {
       <div className='lesser-spartan-details'>
         <section className='spartan-gfx'>
           <img alt='Spartan Appearance' className='lesser-spartan-img' src={this.props.currentImgUrlSpartan}/>
-          <img alt='Player Emblem' className='lesser-emblem'/>
+          <img alt='Player Emblem' className='lesser-emblem' src={this.props.currentImgUrlEmblem}/>
         </section>
         <section className='banner-company-links'>
           <img className='lesser-banner'/>
@@ -81,12 +92,14 @@ class Homepage extends Component {
 
 const mapStateToProps = (state) => ({
   currentPlayer: state.currentPlayer,
-  currentImgUrlSpartan: state.currentImgUrlSpartan
+  currentImgUrlSpartan: state.currentImgUrlSpartan,
+  currentImgUrlEmblem: state.currentImgUrlEmblem
 });
 
 const mapDispatchToProps = (dispatch) => ({
   currentSearchedPlayer: (player) => dispatch(actions.currentSearchedPlayer(player)),
-  setImgUrlSpartan: (url) => dispatch(actions.setImgUrlSpartans(url))
+  setImgUrlSpartan: (url) => dispatch(actions.setImgUrlSpartan(url)),
+  setImgUrlEmblem: (url) => dispatch(actions.setImgUrlEmblem(url))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Homepage)

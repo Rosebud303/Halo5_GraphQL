@@ -15,3 +15,12 @@ export const currentUrlSpartanReducer = (state = '', action) => {
       return state  
   }
 }
+
+export const currentUrlEmblemReducer = (state = '', action) => {
+  switch(action.type) {
+    case 'SET_URL_EMBLEM':
+      return action.url
+    default:
+      return state  
+  }
+}
