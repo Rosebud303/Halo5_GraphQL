@@ -27,12 +27,12 @@ export default class App extends Component {
 
   render() {
     return (
-      <div>
+      <body>
         <Switch>
-          <Route exact path='/' component={WelcomePage} />
+          <Route exact path='/welcome' component={WelcomePage} />
 
         </Switch>
-      </div>
+      </body>
     )
   }
 }
