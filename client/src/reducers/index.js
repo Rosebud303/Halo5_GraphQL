@@ -3,7 +3,8 @@ import * as reducers from './allReducers';
 
 const rootReducer = combineReducers({
   currentPlayer: reducers.currentPlayerReducer,
-  currentImgUrlSpartan: reducers.currentUrlSpartanReducer
+  currentImgUrlSpartan: reducers.currentUrlSpartanReducer,
+  currentImgUrlEmblem: reducers.currentUrlEmblemReducer
 })
 
 export default rootReducer;

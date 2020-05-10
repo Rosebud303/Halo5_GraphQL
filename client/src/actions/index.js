@@ -3,7 +3,12 @@ export const currentSearchedPlayer = (player) => ({
   player
 })
 
-export const setImgUrlSpartans = (url) => ({
+export const setImgUrlSpartan = (url) => ({
   type: 'SET_URL_SPARTAN',
+  url
+})
+
+export const setImgUrlEmblem = (url) => ({
+  type: 'SET_URL_EMBLEM',
   url
 })
