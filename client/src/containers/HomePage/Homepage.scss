@@ -8,7 +8,25 @@
 }
 
 .lesser-spartan-details {
+  display: flex;
   height: 50vh;
   background: rgb(165, 165, 226);
+}
+
+.spartan-gfx {
+  width: 50%;
+  background: rgb(131, 131, 168);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.banner-company-links {
+  width: 50%;
+  background: rgb(143, 113, 113);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 

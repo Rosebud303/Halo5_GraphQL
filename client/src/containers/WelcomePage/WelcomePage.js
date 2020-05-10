@@ -28,7 +28,7 @@ class WelcomePage extends Component {
   }
 
   render() {
-    const redirectPath = this.state.searched ? '/' : '/welcome';
+    const redirectPath = this.state.searched ? '/homepage' : '/welcome';
     
     return (
       <>

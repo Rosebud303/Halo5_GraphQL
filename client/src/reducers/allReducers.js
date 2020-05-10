@@ -6,3 +6,12 @@ export const currentPlayerReducer = (state = '', action) => {
       return state
   }
 }
+
+export const currentUrlSpartanReducer = (state = '', action) => {
+  switch(action.type) {
+    case 'SET_URL_SPARTAN':
+      return action.url
+    default:
+      return state  
+  }
+}
