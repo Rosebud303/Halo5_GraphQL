@@ -15,10 +15,12 @@
 
 .spartan-gfx {
   width: 50%;
-  background: rgb(131, 131, 168);
+  background: linear-gradient(45deg, #09a53d42, #fffdfd);
   display: flex;
   flex-direction: row;
   justify-content: space-around;
+  align-items: center;
+  box-shadow: inset 0px 0px 20px #1311118f;
 }
 
 .banner-company-links {
@@ -28,5 +30,26 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+
+.lesser-spartan-img {
+  width: auto;
+  height: auto;
+  border-radius: 6px;
+  max-width: 500px;
+  max-height: 500px;
+  opacity: 0.9;
+  background: linear-gradient(45deg, black, transparent);
+  box-shadow: inset 0px 0px 20px 10px #050a04;
+}
+
+.lesser-emblem {
+  width: auto;
+  height: auto;
+  max-width: 150px;
+  /* max-height: 100px; */
+  box-shadow: 0px 0px 20px 9px #00000073;
+  border-radius: 10px;
+  background: linear-gradient(45deg, #000000b3, #00000030);
 }
 
