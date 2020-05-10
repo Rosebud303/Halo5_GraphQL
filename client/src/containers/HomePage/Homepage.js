@@ -21,6 +21,7 @@ class Homepage extends Component {
   
   componentWillMount() {
     this.setUrlSpartan();
+    this.setUrlEmblem();
   };
 
   
@@ -34,7 +35,7 @@ class Homepage extends Component {
     event.preventDefault();
     await this.props.currentSearchedPlayer(this.state.searchedPlayer);
     this.setUrlSpartan();
-    setTimeout(this.setUrlEmblem(), 3000);
+    this.setUrlEmblem();
   };
   
   setUrlSpartan = () => {
@@ -42,7 +43,7 @@ class Homepage extends Component {
       headers: {'Ocp-Apim-Subscription-Key': api_key }
     })
       .get(proxyurl +`https://www.haloapi.com/profile/h5/profiles/${this.props.currentPlayer}/spartan`)
-      .then(data => this.props.setImgUrlSpartans(data.headers['x-final-url']))
+      .then(data => this.props.setImgUrlSpartan(data.headers['x-final-url']))
   };
 
   setUrlEmblem = () => {
