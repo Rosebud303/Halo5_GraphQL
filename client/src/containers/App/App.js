@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import api_key from '../../apikey';
+import proxyurl from '../../proxyurl';
 import gql from 'graphql-tag';
-import Testcomp from '../../Testcomp'
-
-const proxyurl = "https://cors-anywhere.herokuapp.com/";
-
+import WelcomePage from '../WelcomePage/WelcomePage';
+import { Route, Switch } from 'react-router-dom';
 
 
 export default class App extends Component {
@@ -29,8 +28,10 @@ export default class App extends Component {
   render() {
     return (
       <div>
-        <img alt='image should be here but isnt it?' src={this.state.imageHere}/>
-        <Testcomp />
+        <Switch>
+          <Route exact path='/' component={WelcomePage} />
+
+        </Switch>
       </div>
     )
   }
