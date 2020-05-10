@@ -1,0 +1,68 @@
+.welcome-heading {
+  text-align: center;
+  font-size: 3rem;
+  background-color: gray;
+  padding: 2rem;
+  margin: 0;
+}
+
+.welcome-page {
+  display: flex;
+  width: 100%;
+  height: 87vh;
+  align-items: center;
+  justify-content: center;
+  background-image: linear-gradient(rgba(186, 190, 190, 0.226), rgba(0, 0, 2, 0.267)), url(https://i.imgur.com/8hC5wHt.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  background-color: white;
+}
+
+.welcome-form {
+  justify-self: center;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+
+.welcome-search {
+  font-size: 2em;
+  border: none;
+  // background-color: blue;
+  // border-radius: 10%;
+}
+
+.welcome-search-input {
+  background-color: skyblue;
+  border-right: none;
+  border-radius: 10px 0 0 10px;
+}
+
+.welcome-search-button {
+  background-color: lightgrey;
+  border-left: none;
+  border-radius: 0 10px 10px 0;
+}
+
+// button {
+//   border-radius: 5px;
+//   border: 1px solid white;
+//   background-color: #498467;
+//   color: WHITE;
+//   font-size: 12px;
+//   font-weight: bold;
+//   padding: 10px;
+//   letter-spacing: 1px;
+//   transition: transform 150ms ease-in;
+// }
+
+button:hover {
+  cursor: pointer;
+  transform: scale(0.95);
+  opacity: 0.8;
+}
+
+button:focus {
+  outline: none;
+}
