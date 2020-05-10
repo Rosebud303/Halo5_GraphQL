@@ -25,11 +25,12 @@
 
 .banner-company-links {
   width: 50%;
-  background: rgb(143, 113, 113);
+  background: linear-gradient(45deg, #fffdfd, #09a53d42);
+  box-shadow: inset 0px 0px 20px #1311118f;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: space-evenly;
 }
 
 .lesser-spartan-img {
@@ -53,3 +54,27 @@
   background: linear-gradient(45deg, #000000b3, #00000030);
 }
 
+.homepage-links {
+    border: solid 1px black;
+    width: 10rem;
+    display: flex;
+    justify-content: center;
+    background: linear-gradient(130deg, #81a7b8, #7c98a5);
+    text-decoration: none;
+    color: black;
+    font-weight: bolder;
+    text-shadow: 15px 16px 19px #0806066e;
+    box-shadow: inset 0px 0px 9px 7px #0000003b;
+    border-radius: 4px;
+}
+
+.homepage-links:hover {
+  cursor: pointer;
+  transition: transform 150ms ease-in;
+  transform: scale(0.95);
+  opacity: 0.8;
+}
+
+.homepage-links:focus {
+  outline: none;
+}
