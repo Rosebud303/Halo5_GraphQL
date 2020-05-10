@@ -68,6 +68,7 @@ h1 {
 
 button:hover {
   cursor: pointer;
+  transition: transform 150ms ease-in;
   transform: scale(0.95);
   opacity: 0.8;
 }
