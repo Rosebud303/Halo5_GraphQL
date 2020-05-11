@@ -6,6 +6,9 @@ import gql from 'graphql-tag';
 import { Route, Switch } from 'react-router-dom';
 import WelcomePage from '../WelcomePage/WelcomePage';
 import Homepage from '../HomePage/Homepage';
+import Detailspage from '../Detailspage.scss/Detailspage';
+import Arenapage from '../Arenapage/Arenapage';
+import Warzonepage from '../Warzonepage/Warzonepage';
 
 
 
@@ -14,26 +17,19 @@ export default class App extends Component {
     super(props);
 
     this.state = {
-      imageHere: ''
     }
     
-  }
-
-  componentWillMount() {
-    axios.create({
-      headers: {'Ocp-Apim-Subscription-Key': api_key }
-    })
-      .get(proxyurl +`https://www.haloapi.com/profile/h5/profiles/daymanf0tnm/spartan`)
-      .then(data => this.setState({imageHere: data.headers['x-final-url']}))
   }
 
   render() {
     return (
       <body>
         <Switch>
-          <Route exact path='/welcome' component={WelcomePage} />
+          <Route exact path='/' component={WelcomePage} />
           <Route exact path='/homepage' component={Homepage} />
-
+          <Route exact path='/details' component={Detailspage} />
+          <Route exact path='/arena' component={Arenapage} />
+          <Route exact path='/warzone' component={Warzonepage} />
         </Switch>
       </body>
     )

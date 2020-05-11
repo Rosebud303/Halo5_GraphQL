@@ -15,7 +15,6 @@ class Homepage extends Component {
     super();
     this.state = {
       searchedPlayer: '',
-      spartanImgUrl: ''
     }
   }
   
@@ -72,6 +71,16 @@ class Homepage extends Component {
             />
             <button className='welcome-search welcome-search-button' type='submit'>Submit</button>
           </form>
+          {/* *********************************DELETE LATER *******************************/}
+          <div className='test-sprites-container'>
+            <div className='test-sprites1'></div>
+            <div className='test-sprites2'></div>
+            <div className='test-sprites3'></div>
+            <div className='test-sprites4'></div>
+            <div className='test-sprites5'></div>
+            <div className='test-sprites6'></div>
+          </div>
+          {/* *********************************DELETE LATER *******************************/}
       </div>
       <div className='lesser-spartan-details'>
         <section className='spartan-gfx'>
@@ -81,9 +90,15 @@ class Homepage extends Component {
         <section className='banner-company-links'>
           <img className='lesser-banner'/>
           <h3 className='lesser-company'>COMPANY PLACEHOLDER</h3>
-          <p className='detail-link details'>DETAILS PAGE</p>
-          <p className='detail-link arena-lesser'>ARENA PAGE</p>
-          <p className='detail-link warzone-lesser'>WARZONE PAGE</p>
+          <Link to='/details' className='homepage-links'>
+            <p className='detail-link details'>DETAILS PAGE</p>
+          </Link>
+          <Link to='/arena' className='homepage-links'>
+            <p className='detail-link arena-lesser'>ARENA PAGE</p>
+          </Link>
+          <Link to='/warzone' className='homepage-links'>
+            <p className='detail-link warzone-lesser'>WARZONE PAGE</p>
+          </Link>
         </section>
       </div>
       </>
