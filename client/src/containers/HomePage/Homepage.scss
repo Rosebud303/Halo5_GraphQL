@@ -15,18 +15,18 @@
 
 .spartan-gfx {
   width: 50%;
-  background: linear-gradient(45deg, #09a53d42, #fffdfd);
+  background: linear-gradient(45deg, #09A53D42, #E2E2E2);
   display: flex;
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
-  box-shadow: inset 0px 0px 20px #1311118f;
+  box-shadow: inset 0px 0px 20px #1311118F;
 }
 
 .banner-company-links {
   width: 50%;
-  background: linear-gradient(45deg, #fffdfd, #09a53d42);
-  box-shadow: inset 0px 0px 20px #1311118f;
+  background: linear-gradient(45deg, #E2E2E2, #09A53D42);
+  box-shadow: inset 0px 0px 20px #1311118F;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -41,7 +41,7 @@
   max-height: 500px;
   opacity: 0.9;
   background: linear-gradient(45deg, black, transparent);
-  box-shadow: inset 0px 0px 20px 10px #050a04;
+  box-shadow: inset 0px 0px 20px 10px #050A04;
 }
 
 .lesser-emblem {
@@ -51,20 +51,20 @@
   /* max-height: 100px; */
   box-shadow: 0px 0px 20px 9px #00000073;
   border-radius: 10px;
-  background: linear-gradient(45deg, #000000b3, #00000030);
+  background: linear-gradient(45deg, #000000B3, #00000030);
 }
 
 .homepage-links {
-    border: solid 1px black;
-    width: 10rem;
-    display: flex;
-    justify-content: center;
-    text-decoration: none;
-    color: white;
-    font-weight: bolder;
-    text-shadow: 15px 16px 19px #0c0c0c73;
-    box-shadow: inset 0px 0px 9px 7px #0000003b;
-    border-radius: 4px;
+  border: solid 1px black;
+  width: 10rem;
+  display: flex;
+  justify-content: center;
+  text-decoration: none;
+  color: white;
+  font-weight: bolder;
+  text-shadow: 15px 16px 19px #0C0C0C73;
+  box-shadow: inset 0px 0px 9px 7px #0000003B;
+  border-radius: 4px;
 }
 
 .homepage-links:hover {
