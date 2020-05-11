@@ -2,6 +2,9 @@ import React from 'react';
 import gql from 'graphql-tag';
 import { Query } from 'react-apollo';
 import Spinner from './Spinner/Spinner';
+import { CSR_QUERY } from './MetadataQueries/MetadataQueries';
+
+
 
 
 const MEDAL_QUERY = gql`
@@ -20,13 +23,14 @@ export default function Testcomp() {
 
   return (
     <div>
-      <Query query={MEDAL_QUERY} variables={{ player_name }}>
+      <Query query={CSR_QUERY}>
         {
           (
             { loading, error, data }) => {
               if(loading) return <p>loading...</p>
               if(error) console.log(error)
               console.log(data)
+              localStorage.setItem("csrMetadata", JSON.stringify(data))
               return <p>test</p>
           }
         }
