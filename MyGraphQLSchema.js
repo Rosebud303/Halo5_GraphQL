@@ -42,6 +42,26 @@ const MapMetadataType = new GraphQLObjectType({
   }),
 })
 
+//**************************************************** CSR METADATA */
+
+const CsrMetadataType = new GraphQLObjectType({
+  name: 'CsrMetadata',
+  fields: () => ({
+    name: { type: GraphQLString },
+    bannerImageUrl: { type: GraphQLString },
+    id: { type: GraphQLString },
+    tiers: { type: new GraphQLList(TierListType)},
+  }),
+})
+
+const TierListType = new GraphQLObjectType({
+  name: 'TierList',
+  fields: () => ({
+    iconImageUrl: { type: GraphQLString },
+    id: { type: GraphQLString },    
+  }),
+})
+
 //**************************************************** ACCESSING ARENA STATS */
 
 
@@ -219,6 +239,14 @@ const RootQuery = new GraphQLObjectType({
       resolve() {
         return instanceWithAcceptedLanguage
           .get(`metadata/h5/metadata/maps`)
+          .then(res => res.data)
+      }
+    },
+    csrMetadata: {
+      type: new GraphQLList(CsrMetadataType),
+      resolve() {
+        return instanceWithAcceptedLanguage
+          .get(`metadata/h5/metadata/csr-designations`)
           .then(res => res.data)
       }
     },

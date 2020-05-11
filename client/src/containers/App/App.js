@@ -9,6 +9,7 @@ import Homepage from '../HomePage/Homepage';
 import Detailspage from '../Detailspage.scss/Detailspage';
 import Arenapage from '../Arenapage/Arenapage';
 import Warzonepage from '../Warzonepage/Warzonepage';
+import Testcomp from '../../Testcomp';
 
 
 
@@ -24,6 +25,7 @@ export default class App extends Component {
   render() {
     return (
       <body>
+        <Testcomp />
         <Switch>
           <Route exact path='/' component={WelcomePage} />
           <Route exact path='/homepage' component={Homepage} />
