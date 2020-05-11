@@ -59,11 +59,10 @@
     width: 10rem;
     display: flex;
     justify-content: center;
-    background: linear-gradient(130deg, #81a7b8, #7c98a5);
     text-decoration: none;
-    color: black;
+    color: white;
     font-weight: bolder;
-    text-shadow: 15px 16px 19px #0806066e;
+    text-shadow: 15px 16px 19px #0c0c0c73;
     box-shadow: inset 0px 0px 9px 7px #0000003b;
     border-radius: 4px;
 }
@@ -73,6 +72,8 @@
   transition: transform 150ms ease-in;
   transform: scale(0.95);
   opacity: 0.8;
+  color: #81A7B8;
+  background-color: white;
 }
 
 .homepage-links:focus {
