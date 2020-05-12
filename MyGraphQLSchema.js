@@ -64,6 +64,47 @@ const TierListType = new GraphQLObjectType({
   }),
 })
 
+
+//**************************************************** SEASONS METADATA */
+
+const SeasonsMetadataType = new GraphQLObjectType({
+  name: 'SeasonsMetadata',
+  fields: () => ({
+    playlists: { type: new GraphQLList(PlaylistType) },
+    name: { type: GraphQLString },
+    id: { type: GraphQLString },
+  }),
+})
+
+const PlaylistType = new GraphQLObjectType({
+  name: 'Playlist',
+  fields: () => ({
+    name: { type: GraphQLString },
+    description: { type: GraphQLString },
+    id: { type: GraphQLString },
+  }),
+})
+
+//**************************************************** FLEXIBLE STATS METADATA */
+
+const FlexibleStatsMetadataType = new GraphQLObjectType({
+  name: 'FlexibleStatsMetadata',
+  fields: () => ({
+    name: { type: GraphQLString },
+    id: { type: GraphQLString },
+  }),
+})
+
+//**************************************************** IMPULSES METADATA */
+
+const ImpulsesMetadataType = new GraphQLObjectType({
+  name: 'ImpulsesMetadata',
+  fields: () => ({
+    internalName: { type: GraphQLString },
+    id: { type: GraphQLString },
+  }),
+})
+
 //**************************************************** ACCESSING ARENA STATS */
 
 
@@ -282,6 +323,30 @@ const RootQuery = new GraphQLObjectType({
       resolve() {
         return instanceWithAcceptedLanguage
           .get(`metadata/h5/metadata/csr-designations`)
+          .then(res => res.data)
+      }
+    },
+    seasonsMetadata: {
+      type: new GraphQLList(SeasonsMetadataType),
+      resolve() {
+        return instanceWithAcceptedLanguage
+          .get(`metadata/h5/metadata/seasons`)
+          .then(res => res.data)
+      }
+    },
+    flexibleStatsMetadata: {
+      type: new GraphQLList(FlexibleStatsMetadataType),
+      resolve() {
+        return instanceWithAcceptedLanguage
+          .get(`metadata/h5/metadata/flexible-stats`)
+          .then(res => res.data)
+      }
+    },
+    impulsesMetadata: {
+      type: new GraphQLList(ImpulsesMetadataType),
+      resolve() {
+        return instanceWithAcceptedLanguage
+          .get(`metadata/h5/metadata/impulses`)
           .then(res => res.data)
       }
     },
