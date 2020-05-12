@@ -37,10 +37,10 @@ class Arenapage extends Component {
                 ({ loading, error, data }) => {
                   if (loading) return <p>loading...</p>
                   if (error) console.log(error)
-                  const localvariable = JSON.parse(localStorage.getItem('gameBaseVariantsMetadata')).gameBaseVariantsMetadata
+                  const parsedGameVariantMetadata = JSON.parse(localStorage.getItem('gameBaseVariantsMetadata')).gameBaseVariantsMetadata
                   return (data.arenaStats.Result.ArenaStats.ArenaGameBaseVariantStats.map(id => {
                     return <option>{
-                      localvariable.find(item => item.id == id.GameBaseVariantId).name
+                      parsedGameVariantMetadata.find(item => item.id == id.GameBaseVariantId).name
                     }</option>
                   }))
                 }
