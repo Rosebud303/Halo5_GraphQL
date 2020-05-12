@@ -21,7 +21,7 @@ export const metadataQueryList = [
     name: 'mapsMetadata',
     query: gql`
       query MapQuery {
-        mapMetadata {
+        mapsMetadata {
           name
           description
           supportedGameModes
