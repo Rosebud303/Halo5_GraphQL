@@ -74,5 +74,43 @@ export const metadataQueryList = [
         }
       }
     `
+  },
+  {
+    name: 'flexibleStatsMetadata',
+    query: gql `
+      query FlexibleStatsQuery {
+        flexibleStatsMetadata {
+          name
+          id
+        }
+      }
+    `
+  },
+  {
+    name: 'impulsesMetadata',
+    query: gql `
+      query ImpulsesQuery {
+        impulsesMetadata {
+          internalName
+          id
+        }
+      }
+    `
+  },
+  {
+    name: 'seasonsMetadata',
+    query: gql `
+      query SeasonsQuery {
+        seasonssMetadata {
+          playlists{
+            name
+            description
+            id
+          }
+          name
+          id
+        }
+      }
+    `
   }
 ]
