@@ -12,15 +12,15 @@ export default function Testcomp() {
       {
         metadataQueryList.map(metadata => {
           return localStorage[metadata.name] ? 
-            <p>{metadata.name} already exists in local storage</p>
+            console.log(`metadata for ${metadata.name} already exists`)
             : 
             <Query query={metadata.query}>
               {
                 ({ loading, error, data }) => {
-                  if(loading) return <p>loading...</p>
+                  if(loading) return ''
                   if(error) console.log(error)
                   localStorage.setItem(`${metadata.name}`, JSON.stringify(data))
-                  return <p>testtttt</p>
+                  return ''
                 } 
               }
             </Query>

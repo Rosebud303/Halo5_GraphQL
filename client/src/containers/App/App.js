@@ -24,16 +24,18 @@ export default class App extends Component {
 
   render() {
     return (
-      <body>
-        <Testcomp />
-        <Switch>
-          <Route exact path='/' component={WelcomePage} />
-          <Route exact path='/homepage' component={Homepage} />
-          <Route exact path='/details' component={Detailspage} />
-          <Route exact path='/arena' component={Arenapage} />
-          <Route exact path='/warzone' component={Warzonepage} />
-        </Switch>
-      </body>
+      <>
+        <div>
+          <Testcomp />
+          <Switch>
+            <Route exact path='/' component={WelcomePage} />
+            <Route exact path='/homepage' component={Homepage} />
+            <Route exact path='/details' component={Detailspage} />
+            <Route exact path='/arena' component={Arenapage} />
+            <Route exact path='/warzone' component={Warzonepage} />
+          </Switch>
+        </div>
+      </>
     )
   }
 }

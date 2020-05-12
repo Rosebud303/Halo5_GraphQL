@@ -85,8 +85,16 @@ const PlayerArenaStats = new GraphQLObjectType({
   name: 'PlayerArenaStats',
   fields: () => ({
     HighestCsrAttained: { type: CsrStatsType },
+    ArenaGameBaseVariantStats: { type: new GraphQLList(ArenaGameVariantType)}
   }),
 });
+
+const ArenaGameVariantType = new GraphQLObjectType({
+  name: 'ArenaGameVariant',
+  fields: () => ({
+    GameBaseVariantId: { type: GraphQLString},
+  }),
+})
 
 //**************************************************** NESTEDARENA STATS */
 
@@ -118,7 +126,7 @@ const WeaponType =  new GraphQLObjectType({
   name: 'Weapon',
   fields: () => ({
     name: { type: GraphQLString },
-    smallIconImageUrl: { type: GraphQLString },
+    largeIconImageUrl: { type: GraphQLString },
     id: { type: GraphQLString },
   }),
 })
@@ -130,9 +138,11 @@ const MedalType = new GraphQLObjectType({
   fields: () => ({
     name: { type: GraphQLString },
     description: { type: GraphQLString },
+    classification: { type: GraphQLString },
     difficulty: { type: GraphQLInt },
     id: { type: GraphQLString },
-    spriteLocation: {type: SpriteLocationType}
+    contentId: { type: GraphQLString },
+    spriteLocation: {type: SpriteLocationType},
   })
 })
 
@@ -142,10 +152,6 @@ const SpriteLocationType = new GraphQLObjectType({
     spriteSheetUri: { type: GraphQLString },
     left: { type: GraphQLInt },
     top: { type: GraphQLInt },
-    width: { type: GraphQLInt },
-    height: { type: GraphQLInt },
-    spriteWidth: { type: GraphQLInt },
-    spriteHeight: { type: GraphQLInt }
   })
 })
 
@@ -272,7 +278,7 @@ const RootQuery = new GraphQLObjectType({
           .then(res => res.data.Results[0]);
       }
     },
-    gameBaseVariants: {
+    gameBaseVariantsMetadata: {
       type: new GraphQLList(GameBaseVariantType),
       resolve(parent, args) {
         return instanceWithAcceptedLanguage
@@ -280,7 +286,7 @@ const RootQuery = new GraphQLObjectType({
           .then(res => res.data)
       }
     },
-    weapons: {
+    weaponsMetadata: {
       type: new GraphQLList(WeaponType),
       resolve(parent, args) {
         return instanceWithAcceptedLanguage
@@ -288,7 +294,7 @@ const RootQuery = new GraphQLObjectType({
           .then(res => res.data)
       }
     },
-    medals: {
+    medalsMetadata: {
       type: new GraphQLList(MedalType),
       resolve(parent, args) {
         return instanceWithAcceptedLanguage
