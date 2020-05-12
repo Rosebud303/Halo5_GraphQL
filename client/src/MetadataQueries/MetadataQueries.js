@@ -101,7 +101,7 @@ export const metadataQueryList = [
     name: 'seasonsMetadata',
     query: gql `
       query SeasonsQuery {
-        seasonssMetadata {
+        seasonsMetadata {
           playlists{
             name
             description
