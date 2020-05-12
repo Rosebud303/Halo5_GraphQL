@@ -204,33 +204,32 @@ const SpriteLocationType = new GraphQLObjectType({
 const WarzoneType = new GraphQLObjectType({
   name: 'Warzone',
   fields: () => ({
-    Result: { type: WarzoneStatType }
+    Result: { type: ResultType }
+  })
+})
+
+const ResultType = new GraphQLObjectType({
+  name: 'Result',
+  fields: () => ({
+    WarzoneStat: { type: WarzoneStatType },
   })
 })
 
 const WarzoneStatType = new GraphQLObjectType({
   name: 'WarzoneStat',
   fields: () => ({
-    WarzoneStat: { type: TotalPiesType },
-  })
-})
-
-const TotalPiesType = new GraphQLObjectType({
-  name: 'TotalPies',
-  fields: () => ({
-    TotalPiesEarned: { type: GraphQLInt },
-    ScenarioStats: { type: new GraphQLList(FlexibleStatsType)},
+    ScenarioStats: { type: new GraphQLList(ScenarioStatsType)},
     TotalKills: { type: GraphQLInt },
     TotalHeadshots: { type: GraphQLInt },
     TotalWeaponDamage: { type: GraphQLFloat },
     TotalShotsFired: { type: GraphQLInt },
     TotalShotsLanded: { type: GraphQLInt },
-    WeaponWithMostKills: {type: HighestKillWeaponType}
+    WeaponWithMostKills: {type: WeaponWithMostKillsType}
   })
 })
 
-const HighestKillWeaponType = new GraphQLObjectType({
-  name:'HighestKillWeapon',
+const WeaponWithMostKillsType = new GraphQLObjectType({
+  name:'WeaponWithMostKills',
   fields: () => ({
     TotalKills: { type: GraphQLInt },
     TotalHeadShots: { type: GraphQLInt},
@@ -248,10 +247,9 @@ const WeaponIdType = new GraphQLObjectType({
   })
 })
 
-const FlexibleStatsType = new GraphQLObjectType({
-  name: 'test',
+const ScenarioStatsType = new GraphQLObjectType({
+  name: 'ScenarioStats',
   fields: () => ({
-    TotalPiesEarned: { type: GraphQLInt },
     FlexibleStats: { type: MedalStatCountsType },
     GameBaseVariantId: { type: GraphQLString },
     MapId: { type: GraphQLString }
@@ -394,17 +392,6 @@ const RootQuery = new GraphQLObjectType({
         return instanceWithAcceptedLanguage
           .get('metadata/h5/metadata/medals')
           .then(res => res.data)
-      }
-    },
-    warzoneStats: {
-      type: WarzoneType,
-      args: {
-        player_name: {type: GraphQLString}
-      },
-      resolve(parent, args){
-        return instance
-          .get(`stats/h5/servicerecords/warzone?players=${args.player_name}`)
-          .then(res => res.data.Results[0])
       }
     },
     warzoneStats: {
