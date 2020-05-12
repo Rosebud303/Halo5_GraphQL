@@ -201,20 +201,6 @@ const SpriteLocationType = new GraphQLObjectType({
 
 //**************************************************** WARZONE STATS */
 
-const WarzoneType = new GraphQLObjectType({
-  name: 'Warzone',
-  fields: () => ({
-    Result: { type: ResultType }
-  })
-})
-
-const ResultType = new GraphQLObjectType({
-  name: 'Result',
-  fields: () => ({
-    WarzoneStat: { type: WarzoneStatType },
-  })
-})
-
 const WarzoneStatType = new GraphQLObjectType({
   name: 'WarzoneStat',
   fields: () => ({
@@ -301,7 +287,7 @@ const RootQuery = new GraphQLObjectType({
           .then((vehicle) => vehicle.filter(vehi => vehi.isUsableByPlayer == args.isUsableByPlayer))
       }
     },
-    mapMetadata: {
+    mapsMetadata: {
       type: new GraphQLList(MapMetadataType),
       resolve() {
         return instanceWithAcceptedLanguage
@@ -388,26 +374,27 @@ const RootQuery = new GraphQLObjectType({
       }
     },
     warzoneStats: {
-      type: WarzoneType,
+      type: WarzoneStatType,
       args: {
         player_name: {type: GraphQLString}
       },
       resolve(parent, args){
         return instance
           .get(`stats/h5/servicerecords/warzone?players=${args.player_name}`)
-          .then(res => res.data.Results[0])
+          .then(res => res.data.Results[0].Result.WarzoneStat)
       }
     },
     scenarioStats: {
       type: ScenarioStatsType,
       args: {
         player_name: {type: GraphQLString},
-        GameBaseVariantId: { type: }
+        GameBaseVariantId: {type: GraphQLString}
       },
       resolve(parent, args){
         return instance
           .get(`stats/h5/servicerecords/warzone?players=${args.player_name}`)
-          .then(res => res.data.Results[0])
+          .then(res => res.data.Results[0].Result.WarzoneStat.ScenarioStats)
+          .then(data => data.filter(item => item.GameBaseVariantId == args.GameBaseVariantId)[0])
       }
     }
   }
