@@ -224,7 +224,8 @@ const WarzoneStatType = new GraphQLObjectType({
     TotalWeaponDamage: { type: GraphQLFloat },
     TotalShotsFired: { type: GraphQLInt },
     TotalShotsLanded: { type: GraphQLInt },
-    WeaponWithMostKills: {type: WeaponWithMostKillsType}
+    WeaponWithMostKills: {type: WeaponWithMostKillsType},
+    MedalAwards: { type: new GraphQLList(MedalCountIdType) }
   })
 })
 
@@ -250,23 +251,15 @@ const WeaponIdType = new GraphQLObjectType({
 const ScenarioStatsType = new GraphQLObjectType({
   name: 'ScenarioStats',
   fields: () => ({
-    FlexibleStats: { type: MedalStatCountsType },
     GameBaseVariantId: { type: GraphQLString },
     MapId: { type: GraphQLString }
   })
 })
 
-const MedalStatCountsType = new GraphQLObjectType({
+const MedalCountIdType = new GraphQLObjectType({
   name: 'MedalStatCounts',
   fields: () => ({
-    MedalStatCounts: { type: new GraphQLList(MedalTypes) }
-  })
-})
-
-const MedalTypes = new GraphQLObjectType({
-  name: 'Medal',
-  fields: () => ({
-    Id: { type: GraphQLString },
+    MedalId: { type: GraphQLID },
     Count: { type: GraphQLInt }
   })
 })
@@ -398,6 +391,18 @@ const RootQuery = new GraphQLObjectType({
       type: WarzoneType,
       args: {
         player_name: {type: GraphQLString}
+      },
+      resolve(parent, args){
+        return instance
+          .get(`stats/h5/servicerecords/warzone?players=${args.player_name}`)
+          .then(res => res.data.Results[0])
+      }
+    },
+    scenarioStats: {
+      type: ScenarioStatsType,
+      args: {
+        player_name: {type: GraphQLString},
+        GameBaseVariantId: { type: }
       },
       resolve(parent, args){
         return instance
