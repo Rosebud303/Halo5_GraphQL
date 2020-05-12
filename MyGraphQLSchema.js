@@ -6,7 +6,9 @@ const {
   GraphQLInt, 
   GraphQLList, 
   GraphQLSchema,
-  GraphQLBoolean
+  GraphQLBoolean,
+  GraphQLFloat,
+  GraphQLID
 } = require('graphql');
 
 //**************************************************** RE-USED INSTANCE VARIABLES */
@@ -168,7 +170,7 @@ const WarzoneType = new GraphQLObjectType({
 const WarzoneStatType = new GraphQLObjectType({
   name: 'WarzoneStat',
   fields: () => ({
-    WarzoneStat: { type: TotalPiesType }
+    WarzoneStat: { type: TotalPiesType },
   })
 })
 
@@ -176,7 +178,32 @@ const TotalPiesType = new GraphQLObjectType({
   name: 'TotalPies',
   fields: () => ({
     TotalPiesEarned: { type: GraphQLInt },
-    ScenarioStats: { type: new GraphQLList(FlexibleStatsType)}
+    ScenarioStats: { type: new GraphQLList(FlexibleStatsType)},
+    TotalKills: { type: GraphQLInt },
+    TotalHeadshots: { type: GraphQLInt },
+    TotalWeaponDamage: { type: GraphQLFloat },
+    TotalShotsFired: { type: GraphQLInt },
+    TotalShotsLanded: { type: GraphQLInt },
+    WeaponWithMostKills: {type: HighestKillWeaponType}
+  })
+})
+
+const HighestKillWeaponType = new GraphQLObjectType({
+  name:'HighestKillWeapon',
+  fields: () => ({
+    TotalKills: { type: GraphQLInt },
+    TotalHeadShots: { type: GraphQLInt},
+    TotalShotsFired: { type: GraphQLInt },
+    TotalShotsLanded: { type: GraphQLInt},
+    TotalDamageDealt: { type: GraphQLFloat },
+    WeaponId: { type: WeaponIdType },
+  })
+})
+
+const WeaponIdType = new GraphQLObjectType({
+  name:'WeaponId',
+  fields: () => ({
+    StockId: { type: GraphQLID }
   })
 })
 
@@ -184,7 +211,9 @@ const FlexibleStatsType = new GraphQLObjectType({
   name: 'test',
   fields: () => ({
     TotalPiesEarned: { type: GraphQLInt },
-    FlexibleStats: { type: MedalStatCountsType }
+    FlexibleStats: { type: MedalStatCountsType },
+    GameBaseVariantId: { type: GraphQLString },
+    MapId: { type: GraphQLString }
   })
 })
 
