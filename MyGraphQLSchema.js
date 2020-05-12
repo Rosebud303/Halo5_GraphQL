@@ -62,6 +62,35 @@ const TierListType = new GraphQLObjectType({
   }),
 })
 
+
+//**************************************************** SEASONS METADATA */
+
+const SeasonsMetadataType = new GraphQLObjectType({
+  name: 'SeasonsMetadata',
+  fields: () => ({
+
+  }),
+})
+
+//**************************************************** FLEXIBLE STATS METADATA */
+
+const FlexibleStatsMetadataType = new GraphQLObjectType({
+  name: 'FlexibleStatsMetadata',
+  fields: () => ({
+    name: { type: GraphQLString },
+    id: { type: GraphQLString },
+  }),
+})
+
+//**************************************************** IMPULSES METADATA */
+
+const ImpulsesMetadataType = new GraphQLObjectType({
+  name: 'ImpulsesMetadata',
+  fields: () => ({
+
+  }),
+})
+
 //**************************************************** ACCESSING ARENA STATS */
 
 
