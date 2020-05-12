@@ -30,7 +30,49 @@ export const metadataQueryList = [
         }
       }
     `
-  } 
+  }, 
+  {
+    name: 'medalsMetadata',
+    query: gql`
+      query MedalsQuery {
+        medalsMetadata {
+          name
+          description
+          classification
+          difficulty
+          id
+          contentId
+          spriteLocation {
+            spriteSheetUri
+            left
+            top
+          }
+        }
+      }
+    `
+  },
+  {
+    name: 'gameBaseVariantsMetadata',
+    query: gql`
+      query GameVariantsQuery {
+        gameBaseVariantsMetadata {
+          name
+          iconUrl
+          id
+        }
+      }
+    `
+  },
+  {
+    name: 'weaponsMetadata',
+    query: gql`
+      query WeaponsQuery {
+        weaponsMetadata {
+          name
+          largeIconImageUrl
+          id
+        }
+      }
+    `
+  }
 ]
-
-//GameBaseVariant, Medals, Weapons, 
