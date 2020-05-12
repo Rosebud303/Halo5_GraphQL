@@ -32,23 +32,22 @@ class Arenapage extends Component {
         <form>
           <label htmlFor='filter'>Sort By:</label>
           <select name='filter' className='arena-filter-options'>
-        <Query query={DROPDOWN_QUERY} variables={{ player_name }}>
-          {
-            ({ loading, error, data }) => {
-              if (loading) return <p>loading...</p>
-              if (error) console.log(error)
-              const localvariable = JSON.parse(localStorage.getItem('gameBaseVariantsMetadata')).gameBaseVariantsMetadata
-              return (data.arenaStats.Result.ArenaStats.ArenaGameBaseVariantStats.map(id => {
-                return <option>{
-                  console.log(localvariable)
-                  }</option>
-              }))
-            }
-          }
-        </Query>
+            <Query query={DROPDOWN_QUERY} variables={{ player_name }}>
+              {
+                ({ loading, error, data }) => {
+                  if (loading) return <p>loading...</p>
+                  if (error) console.log(error)
+                  const localvariable = JSON.parse(localStorage.getItem('gameBaseVariantsMetadata')).gameBaseVariantsMetadata
+                  return (data.arenaStats.Result.ArenaStats.ArenaGameBaseVariantStats.map(id => {
+                    return <option>{
+                      localvariable.find(item => item.id == id.GameBaseVariantId).name
+                    }</option>
+                  }))
+                }
+              }
+            </Query>
           </select>
         </form>
-
         <h1>Arena Page Coming Soon...</h1>
         <Link to='/homepage'>
           <button>LINK BACK TO HOMEPAGE</button>
