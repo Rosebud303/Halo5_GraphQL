@@ -11,6 +11,7 @@ import Arenapage from '../Arenapage/Arenapage';
 import Warzonepage from '../Warzonepage/Warzonepage';
 import Testcomp from '../../Testcomp';
 import WarzoneFireFight from '../WarzoneFireFight/WarzoneFireFight';
+import WarzoneAssault from '../WarzoneAssault/WarzoneAssault';
 
 
 
@@ -36,6 +37,7 @@ export default class App extends Component {
             <Route exact path='/arena' component={Arenapage} />
             <Route exact path='/warzone' component={Warzonepage} />
             <Route exact path='/firefight' component={WarzoneFireFight} />
+            <Route exact path='/assault' component={WarzoneAssault} />
           </Switch>
         </div>
       </>
