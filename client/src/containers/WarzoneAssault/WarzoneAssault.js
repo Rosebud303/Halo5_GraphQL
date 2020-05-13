@@ -24,6 +24,7 @@ class WarzoneAssault extends Component {
   render() {
     const player_name = this.props.currentPlayer
     const assaultId = '42f97cca-2cb4-497a-a0fd-ceef1ba46bcc'
+    
     return (
       <div>
         <h1>Warzone Assault Bruhz</h1>

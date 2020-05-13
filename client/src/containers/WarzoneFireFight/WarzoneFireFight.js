@@ -24,6 +24,7 @@ class WarzoneFireFight extends Component {
   render() {
     const player_name = this.props.currentPlayer
     const firefightId = 'dfd51ee3-9060-46c3-b131-08d946c4c7b9'
+    
     return (
       <div>
         <h1>Fire Fight bruhz</h1>
