@@ -1,11 +1,9 @@
 import React from 'react';
-import gql from 'graphql-tag';
 import { Query } from 'react-apollo';
 import Spinner from './Spinner/Spinner';
 import { metadataQueryList } from './MetadataQueries/MetadataQueries';
 
-
-export default function Testcomp() {
+export default function MetadataLoader() {
 
   return (
     <div>
@@ -14,10 +12,10 @@ export default function Testcomp() {
           return localStorage[metadata.name] ? 
             console.log(`metadata for ${metadata.name} already exists`)
             : 
-            <Query query={metadata.query}>
+            <Query query={metadata.query} key={metadataQueryList.indexOf(metadata)}>
               {
                 ({ loading, error, data }) => {
-                  if(loading) return ''
+                  if(loading) return <Spinner name={metadata.name}/>
                   if(error) console.log(error)
                   localStorage.setItem(`${metadata.name}`, JSON.stringify(data))
                   return ''
