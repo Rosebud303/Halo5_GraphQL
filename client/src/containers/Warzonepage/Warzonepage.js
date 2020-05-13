@@ -16,7 +16,6 @@ const WARZONE_QUERY = gql`
   }
 `; 
 
-
 const Warzonepage = () => {
   
   return (
