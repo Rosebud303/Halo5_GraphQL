@@ -26,7 +26,10 @@ const Warzonepage = () => {
         <button>LINK BACK TO HOMEPAGE</button>
       </Link>
       <Link to='/firefight'>
-        <button>fire fight</button>
+        <button>Fire fight</button>
+      </Link>
+      <Link to='/assault'>
+        <button>Assault</button>
       </Link>
     </div>
   )
