@@ -87,7 +87,6 @@ class Homepage extends Component {
           <img alt='Player Emblem' className='lesser-emblem' src={this.props.currentImgUrlEmblem}/>
         </section>
         <section className='banner-company-links'>
-          {/* <img alt='Players banner displayed' className='lesser-banner'/> */}
           <h3 className='lesser-company'>COMPANY PLACEHOLDER</h3>
           <Link to='/details' className='homepage-links'>
             <p className='detail-link details'>DETAILS PAGE</p>
