@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './Arenapage.scss';
-import { Link, Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
@@ -20,10 +20,6 @@ let DROPDOWN_QUERY = gql`
 `;
 
 class Arenapage extends Component {
-  constructor(props) {
-    super(props);
-  }
-  
   render() {
     const player_name = this.props.currentPlayer
 
@@ -40,7 +36,7 @@ class Arenapage extends Component {
                   const parsedGameVariantMetadata = JSON.parse(localStorage.getItem('gameBaseVariantsMetadata')).gameBaseVariantsMetadata
                   return (data.arenaStats.Result.ArenaStats.ArenaGameBaseVariantStats.map(id => {
                     return <option id={id.GameBaseVariantId}>{
-                      parsedGameVariantMetadata.find(item => item.id == id.GameBaseVariantId).name
+                      parsedGameVariantMetadata.find(item => item.id === id.GameBaseVariantId).name
                     }</option>
                   }))
                 }
