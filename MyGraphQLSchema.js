@@ -250,43 +250,11 @@ const MedalCountIdType = new GraphQLObjectType({
   })
 })
 
-//**************************************************** TEST QUERY */
-
-
-// enum VehicleUsable {
-//   true
-//   false
-// }
-
-const VehicleObj = new GraphQLObjectType({
-  name: 'Vehicle',
-  fields: () => ({
-    name: { type: GraphQLString },
-    description: { type: GraphQLString },
-    largeIconImageUrl: { type: GraphQLString },
-    isUsableByPlayer: { type: GraphQLBoolean },
-    id: { type: GraphQLString },
-    contentId: { type: GraphQLString },
-  })
-})
-
 //**************************************************** ROOT QUERY */
 
 const RootQuery = new GraphQLObjectType({
   name: 'RootQueryType',
   fields: {
-    vehicleMeta: {
-      type: new GraphQLList(VehicleObj),
-      args: { 
-        isUsableByPlayer: { type: GraphQLBoolean },
-      },
-      resolve(parent, args) {
-        return instanceWithAcceptedLanguage
-          .get(`metadata/h5/metadata/vehicles`)
-          .then(res => res.data)
-          .then((vehicle) => vehicle.filter(vehi => vehi.isUsableByPlayer == args.isUsableByPlayer))
-      }
-    },
     mapsMetadata: {
       type: new GraphQLList(MapMetadataType),
       resolve() {

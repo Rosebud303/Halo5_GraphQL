@@ -1,21 +1,21 @@
 import React, { Component } from 'react';
-import './WarzoneFireFight.scss';
+import './WarzoneAssault.scss';
 import { connect } from 'react-redux';
 import WarzoneDropbox from '../WarzoneDropbox/WarzoneDropbox';
 
-class WarzoneFireFight extends Component {
+class WarzoneAssault extends Component {
   constructor(props) {
-    super(props);
+    super(props)
   }
 
   render() {
-    const warzoneGameVariantId = 'dfd51ee3-9060-46c3-b131-08d946c4c7b9'
+    const warzoneGameVariantId = '42f97cca-2cb4-497a-a0fd-ceef1ba46bcc'
 
     return (
       <>
-        <WarzoneDropbox warzoneGameVariantId={warzoneGameVariantId}/>
+        <WarzoneDropbox warzoneGameVariantId={warzoneGameVariantId} />
       </>
-    );
+    )
   }
 }
 
@@ -23,4 +23,4 @@ const mapStateToProps = (state) => ({
   currentPlayer: state.currentPlayer
 });
 
-export default connect(mapStateToProps)(WarzoneFireFight);
+export default connect(mapStateToProps)(WarzoneAssault);

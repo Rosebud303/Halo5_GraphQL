@@ -16,7 +16,6 @@ const WARZONE_QUERY = gql`
   }
 `; 
 
-
 const Warzonepage = () => {
   
   return (
@@ -25,8 +24,14 @@ const Warzonepage = () => {
       <Link to='/homepage'>
         <button>LINK BACK TO HOMEPAGE</button>
       </Link>
-      <Link to='/firefight'>
-        <button>fire fight</button>
+      <Link to='/warzone/firefight'>
+        <button>Fire fight</button>
+      </Link>
+      <Link to='/warzone/assault'>
+        <button>Assault</button>
+      </Link>
+      <Link to='/warzone/regular'>
+        <button>Regular</button>
       </Link>
     </div>
   )
