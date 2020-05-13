@@ -34,7 +34,7 @@ class WarzoneDropbox extends Component {
                   currentKey = currentKey++
                   const parsedMapsMetadata = JSON.parse(localStorage.getItem('mapsMetadata')).mapsMetadata
                   return (data.warzoneStats.ScenarioStats.filter(gameVariant => gameVariant.GameBaseVariantId === this.props.warzoneGameVariantId).map(id => {
-                    return <option id={id.MapId} key={data.warzoneStats.ScenarioStats.indexOf(id)}>
+                    return <option id={id.MapId} key={id.MapId}>
                       {parsedMapsMetadata.find(item => item.id === id.MapId).name}
                     </option>
                   }))

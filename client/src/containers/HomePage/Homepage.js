@@ -17,7 +17,7 @@ class Homepage extends Component {
     }
   }
   
-  componentWillMount() {
+  componentDidMount() {
     this.setUrlSpartan();
     this.setUrlEmblem();
   };

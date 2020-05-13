@@ -35,7 +35,7 @@ class Arenapage extends Component {
                   if (error) console.log(error)
                   const parsedGameVariantMetadata = JSON.parse(localStorage.getItem('gameBaseVariantsMetadata')).gameBaseVariantsMetadata
                   return (data.arenaStats.Result.ArenaStats.ArenaGameBaseVariantStats.map(id => {
-                    return <option id={id.GameBaseVariantId} key={data.arenaStats.Result.ArenaStats.ArenaGameBaseVariantStats.indexOf(id)}>
+                    return <option id={id.GameBaseVariantId} key={id.GameBaseVariantId}>
                       {parsedGameVariantMetadata.find(item => item.id === id.GameBaseVariantId).name}
                     </option>
                   }))
