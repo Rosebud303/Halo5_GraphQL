@@ -18,6 +18,7 @@ const WARZONE_QUERY = gql`
 class WarzoneDropbox extends Component {
   render() {
     const player_name = this.props.currentPlayer
+    let currentKey = 0
 
     return (
       <div>
@@ -28,11 +29,12 @@ class WarzoneDropbox extends Component {
             <Query query={WARZONE_QUERY} variables={{ player_name }}>
               {
                 ({ loading, error, data }) => {
-                  if (loading) return <p>loading...</p>
+                  if (loading) return <option>Loading...</option>
                   if (error) console.log(error)
+                  currentKey = currentKey++
                   const parsedMapsMetadata = JSON.parse(localStorage.getItem('mapsMetadata')).mapsMetadata
                   return (data.warzoneStats.ScenarioStats.filter(gameVariant => gameVariant.GameBaseVariantId === this.props.warzoneGameVariantId).map(id => {
-                    return <option id={id.MapId}>
+                    return <option id={id.MapId} key={data.warzoneStats.ScenarioStats.indexOf(id)}>
                       {
                         parsedMapsMetadata.find(item => item.id === id.MapId).name
                       }

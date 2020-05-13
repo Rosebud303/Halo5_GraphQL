@@ -28,16 +28,16 @@ class Arenapage extends Component {
         <form>
           <label htmlFor='filter'>Sort By:</label>
           <select name='filter' className='arena-filter-options'>
-            <Query query={DROPDOWN_QUERY} variables={{ player_name }}>
+            <Query query={DROPDOWN_QUERY} variables={{ player_name }} key={player_name}>
               {
                 ({ loading, error, data }) => {
-                  if (loading) return <p>loading...</p>
+                  if (loading) return <option>Loading...</option>
                   if (error) console.log(error)
                   const parsedGameVariantMetadata = JSON.parse(localStorage.getItem('gameBaseVariantsMetadata')).gameBaseVariantsMetadata
                   return (data.arenaStats.Result.ArenaStats.ArenaGameBaseVariantStats.map(id => {
-                    return <option id={id.GameBaseVariantId}>{
-                      parsedGameVariantMetadata.find(item => item.id === id.GameBaseVariantId).name
-                    }</option>
+                    return <option id={id.GameBaseVariantId} key={data.arenaStats.Result.ArenaStats.ArenaGameBaseVariantStats.indexOf(id)}>
+                      {parsedGameVariantMetadata.find(item => item.id === id.GameBaseVariantId).name}
+                    </option>
                   }))
                 }
               }
