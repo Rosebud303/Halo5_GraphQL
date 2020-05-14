@@ -1,6 +1,6 @@
 import React from 'react';
 import './Detailspage.scss';
-import { Link, Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 
 const Detailspage = () => {

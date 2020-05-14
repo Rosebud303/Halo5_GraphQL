@@ -4,10 +4,6 @@ import { connect } from 'react-redux';
 import WarzoneDropbox from '../WarzoneDropbox/WarzoneDropbox';
 
 class WarzoneAssault extends Component {
-  constructor(props) {
-    super(props)
-  }
-
   render() {
     const warzoneGameVariantId = '42f97cca-2cb4-497a-a0fd-ceef1ba46bcc'
 

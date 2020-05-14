@@ -23,14 +23,6 @@ const instanceWithAcceptedLanguage = axios.create({
   headers: {  'Accept-Language': 'en', 'Ocp-Apim-Subscription-Key': api_key }
 });
 
-const SpartanType = new GraphQLObjectType({
-  name: 'Spartan',
-  fields: () => ({
-    Gamertag: { type: GraphQLString },
-    ServiceTag: { type: GraphQLString },
-  }),
-});
-
 //**************************************************** MAP METADATA */
 
 const MapMetadataType = new GraphQLObjectType({
@@ -105,53 +97,6 @@ const ImpulsesMetadataType = new GraphQLObjectType({
   }),
 })
 
-//**************************************************** ACCESSING ARENA STATS */
-
-
-const ArenaStatsType = new GraphQLObjectType({
-  name: 'ArenaStats',
-  fields: () => ({
-    Id: { type: GraphQLString },
-    ResultCode: { type: GraphQLInt},
-    Result: { type: ArenaResultType },
-  }),
-});
-
-const ArenaResultType = new GraphQLObjectType({
-  name: 'ArenaResults',
-  fields: () => ({
-    ArenaStats: { type: PlayerArenaStats },
-  }),
-});
-
-const PlayerArenaStats = new GraphQLObjectType({
-  name: 'PlayerArenaStats',
-  fields: () => ({
-    HighestCsrAttained: { type: CsrStatsType },
-    ArenaGameBaseVariantStats: { type: new GraphQLList(ArenaGameVariantType)}
-  }),
-});
-
-const ArenaGameVariantType = new GraphQLObjectType({
-  name: 'ArenaGameVariant',
-  fields: () => ({
-    GameBaseVariantId: { type: GraphQLString},
-  }),
-})
-
-//**************************************************** NESTEDARENA STATS */
-
-
-const CsrStatsType = new GraphQLObjectType({
-  name: 'CsrStatsType',
-  fields: () => ({
-    Tier: { type: GraphQLInt },
-    DesignationId: { type: GraphQLInt },
-    PercentToNextTier: { type: GraphQLInt },
-    
-  })
-})
-
 //**************************************************** GAME BASE VARIANTS */
 
 const GameBaseVariantType = new GraphQLObjectType({
@@ -195,7 +140,52 @@ const SpriteLocationType = new GraphQLObjectType({
     spriteSheetUri: { type: GraphQLString },
     left: { type: GraphQLInt },
     top: { type: GraphQLInt },
-  })
+  }),
+})
+
+//**************************************************** ARENA STATS */
+
+const ArenaGameBasesType = new GraphQLObjectType({
+  name: 'ArenaGameBases',
+  fields: () => ({
+    GameBaseVariantId: { type: GraphQLString },
+  }),
+})
+
+const CsrStatsType = new GraphQLObjectType({
+  name: 'CsrStats',
+  fields: () => ({
+    HighestCsrAttained: { type: HighestCsrType },
+    ArenaGameBaseVariantStats: { type: new GraphQLList(BestSeasonType)},
+  }),
+})
+
+const HighestCsrType = new GraphQLObjectType({
+  name: 'HighestCsr',
+  fields: () => ({
+    Tier: { type: GraphQLInt },
+    DesignationId: { type: GraphQLInt },
+    PercentToNextTier: { type: GraphQLInt },
+  }),
+})
+
+// NEED TO RESOLVE CSR DATA TYPE BELOW============
+const BestSeasonType = new GraphQLObjectType({
+  name: 'BestSeason',
+  fields: () => ({
+    HighestCsrPlaylistId: { type: GraphQLString },
+    HighestCsrSeasonId: { type: GraphQLString },
+    ArenaPlaylistStatsSeasonId: { type: GraphQLString },
+  }),
+})
+//================================================
+
+const ArenaStatsType = new GraphQLObjectType({
+  name: 'ArenaStats',
+  fields: () => ({
+    TotalKills: { type: GraphQLString },
+    TotalDeaths: { type: GraphQLString },
+  }),
 })
 
 
@@ -295,28 +285,6 @@ const RootQuery = new GraphQLObjectType({
           .then(res => res.data)
       }
     },
-    spartan: {
-      type: SpartanType,
-      args: {
-        player_name: { type: GraphQLString },
-      },
-      resolve(parent, args) {
-        return instance
-          .get(`profile/h5/profiles/${args.player_name}/appearance`)
-          .then((res) => res.data);
-      }      
-    },
-    arenaStats: {
-      type: ArenaStatsType,
-      args: {
-        player_name: { type: GraphQLString },
-      },
-      resolve(parent, args) {
-        return instance
-          .get(`stats/h5/servicerecords/arena?players=${args.player_name}`)
-          .then(res => res.data.Results[0]);
-      }
-    },
     gameBaseVariantsMetadata: {
       type: new GraphQLList(GameBaseVariantType),
       resolve(parent, args) {
@@ -341,6 +309,45 @@ const RootQuery = new GraphQLObjectType({
           .then(res => res.data)
       }
     },
+    
+
+    arenaGameBases: {
+      type: new GraphQLList(ArenaGameBasesType),
+      args: {
+        player_name: { type: GraphQLString },
+      },
+      resolve(parent, args) {
+        return instance
+          .get(`stats/h5/servicerecords/arena?players=${args.player_name}`)
+          .then(res => res.data.Results[0].Result.ArenaStats.ArenaGameBaseVariantStats)
+      },
+    },
+    csrStats: {
+      type: CsrStatsType,
+      args: {
+        player_name: { type: GraphQLString },
+      },
+      resolve(parent, args) {
+        return instance
+          .get(`stats/h5/servicerecords/arena?players=${args.player_name}`)
+          .then(res => res.data.Results[0].Result.ArenaStats)
+      },
+    },
+    arenaStats: {
+      type: ArenaStatsType,
+      args: {
+        player_name: { type: GraphQLString },
+        GameBaseVariantId: { type: GraphQLString },
+      },
+      resolve(parent, args) {
+        return instance
+          .get(`stats/h5/servicerecords/arena?players=${args.player_name}`)
+          .then(res => res.data.Results[0].Result.ArenaStats.ArenaGameBaseVariantStats)
+          .then(data => data.find(specificVariant => specificVariant.GameBaseVariantId === args.GameBaseVariantId))
+      },
+    },
+
+
     warzoneStats: {
       type: WarzoneStatType,
       args: {

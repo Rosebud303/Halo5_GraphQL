@@ -1,29 +1,19 @@
 import React, { Component } from 'react';
 import './Arenapage.scss';
-import { Link, Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
 
-let DROPDOWN_QUERY = gql`
+let ARENA_DROPDOWN_QUERY = gql`
   query gameVariantIdQuery($player_name: String!) {
-    arenaStats (player_name: $player_name) {
-      Result {
-        ArenaStats {
-          ArenaGameBaseVariantStats {
-            GameBaseVariantId
-          }
-        }
-      }
+    arenaGameBases (player_name: $player_name) {
+      GameBaseVariantId
     }
   }  
 `;
 
 class Arenapage extends Component {
-  constructor(props) {
-    super(props);
-  }
-  
   render() {
     const player_name = this.props.currentPlayer
 
@@ -32,16 +22,16 @@ class Arenapage extends Component {
         <form>
           <label htmlFor='filter'>Sort By:</label>
           <select name='filter' className='arena-filter-options'>
-            <Query query={DROPDOWN_QUERY} variables={{ player_name }}>
+            <Query query={ARENA_DROPDOWN_QUERY} variables={{ player_name }} key={player_name}>
               {
                 ({ loading, error, data }) => {
-                  if (loading) return <p>loading...</p>
+                  if (loading) return <option>Loading...</option>
                   if (error) console.log(error)
                   const parsedGameVariantMetadata = JSON.parse(localStorage.getItem('gameBaseVariantsMetadata')).gameBaseVariantsMetadata
-                  return (data.arenaStats.Result.ArenaStats.ArenaGameBaseVariantStats.map(id => {
-                    return <option id={id.GameBaseVariantId}>{
-                      parsedGameVariantMetadata.find(item => item.id == id.GameBaseVariantId).name
-                    }</option>
+                  return (data.arenaGameBases.map(id => {
+                    return <option id={id.GameBaseVariantId} key={id.GameBaseVariantId}>
+                      {parsedGameVariantMetadata.find(item => item.id === id.GameBaseVariantId).name}
+                    </option>
                   }))
                 }
               }

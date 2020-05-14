@@ -5,30 +5,30 @@
   width: 11em;
   height: 11em;
   border-radius: 50%;
-  background: var(--c-red);
+  background: #fe615a;
   background: -moz-linear-gradient(
     left,
-    var(--c-red) 10%,
+    #fe615a 10%,
     rgba(255, 255, 255, 0) 42%
   );
   background: -webkit-linear-gradient(
     left,
-    var(--c-red) 10%,
+    #fe615a 10%,
     rgba(255, 255, 255, 0) 42%
   );
   background: -o-linear-gradient(
     left,
-    var(--c-red) 10%,
+    #fe615a 10%,
     rgba(255, 255, 255, 0) 42%
   );
   background: -ms-linear-gradient(
     left,
-    var(--c-red) 10%,
+    #fe615a 10%,
     rgba(255, 255, 255, 0) 42%
   );
   background: linear-gradient(
     to right,
-    var(--c-red) 10%,
+    #fe615a 10%,
     rgba(255, 255, 255, 0) 42%
   );
   position: relative;
@@ -41,7 +41,7 @@
 .spinner:before {
   width: 50%;
   height: 50%;
-  background: var(--c-red);
+  background: #fe615a;
   border-radius: 100% 0 0 0;
   position: absolute;
   top: 0;
@@ -49,7 +49,7 @@
   content: '';
 }
 .spinner:after {
-  background: var(--c-blue);
+  background: blue;
   width: 75%;
   height: 75%;
   border-radius: 50%;
@@ -83,7 +83,7 @@
 }
 
 .spinner__text {
-  color: var(--c-red);
+  color: #fe615a;
   font-size: 1.2rem;
   margin-top: 3rem;
   text-align: center;
