@@ -17,7 +17,9 @@ const CsrStatsType = new GraphQLObjectType({
   name: 'CsrStats',
   fields: () => ({
     HighestCsrAttained: { type: HighestCsrType },
-    ArenaGameBaseVariantStats: { type: new GraphQLList(BestSeasonType) },
+    HighestCsrPlaylistId: { type: GraphQLString },
+    HighestCsrSeasonId: { type: GraphQLString },
+    ArenaPlaylistStatsSeasonId: { type: GraphQLString },
   }),
 })
 
@@ -31,14 +33,14 @@ const HighestCsrType = new GraphQLObjectType({
 })
 
 // NEED TO RESOLVE CSR DATA TYPE BELOW============
-const BestSeasonType = new GraphQLObjectType({
-  name: 'BestSeason',
-  fields: () => ({
-    HighestCsrPlaylistId: { type: GraphQLString },
-    HighestCsrSeasonId: { type: GraphQLString },
-    ArenaPlaylistStatsSeasonId: { type: GraphQLString },
-  }),
-})
+// const BestSeasonType = new GraphQLObjectType({
+//   name: 'BestSeason',
+//   fields: () => ({
+//     HighestCsrPlaylistId: { type: GraphQLString },
+//     HighestCsrSeasonId: { type: GraphQLString },
+//     ArenaPlaylistStatsSeasonId: { type: GraphQLString },
+//   }),
+// })
 //================================================
 
 const ArenaStatsType = new GraphQLObjectType({
