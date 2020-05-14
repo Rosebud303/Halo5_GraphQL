@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
 
-const WARZONE_QUERY = gql`
+const WARZONE_DROPDOWN_QUERY = gql`
   query WarzoneQuery ($player_name: String!) {
     warzoneStats(player_name: $player_name) {
       ScenarioStats{
@@ -26,7 +26,7 @@ class WarzoneDropbox extends Component {
         <form>
           <label htmlFor='filter'> Personal Warzone Playlist:</label>
           <select name='filter' className='warzone-dropdown'>
-            <Query query={WARZONE_QUERY} variables={{ player_name }}>
+            <Query query={WARZONE_DROPDOWN_QUERY} variables={{ player_name }}>
               {
                 ({ loading, error, data }) => {
                   if (loading) return <option>Loading...</option>
