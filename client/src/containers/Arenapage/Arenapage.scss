@@ -1,0 +1,83 @@
+.arena-main {
+  display: grid;
+  grid-gap: 2rem;
+  height: 90vh;
+  grid-template-areas:
+  "a b c"
+  "h i d"
+  "g f e"
+  ;
+  grid-template-rows: repeat(3, 33%); 
+  grid-template-columns: repeat(3, 33%);
+}
+
+@keyframes cardEntrance {
+  from {
+    opacity: 0;
+    transform: scale(0.3);
+    filter: hue-rotate(180deg)
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+    filter: hue-rotate(0deg);
+  }
+}
+
+.arena-details-box {
+  animation: cardEntrance 700ms ease-out;
+  animation-fill-mode: backwards;
+}
+
+.box-a {
+  grid-area: a;
+  background: red;
+  animation-delay: calc(1 * 100ms);
+}
+
+.box-b {
+  grid-area: b;
+  background: blue;
+  animation-delay: calc(2 * 100ms);
+}
+
+.box-c {
+  grid-area: c;
+  background: green;
+  animation-delay: calc(3 * 100ms);
+}
+
+.box-d {
+  grid-area: d;
+  background: orange;
+  animation-delay: calc(4 * 100ms);
+}
+
+.box-e {
+  grid-area: e;
+  background: purple;
+  animation-delay: calc(5 * 100ms);
+}
+
+.box-f {
+  grid-area: f;
+  background: darkblue;
+  animation-delay: calc(6 * 100ms);
+}
+
+.box-g {
+  grid-area: g;
+  background: pink;
+  animation-delay: calc(7 * 100ms);
+}
+
+.box-h {
+  grid-area: h;
+  background: black;
+  animation-delay: calc(8 * 100ms);
+}
+.box-i {
+  grid-area: i;
+  background: lightcoral;
+  animation-delay: calc(9 * 100ms);
+}
