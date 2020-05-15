@@ -42,6 +42,7 @@ class Arenapage extends Component {
         <Link to='/homepage'>
           <button>LINK BACK TO HOMEPAGE</button>
         </Link>
+        
       </div>
     )
   }

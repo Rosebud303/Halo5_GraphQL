@@ -1,4 +1,4 @@
-const api_key = require('./client/src/apikey');
+const { api_key } = require('./client/src/apikey');
 const axios = require('axios');
 const {
   GraphQLObjectType, 
@@ -23,7 +23,8 @@ const {
 const {
   ArenaGameBasesType,
   CsrStatsType,
-  ArenaStatsType
+  ArenaStatsType,
+  AccumulativeArenaStatsType
 } = require('./ArenaTypes');
 
 //**************************************************** RE-USED INSTANCE VARIABLES */
@@ -144,6 +145,18 @@ const RootQuery = new GraphQLObjectType({
           .then(data => data.find(specificVariant => specificVariant.GameBaseVariantId === args.GameBaseVariantId))
       },
     },
+    accumulativeArenaStats: {
+      type: AccumulativeArenaStatsType,
+      args: {
+        player_name: { type: GraphQLString },
+        GameBaseVariantId: { type: GraphQLString },
+      },
+      resolve(parent, args) {
+        return instance
+          .get(`stats/h5/servicerecords/arena?players=${args.player_name}`)
+          .then(res => res.data.Results[0].Result.ArenaStats)
+      },
+    },
 
 
     warzoneStats: {
@@ -155,7 +168,7 @@ const RootQuery = new GraphQLObjectType({
         return instance
           .get(`stats/h5/servicerecords/warzone?players=${args.player_name}`)
           .then(res => res.data.Results[0].Result.WarzoneStat)
-      }
+      },
     },
     scenarioStats: {
       type: ScenarioStatsType,
