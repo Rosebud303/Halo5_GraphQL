@@ -98,7 +98,7 @@ class Arenapage extends Component {
               }
             </Query>
           </select>
-        <h1>Arena Page Coming Soon...</h1>
+        <h1>ARENA PAGE IS HERE BITCH!!!</h1>
         <Link to='/homepage'>
           <button>LINK BACK TO HOMEPAGE</button>
         </Link>
