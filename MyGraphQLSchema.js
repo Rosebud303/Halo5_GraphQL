@@ -171,7 +171,7 @@ const RootQuery = new GraphQLObjectType({
       },
     },
     scenarioStats: {
-      type: ScenarioStatsType,
+      type: new GraphQLList(ScenarioStatsType),
       args: {
         player_name: {type: GraphQLString},
         GameBaseVariantId: {type: GraphQLString}
@@ -180,7 +180,7 @@ const RootQuery = new GraphQLObjectType({
         return instance
           .get(`stats/h5/servicerecords/warzone?players=${args.player_name}`)
           .then(res => res.data.Results[0].Result.WarzoneStat.ScenarioStats)
-          .then(data => data.filter(item => item.GameBaseVariantId == args.GameBaseVariantId)[0])
+          .then(data => data.filter(item => item.GameBaseVariantId == args.GameBaseVariantId))
       }
     }
   }
