@@ -64,16 +64,20 @@ class Arenapage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentGameVariant: ''
+      currentGameVariant: '',
+      currentGameVariantName: ''
     }
   }
 
-  selectArenaVariant = (e) => {
+  selectArenaVariant = async (e) => {
     e.preventDefault()
     let optionIndex = e.target.selectedIndex
+    let testa = e.target[0]
     let selectOptions = e.target.options
     let gameVarId = selectOptions[optionIndex].id
-    this.setState({ currentGameVariant: gameVarId})
+    let gameVarIdName = selectOptions[optionIndex].text
+    await this.setState({ currentGameVariant: '' , currentGameVariantName: e.target.options[testa] })
+    this.setState({ currentGameVariant: gameVarId , currentGameVariantName: gameVarIdName })
   }
   
   render() {
@@ -81,24 +85,25 @@ class Arenapage extends Component {
     const GameBaseVariantId = this.state.currentGameVariant
     return (
       <div>
-          <label htmlFor='filter'>Sort By:</label>
-          <select onChange={(event) => this.selectArenaVariant(event)} name='filter' className='arena-filter-options'>
-            <Query query={ARENA_DROPDOWN_QUERY} variables={{ player_name }} key={player_name}>
-              {
-                ({ loading, error, data }) => {
-                  if (loading) return <option>Loading...</option>
-                  if (error) console.log(error)
-                  const parsedGameVariantMetadata = JSON.parse(localStorage.getItem('gameBaseVariantsMetadata')).gameBaseVariantsMetadata
-                  return (data.arenaGameBases.map(id => {
-                    return <option id={id.GameBaseVariantId} key={id.GameBaseVariantId}>
-                      {parsedGameVariantMetadata.find(item => item.id === id.GameBaseVariantId).name}
-                    </option>
-                  }))
-                }
+        <h3>Personal Playlist</h3>
+        <label htmlFor='filter'>Choose from Arena Playlist:</label>
+        <select onChange={(event) => this.selectArenaVariant(event)} name='filter' className='arena-filter-options'>
+          <option>No Selection</option>
+          <Query query={ARENA_DROPDOWN_QUERY} variables={{ player_name }} key={player_name}>
+            {
+              ({ loading, error, data }) => {
+                if (loading) return <option>Loading...</option>
+                if (error) console.log(error)
+                const parsedGameVariantMetadata = JSON.parse(localStorage.getItem('gameBaseVariantsMetadata')).gameBaseVariantsMetadata
+                return data.arenaGameBases.map(id => {
+                  return <option id={id.GameBaseVariantId} key={id.GameBaseVariantId}>
+                    {parsedGameVariantMetadata.find(item => item.id === id.GameBaseVariantId).name}
+                  </option>
+                })
               }
-            </Query>
-          </select>
-        <h1>ARENA PAGE IS HERE BITCH!!!</h1>
+            }
+          </Query>
+        </select>
         <Link to='/homepage'>
           <button>LINK BACK TO HOMEPAGE</button>
         </Link>
@@ -109,44 +114,75 @@ class Arenapage extends Component {
               ({ loading, error, data }) => {
                 if (loading) return ''
                 if (error) console.log(error)
-                console.log(data)
-                console.log(player_name)
                 return (
-                  <main className='arena-main'>
-                    <div className='arena-details-box box-a'>
-                      <p>{data.arenaStats.TotalKills}</p>
-                    </div>
-                    <div className='arena-details-box box-b'>
+                  <div>
+                    <h2 className='game-variant-name'>{this.state.currentGameVariantName}</h2>
+                    <main className='arena-main'>
+                      <div className='arena-details-box box-a'>
+                        <h4 className='box-title'>Win/Loss Stats</h4>
+                        <div>
+                          <p className='box-details'>Total Games Won: {data.arenaStats.TotalGamesWon.toLocaleString()}</p>
+                          <p className='box-details'>Total Games Lost: {data.arenaStats.TotalGamesLost.toLocaleString()}</p>
+                          <p className='box-details'>Total Games Tied: {data.arenaStats.TotalGamesTied.toLocaleString()}</p>
+                          <p className='box-details'>Total Games Completed: {data.arenaStats.TotalGamesCompleted.toLocaleString()}</p>
+                        </div>
+                      </div>
+                      <div className='arena-details-box box-b'>
+                        <h4 className='box-title'>KDA Stats</h4>
+                        <p className='box-details'>KDA Ratio: {((data.arenaStats.TotalKills + (data.arenaStats.TotalAssists / 3)) / data.arenaStats.TotalDeaths).toFixed(4)}</p>
+                        <p className='box-details'>Total Kills: {data.arenaStats.TotalKills.toLocaleString()}</p>
+                        <p className='box-details'>Total Deaths: {data.arenaStats.TotalDeaths.toLocaleString()}</p>
+                        <p className='box-details'>Total Assists: {data.arenaStats.TotalAssists.toLocaleString()}</p>
+                      </div>
+                      <div className='arena-details-box box-c'>
+                        <h4 className='box-title'>Best Performing Weapon</h4>
+                        <p>Weapon Name: The Dildo</p>
+                        <img alt='Weapon Image' />
+                        <p className='box-details'>Total Kills: {data.arenaStats.WeaponWithMostKills.TotalKills.toLocaleString()}</p>
+                        <p className='box-details'>Total Damage Dealt: {data.arenaStats.WeaponWithMostKills.TotalDamageDealt.toLocaleString()}</p>
+                        <p className='box-details'>Total Shots Fired: {data.arenaStats.WeaponWithMostKills.TotalShotsFired.toLocaleString()}</p>
+                        <p className='box-details'>Total Shots Landed: {data.arenaStats.WeaponWithMostKills.TotalShotsLanded.toLocaleString()}</p>
+                      </div>
+                      <div className='arena-details-box box-d'>
+                        <h4 className='box-title'>Shooting Stats</h4>
+                        <p className='box-details'>Total Headshots: {data.arenaStats.TotalHeadshots}</p>
+                        <p className='box-details'>Total Damage Done (All Weapons): {data.arenaStats.TotalWeaponDamage.toLocaleString()}</p>
+                        <p className='box-details'>Total Shots Fired: {data.arenaStats.TotalShotsFired.toLocaleString()}</p>
+                        <p className='box-details'>Total Shots Landed: {data.arenaStats.TotalShotsLanded.toLocaleString()}</p>
+                      </div>
+                      <div className='arena-details-box box-e'>
+                      <h4 className='box-title'>Impulse Stats</h4>
 
-                    </div>
-                    <div className='arena-details-box box-c'>
-                      <p>{data.arenaStats.TotalGamesWon}</p>
-                    </div>
-                    <div className='arena-details-box box-d'>
-                      <p>{data.arenaStats.TotalGamesLost}</p>
-                    </div>
-                    <div className='arena-details-box box-e'>
+                      </div>
+                      <div className='arena-details-box box-f'>
+                      <h4 className='box-title'>Medals</h4>
 
-                    </div>
-                    <div className='arena-details-box box-f'>
+                      </div>
+                      <div className='arena-details-box box-g'>
+                      <h4 className='box-title'>Flexible Stats</h4>
 
-                    </div>
-                    <div className='arena-details-box box-g'>
+                      </div>
+                      <div className='arena-details-box box-h'>
+                      <h4 className='box-title'>Style Kills</h4>
+                      <p className='box-details'>Total Assassinations: {data.arenaStats.TotalAssassinations.toLocaleString()}</p>
+                      <p className='box-details'>Total Melee: {data.arenaStats.TotalMeleeKills.toLocaleString()}</p>
+                      <p className='box-details'>Total Ground Pound: {data.arenaStats.TotalGroundPoundKills.toLocaleString()}</p>
+                      <p className='box-details'>Total Shoulder Bash: {data.arenaStats.TotalShoulderBashKills.toLocaleString()}</p>
+                      <p className='box-details'>Total Grenade: {data.arenaStats.TotalGrenadeKills.toLocaleString()}</p>
+                      <p className='box-details'>Total Power Weapon: {data.arenaStats.TotalPowerWeaponKills.toLocaleString()}</p>
 
-                    </div>
-                    <div className='arena-details-box box-h'>
-
-                    </div>
-                    <div className='arena-details-box box-i'>
-
-                    </div>
-
-                  </main>)
+                      </div>
+                      <div className='arena-details-box box-i'>
+                        <img src={this.props.currentImgUrlSpartan} />
+                      </div>
+                    </main>
+                  </div>
+                )
               }
             }
           </Query>
         }
-      </div>
+        </div>
     )
   }
 }
