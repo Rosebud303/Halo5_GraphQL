@@ -24,6 +24,7 @@ class WelcomePage extends Component {
   handleSubmit = (event) => {
     event.preventDefault()
     this.props.currentSearchedPlayer(this.state.searchedPlayer)
+    localStorage.setItem("currentPlayer", JSON.stringify(this.state.searchedPlayer))
     this.setState({searched: true})
   }
 
