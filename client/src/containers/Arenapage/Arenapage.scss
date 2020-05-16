@@ -27,57 +27,70 @@
 .arena-details-box {
   animation: cardEntrance 1000ms ease-out;
   animation-fill-mode: backwards;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 .box-a {
   grid-area: a;
   background: red;
-  animation-delay: calc(1 * 170ms);
+  animation-delay: calc(1 * 100ms);
 }
 
 .box-b {
   grid-area: b;
   background: blue;
-  animation-delay: calc(2 * 170ms);
+  animation-delay: calc(2 * 100ms);
 }
 
 .box-c {
   grid-area: c;
   background: green;
-  animation-delay: calc(3 * 170ms);
+  animation-delay: calc(3 * 100ms);
 }
 
 .box-d {
   grid-area: d;
   background: orange;
-  animation-delay: calc(4 * 170ms);
+  animation-delay: calc(4 * 100ms);
 }
 
 .box-e {
   grid-area: e;
   background: purple;
-  animation-delay: calc(5 * 170ms);
+  animation-delay: calc(5 * 100ms);
 }
 
 .box-f {
   grid-area: f;
   background: darkblue;
-  animation-delay: calc(6 * 170ms);
+  animation-delay: calc(6 * 100ms);
 }
 
 .box-g {
   grid-area: g;
   background: pink;
-  animation-delay: calc(7 * 170ms);
+  animation-delay: calc(7 * 100ms);
 }
 
 .box-h {
   grid-area: h;
-  background: black;
-  animation-delay: calc(8 * 170ms);
+  background: cyan;
+  animation-delay: calc(8 * 100ms);
 }
 .box-i {
   grid-area: i;
-  background: lightcoral;
-  animation-delay: calc(9 * 170ms);
+  // background: lightcoral;
+  // animation-delay: calc(9 * 100ms);
+  animation: none;
+}
+
+.game-variant-name {
+  text-align: center;
+}
+
+.box-title {
+  text-decoration: underline;
 }
