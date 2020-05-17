@@ -91,8 +91,11 @@ class Warzonepage extends Component {
                 ({ loading,error,data }) => {
                   if (loading) return ''
                   if (error) console.log(error)
-                  let parsedGameBaseVariants = JSON.parse(localStorage.getItem("gameBaseVariantsMetadata")).gameBaseVariantsMetadata
-                  const reducedTotals = (property) => {
+                  console.log(data)
+                  let parsedGameBaseVariants = JSON.parse(localStorage.getItem('gameBaseVariantsMetadata')).gameBaseVariantsMetadata
+                  let parsedWeaponsMetadata = JSON.parse(localStorage.getItem('weaponsMetadata')).weaponsMetadata
+                  let parsedMedalsMetadata = JSON.parse(localStorage.getItem('medalsMetadata')).medalsMetadata
+                  const reduceTotals = (property) => {
                     return data.scenarioStats.reduce((acc, cur) => {
                       acc += cur[property]
                       return acc
@@ -103,16 +106,65 @@ class Warzonepage extends Component {
                       return b.WeaponWithMostKills.TotalKills - a.WeaponWithMostKills.TotalKills
                     })[0].WeaponWithMostKills
                   }
+                  const findMostObtainedMedals = () => {
+                    let allMedals = data.scenarioStats.reduce((acc,cur) => {
+                      cur.MedalAwards.forEach(item => {
+                        if (!acc[item.MedalId]) {
+                          acc[item.MedalId] = 0
+                        }
+                        acc[item.MedalId] += item.Count
+                      })
+                      return acc
+                    }, {})
+                    let medalIds = Object.keys(allMedals)
+                    let sortedMedals = medalIds.sort((a, b) => {
+                     return allMedals[b] - allMedals[a]
+                    }).slice(0, 6)
+                    return sortedMedals.map(item => {
+                      let foundMedal = parsedMedalsMetadata.find(medal => medal.id == item)
+                      return {
+                        Count: allMedals[item], 
+                        Name: foundMedal.name,
+                        SpriteLocation: foundMedal.spriteLocation
+                      }
+                    })
+                  }
+                  const foundWeapon = parsedWeaponsMetadata.find(weapon => weapon.id === findMostEffectiveWeapon().WeaponId.StockId)
                   return (
                     <div>
-                      <p>Total Kills: {reducedTotals('TotalKills')}</p>
-                      <p>Total Headshots: {reducedTotals('TotalHeadshots')}</p>
-                      <p>Total Shots Fired: {reducedTotals('TotalShotsFired')}</p>
-                      <p>Total Shots Landed: {reducedTotals('TotalShotsLanded')}</p>
-                      <p>Total Damage Dealt: {reducedTotals('TotalDamageDealt')}</p>
-                      <p>Best wep: {findMostEffectiveWeapon().WeaponId.StockId}</p>
-
-
+                      <h3>{parsedGameBaseVariants.find(variant => variant.id == this.state.gameVariantId).name}</h3>
+                      <p>Total Wins: {reduceTotals('TotalGamesWon')}</p>
+                      <p>Total Losses: {reduceTotals('TotalGamesLost')}</p>
+                      <p>Total Ties: {reduceTotals('TotalGamesTied')}</p>
+                      <p>Total Kills: {reduceTotals('TotalKills')}</p>
+                      <p>Total Headshots: {reduceTotals('TotalHeadshots')}</p>
+                      <p>Total Shots Fired: {reduceTotals('TotalShotsFired')}</p>
+                      <p>Total Shots Landed: {reduceTotals('TotalShotsLanded')}</p>
+                      <p>Total Damage Dealt: {reduceTotals('TotalWeaponDamage').toFixed(2)}</p>
+                      <div>
+                        <p>Best Killing Tool: {foundWeapon.name}</p>
+                        <p>{foundWeapon.name} Total Kills: {findMostEffectiveWeapon().TotalKills}</p>
+                        <p>{foundWeapon.name} Total Headshots: {findMostEffectiveWeapon().TotalHeadshots}</p>
+                        <p>{foundWeapon.name} Total Shots Fired: {findMostEffectiveWeapon().TotalShotsFired}</p>
+                        <p>{foundWeapon.name} Total Shots Landed: {findMostEffectiveWeapon().TotalShotsLanded}</p>
+                        <p>{foundWeapon.name} Total Damage Dealt: {findMostEffectiveWeapon().TotalDamageDealt.toFixed(2)}</p>
+                        <img src={foundWeapon.largeIconImageUrl}/>
+                      </div>
+                      <div>
+                        <p>{parsedGameBaseVariants.find(variant => variant.id == this.state.gameVariantId).name}: Medals</p>
+                        {findMostObtainedMedals().map(medal => {
+                          const medalStyles = {
+                            backgroundImage: `url(${medal.SpriteLocation.spriteSheetUri})`,
+                            backgroundPosition: `-${medal.SpriteLocation.left}px -${medal.SpriteLocation.top}px`,
+                            backgroundSize: 'auto',
+                            width: '74px',
+                            height: '74px',
+                            margin: '2rem'}
+                          return <div>
+                                  <div style={medalStyles}></div>: {medal.Count}
+                                </div>
+                         })}
+                      </div>
                     </div>
                   )
 

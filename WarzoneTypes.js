@@ -12,7 +12,7 @@ const WarzoneStatType = new GraphQLObjectType({
   fields: () => ({
     TotalKills: { type: GraphQLInt },
     TotalHeadshots: { type: GraphQLInt },
-    TotalWeaponDamage: { type: GraphQLFloat },
+    TotalWeaponDamage: { type: GraphQLString },
     TotalShotsFired: { type: GraphQLInt },
     TotalShotsLanded: { type: GraphQLInt },
     TotalGamesWon: { type: GraphQLInt },
