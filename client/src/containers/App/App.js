@@ -25,9 +25,9 @@ export default class App extends Component {
             <Route exact path='/details' component={Detailspage} />
             <Route exact path='/arena' component={Arenapage} />
             <Route exact path='/warzone' component={Warzonepage} />
-            <Route exact path='/warzone/firefight' component={WarzoneFireFight} />
+            {/* <Route exact path='/warzone/firefight' component={WarzoneFireFight} />
             <Route exact path='/warzone/assault' component={WarzoneAssault} />
-            <Route exact path='/warzone/regular' component={WarzoneRegular} />
+            <Route exact path='/warzone/regular' component={WarzoneRegular} /> */}
           </Switch>
         </div>
       </>
