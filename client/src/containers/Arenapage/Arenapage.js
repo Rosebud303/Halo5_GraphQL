@@ -6,7 +6,7 @@ import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
 
 let ARENA_DROPDOWN_QUERY = gql`
-  query gameVariantIdQuery($player_name: String!) {
+  query GameVariantIdQuery($player_name: String!) {
     arenaGameBases (player_name: $player_name) {
       GameBaseVariantId
     }
@@ -69,20 +69,21 @@ class Arenapage extends Component {
     }
   }
 
-  selectArenaVariant = async (e) => {
+  selectArenaVariant = (e) => {
     e.preventDefault()
     let optionIndex = e.target.selectedIndex
-    let testa = e.target[0]
+    let emptyOption = e.target[0]
     let selectOptions = e.target.options
     let gameVarId = selectOptions[optionIndex].id
     let gameVarIdName = selectOptions[optionIndex].text
-    await this.setState({ currentGameVariant: '' , currentGameVariantName: e.target.options[testa] })
+    this.setState({ currentGameVariant: '' , currentGameVariantName: e.target.options[emptyOption] })
     this.setState({ currentGameVariant: gameVarId , currentGameVariantName: gameVarIdName })
   }
   
   render() {
     const player_name = this.props.currentPlayer
     const GameBaseVariantId = this.state.currentGameVariant
+    
     return (
       <div>
         <h3>Personal Playlist</h3>
