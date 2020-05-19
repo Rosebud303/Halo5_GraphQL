@@ -5,44 +5,65 @@ import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
 
 const WARZONE_DROPDOWN_QUERY = gql`
-  query WarzoneQuery ($player_name: String!) {
-    warzoneStats(player_name: $player_name) {
-      ScenarioStats{
-        GameBaseVariantId
-        MapId
+  query WarzoneQuery ($player_name: String!, $GameBaseVariantId: String!) {
+    scenarioStats(player_name: $player_name, GameBaseVariantId: $GameBaseVariantId) {
+      GameBaseVariantId
+      MapId
+      TotalKills
+      TotalHeadshots
+      TotalWeaponDamage
+      TotalShotsFired
+      TotalShotsLanded
+      TotalGamesWon
+      TotalGamesLost
+      TotalGamesTied
+      WeaponWithMostKills {
+        TotalKills
+        TotalHeadshots
+        TotalShotsFired
+        TotalShotsLanded
+        TotalDamageDealt
+        WeaponId {
+          StockId
+        }
+      }
+      MedalAwards {
+        MedalId
+        Count
       }
     }
   }
 `;
 
 class WarzoneDropbox extends Component {
+
+  selectMapVariant
+
   render() {
     const player_name = this.props.currentPlayer
-    let currentKey = 0
-
+    const GameBaseVariantId = this.props.warzoneGameVariantId
     return (
       <div>
         <h1>Warzone Game Variant</h1>
-        <form>
           <label htmlFor='filter'> Personal Warzone Playlist:</label>
           <select name='filter' className='warzone-dropdown'>
-            <Query query={WARZONE_DROPDOWN_QUERY} variables={{ player_name }}>
+            <Query query={WARZONE_DROPDOWN_QUERY} variables={{ player_name, GameBaseVariantId }}>
               {
                 ({ loading, error, data }) => {
                   if (loading) return <option>Loading...</option>
                   if (error) console.log(error)
-                  currentKey = currentKey++
                   const parsedMapsMetadata = JSON.parse(localStorage.getItem('mapsMetadata')).mapsMetadata
-                  return (data.warzoneStats.ScenarioStats.filter(gameVariant => gameVariant.GameBaseVariantId === this.props.warzoneGameVariantId).map(id => {
+                  return (data.scenarioStats.filter(gameVariant => gameVariant.GameBaseVariantId === this.props.warzoneGameVariantId).map(id => {
                     return <option id={id.MapId} key={id.MapId}>
                       {parsedMapsMetadata.find(item => item.id === id.MapId).name}
                     </option>
-                  }))
+                  })
+                  
+                  )
                 }
               }
             </Query>
           </select>
-        </form>
       </div>
     )
   }

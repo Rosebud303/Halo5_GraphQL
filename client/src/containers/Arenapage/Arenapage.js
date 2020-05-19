@@ -69,14 +69,14 @@ class Arenapage extends Component {
     }
   }
 
-  selectArenaVariant = (e) => {
+  selectArenaVariant = async (e) => {
     e.preventDefault()
     let optionIndex = e.target.selectedIndex
     let emptyOption = e.target[0]
     let selectOptions = e.target.options
     let gameVarId = selectOptions[optionIndex].id
     let gameVarIdName = selectOptions[optionIndex].text
-    this.setState({ currentGameVariant: '' , currentGameVariantName: e.target.options[emptyOption] })
+    await this.setState({ currentGameVariant: '' , currentGameVariantName: e.target.options[emptyOption] })
     this.setState({ currentGameVariant: gameVarId , currentGameVariantName: gameVarIdName })
   }
   
