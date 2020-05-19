@@ -66,39 +66,41 @@ class WarzoneDropbox extends Component {
     const player_name = this.props.currentPlayer
     const GameBaseVariantId = this.props.warzoneGameVariantId
     const MapId = this.state.currentMapVariantId
+    
     return (
       <div>
         <h1>Warzone Game Variant</h1>      
-            <Query query={WARZONE_DROPDOWN_QUERY} variables={{ player_name, GameBaseVariantId }}>
-              {
-                ({ loading, error, data }) => {
-                  if (loading) return <option>Loading...</option>
-                  if (error) console.log(error)
-                  const parsedMapsMetadata = JSON.parse(localStorage.getItem('mapsMetadata')).mapsMetadata
-                  return (<div>
-                    <label htmlFor='filter'> Personal Warzone Playlist:</label>
-                    <select onChange={(event) => this.selectMapVariant(event)} name='filter' className='warzone-dropdown'>
-                      <option>No Selection</option>
-                      {data.scenarioStats.filter(gameVariant => gameVariant.GameBaseVariantId === this.props.warzoneGameVariantId).map(id => {
-                        return <option id={id.MapId} key={id.MapId}>
-                          {parsedMapsMetadata.find(item => item.id === id.MapId).name}
-                        </option>                            
-                      })}
-                    </select>
-                  </div>)
-                }
-              }
-            </Query>
-            <Query query={MAP_QUERY} variables={{ player_name, GameBaseVariantId, MapId }}>
-              {
-                ({ loading, error, data }) => {
-                  if (loading) return <p>Loading...</p>
-                  if (error) console.log(error)
-                  console.log(data)
-                  return ''
-                }
-              }
-            </Query>
+        <Query query={WARZONE_DROPDOWN_QUERY} variables={{ player_name, GameBaseVariantId }}>
+          {
+            ({ loading, error, data }) => {
+              if (loading) return <option>Loading...</option>
+              if (error) console.log(error)
+              const parsedMapsMetadata = JSON.parse(localStorage.getItem('mapsMetadata')).mapsMetadata
+              
+              return (<div>
+                <label htmlFor='filter'> Personal Warzone Playlist:</label>
+                <select onChange={(event) => this.selectMapVariant(event)} name='filter' className='warzone-dropdown'>
+                  <option>No Selection</option>
+                  {data.scenarioStats.filter(gameVariant => gameVariant.GameBaseVariantId === this.props.warzoneGameVariantId).map(id => {
+                    return <option id={id.MapId} key={id.MapId}>
+                      {parsedMapsMetadata.find(item => item.id === id.MapId).name}
+                    </option>                            
+                  })}
+                </select>
+              </div>)
+            }
+          }
+        </Query>
+        <Query query={MAP_QUERY} variables={{ player_name, GameBaseVariantId, MapId }}>
+          {
+            ({ loading, error, data }) => {
+              if (loading) return <p>Loading...</p>
+              if (error) console.log(error)
+              console.log(data)
+              return ''
+            }
+          }
+        </Query>
       </div>
     )
   }
