@@ -6,7 +6,7 @@ import gql from 'graphql-tag';
 
 const WARZONE_DROPDOWN_QUERY = gql`
   query WarzoneQuery ($player_name: String!, $GameBaseVariantId: String!) {
-    scenarioStats(player_name: $player_name, GameBaseVariantId: $GameBaseVariantId) {
+    wzVariantStats(player_name: $player_name, GameBaseVariantId: $GameBaseVariantId) {
       GameBaseVariantId
       MapId
     }
@@ -81,7 +81,7 @@ class WarzoneDropbox extends Component {
                 <label htmlFor='filter'> Personal Warzone Playlist:</label>
                 <select onChange={(event) => this.selectMapVariant(event)} name='filter' className='warzone-dropdown'>
                   <option>No Selection</option>
-                  {data.scenarioStats.filter(gameVariant => gameVariant.GameBaseVariantId === this.props.warzoneGameVariantId).map(id => {
+                  {data.wzVariantStats.filter(gameVariant => gameVariant.GameBaseVariantId === this.props.warzoneGameVariantId).map(id => {
                     return <option id={id.MapId} key={id.MapId}>
                       {parsedMapsMetadata.find(item => item.id === id.MapId).name}
                     </option>                            
@@ -97,7 +97,13 @@ class WarzoneDropbox extends Component {
               if (loading) return <p>Loading...</p>
               if (error) console.log(error)
               console.log(data)
-              return ''
+              const parsedMapsMetadata = JSON.parse(localStorage.getItem('mapsMetadata')).mapsMetadata
+              const foundMap =  parsedMapsMetadata.find( map => map.id === MapId)
+              console.log(foundMap)
+              return ( <div>
+                {MapId && <img src={foundMap.imageUrl} />}
+              </div>
+              )
             }
           }
         </Query>
