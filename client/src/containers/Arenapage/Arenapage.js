@@ -86,25 +86,28 @@ class Arenapage extends Component {
     
     return (
       <div>
-        <h3>Personal Playlist</h3>
-        <label htmlFor='filter'>Choose from Arena Playlist:</label>
-        <select onChange={(event) => this.selectArenaVariant(event)} name='filter' className='arena-filter-options'>
-          <option>No Selection</option>
-          <Query query={ARENA_DROPDOWN_QUERY} variables={{ player_name }} key={player_name}>
-            {
-              ({ loading, error, data }) => {
-                if (loading) return <option>Loading...</option>
-                if (error) console.log(error)
-                const parsedGameVariantMetadata = JSON.parse(localStorage.getItem('gameBaseVariantsMetadata')).gameBaseVariantsMetadata
-                return data.arenaGameBases.map(id => {
-                  return <option id={id.GameBaseVariantId} key={id.GameBaseVariantId}>
-                    {parsedGameVariantMetadata.find(item => item.id === id.GameBaseVariantId).name}
-                  </option>
-                })
-              }
+        <h3>Personal Playlist</h3>  
+        <Query query={ARENA_DROPDOWN_QUERY} variables={{ player_name }} key={player_name}>
+          {
+            ({ loading, error, data }) => {
+              if (loading) return <option>Loading...</option>
+              if (error) console.log(error)
+              const parsedGameVariantMetadata = JSON.parse(localStorage.getItem('gameBaseVariantsMetadata')).gameBaseVariantsMetadata
+              
+              return (<div>                
+                <label htmlFor='filter'>Choose from Arena Playlist:</label>
+                <select onChange={(event) => this.selectArenaVariant(event)} name='filter' className='arena-filter-options'>
+                  <option>No Selection</option>
+                  {data.arenaGameBases.map(id => {
+                    return <option id={id.GameBaseVariantId} key={id.GameBaseVariantId}>
+                      {parsedGameVariantMetadata.find(item => item.id === id.GameBaseVariantId).name}
+                    </option>
+                  })}
+                </select>
+              </div>)
             }
-          </Query>
-        </select>
+          }
+        </Query>
         <Link to='/homepage'>
           <button>LINK BACK TO HOMEPAGE</button>
         </Link>
@@ -138,7 +141,7 @@ class Arenapage extends Component {
                       <div className='arena-details-box box-c'>
                         <h4 className='box-title'>Best Performing Weapon</h4>
                         <p>Weapon Name: The Dildo</p>
-                        <img alt='Weapon Image' />
+                        <img alt='Weapon' />
                         <p className='box-details'>Total Kills: {data.arenaStats.WeaponWithMostKills.TotalKills.toLocaleString()}</p>
                         <p className='box-details'>Total Damage Dealt: {data.arenaStats.WeaponWithMostKills.TotalDamageDealt.toLocaleString()}</p>
                         <p className='box-details'>Total Shots Fired: {data.arenaStats.WeaponWithMostKills.TotalShotsFired.toLocaleString()}</p>
@@ -174,7 +177,7 @@ class Arenapage extends Component {
 
                       </div>
                       <div className='arena-details-box box-i'>
-                        <img src={this.props.currentImgUrlSpartan} />
+                        <img src={this.props.currentImgUrlSpartan} alt='Users spartan'/>
                       </div>
                     </main>
                   </div>

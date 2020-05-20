@@ -121,7 +121,7 @@ class Warzonepage extends Component {
                      return allMedals[b] - allMedals[a]
                     }).slice(0, 6)
                     return sortedMedals.map(item => {
-                      let foundMedal = parsedMedalsMetadata.find(medal => medal.id == item)
+                      let foundMedal = parsedMedalsMetadata.find(medal => medal.id === item)
                       return {
                         Count: allMedals[item], 
                         Name: foundMedal.name,
@@ -133,11 +133,11 @@ class Warzonepage extends Component {
                   return (
                     <div className='accordion-section'>
                       <figure>
-                        <img className='game-variant-image' src='https://i.imgur.com/mZmEnAq.jpg' />
+                        <img className='game-variant-image' src='https://i.imgur.com/mZmEnAq.jpg' alt='Warzone Firefight Background' />
                         <input type='radio' name='radio-set' defaultChecked='checked' />
                         <figcaption>
                           <Link to='/warzone/firefight'>
-                          <span>{parsedGameBaseVariants.find(variant => variant.id == this.state.gameVariantId).name}</span>
+                          <span>{parsedGameBaseVariants.find(variant => variant.id === this.state.gameVariantId).name}</span>
                           </Link>
                         <p>Total Wins: {reduceTotals('TotalGamesWon')}</p>
                         <p>Total Losses: {reduceTotals('TotalGamesLost')}</p>
@@ -173,16 +173,16 @@ class Warzonepage extends Component {
                           })}
                         </div> */}
                         <figure>
-                          <img className='game-variant-image' src='https://i.imgur.com/h37QJVi.jpg' />
-                          <input type='radio' name='radio-set' checked='checked' />
+                          <img className='game-variant-image' src='https://i.imgur.com/h37QJVi.jpg' alt='Warzone Assault Background' />
+                          <input type='radio' name='radio-set' defaultChecked='checked' />
                           <figcaption>
                             <Link to='/warzone/assault'>
                               <span>Warzone Assault</span>
                             </Link>    
                           </figcaption>
                             <figure>
-                            <img className='game-variant-image' src='https://i.imgur.com/7F4dFgn.jpg' />
-                              <input type='radio' name='radio-set' id='accordion-selector-last' checked='checked' />
+                            <img className='game-variant-image' src='https://i.imgur.com/7F4dFgn.jpg' alt='Warzone Regular Background' />
+                              <input type='radio' name='radio-set' id='accordion-selector-last' defaultChecked='checked' />
                               <figcaption>
                                 <Link to='/warzone/regular'>
                                   <span>Warzone Regular</span>

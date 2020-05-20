@@ -6,13 +6,14 @@ import * as actions from '../../actions';
 import Carousel from '../Carousel/Carousel';
 import {api_key, proxyurl} from '../../apikey';
 import axios from 'axios'
+import Spinner from '../../Spinner/Spinner';
 
 
 class Homepage extends Component {
   constructor() {
     super();
     this.state = {
-      searchedPlayer: '',
+      searchedPlayer: ''
     }
   }
   
@@ -30,6 +31,8 @@ class Homepage extends Component {
   
   handleSubmit = async (event) => {
     event.preventDefault();
+    this.props.setImgUrlSpartan('')
+    this.props.setImgUrlEmblem('')
     await this.props.currentSearchedPlayer(this.state.searchedPlayer);
     this.setUrlSpartan();
     this.setUrlEmblem();
@@ -82,8 +85,12 @@ class Homepage extends Component {
       </div>
       <div className='lesser-spartan-details'>
         <section className='spartan-gfx'>
-          <img alt='Spartan Appearance' className='lesser-spartan-img' src={this.props.currentImgUrlSpartan}/>
-          <img alt='Player Emblem' className='lesser-emblem' src={this.props.currentImgUrlEmblem}/>
+          {this.props.currentImgUrlSpartan ?
+            <img alt='Spartan Appearance' lowsrc={'../../Spinner/Spinner'} className='lesser-spartan-img' src={this.props.currentImgUrlSpartan}/>
+            : <Spinner name={'Spartan'} />}
+          {this.props.currentImgUrlEmblem ? 
+            <img alt='Player Emblem' className='lesser-emblem' src={this.props.currentImgUrlEmblem}/>
+            : <Spinner name={'Spartan'} />}
         </section>
         <section className='banner-company-links'>
           <h3 className='lesser-company'>COMPANY PLACEHOLDER</h3>
