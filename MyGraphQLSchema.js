@@ -174,6 +174,19 @@ const RootQuery = new GraphQLObjectType({
       type: new GraphQLList(ScenarioStatsType),
       args: {
         player_name: {type: GraphQLString},
+        // GameBaseVariantId: {type: GraphQLString}
+      },
+      resolve(parent, args){
+        return instance
+          .get(`stats/h5/servicerecords/warzone?players=${args.player_name}`)
+          .then(res => res.data.Results[0].Result.WarzoneStat.ScenarioStats)
+          // .then(data => data.filter(item => item.GameBaseVariantId == args.GameBaseVariantId))
+      }
+    },
+    wzVariantStats: {
+      type: new GraphQLList(ScenarioStatsType),
+      args: {
+        player_name: {type: GraphQLString},
         GameBaseVariantId: {type: GraphQLString}
       },
       resolve(parent, args){

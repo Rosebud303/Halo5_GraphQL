@@ -1,5 +1,5 @@
 .accordion-section {
-  width: 1000px;
+  width: 1650px;
 	margin: 20px auto;
 	overflow: hidden;
 	box-shadow: 1px 1px 4px rgba(0,0,0,0.08);
@@ -9,15 +9,15 @@
 .accordion-section figure {
     position: absolute;
 	top: 0;
-	left: 100px; /* width of visible piece */
-  width: 800px;
+	left: 175px; /* width of visible piece */
+  width: 1300px;
   height: 100%;
     box-shadow: 0 0 0 1px rgba(255,255,255,0.6);
     transition: all 0.3s ease-in-out;
 }
 
 .accordion-section > figure {
-    position: relative;
+  position: relative;
 	left: 0 !important;
 }
 
@@ -31,7 +31,7 @@
 	position: absolute;
 	top: 0;
 	left: 0;
-	width: 100px; /* just cover visible part */
+	width: 175px; /* just cover visible part */
 	height: 100%;
 	cursor: pointer;
 	border: 0;
@@ -48,7 +48,7 @@
 	right: 0px;
 }
 .accordion-section input:checked ~ figure {
-    left: 800px;
+    left: 1300px;
     transition: all 0.7s ease-in-out;
 }
 
@@ -58,7 +58,8 @@
 	background: rgba(87, 73, 81, 0.1);
 	position: absolute;
 	top: 0px;
-    transition: all 0.2s linear;
+	transition: all 0.2s linear;
+	overflow: scroll;
 }
 
 .accordion-section figcaption span {

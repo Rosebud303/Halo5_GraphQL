@@ -78,6 +78,9 @@ const ImpulsesMetadataType = new GraphQLObjectType({
     id: { type: GraphQLString },
   }),
 })
+
+//**************************************************** WEAPONS METADATA */
+
 const WeaponType = new GraphQLObjectType({
   name: 'Weapon',
   fields: () => ({
