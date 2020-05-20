@@ -97,7 +97,13 @@ class WarzoneDropbox extends Component {
               if (loading) return <p>Loading...</p>
               if (error) console.log(error)
               console.log(data)
-              return ''
+              const parsedMapsMetadata = JSON.parse(localStorage.getItem('mapsMetadata')).mapsMetadata
+              const foundMap =  parsedMapsMetadata.find( map => map.id === MapId)
+              console.log(foundMap)
+              return ( <div>
+                {MapId && <img src={foundMap.imageUrl} />}
+              </div>
+              )
             }
           }
         </Query>
