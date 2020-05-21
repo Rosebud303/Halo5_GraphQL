@@ -1,0 +1,19 @@
+.imageHolder {
+  height: 305px;
+  width: 542px;
+}
+
+.imageHolder img {
+  width: 100%;
+  height: 100%;
+}
+
+.dropbox-container, .second-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.main-container, .dropbox-data-content, .weapon-info {
+  display: flex;
+  flex-direction: column;
+}
