@@ -74,7 +74,7 @@ class Warzonepage extends Component {
     }
     this.parsedGameBaseVariants = JSON.parse(localStorage.getItem('gameBaseVariantsMetadata')).gameBaseVariantsMetadata
     this.parsedWeaponsMetadata = JSON.parse(localStorage.getItem('weaponsMetadata')).weaponsMetadata
-    this.parsedMedalsMetadata = JSON.parse(localStorage.getItem('medalsMetadata')).medalsMetadata 
+    this.parsedMedalsMetadata = JSON.parse(localStorage.getItem('medalsMetadata')).medalsMetadata
   }
 
 
@@ -84,7 +84,7 @@ class Warzonepage extends Component {
       return acc
     }, 0)
   }
-  
+
   findMostEffectiveWeapon = (data) => {
     return data.sort((a, b) => {
       return b.WeaponWithMostKills.TotalKills - a.WeaponWithMostKills.TotalKills
@@ -92,7 +92,7 @@ class Warzonepage extends Component {
   }
 
   findMostObtainedMedals = (data, parsedMedalsMetadata) => {
-    let allMedals = data.reduce((acc,cur) => {
+    let allMedals = data.reduce((acc, cur) => {
       cur.MedalAwards.forEach(item => {
         if (!acc[item.MedalId]) {
           acc[item.MedalId] = 0
@@ -103,12 +103,12 @@ class Warzonepage extends Component {
     }, {})
     let medalIds = Object.keys(allMedals)
     let sortedMedals = medalIds.sort((a, b) => {
-     return allMedals[b] - allMedals[a]
+      return allMedals[b] - allMedals[a]
     }).slice(0, 6)
     return sortedMedals.map(item => {
       let foundMedal = parsedMedalsMetadata.find(medal => medal.id === item)
       return {
-        Count: allMedals[item], 
+        Count: allMedals[item],
         Name: foundMedal.name,
         SpriteLocation: foundMedal.spriteLocation
       }
@@ -117,7 +117,7 @@ class Warzonepage extends Component {
 
   createContent = (wholeData, id) => {
     const { reduceTotals, findMostEffectiveWeapon, findMostObtainedMedals, parsedGameBaseVariants, parsedMedalsMetadata, parsedWeaponsMetadata } = this
-    const data =  wholeData.scenarioStats.filter( item => item.GameBaseVariantId === id)
+    const data = wholeData.scenarioStats.filter(item => item.GameBaseVariantId === id)
     const foundWeapon = parsedWeaponsMetadata.find(weapon => weapon.id === findMostEffectiveWeapon(data).WeaponId.StockId)
     return (<div>
       <p>Total Wins: {reduceTotals(data, 'TotalGamesWon')}</p>
@@ -134,7 +134,7 @@ class Warzonepage extends Component {
       <p>{foundWeapon.name} Total Shots Fired: {findMostEffectiveWeapon(data).TotalShotsFired}</p>
       <p>{foundWeapon.name} Total Shots Landed: {findMostEffectiveWeapon(data).TotalShotsLanded}</p>
       <p>{foundWeapon.name} Total Damage Dealt: {findMostEffectiveWeapon(data).TotalDamageDealt.toFixed(2)}</p>
-      <img src={foundWeapon.largeIconImageUrl}/>
+      <img src={foundWeapon.largeIconImageUrl} />
       <p>{parsedGameBaseVariants.find(variant => variant.id == this.state.gameVariantId).name}: Medals</p>
       {findMostObtainedMedals(data, parsedMedalsMetadata).map(medal => {
         const medalStyles = {
@@ -143,10 +143,11 @@ class Warzonepage extends Component {
           backgroundSize: 'auto',
           width: '74px',
           height: '74px',
-          margin: '2rem'}
+          margin: '2rem'
+        }
         return <div>
-                <div style={medalStyles}></div>: {medal.Count}
-              </div>
+          <div style={medalStyles}></div>: {medal.Count}
+        </div>
       })}
     </div>
 
@@ -168,49 +169,48 @@ class Warzonepage extends Component {
         <Link to='/homepage'>
           <button>LINK BACK TO HOMEPAGE</button>
         </Link>
-            <Query query={GAME_VARIANT_WARZONE_QUERY} variables={{ player_name}}>
-              {
-                ({ loading,error,data }) => {
-                  if (loading) return ''
-                  if (error) console.log(error)
-                  
-                  return (
-                    <div className='accordion-section'>
+        <Query query={GAME_VARIANT_WARZONE_QUERY} variables={{ player_name }}>
+          {
+            ({ loading, error, data }) => {
+              if (loading) return ''
+              if (error) console.log(error)
+              return (
+                <div className='accordion-section'>
+                  <figure>
+                    <img className='game-variant-image' src='https://i.imgur.com/mZmEnAq.jpg' alt='Warzone Firefight Background' />
+                    <input type='radio' name='radio-set' defaultChecked='checked' />
+                    <figcaption>
+                      <Link to='/warzone/firefight'>
+                        <span>{parsedGameBaseVariants.find(variant => variant.id === this.state.gameVariantId).name}</span>
+                      </Link>
+                      {createContent(data, firefightVariantId)}
+                    </figcaption>
+                    <figure>
+                      <img className='game-variant-image' src='https://i.imgur.com/h37QJVi.jpg' alt='Warzone Assault Background' />
+                      <input type='radio' name='radio-set' defaultChecked='checked' />
+                      <figcaption>
+                        <Link to='/warzone/assault'>
+                          <span>Warzone Assault</span>
+                        </Link>
+                        {createContent(data, assaultVariantId)}
+                      </figcaption>
                       <figure>
-                        <img className='game-variant-image' src='https://i.imgur.com/mZmEnAq.jpg' alt='Warzone Firefight Background' />
-                        <input type='radio' name='radio-set' defaultChecked='checked' />
+                        <img className='game-variant-image' src='https://i.imgur.com/7F4dFgn.jpg' alt='Warzone Regular Background' />
+                        <input type='radio' name='radio-set' id='accordion-selector-last' defaultChecked='checked' />
                         <figcaption>
-                          <Link to='/warzone/firefight'>
-                          <span>{parsedGameBaseVariants.find(variant => variant.id === this.state.gameVariantId).name}</span>
+                          <Link to='/warzone/regular'>
+                            <span>Warzone Regular</span>
                           </Link>
-                          {createContent(data, firefightVariantId)}
+                          {createContent(data, regularVariantId)}
                         </figcaption>
-                        <figure>
-                          <img className='game-variant-image' src='https://i.imgur.com/h37QJVi.jpg' alt='Warzone Assault Background' />
-                          <input type='radio' name='radio-set' defaultChecked='checked' />
-                          <figcaption>
-                            <Link to='/warzone/assault'>
-                              <span>Warzone Assault</span>
-                            </Link>    
-                            {createContent(data, assaultVariantId)}
-                          </figcaption>
-                            <figure>
-                            <img className='game-variant-image' src='https://i.imgur.com/7F4dFgn.jpg' alt='Warzone Regular Background' />
-                              <input type='radio' name='radio-set' id='accordion-selector-last' defaultChecked='checked' />
-                              <figcaption>
-                                <Link to='/warzone/regular'>
-                                  <span>Warzone Regular</span>
-                                </Link>  
-                                {createContent(data, regularVariantId)}
-                              </figcaption>
-                            </figure>
-                        </figure>
                       </figure>
-                    </div>
-                  )
-                }
-              }
-            </Query> 
+                    </figure>
+                  </figure>
+                </div>
+              )
+            }
+          }
+        </Query>
       </div>
     )
   }

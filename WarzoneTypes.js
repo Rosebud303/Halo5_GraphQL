@@ -10,7 +10,7 @@ const {
 const WarzoneStatType = new GraphQLObjectType({
   name: 'WarzoneStat',
   fields: () => ({
-    ScenarioStats: { type: new GraphQLList(ScenarioStatsType)},
+    ScenarioStats: { type: new GraphQLList(ScenarioStatsType) },
     TotalKills: { type: GraphQLInt },
     TotalHeadshots: { type: GraphQLInt },
     TotalWeaponDamage: { type: GraphQLString },
@@ -66,7 +66,7 @@ const ScenarioStatsType = new GraphQLObjectType({
     TotalGamesWon: { type: GraphQLInt },
     TotalGamesLost: { type: GraphQLInt },
     TotalGamesTied: { type: GraphQLInt },
-    WeaponWithMostKills: {type: GameVariantWeaponType },
+    WeaponWithMostKills: { type: GameVariantWeaponType },
     MedalAwards: { type: new GraphQLList(GameVariantMedalIdType) }
   })
 })

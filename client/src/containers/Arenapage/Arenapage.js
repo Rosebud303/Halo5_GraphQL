@@ -76,25 +76,25 @@ class Arenapage extends Component {
     let selectOptions = e.target.options
     let gameVarId = selectOptions[optionIndex].id
     let gameVarIdName = selectOptions[optionIndex].text
-    await this.setState({ currentGameVariant: '' , currentGameVariantName: e.target.options[emptyOption] })
-    this.setState({ currentGameVariant: gameVarId , currentGameVariantName: gameVarIdName })
+    await this.setState({ currentGameVariant: '', currentGameVariantName: e.target.options[emptyOption] })
+    this.setState({ currentGameVariant: gameVarId, currentGameVariantName: gameVarIdName })
   }
-  
+
   render() {
     const player_name = this.props.currentPlayer
     const GameBaseVariantId = this.state.currentGameVariant
-    
+
     return (
       <div>
-        <h3>Personal Playlist</h3>  
+        <h3>Personal Playlist</h3>
         <Query query={ARENA_DROPDOWN_QUERY} variables={{ player_name }} key={player_name}>
           {
             ({ loading, error, data }) => {
               if (loading) return <option>Loading...</option>
               if (error) console.log(error)
               const parsedGameVariantMetadata = JSON.parse(localStorage.getItem('gameBaseVariantsMetadata')).gameBaseVariantsMetadata
-              
-              return (<div>                
+
+              return (<div>
                 <label htmlFor='filter'>Choose from Arena Playlist:</label>
                 <select onChange={(event) => this.selectArenaVariant(event)} name='filter' className='arena-filter-options'>
                   <option>No Selection</option>
@@ -113,7 +113,7 @@ class Arenapage extends Component {
         </Link>
 
         {
-          this.state.currentGameVariant && <Query query={SELECTED_VARIANT_QUERY} variables={{ player_name, GameBaseVariantId}}>
+          this.state.currentGameVariant && <Query query={SELECTED_VARIANT_QUERY} variables={{ player_name, GameBaseVariantId }}>
             {
               ({ loading, error, data }) => {
                 if (loading) return ''
@@ -155,29 +155,29 @@ class Arenapage extends Component {
                         <p className='box-details'>Total Shots Landed: {data.arenaStats.TotalShotsLanded.toLocaleString()}</p>
                       </div>
                       <div className='arena-details-box box-e'>
-                      <h4 className='box-title'>Impulse Stats</h4>
+                        <h4 className='box-title'>Impulse Stats</h4>
 
                       </div>
                       <div className='arena-details-box box-f'>
-                      <h4 className='box-title'>Medals</h4>
+                        <h4 className='box-title'>Medals</h4>
 
                       </div>
                       <div className='arena-details-box box-g'>
-                      <h4 className='box-title'>Flexible Stats</h4>
+                        <h4 className='box-title'>Flexible Stats</h4>
 
                       </div>
                       <div className='arena-details-box box-h'>
-                      <h4 className='box-title'>Style Kills</h4>
-                      <p className='box-details'>Total Assassinations: {data.arenaStats.TotalAssassinations.toLocaleString()}</p>
-                      <p className='box-details'>Total Melee: {data.arenaStats.TotalMeleeKills.toLocaleString()}</p>
-                      <p className='box-details'>Total Ground Pound: {data.arenaStats.TotalGroundPoundKills.toLocaleString()}</p>
-                      <p className='box-details'>Total Shoulder Bash: {data.arenaStats.TotalShoulderBashKills.toLocaleString()}</p>
-                      <p className='box-details'>Total Grenade: {data.arenaStats.TotalGrenadeKills.toLocaleString()}</p>
-                      <p className='box-details'>Total Power Weapon: {data.arenaStats.TotalPowerWeaponKills.toLocaleString()}</p>
+                        <h4 className='box-title'>Style Kills</h4>
+                        <p className='box-details'>Total Assassinations: {data.arenaStats.TotalAssassinations.toLocaleString()}</p>
+                        <p className='box-details'>Total Melee: {data.arenaStats.TotalMeleeKills.toLocaleString()}</p>
+                        <p className='box-details'>Total Ground Pound: {data.arenaStats.TotalGroundPoundKills.toLocaleString()}</p>
+                        <p className='box-details'>Total Shoulder Bash: {data.arenaStats.TotalShoulderBashKills.toLocaleString()}</p>
+                        <p className='box-details'>Total Grenade: {data.arenaStats.TotalGrenadeKills.toLocaleString()}</p>
+                        <p className='box-details'>Total Power Weapon: {data.arenaStats.TotalPowerWeaponKills.toLocaleString()}</p>
 
                       </div>
                       <div className='arena-details-box box-i'>
-                        <img src={this.props.currentImgUrlSpartan} alt='Users spartan'/>
+                        <img src={this.props.currentImgUrlSpartan} alt='Users spartan' />
                       </div>
                     </main>
                   </div>
@@ -186,7 +186,7 @@ class Arenapage extends Component {
             }
           </Query>
         }
-        </div>
+      </div>
     )
   }
 }
