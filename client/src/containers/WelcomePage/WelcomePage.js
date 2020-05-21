@@ -24,13 +24,12 @@ class WelcomePage extends Component {
   handleSubmit = (event) => {
     event.preventDefault()
     this.props.currentSearchedPlayer(this.state.searchedPlayer)
-    localStorage.setItem("currentPlayer", JSON.stringify(this.state.searchedPlayer))
-    this.setState({searched: true})
+    this.setState({ searched: true })
   }
 
   render() {
     const redirectPath = this.state.searched ? '/homepage' : '/';
-    
+
     return (
       <>
         <header>
@@ -38,14 +37,14 @@ class WelcomePage extends Component {
         </header>
         <div className='welcome-page'>
           <form className='welcome-form' onSubmit={this.handleSubmit}>
-            <Redirect to={redirectPath}/>
-            <input 
+            <Redirect to={redirectPath} />
+            <input
               className='welcome-search welcome-search-input'
               name='search'
               onChange={this.handleChange}
               placeholder='Search Your Spartan...'
               required
-              type='text' 
+              type='text'
               value={this.state.searchedPlayer}
             />
             <button className='welcome-search welcome-search-button' type='submit'>Submit</button>
@@ -57,7 +56,7 @@ class WelcomePage extends Component {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  currentSearchedPlayer: (player) => dispatch( actions.currentSearchedPlayer(player) )
+  currentSearchedPlayer: (player) => dispatch(actions.currentSearchedPlayer(player))
 })
 
 export default connect(null, mapDispatchToProps)(WelcomePage)
