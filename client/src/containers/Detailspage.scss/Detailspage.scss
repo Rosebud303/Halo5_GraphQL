@@ -1,0 +1,40 @@
+.details-page-body {
+  display: flex;
+  flex-direction: column;
+}
+
+.details-page-section {
+  display: flex;
+  flex-direction: row;
+  border-top: 1px solid #000;
+  border-bottom: 1px solid #000;
+  margin-top: 10px;
+}
+
+.grouped-details-info {
+  width: 25%;
+  padding: 10px;
+  margin: 30px;
+  border: solid 1px black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.grouped-details-info p{
+  margin: 3px;
+}
+
+.medals-section {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding: 40px;
+}
+
+.details-page-heading {
+  text-align: center;
+  text-decoration: underline;
+  color: black;
+}
