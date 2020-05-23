@@ -6,10 +6,7 @@ import gql from "graphql-tag";
 
 const WARZONE_DROPDOWN_QUERY = gql`
   query WarzoneQuery($player_name: String!, $GameBaseVariantId: String!) {
-    wzVariantStats(
-      player_name: $player_name
-      GameBaseVariantId: $GameBaseVariantId
-    ) {
+    wzVariantStats(player_name: $player_name, GameBaseVariantId: $GameBaseVariantId) {
       GameBaseVariantId
       MapId
     }
@@ -17,16 +14,8 @@ const WARZONE_DROPDOWN_QUERY = gql`
 `;
 
 const MAP_QUERY = gql`
-  query MapQuery(
-    $player_name: String!
-    $GameBaseVariantId: String!
-    $MapId: String!
-  ) {
-    mapStats(
-      player_name: $player_name
-      GameBaseVariantId: $GameBaseVariantId
-      MapId: $MapId
-    ) {
+  query MapQuery($player_name: String!, $GameBaseVariantId: String!, $MapId: String!) {
+    mapStats(player_name: $player_name, GameBaseVariantId: $GameBaseVariantId, MapId: $MapId) {
       TotalKills
       TotalHeadshots
       TotalWeaponDamage
@@ -86,41 +75,23 @@ class WarzoneDropbox extends Component {
 
     return (
       <div>
-        <h1>Warzone Game Variant</h1>
-        <Query
-          query={WARZONE_DROPDOWN_QUERY}
-          variables={{ player_name, GameBaseVariantId }}
-        >
+        <Query query={WARZONE_DROPDOWN_QUERY} variables={{ player_name, GameBaseVariantId }}>
           {({ loading, error, data }) => {
             if (loading) return <option>Loading...</option>;
             if (error) console.log(error);
-            const parsedMapsMetadata = JSON.parse(
-              localStorage.getItem("mapsMetadata")
-            ).mapsMetadata;
+            const parsedMapsMetadata = JSON.parse(localStorage.getItem("mapsMetadata")).mapsMetadata;
 
             return (
               <div>
                 <label htmlFor='filter'> Personal Warzone Playlist:</label>
-                <select
-                  onChange={(event) => this.selectMapVariant(event)}
-                  name='filter'
-                  className='warzone-dropdown'
-                >
+                <select onChange={(event) => this.selectMapVariant(event)} name='filter' className='warzone-dropdown'>
                   <option>No Selection</option>
                   {data.wzVariantStats
-                    .filter(
-                      (gameVariant) =>
-                        gameVariant.GameBaseVariantId ===
-                        this.props.warzoneGameVariantId
-                    )
+                    .filter((gameVariant) => gameVariant.GameBaseVariantId === this.props.warzoneGameVariantId)
                     .map((id) => {
                       return (
                         <option id={id.MapId} key={id.MapId}>
-                          {
-                            parsedMapsMetadata.find(
-                              (item) => item.id === id.MapId
-                            ).name
-                          }
+                          {parsedMapsMetadata.find((item) => item.id === id.MapId).name}
                         </option>
                       );
                     })}
@@ -129,29 +100,18 @@ class WarzoneDropbox extends Component {
             );
           }}
         </Query>
-        <Query
-          query={MAP_QUERY}
-          variables={{ player_name, GameBaseVariantId, MapId }}
-        >
+        <Query query={MAP_QUERY} variables={{ player_name, GameBaseVariantId, MapId }}>
           {({ loading, error, data }) => {
             if (loading) return <p>Loading...</p>;
             if (error) console.log(error);
-            const parsedMapsMetadata = JSON.parse(
-              localStorage.getItem("mapsMetadata")
-            ).mapsMetadata;
-            const parsedWeaponsMetadata = JSON.parse(
-              localStorage.getItem("weaponsMetadata")
-            ).weaponsMetadata;
+            const parsedMapsMetadata = JSON.parse(localStorage.getItem("mapsMetadata")).mapsMetadata;
+            const parsedWeaponsMetadata = JSON.parse(localStorage.getItem("weaponsMetadata")).weaponsMetadata;
             const foundMap = parsedMapsMetadata.find((map) => map.id === MapId);
             const foundWeapon = parsedWeaponsMetadata.find((weapon) => {
               if (data.mapStats) {
-                return (
-                  weapon.id ===
-                  data.mapStats.WeaponWithMostKills.WeaponId.StockId
-                );
+                return weapon.id === data.mapStats.WeaponWithMostKills.WeaponId.StockId;
               }
             });
-            console.log(foundWeapon);
             return !data.mapStats ? (
               <p>Select From Dropdown...</p>
             ) : (
@@ -159,9 +119,7 @@ class WarzoneDropbox extends Component {
                 <div className='dropbox-container'>
                   <div className='imageHolder'>
                     <h3>{this.state.currentMapVariantName}</h3>
-                    {MapId && (
-                      <img src={foundMap.imageUrl} className='images' />
-                    )}
+                    {MapId && <img src={foundMap.imageUrl} className='images' alt='selected halo 5 map' />}
                   </div>
                   <div className='dropbox-data-content'>
                     <p>Total Games Won: {data.mapStats.TotalGamesWon}</p>
@@ -169,10 +127,7 @@ class WarzoneDropbox extends Component {
                     <p>Total Games Tied: {data.mapStats.TotalGamesTied}</p>
                     <p>Total Kills: {data.mapStats.TotalKills}</p>
                     <p>Total Headshots: {data.mapStats.TotalHeadshots}</p>
-                    <p>
-                      Total Weapon Damage:{" "}
-                      {data.mapStats.TotalWeaponDamage.toFixed(2)}
-                    </p>
+                    <p>Total Weapon Damage: {data.mapStats.TotalWeaponDamage.toFixed(2)}</p>
                     <p>Total Shots Fired: {data.mapStats.TotalShotsFired}</p>
                     <p>Total Shots Landed: {data.mapStats.TotalShotsLanded}</p>
                   </div>
@@ -180,31 +135,24 @@ class WarzoneDropbox extends Component {
                 <div className='second-row'>
                   <div className='weapon-info'>
                     <p>
-                      {foundWeapon.name} Kills:{" "}
-                      {data.mapStats.WeaponWithMostKills.TotalKills}
+                      {foundWeapon.name} Kills: {data.mapStats.WeaponWithMostKills.TotalKills}
                     </p>
                     <p>
-                      {foundWeapon.name} Headshots:{" "}
-                      {data.mapStats.WeaponWithMostKills.TotalHeadshots}
+                      {foundWeapon.name} Headshots: {data.mapStats.WeaponWithMostKills.TotalHeadshots}
                     </p>
                     <p>
-                      {foundWeapon.name} Damage Dealt:{" "}
-                      {data.mapStats.WeaponWithMostKills.TotalDamageDealt.toFixed(
-                        2
-                      )}
+                      {foundWeapon.name} Damage Dealt: {data.mapStats.WeaponWithMostKills.TotalDamageDealt.toFixed(2)}
                     </p>
                     <p>
-                      {foundWeapon.name} Shots Fired:{" "}
-                      {data.mapStats.WeaponWithMostKills.TotalShotsFired}
+                      {foundWeapon.name} Shots Fired: {data.mapStats.WeaponWithMostKills.TotalShotsFired}
                     </p>
                     <p>
-                      {foundWeapon.name} Shots Landed:{" "}
-                      {data.mapStats.WeaponWithMostKills.TotalShotsLanded}
+                      {foundWeapon.name} Shots Landed: {data.mapStats.WeaponWithMostKills.TotalShotsLanded}
                     </p>
                   </div>
                   <div className='weapon-container'>
                     <h3>{foundWeapon.name}</h3>
-                    <img src={foundWeapon.largeIconImageUrl} />
+                    <img src={foundWeapon.largeIconImageUrl} alt='players best weapon' />
                   </div>
                 </div>
               </div>

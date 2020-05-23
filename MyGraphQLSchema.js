@@ -19,7 +19,6 @@ const {
 const { WarzoneStatType, ScenarioStatsType } = require("./WarzoneTypes");
 const {
   ArenaGameBasesType,
-  CsrStatsType,
   ArenaStatsType,
   AccumulativeArenaStatsType,
 } = require("./ArenaTypes");
@@ -105,7 +104,6 @@ const RootQuery = new GraphQLObjectType({
           .then((res) => res.data);
       },
     },
-
     arenaGameBases: {
       type: new GraphQLList(ArenaGameBasesType),
       args: {
@@ -118,17 +116,6 @@ const RootQuery = new GraphQLObjectType({
             (res) =>
               res.data.Results[0].Result.ArenaStats.ArenaGameBaseVariantStats
           );
-      },
-    },
-    csrStats: {
-      type: CsrStatsType,
-      args: {
-        player_name: { type: GraphQLString },
-      },
-      resolve(parent, args) {
-        return instance
-          .get(`stats/h5/servicerecords/arena?players=${args.player_name}`)
-          .then((res) => res.data.Results[0].Result.ArenaStats);
       },
     },
     arenaStats: {
@@ -164,7 +151,6 @@ const RootQuery = new GraphQLObjectType({
           .then((res) => res.data.Results[0].Result.ArenaStats);
       },
     },
-
     warzoneStats: {
       type: WarzoneStatType,
       args: {
@@ -180,13 +166,11 @@ const RootQuery = new GraphQLObjectType({
       type: new GraphQLList(ScenarioStatsType),
       args: {
         player_name: { type: GraphQLString },
-        // GameBaseVariantId: {type: GraphQLString}
       },
       resolve(parent, args) {
         return instance
           .get(`stats/h5/servicerecords/warzone?players=${args.player_name}`)
           .then((res) => res.data.Results[0].Result.WarzoneStat.ScenarioStats);
-        // .then(data => data.filter(item => item.GameBaseVariantId == args.GameBaseVariantId))
       },
     },
     wzVariantStats: {
