@@ -12,3 +12,8 @@ export const setImgUrlEmblem = (url) => ({
   type: "SET_URL_EMBLEM",
   url,
 });
+
+export const setWarzoneId = (id) => ({
+  type: "SET_WZ_ID",
+  id,
+});

@@ -1,33 +1,9 @@
-const {
-  GraphQLObjectType,
-  GraphQLString,
-  GraphQLInt,
-  GraphQLList,
-} = require("graphql");
+const { GraphQLObjectType, GraphQLString, GraphQLInt, GraphQLList } = require("graphql");
 
 const ArenaGameBasesType = new GraphQLObjectType({
   name: "ArenaGameBases",
   fields: () => ({
     GameBaseVariantId: { type: GraphQLString },
-  }),
-});
-
-const CsrStatsType = new GraphQLObjectType({
-  name: "CsrStats",
-  fields: () => ({
-    HighestCsrAttained: { type: HighestCsrType },
-    HighestCsrPlaylistId: { type: GraphQLString },
-    HighestCsrSeasonId: { type: GraphQLString },
-    ArenaPlaylistStatsSeasonId: { type: GraphQLString },
-  }),
-});
-
-const HighestCsrType = new GraphQLObjectType({
-  name: "HighestCsr",
-  fields: () => ({
-    Tier: { type: GraphQLInt },
-    DesignationId: { type: GraphQLInt },
-    PercentToNextTier: { type: GraphQLInt },
   }),
 });
 
@@ -61,6 +37,10 @@ const ArenaStatsType = new GraphQLObjectType({
 const AccumulativeArenaStatsType = new GraphQLObjectType({
   name: "AccumulativeArenaStats",
   fields: () => ({
+    HighestCsrAttained: { type: HighestCsrType },
+    HighestCsrPlaylistId: { type: GraphQLString },
+    HighestCsrSeasonId: { type: GraphQLString },
+    ArenaPlaylistStatsSeasonId: { type: GraphQLString },
     TotalGamesWon: { type: GraphQLInt },
     TotalGamesLost: { type: GraphQLInt },
     TotalGamesTied: { type: GraphQLInt },
@@ -76,6 +56,16 @@ const AccumulativeArenaStatsType = new GraphQLObjectType({
     TotalMeleeKills: { type: GraphQLInt },
     TotalGroundPoundKills: { type: GraphQLInt },
     TotalShoulderBashKills: { type: GraphQLInt },
+    MedalAwards: { type: new GraphQLList(ArenaMedalType) },
+  }),
+});
+
+const HighestCsrType = new GraphQLObjectType({
+  name: "HighestCsr",
+  fields: () => ({
+    Tier: { type: GraphQLInt },
+    DesignationId: { type: GraphQLInt },
+    PercentToNextTier: { type: GraphQLInt },
   }),
 });
 
@@ -139,7 +129,6 @@ const ArenaFlexibleMedalType = new GraphQLObjectType({
 
 module.exports = {
   ArenaGameBasesType,
-  CsrStatsType,
   ArenaStatsType,
   AccumulativeArenaStatsType,
 };

@@ -1,14 +1,17 @@
 import React, { Component } from "react";
-import "./WarzoneFireFight.scss";
+import "./WarzoneVariant.scss";
 import { connect } from "react-redux";
 import WarzoneDropbox from "../WarzoneDropbox/WarzoneDropbox";
 
 class WarzoneFireFight extends Component {
   render() {
-    const warzoneGameVariantId = "dfd51ee3-9060-46c3-b131-08d946c4c7b9";
-
+    const warzoneGameVariantId = this.props.currentWzVariantId;
+    const parsedGameVariantsMetadata = JSON.parse(localStorage.getItem("gameBaseVariantsMetadata")).gameBaseVariantsMetadata;
+    const foundGameVariantName = parsedGameVariantsMetadata.find((variant) => variant.id === warzoneGameVariantId).name;
+    
     return (
       <>
+        <h1>{foundGameVariantName}</h1>
         <WarzoneDropbox warzoneGameVariantId={warzoneGameVariantId} />
       </>
     );
@@ -17,6 +20,7 @@ class WarzoneFireFight extends Component {
 
 const mapStateToProps = (state) => ({
   currentPlayer: state.currentPlayer,
+  currentWzVariantId: state.currentWzVariantId,
 });
 
 export default connect(mapStateToProps)(WarzoneFireFight);

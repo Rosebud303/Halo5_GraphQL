@@ -28,6 +28,17 @@ export const currentUrlEmblemReducer = (state = spartanEmblem, action) => {
   }
 };
 
+export const currentWarzoneIdReducer = (state = warzoneVariantId, action) => {
+  switch (action.type) {
+    case "SET_WZ_ID":
+      localStorage.setItem("warzoneVariantId", action.id);
+      return action.id;
+    default:
+      return state;
+  }
+};
+
 const spartanName = localStorage.getItem("spartanName");
 const spartanEmblem = localStorage.getItem("spartanEmblem");
 const spartanAppearance = localStorage.getItem("spartanAppearance");
+const warzoneVariantId = localStorage.getItem("warzoneVariantId")

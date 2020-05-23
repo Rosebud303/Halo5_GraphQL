@@ -6,9 +6,7 @@ import Detailspage from "../Detailspage.scss/Detailspage";
 import Arenapage from "../Arenapage/Arenapage";
 import Warzonepage from "../Warzonepage/Warzonepage";
 import MetadataLoader from "../../MetadataLoader";
-import WarzoneFireFight from "../WarzoneFireFight/WarzoneFireFight";
-import WarzoneAssault from "../WarzoneAssault/WarzoneAssault";
-import WarzoneRegular from "../WarzoneRegular/WarzoneRegular";
+import WarzoneVariant from "../WarzoneVariant/WarzoneVariant";
 
 export default class App extends Component {
   render() {
@@ -22,13 +20,7 @@ export default class App extends Component {
             <Route exact path='/details' component={Detailspage} />
             <Route exact path='/arena' component={Arenapage} />
             <Route exact path='/warzone' component={Warzonepage} />
-            <Route
-              exact
-              path='/warzone/firefight'
-              component={WarzoneFireFight}
-            />
-            <Route exact path='/warzone/assault' component={WarzoneAssault} />
-            <Route exact path='/warzone/regular' component={WarzoneRegular} />
+            <Route exact path='/warzone/variant' component={WarzoneVariant} />
           </Switch>
         </div>
       </>
