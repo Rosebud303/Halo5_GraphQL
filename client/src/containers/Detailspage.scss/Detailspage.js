@@ -1,6 +1,36 @@
 import React from 'react';
 import './Detailspage.scss';
 import { Link } from 'react-router-dom';
+import gql from 'graphql-tag';
+
+let ACCUMULATIVE_WARZONE_QUERY = gql`
+  query AccumulativeWzQuery($player_name: String!) {
+    warzoneStats(player_name: $player_name) {
+      TotalKills
+      TotalHeadshots
+      TotalWeaponDamage
+      TotalShotsFired
+      TotalShotsLanded
+      TotalGamesWon
+      TotalGamesLost
+      TotalGamesTied
+      WeaponWithMostKills {
+        TotalKills
+        TotalHeadshots
+        TotalShotsFired
+        TotalShotsLanded
+        TotalDamageDealt
+        WeaponId {
+          StockId
+        }
+      }
+      MedalAwards {
+        MedalId
+        Count
+      }
+    }
+  }
+`
 
 
 const Detailspage = () => {

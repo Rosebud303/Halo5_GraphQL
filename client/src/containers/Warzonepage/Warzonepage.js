@@ -5,34 +5,7 @@ import { connect } from 'react-redux';
 import gql from 'graphql-tag';
 import { Query } from 'react-apollo';
 
-let ACCUMULATIVE_WARZONE_QUERY = gql`
-  query AccumulativeWzQuery($player_name: String!) {
-    warzoneStats(player_name: $player_name) {
-      TotalKills
-      TotalHeadshots
-      TotalWeaponDamage
-      TotalShotsFired
-      TotalShotsLanded
-      TotalGamesWon
-      TotalGamesLost
-      TotalGamesTied
-      WeaponWithMostKills {
-        TotalKills
-        TotalHeadshots
-        TotalShotsFired
-        TotalShotsLanded
-        TotalDamageDealt
-        WeaponId {
-          StockId
-        }
-      }
-      MedalAwards {
-        MedalId
-        Count
-      }
-    }
-  }
-`
+
 
 let GAME_VARIANT_WARZONE_QUERY = gql`
   query GameVariantWzQuery($player_name: String!) {
@@ -181,7 +154,7 @@ class Warzonepage extends Component {
                     <input type='radio' name='radio-set' defaultChecked='checked' />
                     <figcaption>
                       <Link to='/warzone/firefight'>
-                        <span>{parsedGameBaseVariants.find(variant => variant.id === this.state.gameVariantId).name}</span>
+                        <span id={firefightVariantId}>{parsedGameBaseVariants.find(variant => variant.id === this.state.gameVariantId).name}</span>
                       </Link>
                       {createContent(data, firefightVariantId)}
                     </figcaption>
@@ -190,7 +163,7 @@ class Warzonepage extends Component {
                       <input type='radio' name='radio-set' defaultChecked='checked' />
                       <figcaption>
                         <Link to='/warzone/assault'>
-                          <span>Warzone Assault</span>
+                          <span id={assaultVariantId}>Warzone Assault</span>
                         </Link>
                         {createContent(data, assaultVariantId)}
                       </figcaption>
@@ -199,7 +172,7 @@ class Warzonepage extends Component {
                         <input type='radio' name='radio-set' id='accordion-selector-last' defaultChecked='checked' />
                         <figcaption>
                           <Link to='/warzone/regular'>
-                            <span>Warzone Regular</span>
+                            <span id={regularVariantId}>Warzone Regular</span>
                           </Link>
                           {createContent(data, regularVariantId)}
                         </figcaption>
