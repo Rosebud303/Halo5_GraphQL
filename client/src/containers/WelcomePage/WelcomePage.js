@@ -1,34 +1,33 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import './WelcomePage.scss';
-import { Redirect } from 'react-router-dom';
-import * as actions from '../../actions';
-
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import "./WelcomePage.scss";
+import { Redirect } from "react-router-dom";
+import * as actions from "../../actions";
 
 class WelcomePage extends Component {
   constructor(props) {
-    super(props)
+    super(props);
 
     this.state = {
-      searchedPlayer: '',
-      searched: false
-    }
+      searchedPlayer: "",
+      searched: false,
+    };
   }
 
   handleChange = (event) => {
     this.setState({
-      searchedPlayer: event.target.value
-    })
-  }
+      searchedPlayer: event.target.value,
+    });
+  };
 
   handleSubmit = (event) => {
-    event.preventDefault()
-    this.props.currentSearchedPlayer(this.state.searchedPlayer)
-    this.setState({ searched: true })
-  }
+    event.preventDefault();
+    this.props.currentSearchedPlayer(this.state.searchedPlayer);
+    this.setState({ searched: true });
+  };
 
   render() {
-    const redirectPath = this.state.searched ? '/homepage' : '/';
+    const redirectPath = this.state.searched ? "/homepage" : "/";
 
     return (
       <>
@@ -47,16 +46,22 @@ class WelcomePage extends Component {
               type='text'
               value={this.state.searchedPlayer}
             />
-            <button className='welcome-search welcome-search-button' type='submit'>Submit</button>
+            <button
+              className='welcome-search welcome-search-button'
+              type='submit'
+            >
+              Submit
+            </button>
           </form>
         </div>
       </>
-    )
+    );
   }
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  currentSearchedPlayer: (player) => dispatch(actions.currentSearchedPlayer(player))
-})
+  currentSearchedPlayer: (player) =>
+    dispatch(actions.currentSearchedPlayer(player)),
+});
 
-export default connect(null, mapDispatchToProps)(WelcomePage)
+export default connect(null, mapDispatchToProps)(WelcomePage);

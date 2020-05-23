@@ -4,11 +4,11 @@ const {
   GraphQLInt,
   GraphQLList,
   GraphQLFloat,
-  GraphQLID
-} = require('graphql');
+  GraphQLID,
+} = require("graphql");
 
 const WarzoneStatType = new GraphQLObjectType({
-  name: 'WarzoneStat',
+  name: "WarzoneStat",
   fields: () => ({
     ScenarioStats: { type: new GraphQLList(ScenarioStatsType) },
     TotalKills: { type: GraphQLInt },
@@ -20,41 +20,41 @@ const WarzoneStatType = new GraphQLObjectType({
     TotalGamesLost: { type: GraphQLInt },
     TotalGamesTied: { type: GraphQLInt },
     WeaponWithMostKills: { type: WeaponWithMostKillsType },
-    MedalAwards: { type: new GraphQLList(MedalIdType) }
-  })
-})
+    MedalAwards: { type: new GraphQLList(MedalIdType) },
+  }),
+});
 
 const WeaponWithMostKillsType = new GraphQLObjectType({
-  name: 'WeaponWithMostKills',
+  name: "WeaponWithMostKills",
   fields: () => ({
     TotalKills: { type: GraphQLInt },
     TotalHeadshots: { type: GraphQLInt },
     TotalShotsFired: { type: GraphQLInt },
     TotalShotsLanded: { type: GraphQLInt },
     TotalDamageDealt: { type: GraphQLFloat },
-    WeaponId: { type: WeaponIdType }
-  })
-})
+    WeaponId: { type: WeaponIdType },
+  }),
+});
 
 const WeaponIdType = new GraphQLObjectType({
-  name: 'WeaponId',
+  name: "WeaponId",
   fields: () => ({
-    StockId: { type: GraphQLID }
-  })
-})
+    StockId: { type: GraphQLID },
+  }),
+});
 
 const MedalIdType = new GraphQLObjectType({
-  name: 'MedalId',
+  name: "MedalId",
   fields: () => ({
     MedalId: { type: GraphQLID },
-    Count: { type: GraphQLInt }
-  })
-})
+    Count: { type: GraphQLInt },
+  }),
+});
 
 // Game Variant Warzones
 
 const ScenarioStatsType = new GraphQLObjectType({
-  name: 'ScenarioStats',
+  name: "ScenarioStats",
   fields: () => ({
     GameBaseVariantId: { type: GraphQLString },
     MapId: { type: GraphQLString },
@@ -67,39 +67,38 @@ const ScenarioStatsType = new GraphQLObjectType({
     TotalGamesLost: { type: GraphQLInt },
     TotalGamesTied: { type: GraphQLInt },
     WeaponWithMostKills: { type: GameVariantWeaponType },
-    MedalAwards: { type: new GraphQLList(GameVariantMedalIdType) }
-  })
-})
+    MedalAwards: { type: new GraphQLList(GameVariantMedalIdType) },
+  }),
+});
 
 const GameVariantWeaponType = new GraphQLObjectType({
-  name: 'GameVariantWeapon',
+  name: "GameVariantWeapon",
   fields: () => ({
     TotalKills: { type: GraphQLInt },
     TotalHeadshots: { type: GraphQLInt },
     TotalShotsFired: { type: GraphQLInt },
     TotalShotsLanded: { type: GraphQLInt },
     TotalDamageDealt: { type: GraphQLFloat },
-    WeaponId: { type: GameVariantWeaponIdType }
-  })
-})
+    WeaponId: { type: GameVariantWeaponIdType },
+  }),
+});
 
 const GameVariantWeaponIdType = new GraphQLObjectType({
-  name: 'GameVariantWeaponId',
+  name: "GameVariantWeaponId",
   fields: () => ({
-    StockId: { type: GraphQLID }
-  })
-})
+    StockId: { type: GraphQLID },
+  }),
+});
 
 const GameVariantMedalIdType = new GraphQLObjectType({
-  name: 'GameVariantMedalId',
+  name: "GameVariantMedalId",
   fields: () => ({
     MedalId: { type: GraphQLID },
-    Count: { type: GraphQLInt }
-  })
-})
-
+    Count: { type: GraphQLInt },
+  }),
+});
 
 module.exports = {
   WarzoneStatType,
-  ScenarioStatsType
-}
+  ScenarioStatsType,
+};

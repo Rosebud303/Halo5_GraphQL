@@ -1,9 +1,9 @@
-import gql from 'graphql-tag';
+import gql from "graphql-tag";
 
 export const metadataQueryList = [
   {
-    name: 'csrMetadata',
-    query: gql`  
+    name: "csrMetadata",
+    query: gql`
       query CsrQuery {
         csrMetadata {
           name
@@ -15,10 +15,10 @@ export const metadataQueryList = [
           }
         }
       }
-    `
+    `,
   },
   {
-    name: 'mapsMetadata',
+    name: "mapsMetadata",
     query: gql`
       query MapQuery {
         mapsMetadata {
@@ -29,10 +29,10 @@ export const metadataQueryList = [
           id
         }
       }
-    `
-  }, 
+    `,
+  },
   {
-    name: 'medalsMetadata',
+    name: "medalsMetadata",
     query: gql`
       query MedalsQuery {
         medalsMetadata {
@@ -49,10 +49,10 @@ export const metadataQueryList = [
           }
         }
       }
-    `
+    `,
   },
   {
-    name: 'gameBaseVariantsMetadata',
+    name: "gameBaseVariantsMetadata",
     query: gql`
       query GameVariantsQuery {
         gameBaseVariantsMetadata {
@@ -61,10 +61,10 @@ export const metadataQueryList = [
           id
         }
       }
-    `
+    `,
   },
   {
-    name: 'weaponsMetadata',
+    name: "weaponsMetadata",
     query: gql`
       query WeaponsQuery {
         weaponsMetadata {
@@ -73,36 +73,36 @@ export const metadataQueryList = [
           id
         }
       }
-    `
+    `,
   },
   {
-    name: 'flexibleStatsMetadata',
-    query: gql `
+    name: "flexibleStatsMetadata",
+    query: gql`
       query FlexibleStatsQuery {
         flexibleStatsMetadata {
           name
           id
         }
       }
-    `
+    `,
   },
   {
-    name: 'impulsesMetadata',
-    query: gql `
+    name: "impulsesMetadata",
+    query: gql`
       query ImpulsesQuery {
         impulsesMetadata {
           internalName
           id
         }
       }
-    `
+    `,
   },
   {
-    name: 'seasonsMetadata',
-    query: gql `
+    name: "seasonsMetadata",
+    query: gql`
       query SeasonsQuery {
         seasonsMetadata {
-          playlists{
+          playlists {
             name
             description
             id
@@ -111,6 +111,6 @@ export const metadataQueryList = [
           id
         }
       }
-    `
-  }
-]
+    `,
+  },
+];

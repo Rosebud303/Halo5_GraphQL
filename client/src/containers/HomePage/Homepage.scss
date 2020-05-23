@@ -1,4 +1,4 @@
-.carousel-search-options{
+.carousel-search-options {
   height: 50vh;
   background: rgb(179, 95, 95);
   display: flex;
@@ -15,18 +15,18 @@
 
 .spartan-gfx {
   width: 50%;
-  background: linear-gradient(45deg, #09A53D42, #E2E2E2);
+  background: linear-gradient(45deg, #09a53d42, #e2e2e2);
   display: flex;
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
-  box-shadow: inset 0px 0px 20px #1311118F;
+  box-shadow: inset 0px 0px 20px #1311118f;
 }
 
 .banner-company-links {
   width: 50%;
-  background: linear-gradient(45deg, #E2E2E2, #09A53D42);
-  box-shadow: inset 0px 0px 20px #1311118F;
+  background: linear-gradient(45deg, #e2e2e2, #09a53d42);
+  box-shadow: inset 0px 0px 20px #1311118f;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -41,7 +41,7 @@
   max-height: 500px;
   opacity: 0.9;
   background: linear-gradient(45deg, black, transparent);
-  box-shadow: inset 0px 0px 20px 10px #050A04;
+  box-shadow: inset 0px 0px 20px 10px #050a04;
 }
 
 .lesser-emblem {
@@ -51,7 +51,7 @@
   /* max-height: 100px; */
   box-shadow: 0px 0px 20px 9px #00000073;
   border-radius: 10px;
-  background: linear-gradient(45deg, #000000B3, #00000030);
+  background: linear-gradient(45deg, #000000b3, #00000030);
 }
 
 .homepage-links {
@@ -62,8 +62,8 @@
   text-decoration: none;
   color: white;
   font-weight: bolder;
-  text-shadow: 15px 16px 19px #0C0C0C73;
-  box-shadow: inset 0px 0px 9px 7px #0000003B;
+  text-shadow: 15px 16px 19px #0c0c0c73;
+  box-shadow: inset 0px 0px 9px 7px #0000003b;
   border-radius: 4px;
 }
 
@@ -72,7 +72,7 @@
   transition: transform 100ms ease-in;
   transform: scale(0.95);
   opacity: 0.8;
-  color: #81A7B8;
+  color: #81a7b8;
   background-color: white;
 }
 
@@ -87,7 +87,7 @@
   flex-direction: row;
 }
 .test-sprites1 {
-  background-image: url('https://content.halocdn.com/media/Default/games/halo-5-guardians/sprites/medals_10-26-17-1ed917479dd14818b09ef10e29ff60b1.png');
+  background-image: url("https://content.halocdn.com/media/Default/games/halo-5-guardians/sprites/medals_10-26-17-1ed917479dd14818b09ef10e29ff60b1.png");
   background-position: -1480px -0px;
   background-size: auto;
   width: 74px;
@@ -95,7 +95,7 @@
   margin: 2rem;
 }
 .test-sprites2 {
-  background-image: url('https://content.halocdn.com/media/Default/games/halo-5-guardians/sprites/medals_10-26-17-1ed917479dd14818b09ef10e29ff60b1.png');
+  background-image: url("https://content.halocdn.com/media/Default/games/halo-5-guardians/sprites/medals_10-26-17-1ed917479dd14818b09ef10e29ff60b1.png");
   background-position: -0px -148px;
   background-size: auto;
   width: 74px;
@@ -103,7 +103,7 @@
   margin: 2rem;
 }
 .test-sprites3 {
-  background-image: url('https://content.halocdn.com/media/Default/games/halo-5-guardians/sprites/medals_10-26-17-1ed917479dd14818b09ef10e29ff60b1.png');
+  background-image: url("https://content.halocdn.com/media/Default/games/halo-5-guardians/sprites/medals_10-26-17-1ed917479dd14818b09ef10e29ff60b1.png");
   background-position: -1480px -74px;
   background-size: auto;
   width: 74px;
@@ -111,7 +111,7 @@
   margin: 2rem;
 }
 .test-sprites4 {
-  background-image: url('https://content.halocdn.com/media/Default/games/halo-5-guardians/sprites/medals_10-26-17-1ed917479dd14818b09ef10e29ff60b1.png');
+  background-image: url("https://content.halocdn.com/media/Default/games/halo-5-guardians/sprites/medals_10-26-17-1ed917479dd14818b09ef10e29ff60b1.png");
   background-position: -1036px -444px;
   background-size: auto;
   width: 74px;
@@ -119,7 +119,7 @@
   margin: 2rem;
 }
 .test-sprites5 {
-  background-image: url('https://content.halocdn.com/media/Default/games/halo-5-guardians/sprites/medals_10-26-17-1ed917479dd14818b09ef10e29ff60b1.png');
+  background-image: url("https://content.halocdn.com/media/Default/games/halo-5-guardians/sprites/medals_10-26-17-1ed917479dd14818b09ef10e29ff60b1.png");
   background-position: -888px -666px;
   background-size: auto;
   width: 74px;
@@ -127,7 +127,8 @@
   margin: 2rem;
 }
 .test-sprites6 {
-  background-image: linear-gradient(255,255,255) url('https://content.halocdn.com/media/Default/games/halo-5-guardians/sprites/medals_10-26-17-1ed917479dd14818b09ef10e29ff60b1.png');
+  background-image: linear-gradient(255, 255, 255)
+    url("https://content.halocdn.com/media/Default/games/halo-5-guardians/sprites/medals_10-26-17-1ed917479dd14818b09ef10e29ff60b1.png");
   background-position: -592px -370px;
   background-size: auto;
   width: 74px;

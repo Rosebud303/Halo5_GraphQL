@@ -2,13 +2,13 @@ const {
   GraphQLObjectType,
   GraphQLString,
   GraphQLInt,
-  GraphQLList
-} = require('graphql');
+  GraphQLList,
+} = require("graphql");
 
 //**************************************************** MAP METADATA */
 
 const MapMetadataType = new GraphQLObjectType({
-  name: 'MapMetadata',
+  name: "MapMetadata",
   fields: () => ({
     name: { type: GraphQLString },
     description: { type: GraphQLString },
@@ -16,95 +16,94 @@ const MapMetadataType = new GraphQLObjectType({
     imageUrl: { type: GraphQLString },
     id: { type: GraphQLString },
   }),
-})
+});
 
 //**************************************************** CSR METADATA */
 
 const CsrMetadataType = new GraphQLObjectType({
-  name: 'CsrMetadata',
+  name: "CsrMetadata",
   fields: () => ({
     name: { type: GraphQLString },
     bannerImageUrl: { type: GraphQLString },
     id: { type: GraphQLString },
     tiers: { type: new GraphQLList(TierListType) },
   }),
-})
+});
 
 const TierListType = new GraphQLObjectType({
-  name: 'TierList',
+  name: "TierList",
   fields: () => ({
     iconImageUrl: { type: GraphQLString },
     id: { type: GraphQLString },
   }),
-})
-
+});
 
 //**************************************************** SEASONS METADATA */
 
 const SeasonsMetadataType = new GraphQLObjectType({
-  name: 'SeasonsMetadata',
+  name: "SeasonsMetadata",
   fields: () => ({
     playlists: { type: new GraphQLList(PlaylistType) },
     name: { type: GraphQLString },
     id: { type: GraphQLString },
   }),
-})
+});
 
 const PlaylistType = new GraphQLObjectType({
-  name: 'Playlist',
+  name: "Playlist",
   fields: () => ({
     name: { type: GraphQLString },
     description: { type: GraphQLString },
     id: { type: GraphQLString },
   }),
-})
+});
 
 //**************************************************** FLEXIBLE STATS METADATA */
 
 const FlexibleStatsMetadataType = new GraphQLObjectType({
-  name: 'FlexibleStatsMetadata',
+  name: "FlexibleStatsMetadata",
   fields: () => ({
     name: { type: GraphQLString },
     id: { type: GraphQLString },
   }),
-})
+});
 
 //**************************************************** IMPULSES METADATA */
 
 const ImpulsesMetadataType = new GraphQLObjectType({
-  name: 'ImpulsesMetadata',
+  name: "ImpulsesMetadata",
   fields: () => ({
     internalName: { type: GraphQLString },
     id: { type: GraphQLString },
   }),
-})
+});
 
 //**************************************************** WEAPONS METADATA */
 
 const WeaponType = new GraphQLObjectType({
-  name: 'Weapon',
+  name: "Weapon",
   fields: () => ({
     name: { type: GraphQLString },
     largeIconImageUrl: { type: GraphQLString },
     id: { type: GraphQLString },
   }),
-})
+});
 
 //**************************************************** GAME BASE VARIANTS */
 
 const GameBaseVariantType = new GraphQLObjectType({
-  name: 'GameBaseVariant',
+  name: "GameBaseVariant",
   fields: () => ({
     name: { type: GraphQLString },
     iconUrl: { type: GraphQLString },
     id: { type: GraphQLString },
   }),
-})
+});
 
 //**************************************************** Medals */
 
 const MedalType = new GraphQLObjectType({
-  name: 'Medals',
+  name: "Medals",
   fields: () => ({
     name: { type: GraphQLString },
     description: { type: GraphQLString },
@@ -113,25 +112,25 @@ const MedalType = new GraphQLObjectType({
     id: { type: GraphQLString },
     contentId: { type: GraphQLString },
     spriteLocation: { type: SpriteLocationType },
-  })
-})
+  }),
+});
 
 const SpriteLocationType = new GraphQLObjectType({
-  name: 'SpriteLocationUrl',
+  name: "SpriteLocationUrl",
   fields: () => ({
     spriteSheetUri: { type: GraphQLString },
     left: { type: GraphQLInt },
     top: { type: GraphQLInt },
   }),
-})
+});
 
-module.exports = { 
-  WeaponType, 
-  MapMetadataType, 
-  CsrMetadataType, 
+module.exports = {
+  WeaponType,
+  MapMetadataType,
+  CsrMetadataType,
   SeasonsMetadataType,
-  FlexibleStatsMetadataType, 
-  ImpulsesMetadataType, 
-  GameBaseVariantType, 
-  MedalType 
-}
+  FlexibleStatsMetadataType,
+  ImpulsesMetadataType,
+  GameBaseVariantType,
+  MedalType,
+};

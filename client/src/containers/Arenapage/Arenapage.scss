@@ -3,11 +3,10 @@
   grid-gap: 2rem;
   height: 90vh;
   grid-template-areas:
-  "a b c"
-  "h i d"
-  "g f e"
-  ;
-  grid-template-rows: repeat(3, 33%); 
+    "a b c"
+    "h i d"
+    "g f e";
+  grid-template-rows: repeat(3, 33%);
   grid-template-columns: repeat(3, 33%);
 }
 
@@ -15,7 +14,7 @@
   from {
     opacity: 0;
     transform: scale(0.3);
-    filter: hue-rotate(180deg)
+    filter: hue-rotate(180deg);
   }
   to {
     opacity: 1;

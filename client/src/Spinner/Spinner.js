@@ -1,10 +1,10 @@
-import React from 'react';
-import './Spinner.css';
+import React from "react";
+import "./Spinner.css";
 
 const Spinner = (props) => (
   <>
-    <div className="spinner"/>
-    <p className="spinner__text">Loading {props.name}...</p>
+    <div className='spinner' />
+    <p className='spinner__text'>Loading {props.name}...</p>
   </>
 );
 

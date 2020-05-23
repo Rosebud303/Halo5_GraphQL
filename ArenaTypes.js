@@ -2,37 +2,37 @@ const {
   GraphQLObjectType,
   GraphQLString,
   GraphQLInt,
-  GraphQLList
-} = require('graphql');
+  GraphQLList,
+} = require("graphql");
 
 const ArenaGameBasesType = new GraphQLObjectType({
-  name: 'ArenaGameBases',
+  name: "ArenaGameBases",
   fields: () => ({
     GameBaseVariantId: { type: GraphQLString },
   }),
-})
+});
 
 const CsrStatsType = new GraphQLObjectType({
-  name: 'CsrStats',
+  name: "CsrStats",
   fields: () => ({
     HighestCsrAttained: { type: HighestCsrType },
     HighestCsrPlaylistId: { type: GraphQLString },
     HighestCsrSeasonId: { type: GraphQLString },
     ArenaPlaylistStatsSeasonId: { type: GraphQLString },
   }),
-})
+});
 
 const HighestCsrType = new GraphQLObjectType({
-  name: 'HighestCsr',
+  name: "HighestCsr",
   fields: () => ({
     Tier: { type: GraphQLInt },
     DesignationId: { type: GraphQLInt },
     PercentToNextTier: { type: GraphQLInt },
   }),
-})
+});
 
 const ArenaStatsType = new GraphQLObjectType({
-  name: 'ArenaStats',
+  name: "ArenaStats",
   fields: () => ({
     TotalGamesWon: { type: GraphQLInt },
     TotalGamesLost: { type: GraphQLInt },
@@ -52,14 +52,14 @@ const ArenaStatsType = new GraphQLObjectType({
     TotalWeaponDamage: { type: GraphQLString },
     TotalShotsFired: { type: GraphQLInt },
     TotalShotsLanded: { type: GraphQLInt },
-    Impulses: { type: new GraphQLList(ArenaImpulseType)},
-    MedalAwards: { type: new GraphQLList(ArenaMedalType)},
+    Impulses: { type: new GraphQLList(ArenaImpulseType) },
+    MedalAwards: { type: new GraphQLList(ArenaMedalType) },
     FlexibleStats: { type: ArenaFlexibleStatsType },
   }),
-})
+});
 
 const AccumulativeArenaStatsType = new GraphQLObjectType({
-  name: 'AccumulativeArenaStats',
+  name: "AccumulativeArenaStats",
   fields: () => ({
     TotalGamesWon: { type: GraphQLInt },
     TotalGamesLost: { type: GraphQLInt },
@@ -68,8 +68,8 @@ const AccumulativeArenaStatsType = new GraphQLObjectType({
     TotalKills: { type: GraphQLInt },
     TotalDeaths: { type: GraphQLInt },
     TotalAssists: { type: GraphQLInt },
-    TopGameBaseVariants: { type: new GraphQLList(TopVariantsType)},
-    WeaponWithMostKills: { type: TopWeaponType},
+    TopGameBaseVariants: { type: new GraphQLList(TopVariantsType) },
+    WeaponWithMostKills: { type: TopWeaponType },
     TotalShotsFired: { type: GraphQLInt },
     TotalShotsLanded: { type: GraphQLInt },
     TotalAssassinations: { type: GraphQLInt },
@@ -77,19 +77,19 @@ const AccumulativeArenaStatsType = new GraphQLObjectType({
     TotalGroundPoundKills: { type: GraphQLInt },
     TotalShoulderBashKills: { type: GraphQLInt },
   }),
-})
+});
 
 const TopVariantsType = new GraphQLObjectType({
-  name: 'TopVariants',
+  name: "TopVariants",
   fields: () => ({
     GameBaseVariantId: { type: GraphQLString },
     GameBaseVariantRank: { type: GraphQLString },
     NumberOfMatchesWon: { type: GraphQLString },
   }),
-})
+});
 
 const TopWeaponType = new GraphQLObjectType({
-  name: 'TopWeapon',
+  name: "TopWeapon",
   fields: () => ({
     WeaponId: { type: TopWeaponIdType },
     TotalKills: { type: GraphQLInt },
@@ -97,49 +97,49 @@ const TopWeaponType = new GraphQLObjectType({
     TotalShotsFired: { type: GraphQLInt },
     TotalShotsLanded: { type: GraphQLInt },
   }),
-})
+});
 
 const TopWeaponIdType = new GraphQLObjectType({
-  name: 'TopWeaponId',
+  name: "TopWeaponId",
   fields: () => ({
     StockId: { type: GraphQLString },
   }),
-})
+});
 
 const ArenaImpulseType = new GraphQLObjectType({
-  name: 'ArenaImpulse',
+  name: "ArenaImpulse",
   fields: () => ({
     Id: { type: GraphQLString },
     Count: { type: GraphQLInt },
   }),
-})
+});
 
 const ArenaMedalType = new GraphQLObjectType({
-  name: 'ArenaMedal',
+  name: "ArenaMedal",
   fields: () => ({
-    MedalId: { type: GraphQLString},
+    MedalId: { type: GraphQLString },
     Count: { type: GraphQLInt },
   }),
-})
+});
 
 const ArenaFlexibleStatsType = new GraphQLObjectType({
-  name: 'ArenaFlexibleStats',
+  name: "ArenaFlexibleStats",
   fields: () => ({
-    MedalStatCounts: { type: new GraphQLList(ArenaFlexibleMedalType)},
+    MedalStatCounts: { type: new GraphQLList(ArenaFlexibleMedalType) },
   }),
-})
+});
 
 const ArenaFlexibleMedalType = new GraphQLObjectType({
-  name: 'ArenaFlexibleMedal',
+  name: "ArenaFlexibleMedal",
   fields: () => ({
     Id: { type: GraphQLString },
     Count: { type: GraphQLInt },
   }),
-})
+});
 
 module.exports = {
   ArenaGameBasesType,
   CsrStatsType,
   ArenaStatsType,
-  AccumulativeArenaStatsType
-}
+  AccumulativeArenaStatsType,
+};

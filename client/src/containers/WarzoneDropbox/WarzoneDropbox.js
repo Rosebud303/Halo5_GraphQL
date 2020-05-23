@@ -1,12 +1,15 @@
-import React, { Component } from 'react';
-import './WarzoneDropbox.scss';
-import { connect } from 'react-redux';
-import { Query } from 'react-apollo';
-import gql from 'graphql-tag';
+import React, { Component } from "react";
+import "./WarzoneDropbox.scss";
+import { connect } from "react-redux";
+import { Query } from "react-apollo";
+import gql from "graphql-tag";
 
 const WARZONE_DROPDOWN_QUERY = gql`
-  query WarzoneQuery ($player_name: String!, $GameBaseVariantId: String!) {
-    wzVariantStats(player_name: $player_name, GameBaseVariantId: $GameBaseVariantId) {
+  query WarzoneQuery($player_name: String!, $GameBaseVariantId: String!) {
+    wzVariantStats(
+      player_name: $player_name
+      GameBaseVariantId: $GameBaseVariantId
+    ) {
       GameBaseVariantId
       MapId
     }
@@ -14,8 +17,16 @@ const WARZONE_DROPDOWN_QUERY = gql`
 `;
 
 const MAP_QUERY = gql`
-  query MapQuery ($player_name: String!, $GameBaseVariantId: String!, $MapId: String!) {
-    mapStats(player_name: $player_name, GameBaseVariantId: $GameBaseVariantId, MapId: $MapId) {
+  query MapQuery(
+    $player_name: String!
+    $GameBaseVariantId: String!
+    $MapId: String!
+  ) {
+    mapStats(
+      player_name: $player_name
+      GameBaseVariantId: $GameBaseVariantId
+      MapId: $MapId
+    ) {
       TotalKills
       TotalHeadshots
       TotalWeaponDamage
@@ -40,114 +51,173 @@ const MAP_QUERY = gql`
       }
     }
   }
-`
+`;
 
 class WarzoneDropbox extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentMapVariantId: '',
-      currentMapVariantName: ''
-    }
+      currentMapVariantId: "",
+      currentMapVariantName: "",
+    };
   }
 
   selectMapVariant = async (e) => {
-    e.preventDefault()
-    let optionIndex = e.target.selectedIndex
-    let emptyOption = e.target[0]
-    let selectOptions = e.target.options
-    let mapVarId = selectOptions[optionIndex].id
-    let mapVarIdName = selectOptions[optionIndex].text
-    await this.setState({ currentMapVariantId: '', currentMapVariantName: e.target.options[emptyOption] })
-    this.setState({ currentMapVariantId: mapVarId, currentMapVariantName: mapVarIdName })
-  }
+    e.preventDefault();
+    let optionIndex = e.target.selectedIndex;
+    let emptyOption = e.target[0];
+    let selectOptions = e.target.options;
+    let mapVarId = selectOptions[optionIndex].id;
+    let mapVarIdName = selectOptions[optionIndex].text;
+    await this.setState({
+      currentMapVariantId: "",
+      currentMapVariantName: e.target.options[emptyOption],
+    });
+    this.setState({
+      currentMapVariantId: mapVarId,
+      currentMapVariantName: mapVarIdName,
+    });
+  };
 
   render() {
-    const player_name = this.props.currentPlayer
-    const GameBaseVariantId = this.props.warzoneGameVariantId
-    const MapId = this.state.currentMapVariantId
+    const player_name = this.props.currentPlayer;
+    const GameBaseVariantId = this.props.warzoneGameVariantId;
+    const MapId = this.state.currentMapVariantId;
 
     return (
       <div>
         <h1>Warzone Game Variant</h1>
-        <Query query={WARZONE_DROPDOWN_QUERY} variables={{ player_name, GameBaseVariantId }}>
-          {
-            ({ loading, error, data }) => {
-              if (loading) return <option>Loading...</option>
-              if (error) console.log(error)
-              const parsedMapsMetadata = JSON.parse(localStorage.getItem('mapsMetadata')).mapsMetadata
+        <Query
+          query={WARZONE_DROPDOWN_QUERY}
+          variables={{ player_name, GameBaseVariantId }}
+        >
+          {({ loading, error, data }) => {
+            if (loading) return <option>Loading...</option>;
+            if (error) console.log(error);
+            const parsedMapsMetadata = JSON.parse(
+              localStorage.getItem("mapsMetadata")
+            ).mapsMetadata;
 
-              return (<div>
+            return (
+              <div>
                 <label htmlFor='filter'> Personal Warzone Playlist:</label>
-                <select onChange={(event) => this.selectMapVariant(event)} name='filter' className='warzone-dropdown'>
+                <select
+                  onChange={(event) => this.selectMapVariant(event)}
+                  name='filter'
+                  className='warzone-dropdown'
+                >
                   <option>No Selection</option>
-                  {data.wzVariantStats.filter(gameVariant => gameVariant.GameBaseVariantId === this.props.warzoneGameVariantId).map(id => {
-                    return <option id={id.MapId} key={id.MapId}>
-                      {parsedMapsMetadata.find(item => item.id === id.MapId).name}
-                    </option>
-                  })}
+                  {data.wzVariantStats
+                    .filter(
+                      (gameVariant) =>
+                        gameVariant.GameBaseVariantId ===
+                        this.props.warzoneGameVariantId
+                    )
+                    .map((id) => {
+                      return (
+                        <option id={id.MapId} key={id.MapId}>
+                          {
+                            parsedMapsMetadata.find(
+                              (item) => item.id === id.MapId
+                            ).name
+                          }
+                        </option>
+                      );
+                    })}
                 </select>
-              </div>)
-            }
-          }
+              </div>
+            );
+          }}
         </Query>
-        <Query query={MAP_QUERY} variables={{ player_name, GameBaseVariantId, MapId }}>
-          {
-            ({ loading, error, data }) => {
-              if (loading) return <p>Loading...</p>
-              if (error) console.log(error)
-              const parsedMapsMetadata = JSON.parse(localStorage.getItem('mapsMetadata')).mapsMetadata
-              const parsedWeaponsMetadata = JSON.parse(localStorage.getItem('weaponsMetadata')).weaponsMetadata
-              const foundMap = parsedMapsMetadata.find(map => map.id === MapId)
-              const foundWeapon = parsedWeaponsMetadata.find(weapon => {
-                if (data.mapStats) { return weapon.id === data.mapStats.WeaponWithMostKills.WeaponId.StockId }
-              })
-              console.log(foundWeapon)
-              return (!data.mapStats ?
-                <p>Select From Dropdown...</p>
-                :
-                <div className='main-container'>
-                  <div className='dropbox-container'>
-                    <div className='imageHolder'>
-                      <h3>{this.state.currentMapVariantName}</h3>
-                      {MapId && <img src={foundMap.imageUrl} className='images' />}
-                    </div>
-                    <div className='dropbox-data-content'>
-                      <p>Total Games Won: {data.mapStats.TotalGamesWon}</p>
-                      <p>Total Games Lost: {data.mapStats.TotalGamesLost}</p>
-                      <p>Total Games Tied: {data.mapStats.TotalGamesTied}</p>
-                      <p>Total Kills: {data.mapStats.TotalKills}</p>
-                      <p>Total Headshots: {data.mapStats.TotalHeadshots}</p>
-                      <p>Total Weapon Damage: {data.mapStats.TotalWeaponDamage.toFixed(2)}</p>
-                      <p>Total Shots Fired: {data.mapStats.TotalShotsFired}</p>
-                      <p>Total Shots Landed: {data.mapStats.TotalShotsLanded}</p>
-                    </div>
+        <Query
+          query={MAP_QUERY}
+          variables={{ player_name, GameBaseVariantId, MapId }}
+        >
+          {({ loading, error, data }) => {
+            if (loading) return <p>Loading...</p>;
+            if (error) console.log(error);
+            const parsedMapsMetadata = JSON.parse(
+              localStorage.getItem("mapsMetadata")
+            ).mapsMetadata;
+            const parsedWeaponsMetadata = JSON.parse(
+              localStorage.getItem("weaponsMetadata")
+            ).weaponsMetadata;
+            const foundMap = parsedMapsMetadata.find((map) => map.id === MapId);
+            const foundWeapon = parsedWeaponsMetadata.find((weapon) => {
+              if (data.mapStats) {
+                return (
+                  weapon.id ===
+                  data.mapStats.WeaponWithMostKills.WeaponId.StockId
+                );
+              }
+            });
+            console.log(foundWeapon);
+            return !data.mapStats ? (
+              <p>Select From Dropdown...</p>
+            ) : (
+              <div className='main-container'>
+                <div className='dropbox-container'>
+                  <div className='imageHolder'>
+                    <h3>{this.state.currentMapVariantName}</h3>
+                    {MapId && (
+                      <img src={foundMap.imageUrl} className='images' />
+                    )}
                   </div>
-                  <div className='second-row'>
-                    <div className='weapon-info'>
-                      <p>{foundWeapon.name} Kills: {data.mapStats.WeaponWithMostKills.TotalKills}</p>
-                      <p>{foundWeapon.name} Headshots: {data.mapStats.WeaponWithMostKills.TotalHeadshots}</p>
-                      <p>{foundWeapon.name} Damage Dealt: {data.mapStats.WeaponWithMostKills.TotalDamageDealt.toFixed(2)}</p>
-                      <p>{foundWeapon.name} Shots Fired: {data.mapStats.WeaponWithMostKills.TotalShotsFired}</p>
-                      <p>{foundWeapon.name} Shots Landed: {data.mapStats.WeaponWithMostKills.TotalShotsLanded}</p>
-                    </div>
-                    <div className='weapon-container'>
-                      <h3>{foundWeapon.name}</h3>
-                      <img src={foundWeapon.largeIconImageUrl} />
-                    </div>
+                  <div className='dropbox-data-content'>
+                    <p>Total Games Won: {data.mapStats.TotalGamesWon}</p>
+                    <p>Total Games Lost: {data.mapStats.TotalGamesLost}</p>
+                    <p>Total Games Tied: {data.mapStats.TotalGamesTied}</p>
+                    <p>Total Kills: {data.mapStats.TotalKills}</p>
+                    <p>Total Headshots: {data.mapStats.TotalHeadshots}</p>
+                    <p>
+                      Total Weapon Damage:{" "}
+                      {data.mapStats.TotalWeaponDamage.toFixed(2)}
+                    </p>
+                    <p>Total Shots Fired: {data.mapStats.TotalShotsFired}</p>
+                    <p>Total Shots Landed: {data.mapStats.TotalShotsLanded}</p>
                   </div>
                 </div>
-              )
-            }
-          }
+                <div className='second-row'>
+                  <div className='weapon-info'>
+                    <p>
+                      {foundWeapon.name} Kills:{" "}
+                      {data.mapStats.WeaponWithMostKills.TotalKills}
+                    </p>
+                    <p>
+                      {foundWeapon.name} Headshots:{" "}
+                      {data.mapStats.WeaponWithMostKills.TotalHeadshots}
+                    </p>
+                    <p>
+                      {foundWeapon.name} Damage Dealt:{" "}
+                      {data.mapStats.WeaponWithMostKills.TotalDamageDealt.toFixed(
+                        2
+                      )}
+                    </p>
+                    <p>
+                      {foundWeapon.name} Shots Fired:{" "}
+                      {data.mapStats.WeaponWithMostKills.TotalShotsFired}
+                    </p>
+                    <p>
+                      {foundWeapon.name} Shots Landed:{" "}
+                      {data.mapStats.WeaponWithMostKills.TotalShotsLanded}
+                    </p>
+                  </div>
+                  <div className='weapon-container'>
+                    <h3>{foundWeapon.name}</h3>
+                    <img src={foundWeapon.largeIconImageUrl} />
+                  </div>
+                </div>
+              </div>
+            );
+          }}
         </Query>
       </div>
-    )
+    );
   }
 }
 
 const mapStateToProps = (state) => ({
-  currentPlayer: state.currentPlayer
+  currentPlayer: state.currentPlayer,
 });
 
 export default connect(mapStateToProps)(WarzoneDropbox);

@@ -1,7 +1,7 @@
-import React from 'react';
-import './Detailspage.scss';
-import { Link } from 'react-router-dom';
-import gql from 'graphql-tag';
+import React from "react";
+import "./Detailspage.scss";
+import { Link } from "react-router-dom";
+import gql from "graphql-tag";
 
 let ACCUMULATIVE_WARZONE_QUERY = gql`
   query AccumulativeWzQuery($player_name: String!) {
@@ -30,8 +30,7 @@ let ACCUMULATIVE_WARZONE_QUERY = gql`
       }
     }
   }
-`
-
+`;
 
 const Detailspage = () => {
   return (
@@ -42,32 +41,18 @@ const Detailspage = () => {
         <button>LINK BACK TO HOMEPAGE</button>
       </Link>
       <section className='details-page-sections'>
-        <div className='accumulative-arena-wl'>
-
-        </div>
-        <div className='accumulative-arena-kda'>
-
-        </div>
-        <div className='arena-rank'>
-
-        </div>
+        <div className='accumulative-arena-wl'></div>
+        <div className='accumulative-arena-kda'></div>
+        <div className='arena-rank'></div>
       </section>
       <section className='details-page-sections'>
-        <div>
-
-        </div>
-        <div>
-
-        </div>
-        <div>
-
-        </div>
+        <div></div>
+        <div></div>
+        <div></div>
       </section>
-      <section className='details-page-sections'>
-
-      </section>
+      <section className='details-page-sections'></section>
     </div>
-  )
-}
+  );
+};
 
 export default Detailspage;
