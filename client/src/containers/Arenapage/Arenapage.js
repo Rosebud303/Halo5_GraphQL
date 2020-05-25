@@ -89,6 +89,8 @@ class Arenapage extends Component {
   render() {
     const player_name = this.props.currentPlayer;
     const GameBaseVariantId = this.state.currentGameVariant;
+    const parsedWeaponsMetadata = JSON.parse(localStorage.getItem("weaponsMetadata")).weaponsMetadata;
+    const parsedMedalsMetadata = JSON.parse(localStorage.getItem("medalsMetadata")).medalsMetadata;
 
     return (
       <div>
@@ -146,6 +148,9 @@ class Arenapage extends Component {
               if (loading) return "";
               if (error) console.log(error);
               const { TotalGamesWon, TotalGamesLost, TotalGamesTied, TotalGamesCompleted, TotalKills, TotalDeaths, TotalAssists, WeaponWithMostKills, TotalAssassinations, TotalMeleeKills, TotalGroundPoundKills, TotalShoulderBashKills, TotalGrenadeKills, TotalPowerWeaponKills, TotalHeadshots, TotalWeaponDamage, TotalShotsFired, TotalShotsLanded, Impulses, MedalAwards, FlexibleStats } = data.arenaStats
+              const foundWeapon = parsedWeaponsMetadata.find((weapon) => weapon.id === WeaponWithMostKills.WeaponId.StockId);
+              //best wep = WeaponWithMostKills.WeaponId.StockId
+              console.log(data)
               return (
                 <div className='arena-content-container'>
                   <h2 className='game-variant-name'>
@@ -155,34 +160,34 @@ class Arenapage extends Component {
                     <div className='arena-details-box box-a'>
                       <h4 className='box-title'>Win/Loss Stats</h4>
                       <div>
-                        <p className='box-details'>Total Games Won: {TotalGamesWon.toLocaleString()}</p>
-                        <p className='box-details'>Total Games Lost: {TotalGamesLost.toLocaleString()}</p>
-                        <p className='box-details'>Total Games Tied: {TotalGamesTied.toLocaleString()}</p>
-                        <p className='box-details'>Total Games Completed: {TotalGamesCompleted.toLocaleString()}</p>
+                        <p className='box-details'>Wins: {TotalGamesWon.toLocaleString()}</p>
+                        <p className='box-details'>Losses: {TotalGamesLost.toLocaleString()}</p>
+                        <p className='box-details'>Ties: {TotalGamesTied.toLocaleString()}</p>
+                        <p className='box-details'>Games Completed: {TotalGamesCompleted.toLocaleString()}</p>
                       </div>
                     </div>
                     <div className='arena-details-box box-b'>
                       <h4 className='box-title'>KDA Stats</h4>
                       <p className='box-details'>KDA Ratio: {((TotalKills + TotalAssists / 3) / TotalDeaths).toFixed(4)}</p>
-                      <p className='box-details'>Total Kills: {TotalKills.toLocaleString()}</p>
-                      <p className='box-details'>Total Deaths: {TotalDeaths.toLocaleString()}</p>
-                      <p className='box-details'>Total Assists: {TotalAssists.toLocaleString()}</p>
+                      <p className='box-details'>Kills: {TotalKills.toLocaleString()}</p>
+                      <p className='box-details'>Deaths: {TotalDeaths.toLocaleString()}</p>
+                      <p className='box-details'>Assists: {TotalAssists.toLocaleString()}</p>
                     </div>
                     <div className='arena-details-box box-c'>
                       <h4 className='box-title'>Best Performing Weapon</h4>
-                      <p>Weapon Name: The Dildo</p>
-                      <img alt='Weapon' />
-                      <p className='box-details'>Total Kills: {WeaponWithMostKills.TotalKills.toLocaleString()}</p>
-                      <p className='box-details'>Total Damage Dealt: {WeaponWithMostKills.TotalDamageDealt.toLocaleString()}</p>
-                      <p className='box-details'>Total Shots Fired: {WeaponWithMostKills.TotalShotsFired.toLocaleString()}</p>
-                      <p className='box-details'>Total Shots Landed: {WeaponWithMostKills.TotalShotsLanded.toLocaleString()}</p>
+                      <img src={foundWeapon.largeIconImageUrl} alt='Weapon' />
+                      <p><strong><u>{foundWeapon.name}</u></strong></p>
+                      <p className='box-details'>Kills: {WeaponWithMostKills.TotalKills.toLocaleString()}</p>
+                      <p className='box-details'>Damage Dealt: {parseInt(WeaponWithMostKills.TotalDamageDealt).toLocaleString()}</p>
+                      <p className='box-details'>Shots Fired: {WeaponWithMostKills.TotalShotsFired.toLocaleString()}</p>
+                      <p className='box-details'>Shots Landed: {WeaponWithMostKills.TotalShotsLanded.toLocaleString()}</p>
                     </div>
                     <div className='arena-details-box box-d'>
                       <h4 className='box-title'>Shooting Stats</h4>
-                      <p className='box-details'>Total Headshots: {TotalHeadshots}</p>
-                      <p className='box-details'>Total Damage Done (All Weapons):{TotalWeaponDamage.toLocaleString()}</p>
-                      <p className='box-details'>Total Shots Fired:{TotalShotsFired.toLocaleString()}</p>
-                      <p className='box-details'>Total Shots Landed:{TotalShotsLanded.toLocaleString()}</p>
+                      <p className='box-details'>Headshots: {TotalHeadshots}</p>
+                      <p className='box-details'>Total Damage Done: {parseInt(TotalWeaponDamage).toLocaleString()}</p>
+                      <p className='box-details'>Shots Fired:{TotalShotsFired.toLocaleString()}</p>
+                      <p className='box-details'>Shots Landed:{TotalShotsLanded.toLocaleString()}</p>
                     </div>
                     <div className='arena-details-box box-e'>
                       <h4 className='box-title'>Impulse Stats</h4>
@@ -195,12 +200,12 @@ class Arenapage extends Component {
                     </div>
                     <div className='arena-details-box box-h'>
                       <h4 className='box-title'>Style Kills</h4>
-                      <p className='box-details'>Total Assassinations: {TotalAssassinations.toLocaleString()}</p>
-                      <p className='box-details'>Total Melee: {TotalMeleeKills.toLocaleString()}</p>
-                      <p className='box-details'>Total Ground Pound: {TotalGroundPoundKills.toLocaleString()}</p>
-                      <p className='box-details'>Total Shoulder Bash: {TotalShoulderBashKills.toLocaleString()}</p>
-                      <p className='box-details'>Total Grenade: {TotalGrenadeKills.toLocaleString()}</p>
-                      <p className='box-details'>Total Power Weapon: {TotalPowerWeaponKills.toLocaleString()}</p>
+                      <p className='box-details'>Assassinations: {TotalAssassinations.toLocaleString()}</p>
+                      <p className='box-details'>Melee: {TotalMeleeKills.toLocaleString()}</p>
+                      <p className='box-details'>Ground Pound: {TotalGroundPoundKills.toLocaleString()}</p>
+                      <p className='box-details'>Shoulder Bash: {TotalShoulderBashKills.toLocaleString()}</p>
+                      <p className='box-details'>Grenade: {TotalGrenadeKills.toLocaleString()}</p>
+                      <p className='box-details'>Power Weapon: {TotalPowerWeaponKills.toLocaleString()}</p>
                     </div>
                     <div className='arena-details-box box-i'>
                       <img className='arena-spartan' src={this.props.currentImgUrlSpartan} alt='Users spartan' />
