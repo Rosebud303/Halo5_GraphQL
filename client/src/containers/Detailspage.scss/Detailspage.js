@@ -93,11 +93,11 @@ class Detailspage extends Component {
       <main className='details-page-body'>
         <section className='details-page-row'>
           <h1 className='details-page-heading'>Details Page Coming Soon...</h1>
+          <Link to='/homepage'>
+            <button>LINK BACK TO HOMEPAGE</button>
+          </Link>
           <div className='details-page-section'>
             <header></header>
-            <Link to='/homepage'>
-              <button>LINK BACK TO HOMEPAGE</button>
-            </Link>
           </div>
         </section>
         <section className='details-page-row arena-section'>
