@@ -1,19 +1,20 @@
 .arena-main {
   display: grid;
-  grid-gap: 2rem;
-  height: 90vh;
+  grid-gap: 1rem;
+  height: 80vh;
   grid-template-areas:
-    "a b c"
-    "h i d"
-    "g f e";
-  grid-template-rows: repeat(3, 33%);
-  grid-template-columns: repeat(3, 33%);
+    "a i c"
+    "b i e"
+    "d i f"
+    "h i g";
+  grid-template-rows: repeat(3);
+  grid-template-columns: repeat(3, 35% 30% 35%);
 }
 
 @keyframes cardEntrance {
   from {
     opacity: 0;
-    transform: scale(0.3);
+    transform: scale(0.8);
     filter: hue-rotate(180deg);
   }
   to {
@@ -23,6 +24,10 @@
   }
 }
 
+.arena-spartan {
+  width: 110%;
+}
+
 .arena-details-box {
   animation: cardEntrance 1000ms ease-out;
   animation-fill-mode: backwards;
@@ -30,60 +35,69 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  box-shadow: 5px 5px 10px;
+  background: linear-gradient(45deg, #305a2b75, #33562cf7);
+  border: groove;
+  border-radius: 1rem;
+  width: 70%;
+  justify-self: center;
 }
 
 .box-a {
   grid-area: a;
-  background: red;
+  // background: red;
   animation-delay: calc(1 * 100ms);
 }
 
 .box-b {
   grid-area: b;
-  background: blue;
+  // background: blue;
   animation-delay: calc(2 * 100ms);
 }
 
 .box-c {
   grid-area: c;
-  background: green;
+  // background: green;
   animation-delay: calc(3 * 100ms);
 }
 
 .box-d {
   grid-area: d;
-  background: orange;
+  // background: orange;
   animation-delay: calc(4 * 100ms);
 }
 
 .box-e {
   grid-area: e;
-  background: purple;
+  // background: purple;
   animation-delay: calc(5 * 100ms);
 }
 
 .box-f {
   grid-area: f;
-  background: darkblue;
+  // background: darkblue;
   animation-delay: calc(6 * 100ms);
 }
 
 .box-g {
   grid-area: g;
-  background: pink;
+  // background: pink;
   animation-delay: calc(7 * 100ms);
 }
 
 .box-h {
   grid-area: h;
-  background: cyan;
+  // background: cyan;
   animation-delay: calc(8 * 100ms);
 }
 .box-i {
   grid-area: i;
-  // background: lightcoral;
-  // animation-delay: calc(9 * 100ms);
+  background: inherit;
   animation: none;
+  border-radius: 0;
+  border: none;
+  box-shadow: none;
+  z-index: 1;
 }
 
 .game-variant-name {
@@ -91,5 +105,16 @@
 }
 
 .box-title {
-  text-decoration: underline;
+  color: mediumblue;
+  font-size: 1.5rem;
+  font-weight: bolder;
+  margin: 20px;
 }
+
+.arena-main p {
+  font-size: 0.8rem;
+  margin: 2px;
+  color: snow;
+  margin: 5px;
+}
+
