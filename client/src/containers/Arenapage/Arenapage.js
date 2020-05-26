@@ -93,52 +93,57 @@ class Arenapage extends Component {
     const parsedMedalsMetadata = JSON.parse(localStorage.getItem("medalsMetadata")).medalsMetadata;
 
     return (
-      <div>
-        <h3>Personal Playlist</h3>
-        <Query
-          query={ARENA_DROPDOWN_QUERY}
-          variables={{ player_name }}
-          key={player_name}
-        >
-          {({ loading, error, data }) => {
-            if (loading) return <option>Loading...</option>;
-            if (error) console.log(error);
-            const parsedGameVariantMetadata = JSON.parse(
-              localStorage.getItem("gameBaseVariantsMetadata")
-            ).gameBaseVariantsMetadata;
+      <div className='arena-page'>
+        <header className='arena-header'>
+          <div className='dropdown-container'>
+            <Query
+              query={ARENA_DROPDOWN_QUERY}
+              variables={{ player_name }}
+              key={player_name}
+            >
+              {({ loading, error, data }) => {
+                if (loading) return <option>Loading...</option>;
+                if (error) console.log(error);
+                const parsedGameVariantMetadata = JSON.parse(
+                  localStorage.getItem("gameBaseVariantsMetadata")
+                ).gameBaseVariantsMetadata;
 
-            return (
-              <div>
-                <label htmlFor='filter'>Choose from Arena Playlist:</label>
-                <select
-                  onChange={(event) => this.selectArenaVariant(event)}
-                  name='filter'
-                  className='arena-filter-options'
-                >
-                  <option>No Selection</option>
-                  {data.arenaGameBases.map((id) => {
-                    return (
-                      <option
-                        id={id.GameBaseVariantId}
-                        key={id.GameBaseVariantId}
-                      >
-                        {
-                          parsedGameVariantMetadata.find(
-                            (item) => item.id === id.GameBaseVariantId
-                          ).name
-                        }
-                      </option>
-                    );
-                  })}
-                </select>
-              </div>
-            );
-          }}
-        </Query>
-        <Link to='/homepage'>
-          <button>LINK BACK TO HOMEPAGE</button>
-        </Link>
-
+                return (
+                  <div>
+                    <label htmlFor='filter'>Choose From Playlist: </label>
+                    <select
+                      onChange={(event) => this.selectArenaVariant(event)}
+                      name='filter'
+                      className='arena-filter-options'
+                    >
+                      <option>No Selection</option>
+                      {data.arenaGameBases.map((id) => {
+                        return (
+                          <option
+                            id={id.GameBaseVariantId}
+                            key={id.GameBaseVariantId}
+                          >
+                            {
+                              parsedGameVariantMetadata.find(
+                                (item) => item.id === id.GameBaseVariantId
+                              ).name
+                            }
+                          </option>
+                        );
+                      })}
+                    </select>
+                  </div>
+                );
+              }}
+            </Query>
+          </div>
+          <h1 className='arena-title'>{this.state.currentGameVariantName || 'Arena Playlist'}</h1>
+          <div className='buttons-container'>
+            <Link to='/homepage' className='homepage-links'>
+              <p className='detail-link arena-button'>BACK TO HOMEPAGE</p>
+            </Link>
+          </div>
+        </header>
         {this.state.currentGameVariant && (
           <Query
             query={SELECTED_VARIANT_QUERY}
@@ -166,22 +171,17 @@ class Arenapage extends Component {
 
               return (
                 <div className='arena-content-container'>
-                  <h2 className='game-variant-name'>
-                    {this.state.currentGameVariantName}
-                  </h2>
                   <main className='arena-main'>
                     <div className='arena-details-box box-a'>
-                      <h4 className='box-title'>Win/Loss Stats</h4>
+                      <h4 className='box-title'>Win Rate - {(TotalGamesWon / TotalGamesCompleted).toFixed(4) * 100}%</h4>
                       <div>
                         <p className='box-details'>Wins: {TotalGamesWon.toLocaleString()}</p>
                         <p className='box-details'>Losses: {TotalGamesLost.toLocaleString()}</p>
                         <p className='box-details'>Ties: {TotalGamesTied.toLocaleString()}</p>
-                        <p className='box-details'>Games Completed: {TotalGamesCompleted.toLocaleString()}</p>
                       </div>
                     </div>
                     <div className='arena-details-box box-b'>
-                      <h4 className='box-title'>KDA Stats</h4>
-                      <p className='box-details'>KDA Ratio: {((TotalKills + TotalAssists / 3) / TotalDeaths).toFixed(4)}</p>
+                      <h4 className='box-title'>KDA - {((TotalKills + TotalAssists / 3) / TotalDeaths).toFixed(4)}</h4>
                       <p className='box-details'>Kills: {TotalKills.toLocaleString()}</p>
                       <p className='box-details'>Deaths: {TotalDeaths.toLocaleString()}</p>
                       <p className='box-details'>Assists: {TotalAssists.toLocaleString()}</p>
