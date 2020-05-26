@@ -10,8 +10,9 @@ export const metadataQueryList = [
           bannerImageUrl
           id
           tiers {
-            iconImageUrl
             id
+            iconImageUrl
+            contentId
           }
         }
       }

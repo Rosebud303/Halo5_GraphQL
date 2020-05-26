@@ -92,13 +92,13 @@ class Detailspage extends Component {
     return (
       <main className='details-page-body'>
         <section className='details-page-row'>
-          <h1 className='details-page-heading'>Details Page Coming Soon...</h1>
+          {/* <h1 className='details-page-heading'>Details Page Coming Soon...</h1>
           <Link to='/homepage'>
             <button>LINK BACK TO HOMEPAGE</button>
           </Link>
           <div className='details-page-section'>
             <header></header>
-          </div>
+          </div> */}
         </section>
         <section className='details-page-row arena-section'>
           <Query query={ACCUMULATTIVE_ARENA_QUERY} variables={{ player_name }}>
@@ -106,9 +106,18 @@ class Detailspage extends Component {
               if (loading) return <p>Loading...</p>;
               if (error) console.log(error);
               const { HighestCsrAttained, HighestCsrPlaylistId, HighestCsrSeasonId, ArenaPlaylistStatsSeasonId, TotalGamesWon, TotalGamesLost, TotalGamesTied, TotalGamesCompleted, TotalKills, TotalDeaths, TotalAssists, TopGameBaseVariants, WeaponWithMostKills, TotalShotsFired, TotalShotsLanded, TotalAssassinations, TotalMeleeKills, TotalGroundPoundKills, TotalShoulderBashKills, MedalAwards } = data.accumulativeArenaStats
+              const foundWeapon = parsedWeaponsMetadata.find(weapon => weapon.id === WeaponWithMostKills.WeaponId.StockId)
+              const foundRank = parsedCsrMetadata.find(rank => rank.id == HighestCsrAttained.DesignationId)
+              const foundTier = foundRank.tiers.find(tier => tier.id == HighestCsrAttained.Tier).iconImageUrl
+              console.log(foundRank)
+              console.log(foundTier)
               return (<>
                 <h1 className='details-page-heading'>ARENA STATS SECTION</h1>
                 <div className='details-page-section'>
+                  <div className='grouped-details-info csr-container'>
+                    <img src={foundRank.bannerImageUrl} />
+                    <img src={foundTier.iconImageUrl} />
+                  </div>
                   <div className='grouped-details-info'>
                     <p>Total Wins: {TotalGamesWon.toLocaleString()}</p>
                     <p>Total Losses: {TotalGamesLost.toLocaleString()}</p>
@@ -120,10 +129,6 @@ class Detailspage extends Component {
                     <p>Total Assists: {Number(TotalAssists).toLocaleString()}</p>
                   </div>
                   <div className='grouped-details-info'>
-                    <p>**Top Game Base Variants (w/ names and wins)</p>
-                    <p>**Top Weapon (w/ name, kills, damage, accuracy, image</p>
-                  </div>
-                  <div className='grouped-details-info'>
                     <p>Accuracy Percentage: {(TotalShotsLanded / TotalShotsFired).toFixed(4) * 100}%</p>
                     <p>Assassinations: {TotalAssassinations.toLocaleString()}</p>
                     <p>Melee Kills: {TotalMeleeKills.toLocaleString()}</p>
@@ -131,7 +136,13 @@ class Detailspage extends Component {
                     <p>Shoulder Bash Kills: {TotalShoulderBashKills.toLocaleString()}</p>
                   </div>
                   <div className='grouped-details-info'>
-                    <p>**Extrapolate csr data</p>
+                    <img className='warzone-weapon-image' src={foundWeapon.largeIconImageUrl} alt='Weapon' />
+                    <div className='best-wep-info'>
+                      <p>{foundWeapon.name}</p>
+                      <p className='warzone-box-details'>Kills: {WeaponWithMostKills.TotalKills.toLocaleString()}</p>
+                      <p className='warzone-box-details'>Damage Dealt: {parseInt(WeaponWithMostKills.TotalDamageDealt).toLocaleString()}</p>
+                      <p className='warzone-box-details'>Shots Fired: {WeaponWithMostKills.TotalShotsFired.toLocaleString()}</p>
+                    </div>
                   </div>
                 </div>
               </>
@@ -145,6 +156,8 @@ class Detailspage extends Component {
               if (loading) return <p>Loading...</p>;
               if (error) console.log(error);
               const { TotalKills, TotalHeadshots, TotalWeaponDamage, TotalShotsFired, TotalShotsLanded, TotalGamesWon, TotalGamesLost, TotalGamesTied, WeaponWithMostKills, MedalAwards } = data.warzoneStats
+              const foundWeapon = parsedWeaponsMetadata.find(weapon => weapon.id === WeaponWithMostKills.WeaponId.StockId)
+
               return (<>
                 <h1 className='details-page-heading'>WARZONE STATS SECTION</h1>
                 <div className='details-page-section'>
@@ -156,10 +169,16 @@ class Detailspage extends Component {
                   </div>
                   <div className='grouped-details-info'>
                     <p>Total Kills: {TotalKills.toLocaleString()}</p>
-                    <p>Accuracy Percentage: {(TotalShotsLanded / TotalShotsFired).toFixed(4) * 100}%</p>
+                    <p>Accuracy Percentage: {(TotalShotsLanded / TotalShotsFired * 100).toFixed(2)}%</p>
                   </div>
                   <div className='grouped-details-info'>
-                    <p>**Top Weapon (w/ name, kills, damage, accuracy, image</p>
+                    <img className='warzone-weapon-image' src={foundWeapon.largeIconImageUrl} alt='Weapon' />
+                    <div className='best-wep-info'>
+                      <p>{foundWeapon.name}</p>
+                      <p className='warzone-box-details'>Kills: {WeaponWithMostKills.TotalKills.toLocaleString()}</p>
+                      <p className='warzone-box-details'>Damage Dealt: {parseInt(WeaponWithMostKills.TotalDamageDealt).toLocaleString()}</p>
+                      <p className='warzone-box-details'>Shots Fired: {WeaponWithMostKills.TotalShotsFired.toLocaleString()}</p>
+                    </div>
                   </div>
                 </div>
               </>

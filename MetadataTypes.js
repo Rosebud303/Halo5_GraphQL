@@ -3,6 +3,7 @@ const {
   GraphQLString,
   GraphQLInt,
   GraphQLList,
+  GraphQLID
 } = require("graphql");
 
 //**************************************************** MAP METADATA */
@@ -33,8 +34,9 @@ const CsrMetadataType = new GraphQLObjectType({
 const TierListType = new GraphQLObjectType({
   name: "TierList",
   fields: () => ({
+    id: { type: GraphQLID },
     iconImageUrl: { type: GraphQLString },
-    id: { type: GraphQLString },
+    contentId: { type: GraphQLString },
   }),
 });
 
