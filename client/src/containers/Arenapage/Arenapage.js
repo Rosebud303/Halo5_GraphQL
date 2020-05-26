@@ -155,8 +155,10 @@ class Arenapage extends Component {
               const { TotalGamesWon, TotalGamesLost, TotalGamesTied, TotalGamesCompleted, TotalKills, TotalDeaths, TotalAssists, WeaponWithMostKills, TotalAssassinations, TotalMeleeKills, TotalGroundPoundKills, TotalShoulderBashKills, TotalGrenadeKills, TotalPowerWeaponKills, TotalHeadshots, TotalWeaponDamage, TotalShotsFired, TotalShotsLanded, Impulses, MedalAwards, FlexibleStats } = data.arenaStats
               const foundWeapon = parsedWeaponsMetadata.find((weapon) => weapon.id === WeaponWithMostKills.WeaponId.StockId);
               const findBestMedals = () => {
+                console.log(MedalAwards)
                 let medalWithDifficulty = MedalAwards.map(medal => {
-                  let foundMedal = parsedMedalsMetadata.find(found => found.id === medal.MedalId)
+                  let foundMedal = parsedMedalsMetadata.find(found => found.id === medal.MedalId) || {}
+                  if (foundMedal.difficulty === 0) return
                   return {
                     Id: foundMedal.id,
                     Name: foundMedal.name,
@@ -166,9 +168,9 @@ class Arenapage extends Component {
                     Count: medal.Count
                   }
                 })
-                return medalWithDifficulty.sort((a, b) => b.Difficulty - a.Difficulty).slice(0, 6)
+                return medalWithDifficulty.sort((a, b) => a.Difficulty - b.Difficulty).slice(0, 6)
               }
-
+              console.log(data)
               return (
                 <div className='arena-content-container'>
                   <main className='arena-main'>
@@ -209,7 +211,7 @@ class Arenapage extends Component {
                       <h4 className='box-title'>Impulse Stats</h4>
                     </div>
                     <div className='arena-details-box box-f'>
-                      <h4 className='box-title'>Medals</h4>
+                      <h4 className='box-title'>Top Medals</h4>
                       <p className='hover-instructions'>(hover for details)</p>
                       {findBestMedals().map(medal => {
                         const medalStyles = {
