@@ -149,8 +149,21 @@ class Arenapage extends Component {
               if (error) console.log(error);
               const { TotalGamesWon, TotalGamesLost, TotalGamesTied, TotalGamesCompleted, TotalKills, TotalDeaths, TotalAssists, WeaponWithMostKills, TotalAssassinations, TotalMeleeKills, TotalGroundPoundKills, TotalShoulderBashKills, TotalGrenadeKills, TotalPowerWeaponKills, TotalHeadshots, TotalWeaponDamage, TotalShotsFired, TotalShotsLanded, Impulses, MedalAwards, FlexibleStats } = data.arenaStats
               const foundWeapon = parsedWeaponsMetadata.find((weapon) => weapon.id === WeaponWithMostKills.WeaponId.StockId);
-              //best wep = WeaponWithMostKills.WeaponId.StockId
-              console.log(data)
+              const findBestMedals = () => {
+                let medalWithDifficulty = MedalAwards.map(medal => {
+                  let foundMedal = parsedMedalsMetadata.find(found => found.id === medal.MedalId)
+                  return {
+                    Id: foundMedal.id,
+                    Name: foundMedal.name,
+                    Description: foundMedal.description,
+                    Difficulty: foundMedal.difficulty,
+                    Location: foundMedal.spriteLocation,
+                    Count: medal.Count
+                  }
+                })
+                return medalWithDifficulty.sort((a, b) => b.Difficulty - a.Difficulty).slice(0, 6)
+              }
+
               return (
                 <div className='arena-content-container'>
                   <h2 className='game-variant-name'>
@@ -173,14 +186,17 @@ class Arenapage extends Component {
                       <p className='box-details'>Deaths: {TotalDeaths.toLocaleString()}</p>
                       <p className='box-details'>Assists: {TotalAssists.toLocaleString()}</p>
                     </div>
-                    <div className='arena-details-box box-c'>
+                    <div className='arena-details-box box-c weapon-container'>
                       <h4 className='box-title'>Best Performing Weapon</h4>
-                      <img src={foundWeapon.largeIconImageUrl} alt='Weapon' />
-                      <p><strong><u>{foundWeapon.name}</u></strong></p>
-                      <p className='box-details'>Kills: {WeaponWithMostKills.TotalKills.toLocaleString()}</p>
-                      <p className='box-details'>Damage Dealt: {parseInt(WeaponWithMostKills.TotalDamageDealt).toLocaleString()}</p>
-                      <p className='box-details'>Shots Fired: {WeaponWithMostKills.TotalShotsFired.toLocaleString()}</p>
-                      <p className='box-details'>Shots Landed: {WeaponWithMostKills.TotalShotsLanded.toLocaleString()}</p>
+                      <p className='hover-instructions'>(hover for details)</p>
+                      <img className='weapon-image' src={foundWeapon.largeIconImageUrl} alt='Weapon' />
+                      <div className='best-wep-info'>
+                        <p><strong><u>{foundWeapon.name}</u></strong></p>
+                        <p className='box-details'>Kills: {WeaponWithMostKills.TotalKills.toLocaleString()}</p>
+                        <p className='box-details'>Damage Dealt: {parseInt(WeaponWithMostKills.TotalDamageDealt).toLocaleString()}</p>
+                        <p className='box-details'>Shots Fired: {WeaponWithMostKills.TotalShotsFired.toLocaleString()}</p>
+                        <p className='box-details'>Shots Landed: {WeaponWithMostKills.TotalShotsLanded.toLocaleString()}</p>
+                      </div>
                     </div>
                     <div className='arena-details-box box-d'>
                       <h4 className='box-title'>Shooting Stats</h4>
@@ -194,6 +210,24 @@ class Arenapage extends Component {
                     </div>
                     <div className='arena-details-box box-f'>
                       <h4 className='box-title'>Medals</h4>
+                      <p className='hover-instructions'>(hover for details)</p>
+                      {findBestMedals().map(medal => {
+                        const medalStyles = {
+                          backgroundImage: `url(${medal.Location.spriteSheetUri})`,
+                          backgroundPosition: `-${medal.Location.left}px -${medal.Location.top}px`,
+                          backgroundSize: 'auto',
+                          width: '74px',
+                          height: '74px',
+                          margin: '1rem',
+                          size: '50%'
+                        };
+                        return (
+                          <div className='single-medal-container'>
+                            <div style={medalStyles}><p>x{medal.Count}</p></div>
+                            <p className='medal-info'><strong>{medal.Name}</strong> - {medal.Description}</p>
+                          </div>
+                        )
+                      })}
                     </div>
                     <div className='arena-details-box box-g'>
                       <h4 className='box-title'>Flexible Stats</h4>
