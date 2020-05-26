@@ -60,6 +60,8 @@
   top: 0px;
   transition: all 0.2s linear;
   overflow: scroll;
+  font-family: 'Orbitron', sans-serif;
+
 }
 
 .accordion-section figcaption span {
@@ -118,4 +120,6 @@ figure {
 .accordion-section p {
   opacity: 0;
   color: white;
+  font-family: 'Gruppo', cursive;
+  font-weight: 900;
 }

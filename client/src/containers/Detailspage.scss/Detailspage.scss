@@ -1,14 +1,24 @@
 .details-page-body {
   display: flex;
   flex-direction: column;
+  background: black;
+  background-image: url(https://slack-imgs.com/?c=1&o1=ro&url=https%3A%2F%2Fwallpaperplay.com%2Fwalls%2Ffull%2F1%2F2%2F6%2F111540.jpg);
+  background-repeat: no-repeat;
+  // background-size: cover;
+  background-position: center;
 }
 
 .details-page-section {
   display: flex;
   flex-direction: row;
+  justify-content: space-around;
   border-top: 2px solid #000;
   border-bottom: 2px solid #000;
   margin-top: 10px;
+}
+
+.csr-container {
+
 }
 
 .grouped-details-info {
@@ -39,4 +49,13 @@
   text-align: center;
   text-decoration: underline;
   color: black;
+}
+
+.details-page-body p {
+  font-weight: 900;
+}
+
+.warzone-weapon-image {
+  width: 90%;
+  filter: drop-shadow(1px 1px 25px GoldenRod);
 }

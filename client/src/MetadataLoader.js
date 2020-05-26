@@ -10,18 +10,20 @@ export default function MetadataLoader() {
         return localStorage[metadata.name] ? (
           console.log(`metadata for ${metadata.name} already exists`)
         ) : (
-          <Query
-            query={metadata.query}
-            key={metadataQueryList.indexOf(metadata)}
-          >
-            {({ loading, error, data }) => {
-              if (loading) return <Spinner name={metadata.name} />;
-              if (error) console.log(error);
-              localStorage.setItem(`${metadata.name}`, JSON.stringify(data));
-              return "";
-            }}
-          </Query>
-        );
+            <Query
+              query={metadata.query}
+              key={metadataQueryList.indexOf(metadata)}
+            >
+              {({ loading, error, data }) => {
+                if (loading) return <Spinner name={metadata.name} />;
+                if (error) console.log(error);
+                console.log(data)
+                localStorage.setItem(`${metadata.name}`, JSON.stringify(data));
+                console.log(data)
+                return "";
+              }}
+            </Query>
+          );
       })}
     </div>
   );
