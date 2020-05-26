@@ -83,85 +83,97 @@ let ACCUMULATIVE_WARZONE_QUERY = gql`
 class Detailspage extends Component {
   render() {
     const player_name = this.props.currentPlayer
+    const parsedCsrMetadata = JSON.parse(localStorage.getItem("csrMetadata")).csrMetadata;
+    const parsedGameVariantsMetadata = JSON.parse(localStorage.getItem("gameBaseVariantsMetadata")).gameBaseVariantsMetadata;
+    const parsedMedalsMetadata = JSON.parse(localStorage.getItem("medalsMetadata")).medalsMetadata;
+    const parsedSeasonsMetadata = JSON.parse(localStorage.getItem("seasonsMetadata")).seasonsMetadata;
+    const parsedWeaponsMetadata = JSON.parse(localStorage.getItem("weaponsMetadata")).weaponsMetadata;
+
     return (
-      <div>
-        <header></header>
-        <h1>Details Page Coming Soon...</h1>
-        <Link to='/homepage'>
-          <button>LINK BACK TO HOMEPAGE</button>
-        </Link>
-        <section className='arena-section'>
+      <main className='details-page-body'>
+        <section className='details-page-row'>
+          <h1 className='details-page-heading'>Details Page Coming Soon...</h1>
+          <Link to='/homepage'>
+            <button>LINK BACK TO HOMEPAGE</button>
+          </Link>
+          <div className='details-page-section'>
+            <header></header>
+          </div>
+        </section>
+        <section className='details-page-row arena-section'>
           <Query query={ACCUMULATTIVE_ARENA_QUERY} variables={{ player_name }}>
             {({ loading, error, data }) => {
               if (loading) return <p>Loading...</p>;
               if (error) console.log(error);
-              const {
-                HighestCsrAttained,
-                HighestCsrPlaylistId,
-                HighestCsrSeasonId,
-                ArenaPlaylistStatsSeasonId,
-                TotalGamesWon,
-                TotalGamesLost,
-                TotalGamesTied,
-                TotalGamesCompleted,
-                TotalKills,
-                TotalDeaths,
-                TotalAssists,
-                TopGameBaseVariants,
-                WeaponWithMostKills,
-                TotalShotsFired,
-                TotalShotsLanded,
-                TotalAssassinations,
-                TotalMeleeKills,
-                TotalGroundPoundKills,
-                TotalShoulderBashKills,
-                MedalAwards } = data.accumulativeArenaStats
-              return (<div>
-                <div className='accumulative-arena-wl'>
-                  <p>Total Wins: {TotalGamesWon}</p>
-                  <p>Total Losses: {TotalGamesLost}</p>
-                  <p>Total Games Tied: {TotalGamesTied}</p>
-                  <p>Total Games Completed: {TotalGamesCompleted}</p>
-                  <p>KDA: </p>
-                  <p>Total Kills: {TotalKills}</p>
-                  <p>Total Deaths: {TotalDeaths}</p>
-                  <p>Total Assists: {TotalAssists}</p>
+              const { HighestCsrAttained, HighestCsrPlaylistId, HighestCsrSeasonId, ArenaPlaylistStatsSeasonId, TotalGamesWon, TotalGamesLost, TotalGamesTied, TotalGamesCompleted, TotalKills, TotalDeaths, TotalAssists, TopGameBaseVariants, WeaponWithMostKills, TotalShotsFired, TotalShotsLanded, TotalAssassinations, TotalMeleeKills, TotalGroundPoundKills, TotalShoulderBashKills, MedalAwards } = data.accumulativeArenaStats
+              return (<>
+                <h1 className='details-page-heading'>ARENA STATS SECTION</h1>
+                <div className='details-page-section'>
+                  <div className='grouped-details-info'>
+                    <p>Total Wins: {TotalGamesWon.toLocaleString()}</p>
+                    <p>Total Losses: {TotalGamesLost.toLocaleString()}</p>
+                    <p>Total Games Tied: {TotalGamesTied}</p>
+                    <p>Total Games Completed: {TotalGamesCompleted.toLocaleString()}</p>
+                    <p>KDA: </p>
+                    <p>Total Kills: {TotalKills.toLocaleString()}</p>
+                    <p>Total Deaths: {TotalDeaths.toLocaleString()}</p>
+                    <p>Total Assists: {Number(TotalAssists).toLocaleString()}</p>
+                  </div>
+                  <div className='grouped-details-info'>
+                    <p>**Top Game Base Variants (w/ names and wins)</p>
+                    <p>**Top Weapon (w/ name, kills, damage, accuracy, image</p>
+                  </div>
+                  <div className='grouped-details-info'>
+                    <p>Accuracy Percentage: {(TotalShotsLanded / TotalShotsFired).toFixed(4) * 100}%</p>
+                    <p>Assassinations: {TotalAssassinations.toLocaleString()}</p>
+                    <p>Melee Kills: {TotalMeleeKills.toLocaleString()}</p>
+                    <p>Ground Pound Kills: {TotalGroundPoundKills.toLocaleString()}</p>
+                    <p>Shoulder Bash Kills: {TotalShoulderBashKills.toLocaleString()}</p>
+                  </div>
+                  <div className='grouped-details-info'>
+                    <p>**Extrapolate csr data</p>
+                  </div>
                 </div>
-                <div className='top-arena-variants'>
-                  <p>**Top Game Base Variants (w/ names and wins)</p>
-                  <p>**Top Weapon (w/ name, kills, damage, accuracy, image</p>
-                </div>
-                <div className='performance-stats'>
-                  <p>Accuracy Percentage: {(TotalShotsLanded / TotalShotsFired).toFixed(4) * 100}%</p>
-                  <p>Assassinations: {TotalAssassinations}</p>
-                  <p>Melee Kills: {TotalMeleeKills}</p>
-                  <p>Ground Pound Kills: {TotalGroundPoundKills}</p>
-                  <p>Shoulder Bash Kills: {TotalShoulderBashKills}</p>
-                </div>
-                <div className='csr-section'>
-                  <p>**Extrapolate csr data</p>
-                </div>
-              </div>
+              </>
               )
             }}
           </Query>
         </section>
-        <section className='warzone-section'>
+        <section className='details-page-row warzone-section'>
           <Query query={ACCUMULATIVE_WARZONE_QUERY} variables={{ player_name }}>
             {({ loading, error, data }) => {
               if (loading) return <p>Loading...</p>;
               if (error) console.log(error);
-              return (<div>
-                <div></div>
-                <div></div>
-                <div></div>
-              </div>
+              const { TotalKills, TotalHeadshots, TotalWeaponDamage, TotalShotsFired, TotalShotsLanded, TotalGamesWon, TotalGamesLost, TotalGamesTied, WeaponWithMostKills, MedalAwards } = data.warzoneStats
+              return (<>
+                <h1 className='details-page-heading'>WARZONE STATS SECTION</h1>
+                <div className='details-page-section'>
+                  <div className='grouped-details-info'>
+                    <p>Total Wins: {TotalGamesWon.toLocaleString()}</p>
+                    <p>Total Losses: {TotalGamesLost.toLocaleString()}</p>
+                    <p>Total Games Tied: {TotalGamesTied}</p>
+                    <p>Total Games Completed: {(TotalGamesWon + TotalGamesLost + TotalGamesTied).toLocaleString()}</p>
+                  </div>
+                  <div className='grouped-details-info'>
+                    <p>Total Kills: {TotalKills.toLocaleString()}</p>
+                    <p>Accuracy Percentage: {(TotalShotsLanded / TotalShotsFired).toFixed(4) * 100}%</p>
+                  </div>
+                  <div className='grouped-details-info'>
+                    <p>**Top Weapon (w/ name, kills, damage, accuracy, image</p>
+                  </div>
+                </div>
+              </>
               )
             }}
           </Query>
         </section>
-        <section className='details-page-sections'></section>
-      </div >
+        <h1 className='details-page-heading'>MEDALS STATS SECTION</h1>
+        <section className='details-page-row'>
+          <div className='medals-section'>
+            <p>**INSERT TOP MEDALS HERE**</p>
+          </div>
+        </section>
+      </main >
     );
   }
 };

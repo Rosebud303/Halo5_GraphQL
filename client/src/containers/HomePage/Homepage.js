@@ -43,7 +43,7 @@ class Homepage extends Component {
       })
       .get(
         proxyurl +
-          `https://www.haloapi.com/profile/h5/profiles/${this.props.currentPlayer}/spartan`
+        `https://www.haloapi.com/profile/h5/profiles/${this.props.currentPlayer}/spartan?size=512`
       )
       .then((data) => this.props.setImgUrlSpartan(data.headers["x-final-url"]));
   };
@@ -55,7 +55,7 @@ class Homepage extends Component {
       })
       .get(
         proxyurl +
-          `https://www.haloapi.com/profile/h5/profiles/${this.props.currentPlayer}/emblem`
+        `https://www.haloapi.com/profile/h5/profiles/${this.props.currentPlayer}/emblem`
       )
       .then((data) => this.props.setImgUrlEmblem(data.headers["x-final-url"]));
   };
@@ -103,8 +103,8 @@ class Homepage extends Component {
                 src={this.props.currentImgUrlSpartan}
               />
             ) : (
-              <Spinner name={"Spartan"} />
-            )}
+                <Spinner name={"Spartan"} />
+              )}
             {this.props.currentImgUrlEmblem ? (
               <img
                 alt='Player Emblem'
@@ -112,8 +112,8 @@ class Homepage extends Component {
                 src={this.props.currentImgUrlEmblem}
               />
             ) : (
-              <Spinner name={"Spartan"} />
-            )}
+                <Spinner name={"Spartan"} />
+              )}
           </section>
           <section className='banner-company-links'>
             <h3 className='lesser-company'>COMPANY PLACEHOLDER</h3>
