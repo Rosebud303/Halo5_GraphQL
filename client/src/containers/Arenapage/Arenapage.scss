@@ -1,3 +1,45 @@
+.arena-page {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+}
+
+.arena-header {
+  background: linear-gradient(45deg, #8c0e25eb, #9e0312f5);  
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  width: 90%;
+}
+
+.dropdown-container {
+  padding-left: 10px;
+}
+
+.arena-title {
+  font-size: 3rem;
+  margin: 20px 0px;
+  text-shadow: 2px 2px 5px #000000;
+  color: aliceblue;
+}
+
+label {
+  color: whitesmoke;
+  font-weight: bold;
+}
+
+.buttons-container {
+  padding-right: 10px;
+  padding-left: 10px;
+}
+
+.arena-button {
+  font-size: 0.5rem;
+}
+
 .arena-main {
   display: grid;
   grid-gap: 1rem;
@@ -8,7 +50,7 @@
     "b i e"
     "d i g";
   grid-template-rows: repeat(4);
-  grid-template-columns: repeat(3, 30% 30% 30%);
+  grid-template-columns: repeat(3, 33.3% 33.3% 33.3%);
 }
 
 @keyframes cardEntrance {
@@ -47,35 +89,35 @@
 
 .box-a {
   grid-area: a;
-  animation-delay: calc(3 * 100ms);
+  animation-delay: calc(3 * 70ms);
 }
 
 .box-b {
   grid-area: b;
-  animation-delay: calc(4 * 100ms);
+  animation-delay: calc(4 * 70ms);
 }
 
 .box-c {
   grid-area: c;
-  animation-delay: calc(2 * 100ms);
-  right: 72px;
+  animation-delay: calc(2 * 70ms);
+  right: 45px;
   height: 315px;
   width: 542px;
 }
 
 .box-d {
   grid-area: d;
-  animation-delay: calc(5 * 100ms);
+  animation-delay: calc(5 * 70ms);
 }
 
 .box-e {
   grid-area: e;
-  animation-delay: calc(7 * 100ms);
+  animation-delay: calc(7 * 70ms);
 }
 
 .box-f {
   grid-area: f;
-  animation-delay: calc(1 * 100ms);
+  animation-delay: calc(1 * 70ms);
   flex-wrap: wrap;
   flex-direction: row;
   flex-shrink: 0.5;
@@ -83,19 +125,18 @@
 
 .box-g {
   grid-area: g;
-  animation-delay: calc(8 * 100ms);
+  animation-delay: calc(8 * 70ms);
 }
 
 .box-h {
   grid-area: h;
-  animation-delay: calc(6 * 100ms);
+  animation-delay: calc(6 * 70ms);
 }
 .box-i {
   grid-area: i;
   background: inherit;
   animation: none;
-  // border-radius: 0;
-  width: 100%;
+  width: 90%;
   border: none;
   box-shadow: none;
   z-index: 1;
