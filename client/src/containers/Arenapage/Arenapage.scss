@@ -2,7 +2,11 @@
   display: flex;
   align-items: center;
   flex-direction: column;
+}
 
+.arena-dropbox-container {
+  display: flex;
+  flex-direction: column;
 }
 
 .arena-header {
@@ -21,10 +25,12 @@
 
 .arena-title {
   font-size: 3rem;
-  margin: 20px 0px;
+  margin: 20px -0px;
   text-shadow: 2px 2px 5px #000000;
   color: aliceblue;
   text-transform: uppercase;
+  font-family: 'Black Ops One', cursive;
+
 }
 
 label {
@@ -155,14 +161,17 @@ label {
   top: 0;
   margin-top: 5px;
   text-transform: uppercase;
+  font-family: 'Orbitron', sans-serif;
 }
 
 
 .arena-main p {
-  font-size: 0.9rem;
+  font-size: 1rem;
   margin: 2px;
   color: white;
   margin: 2px;
+  font-family: 'Gruppo', cursive;
+  font-weight: 900;
 }
 
 .hover-instructions {

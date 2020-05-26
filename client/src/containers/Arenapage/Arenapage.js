@@ -109,7 +109,7 @@ class Arenapage extends Component {
                 ).gameBaseVariantsMetadata;
 
                 return (
-                  <div>
+                  <div className='arena-dropbox-container'>
                     <label htmlFor='filter'>Choose From Playlist: </label>
                     <select
                       onChange={(event) => this.selectArenaVariant(event)}
@@ -174,7 +174,7 @@ class Arenapage extends Component {
                 <div className='arena-content-container'>
                   <main className='arena-main'>
                     <div className='arena-details-box box-a'>
-                      <h4 className='box-title'>Win Rate - {(TotalGamesWon / TotalGamesCompleted).toFixed(4) * 100}%</h4>
+                      <h4 className='box-title'>Win Rate - {(TotalGamesWon / TotalGamesCompleted * 100).toFixed(2)}%</h4>
                       <div>
                         <p className='box-details'>Wins: {TotalGamesWon.toLocaleString()}</p>
                         <p className='box-details'>Losses: {TotalGamesLost.toLocaleString()}</p>
@@ -182,7 +182,7 @@ class Arenapage extends Component {
                       </div>
                     </div>
                     <div className='arena-details-box box-b'>
-                      <h4 className='box-title'>KDA - {((TotalKills + TotalAssists / 3) / TotalDeaths).toFixed(4)}</h4>
+                      <h4 className='box-title'>KDA - {((TotalKills + TotalAssists / 3) / TotalDeaths).toFixed(3)}</h4>
                       <p className='box-details'>Kills: {TotalKills.toLocaleString()}</p>
                       <p className='box-details'>Deaths: {TotalDeaths.toLocaleString()}</p>
                       <p className='box-details'>Assists: {TotalAssists.toLocaleString()}</p>
