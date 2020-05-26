@@ -155,7 +155,6 @@ class Arenapage extends Component {
               const { TotalGamesWon, TotalGamesLost, TotalGamesTied, TotalGamesCompleted, TotalKills, TotalDeaths, TotalAssists, WeaponWithMostKills, TotalAssassinations, TotalMeleeKills, TotalGroundPoundKills, TotalShoulderBashKills, TotalGrenadeKills, TotalPowerWeaponKills, TotalHeadshots, TotalWeaponDamage, TotalShotsFired, TotalShotsLanded, Impulses, MedalAwards, FlexibleStats } = data.arenaStats
               const foundWeapon = parsedWeaponsMetadata.find((weapon) => weapon.id === WeaponWithMostKills.WeaponId.StockId);
               const findBestMedals = () => {
-                console.log(MedalAwards)
                 let medalWithDifficulty = MedalAwards.map(medal => {
                   let foundMedal = parsedMedalsMetadata.find(found => found.id === medal.MedalId) || {}
                   if (foundMedal.difficulty === 0) return
@@ -170,7 +169,7 @@ class Arenapage extends Component {
                 })
                 return medalWithDifficulty.sort((a, b) => a.Difficulty - b.Difficulty).slice(0, 6)
               }
-              console.log(data)
+
               return (
                 <div className='arena-content-container'>
                   <main className='arena-main'>
@@ -202,10 +201,10 @@ class Arenapage extends Component {
                     </div>
                     <div className='arena-details-box box-d'>
                       <h4 className='box-title'>Shooting Stats</h4>
-                      <p className='box-details'>Headshots: {TotalHeadshots}</p>
+                      <p className='box-details'>Headshots: {TotalHeadshots.toLocaleString()}</p>
                       <p className='box-details'>Total Damage Done: {parseInt(TotalWeaponDamage).toLocaleString()}</p>
-                      <p className='box-details'>Shots Fired:{TotalShotsFired.toLocaleString()}</p>
-                      <p className='box-details'>Shots Landed:{TotalShotsLanded.toLocaleString()}</p>
+                      <p className='box-details'>Shots Fired: {TotalShotsFired.toLocaleString()}</p>
+                      <p className='box-details'>Shots Landed: {TotalShotsLanded.toLocaleString()}</p>
                     </div>
                     <div className='arena-details-box box-e'>
                       <h4 className='box-title'>Impulse Stats</h4>
