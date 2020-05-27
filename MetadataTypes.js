@@ -26,7 +26,7 @@ const CsrMetadataType = new GraphQLObjectType({
   fields: () => ({
     name: { type: GraphQLString },
     bannerImageUrl: { type: GraphQLString },
-    id: { type: GraphQLString },
+    id: { type: GraphQLInt },
     tiers: { type: new GraphQLList(TierListType) },
   }),
 });
@@ -34,9 +34,8 @@ const CsrMetadataType = new GraphQLObjectType({
 const TierListType = new GraphQLObjectType({
   name: "TierList",
   fields: () => ({
-    id: { type: GraphQLID },
+    id: { type: GraphQLInt },
     iconImageUrl: { type: GraphQLString },
-    contentId: { type: GraphQLString },
   }),
 });
 
