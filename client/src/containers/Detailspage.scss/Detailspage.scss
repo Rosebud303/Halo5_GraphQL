@@ -21,9 +21,20 @@
 display: flex;
 }
 
-.tier-image {
-  z-index: 1;
-  position: absolute;
+.medals-details {
+  display: flex;
+  flex-direction: row;
+}
+
+.medals-detail-section {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  padding: 40px;
+}
+
+.medals-detail-section h2 {
+  text-align: center;
 }
 
 .grouped-details-info {

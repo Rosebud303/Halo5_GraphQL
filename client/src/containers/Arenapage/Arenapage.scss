@@ -13,13 +13,15 @@
 }
 
 .arena-header {
-  background: linear-gradient(45deg, #8c0e25eb, #9e0312f5);  
+  background: linear-gradient(45deg, #000000eb, #b1b6b1f5, #000000eb);
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 30px;
   width: 90%;
+  box-shadow: -1px 1px 3px 0px #000000ab;
+  border-radius: 3px;
 }
 
 .dropdown-container {
@@ -105,10 +107,10 @@ label {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  box-shadow: 5px 5px 10px;
+  box-shadow: 1px 1px 4px;
   background: linear-gradient(45deg, #305a2b75, #33562cf7);
   border: groove;
-  border-radius: 1rem;
+  border-radius: 3px;
   width: 70%;
   justify-self: center;
   position: relative;
