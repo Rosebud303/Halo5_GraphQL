@@ -224,7 +224,6 @@ label {
     position: absolute;
     background-color: inherit;
     padding: 20px 0px;
-    opacity: 1;
   }
 
   .best-wep-info {
@@ -243,6 +242,11 @@ label {
       z-index: 1;
     }
 
+    .csr-image-container {
+      z-index: 0;
+      opacity: 0.6;
+    }
+
     .best-wep-title {
       color: #f4f900;
       font-family: 'Black Ops One', cursive;
@@ -250,6 +254,7 @@ label {
       font-size: 2rem;
       text-align: center;
       text-transform: uppercase;
+      z-index: 1;
     }
 
     .box-details {
@@ -285,14 +290,25 @@ label {
 .csr-image-container {
   display: flex;
   justify-content: center;
+  position: absolute;
 }
 
 .tier-image {
-  z-index: 1;
   position: absolute;
   width: 50%;
+  top: 10px;
 }
 
 .banner-image {
   width: 60%;
+}
+
+.best-season-info {
+  text-align: center;
+}
+
+.smaller-season-info {
+  font-size: 1.4rem;
+  margin-top: 8px;
+  font-style: italic;
 }
