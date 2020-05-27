@@ -70,7 +70,6 @@ let ARENA_CSR_QUERY = gql`
       }
       HighestCsrPlaylistId
       HighestCsrSeasonId
-      ArenaPlaylistStatsSeasonId
     }
   }
 `
@@ -274,22 +273,33 @@ class Arenapage extends Component {
                         )
                       })}
                     </div>
-                    <div className='arena-details-box box-h'>
+                    <div className='arena-details-box box-h weapon-container'>
                       <h4 className='box-title'>Highest Rank Attained</h4>
+                      <p className='hover-instructions'>(hover for details)</p>
                       <Query query={ARENA_CSR_QUERY} variables={{ player_name }}>
                         {({ loading, error, data }) => {
                           if (loading) return <p>Loading...</p>;
                           if (error) console.log(error);
-                          const { HighestCsrAttained, HighestCsrPlaylistId, HighestCsrSeasonId, ArenaPlaylistStatsSeasonId } = data.arenaCsr
+                          const { HighestCsrAttained, HighestCsrPlaylistId, HighestCsrSeasonId } = data.arenaCsr
                           const foundRank = parsedCsrMetadata.find(rank => rank.id == HighestCsrAttained.DesignationId)
                           const foundTier = foundRank.tiers.find(tier => tier.id == HighestCsrAttained.Tier).iconImageUrl
+                          const foundPlaylist = parsedSeasonsMetadata.find(playlist => playlist.id === HighestCsrSeasonId)
+                          const foundGameMode = foundPlaylist.playlists.find(playlist => playlist.id === HighestCsrPlaylistId)
+                          console.log(foundPlaylist)
+                          console.log(foundGameMode)
 
-                          return (
+                          return (<>
                             <div className='csr-image-container'>
                               <img className='csr-images banner-image' src={foundRank.bannerImageUrl} alt='Players rank banner' />
                               <img className='csr-images tier-image' src={foundTier} alt='Players rank tier' />
                             </div>
-                          )
+                            <div className='best-wep-info'>
+                              <p className='best-wep-title highest-rank-title'>{foundRank.name} {HighestCsrAttained.Tier}</p>
+                              <p className='box-details best-season-info'>{foundPlaylist.name}</p>
+                              <p className='box-details best-season-info'><u>{foundGameMode.name}</u></p>
+                              <p className='smaller-season-info best-season-info'>({foundGameMode.description})</p>
+                            </div>
+                          </>)
                         }}
                       </Query>
                     </div>
