@@ -43,9 +43,9 @@ class Warzonepage extends Component {
     this.state = {
       gameVariantId: "dfd51ee3-9060-46c3-b131-08d946c4c7b9",
     };
-    this.parsedGameBaseVariants = JSON.parse(localStorage.getItem("gameBaseVariantsMetadata")).gameBaseVariantsMetadata;
-    this.parsedWeaponsMetadata = JSON.parse(localStorage.getItem("weaponsMetadata")).weaponsMetadata;
-    this.parsedMedalsMetadata = JSON.parse(localStorage.getItem("medalsMetadata")).medalsMetadata;
+    this.parsedGameBaseVariants = JSON.parse(localStorage.getItem("gameBaseVariantsMetadata"));
+    this.parsedWeaponsMetadata = JSON.parse(localStorage.getItem("weaponsMetadata"));
+    this.parsedMedalsMetadata = JSON.parse(localStorage.getItem("medalsMetadata"));
   }
 
   reduceTotals = (data, property) => {

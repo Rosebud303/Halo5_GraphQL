@@ -89,8 +89,8 @@ class Arenapage extends Component {
   render() {
     const player_name = this.props.currentPlayer;
     const GameBaseVariantId = this.state.currentGameVariant;
-    const parsedWeaponsMetadata = JSON.parse(localStorage.getItem("weaponsMetadata")).weaponsMetadata;
-    const parsedMedalsMetadata = JSON.parse(localStorage.getItem("medalsMetadata")).medalsMetadata;
+    const parsedWeaponsMetadata = JSON.parse(localStorage.getItem("weaponsMetadata"));
+    const parsedMedalsMetadata = JSON.parse(localStorage.getItem("medalsMetadata"));
 
     return (
       <div className='arena-page'>
@@ -106,7 +106,7 @@ class Arenapage extends Component {
                 if (error) console.log(error);
                 const parsedGameVariantMetadata = JSON.parse(
                   localStorage.getItem("gameBaseVariantsMetadata")
-                ).gameBaseVariantsMetadata;
+                );
 
                 return (
                   <div className='arena-dropbox-container'>
