@@ -66,7 +66,6 @@ const CsrDataType = new GraphQLObjectType({
     HighestCsrAttained: { type: HighestCsrType },
     HighestCsrPlaylistId: { type: GraphQLString },
     HighestCsrSeasonId: { type: GraphQLString },
-    ArenaPlaylistStatsSeasonId: { type: GraphQLString },
   })
 })
 
