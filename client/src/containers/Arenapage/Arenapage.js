@@ -285,7 +285,10 @@ class Arenapage extends Component {
                           const foundTier = foundRank.tiers.find(tier => tier.id == HighestCsrAttained.Tier).iconImageUrl
 
                           return (
-           
+                            <div className='csr-image-container'>
+                              <img className='csr-images banner-image' src={foundRank.bannerImageUrl} alt='Players rank banner' />
+                              <img className='csr-images tier-image' src={foundTier} alt='Players rank tier' />
+                            </div>
                           )
                         }}
                       </Query>
