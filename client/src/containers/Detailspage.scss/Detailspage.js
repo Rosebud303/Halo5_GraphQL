@@ -81,24 +81,21 @@ let ACCUMULATIVE_WARZONE_QUERY = gql`
 `;
 
 class Detailspage extends Component {
+
   render() {
     const player_name = this.props.currentPlayer
-    const parsedCsrMetadata = JSON.parse(localStorage.getItem("csrMetadata")).csrMetadata;
-    const parsedGameVariantsMetadata = JSON.parse(localStorage.getItem("gameBaseVariantsMetadata")).gameBaseVariantsMetadata;
-    const parsedMedalsMetadata = JSON.parse(localStorage.getItem("medalsMetadata")).medalsMetadata;
-    const parsedSeasonsMetadata = JSON.parse(localStorage.getItem("seasonsMetadata")).seasonsMetadata;
-    const parsedWeaponsMetadata = JSON.parse(localStorage.getItem("weaponsMetadata")).weaponsMetadata;
+    const parsedCsrMetadata = JSON.parse(localStorage.getItem("csrMetadata"));
+    const parsedGameVariantsMetadata = JSON.parse(localStorage.getItem("gameBaseVariantsMetadata"));
+    const parsedMedalsMetadata = JSON.parse(localStorage.getItem("medalsMetadata"));
+    const parsedSeasonsMetadata = JSON.parse(localStorage.getItem("seasonsMetadata"));
+    const parsedWeaponsMetadata = JSON.parse(localStorage.getItem("weaponsMetadata"));
 
     return (
       <main className='details-page-body'>
         <section className='details-page-row'>
-          {/* <h1 className='details-page-heading'>Details Page Coming Soon...</h1>
-          <Link to='/homepage'>
-            <button>LINK BACK TO HOMEPAGE</button>
+          <Link className='homepage-links' to='/homepage'>
+            <p className='detail-link'>BACK TO HOMEPAGE</p>
           </Link>
-          <div className='details-page-section'>
-            <header></header>
-          </div> */}
         </section>
         <section className='details-page-row arena-section'>
           <Query query={ACCUMULATTIVE_ARENA_QUERY} variables={{ player_name }}>
@@ -109,14 +106,12 @@ class Detailspage extends Component {
               const foundWeapon = parsedWeaponsMetadata.find(weapon => weapon.id === WeaponWithMostKills.WeaponId.StockId)
               const foundRank = parsedCsrMetadata.find(rank => rank.id == HighestCsrAttained.DesignationId)
               const foundTier = foundRank.tiers.find(tier => tier.id == HighestCsrAttained.Tier).iconImageUrl
-              console.log(foundRank)
-              console.log(foundTier)
               return (<>
                 <h1 className='details-page-heading'>ARENA STATS SECTION</h1>
                 <div className='details-page-section'>
                   <div className='grouped-details-info csr-container'>
-                    <img src={foundRank.bannerImageUrl} />
-                    <img src={foundTier.iconImageUrl} />
+                    <img src={foundRank.bannerImageUrl} alt='Players rank banner' />
+                    <img className='tier-image' src={foundTier} alt='Players rank tier' />
                   </div>
                   <div className='grouped-details-info'>
                     <p>Total Wins: {TotalGamesWon.toLocaleString()}</p>

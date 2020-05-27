@@ -79,7 +79,7 @@ class WarzoneDropbox extends Component {
           {({ loading, error, data }) => {
             if (loading) return <option>Loading...</option>;
             if (error) console.log(error);
-            const parsedMapsMetadata = JSON.parse(localStorage.getItem("mapsMetadata")).mapsMetadata;
+            const parsedMapsMetadata = JSON.parse(localStorage.getItem("mapsMetadata"));
 
             return (
               <div>
@@ -104,8 +104,8 @@ class WarzoneDropbox extends Component {
           {({ loading, error, data }) => {
             if (loading) return <p>Loading...</p>;
             if (error) console.log(error);
-            const parsedMapsMetadata = JSON.parse(localStorage.getItem("mapsMetadata")).mapsMetadata;
-            const parsedWeaponsMetadata = JSON.parse(localStorage.getItem("weaponsMetadata")).weaponsMetadata;
+            const parsedMapsMetadata = JSON.parse(localStorage.getItem("mapsMetadata"));
+            const parsedWeaponsMetadata = JSON.parse(localStorage.getItem("weaponsMetadata"));
             const foundMap = parsedMapsMetadata.find((map) => map.id === MapId);
             const foundWeapon = parsedWeaponsMetadata.find((weapon) => {
               if (data.mapStats) {
@@ -115,48 +115,48 @@ class WarzoneDropbox extends Component {
             return !data.mapStats ? (
               <p>Select From Dropdown...</p>
             ) : (
-              <div className='main-container'>
-                <div className='dropbox-container'>
-                  <div className='imageHolder'>
-                    <h3>{this.state.currentMapVariantName}</h3>
-                    {MapId && <img src={foundMap.imageUrl} className='images' alt='selected halo 5 map' />}
+                <div className='main-container'>
+                  <div className='dropbox-container'>
+                    <div className='imageHolder'>
+                      <h3>{this.state.currentMapVariantName}</h3>
+                      {MapId && <img src={foundMap.imageUrl} className='images' alt='selected halo 5 map' />}
+                    </div>
+                    <div className='dropbox-data-content'>
+                      <p>Total Games Won: {data.mapStats.TotalGamesWon}</p>
+                      <p>Total Games Lost: {data.mapStats.TotalGamesLost}</p>
+                      <p>Total Games Tied: {data.mapStats.TotalGamesTied}</p>
+                      <p>Total Kills: {data.mapStats.TotalKills}</p>
+                      <p>Total Headshots: {data.mapStats.TotalHeadshots}</p>
+                      <p>Total Weapon Damage: {data.mapStats.TotalWeaponDamage.toFixed(2)}</p>
+                      <p>Total Shots Fired: {data.mapStats.TotalShotsFired}</p>
+                      <p>Total Shots Landed: {data.mapStats.TotalShotsLanded}</p>
+                    </div>
                   </div>
-                  <div className='dropbox-data-content'>
-                    <p>Total Games Won: {data.mapStats.TotalGamesWon}</p>
-                    <p>Total Games Lost: {data.mapStats.TotalGamesLost}</p>
-                    <p>Total Games Tied: {data.mapStats.TotalGamesTied}</p>
-                    <p>Total Kills: {data.mapStats.TotalKills}</p>
-                    <p>Total Headshots: {data.mapStats.TotalHeadshots}</p>
-                    <p>Total Weapon Damage: {data.mapStats.TotalWeaponDamage.toFixed(2)}</p>
-                    <p>Total Shots Fired: {data.mapStats.TotalShotsFired}</p>
-                    <p>Total Shots Landed: {data.mapStats.TotalShotsLanded}</p>
+                  <div className='second-row'>
+                    <div className='weapon-info'>
+                      <p>
+                        {foundWeapon.name} Kills: {data.mapStats.WeaponWithMostKills.TotalKills}
+                      </p>
+                      <p>
+                        {foundWeapon.name} Headshots: {data.mapStats.WeaponWithMostKills.TotalHeadshots}
+                      </p>
+                      <p>
+                        {foundWeapon.name} Damage Dealt: {data.mapStats.WeaponWithMostKills.TotalDamageDealt.toFixed(2)}
+                      </p>
+                      <p>
+                        {foundWeapon.name} Shots Fired: {data.mapStats.WeaponWithMostKills.TotalShotsFired}
+                      </p>
+                      <p>
+                        {foundWeapon.name} Shots Landed: {data.mapStats.WeaponWithMostKills.TotalShotsLanded}
+                      </p>
+                    </div>
+                    <div className='weapon-container'>
+                      <h3>{foundWeapon.name}</h3>
+                      <img src={foundWeapon.largeIconImageUrl} alt='players best weapon' />
+                    </div>
                   </div>
                 </div>
-                <div className='second-row'>
-                  <div className='weapon-info'>
-                    <p>
-                      {foundWeapon.name} Kills: {data.mapStats.WeaponWithMostKills.TotalKills}
-                    </p>
-                    <p>
-                      {foundWeapon.name} Headshots: {data.mapStats.WeaponWithMostKills.TotalHeadshots}
-                    </p>
-                    <p>
-                      {foundWeapon.name} Damage Dealt: {data.mapStats.WeaponWithMostKills.TotalDamageDealt.toFixed(2)}
-                    </p>
-                    <p>
-                      {foundWeapon.name} Shots Fired: {data.mapStats.WeaponWithMostKills.TotalShotsFired}
-                    </p>
-                    <p>
-                      {foundWeapon.name} Shots Landed: {data.mapStats.WeaponWithMostKills.TotalShotsLanded}
-                    </p>
-                  </div>
-                  <div className='weapon-container'>
-                    <h3>{foundWeapon.name}</h3>
-                    <img src={foundWeapon.largeIconImageUrl} alt='players best weapon' />
-                  </div>
-                </div>
-              </div>
-            );
+              );
           }}
         </Query>
       </div>

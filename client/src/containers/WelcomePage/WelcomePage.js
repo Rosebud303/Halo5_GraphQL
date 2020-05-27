@@ -3,6 +3,8 @@ import { connect } from "react-redux";
 import "./WelcomePage.scss";
 import { Redirect } from "react-router-dom";
 import * as actions from "../../actions";
+import axios from "axios";
+import { api_key } from "../../apikey";
 
 class WelcomePage extends Component {
   constructor(props) {
@@ -12,6 +14,17 @@ class WelcomePage extends Component {
       searchedPlayer: "",
       searched: false,
     };
+  }
+
+  componentDidMount() {
+    if (!localStorage.csrMetadata) {
+      axios
+        .create({
+          headers: { "Ocp-Apim-Subscription-Key": api_key },
+        })
+        .get(`https://www.haloapi.com/metadata/h5/metadata/csr-designations`)
+        .then(data => localStorage.setItem('csrMetadata', JSON.stringify(data.data)))
+    }
   }
 
   handleChange = (event) => {

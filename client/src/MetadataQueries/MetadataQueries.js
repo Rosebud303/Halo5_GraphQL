@@ -2,23 +2,6 @@ import gql from "graphql-tag";
 
 export const metadataQueryList = [
   {
-    name: "csrMetadata",
-    query: gql`
-      query CsrQuery {
-        csrMetadata {
-          name
-          bannerImageUrl
-          id
-          tiers {
-            id
-            iconImageUrl
-            contentId
-          }
-        }
-      }
-    `,
-  },
-  {
     name: "mapsMetadata",
     query: gql`
       query MapQuery {

@@ -18,7 +18,12 @@
 }
 
 .csr-container {
+display: flex;
+}
 
+.tier-image {
+  z-index: 1;
+  position: absolute;
 }
 
 .grouped-details-info {
