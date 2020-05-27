@@ -4,7 +4,7 @@ import "./WelcomePage.scss";
 import { Redirect } from "react-router-dom";
 import * as actions from "../../actions";
 import axios from "axios";
-import { api_key, proxyurl } from "../../apikey";
+import { api_key } from "../../apikey";
 
 class WelcomePage extends Component {
   constructor(props) {

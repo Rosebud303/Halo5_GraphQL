@@ -4,8 +4,6 @@ import { Link } from "react-router-dom";
 import gql from "graphql-tag";
 import { Query } from "react-apollo";
 import { connect } from 'react-redux'
-import axios from "axios";
-import { api_key, proxyurl } from "../../apikey";
 
 let ACCUMULATTIVE_ARENA_QUERY = gql`
   query ArenaQuery($player_name: String!) {
@@ -116,8 +114,8 @@ class Detailspage extends Component {
                 <h1 className='details-page-heading'>ARENA STATS SECTION</h1>
                 <div className='details-page-section'>
                   <div className='grouped-details-info csr-container'>
-                    <img src={foundRank.bannerImageUrl} />
-                    <img className='tier-image' src={foundTier} />
+                    <img src={foundRank.bannerImageUrl} alt='Players rank banner' />
+                    <img className='tier-image' src={foundTier} alt='Players rank tier' />
                   </div>
                   <div className='grouped-details-info'>
                     <p>Total Wins: {TotalGamesWon.toLocaleString()}</p>

@@ -89,7 +89,7 @@ class Warzonepage extends Component {
 
   createContent = (wholeData, id) => {
     const { reduceTotals, findMostEffectiveWeapon, findMostObtainedMedals, parsedGameBaseVariants, parsedMedalsMetadata, parsedWeaponsMetadata } = this;
-    const data = wholeData.scenarioStats.filter((item) => item.GameBaseVariantId == id);
+    const data = wholeData.scenarioStats.filter((item) => item.GameBaseVariantId === id);
     const foundWeapon = parsedWeaponsMetadata.find((weapon) => weapon.id === findMostEffectiveWeapon(data).WeaponId.StockId);
     return (
       <div>
@@ -141,7 +141,6 @@ class Warzonepage extends Component {
   render() {
     const { parsedGameBaseVariants, createContent } = this;
     let player_name = this.props.currentPlayer;
-    let GameBaseVariantId = this.state.gameVariantId;
     const firefightVariantId = "dfd51ee3-9060-46c3-b131-08d946c4c7b9";
     const assaultVariantId = "42f97cca-2cb4-497a-a0fd-ceef1ba46bcc";
     const regularVariantId = "f6de5351-3797-41e9-8053-7fb111a3a1a0";
