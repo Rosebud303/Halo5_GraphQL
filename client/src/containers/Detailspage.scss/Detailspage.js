@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import gql from "graphql-tag";
 import { Query } from "react-apollo";
 import { connect } from 'react-redux'
+import axios from "axios";
+import { api_key, proxyurl } from "../../apikey";
 
 let ACCUMULATTIVE_ARENA_QUERY = gql`
   query ArenaQuery($player_name: String!) {
@@ -81,9 +83,24 @@ let ACCUMULATIVE_WARZONE_QUERY = gql`
 `;
 
 class Detailspage extends Component {
+  constructor() {
+    super();
+    this.state = {
+      csrData: []
+    }
+  }
+
+  componentDidMount() {
+    axios
+      .create({
+        headers: { "Ocp-Apim-Subscription-Key": api_key },
+      })
+      .get(`https://www.haloapi.com/metadata/h5/metadata/csr-designations`)
+      .then(data => this.setState({ csrData: data.data }))
+  }
+
   render() {
     const player_name = this.props.currentPlayer
-    const parsedCsrMetadata = JSON.parse(localStorage.getItem("csrMetadata")).csrMetadata;
     const parsedGameVariantsMetadata = JSON.parse(localStorage.getItem("gameBaseVariantsMetadata")).gameBaseVariantsMetadata;
     const parsedMedalsMetadata = JSON.parse(localStorage.getItem("medalsMetadata")).medalsMetadata;
     const parsedSeasonsMetadata = JSON.parse(localStorage.getItem("seasonsMetadata")).seasonsMetadata;
@@ -107,16 +124,14 @@ class Detailspage extends Component {
               if (error) console.log(error);
               const { HighestCsrAttained, HighestCsrPlaylistId, HighestCsrSeasonId, ArenaPlaylistStatsSeasonId, TotalGamesWon, TotalGamesLost, TotalGamesTied, TotalGamesCompleted, TotalKills, TotalDeaths, TotalAssists, TopGameBaseVariants, WeaponWithMostKills, TotalShotsFired, TotalShotsLanded, TotalAssassinations, TotalMeleeKills, TotalGroundPoundKills, TotalShoulderBashKills, MedalAwards } = data.accumulativeArenaStats
               const foundWeapon = parsedWeaponsMetadata.find(weapon => weapon.id === WeaponWithMostKills.WeaponId.StockId)
-              const foundRank = parsedCsrMetadata.find(rank => rank.id == HighestCsrAttained.DesignationId)
+              const foundRank = this.state.csrData.find(rank => rank.id == HighestCsrAttained.DesignationId)
               const foundTier = foundRank.tiers.find(tier => tier.id == HighestCsrAttained.Tier).iconImageUrl
-              console.log(foundRank)
-              console.log(foundTier)
               return (<>
                 <h1 className='details-page-heading'>ARENA STATS SECTION</h1>
                 <div className='details-page-section'>
                   <div className='grouped-details-info csr-container'>
                     <img src={foundRank.bannerImageUrl} />
-                    <img src={foundTier.iconImageUrl} />
+                    <img className='tier-image' src={foundTier} />
                   </div>
                   <div className='grouped-details-info'>
                     <p>Total Wins: {TotalGamesWon.toLocaleString()}</p>
