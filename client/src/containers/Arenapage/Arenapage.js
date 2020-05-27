@@ -296,7 +296,7 @@ class Arenapage extends Component {
                             <div className='best-wep-info'>
                               <p className='best-wep-title highest-rank-title'>{foundRank.name} {HighestCsrAttained.Tier}</p>
                               <p className='box-details best-season-info'>{foundPlaylist.name}</p>
-                              <p className='box-details best-season-info'><u>{foundGameMode.name}</u></p>
+                              <p className='box-details best-season-info'>{foundGameMode.name}</p>
                               <p className='smaller-season-info best-season-info'>({foundGameMode.description})</p>
                             </div>
                           </>)
