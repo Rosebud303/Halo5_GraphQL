@@ -276,7 +276,19 @@ class Arenapage extends Component {
                     </div>
                     <div className='arena-details-box box-h'>
                       <h4 className='box-title'>Highest Rank Attained</h4>
-                      
+                      <Query query={ARENA_CSR_QUERY} variables={{ player_name }}>
+                        {({ loading, error, data }) => {
+                          if (loading) return <p>Loading...</p>;
+                          if (error) console.log(error);
+                          const { HighestCsrAttained, HighestCsrPlaylistId, HighestCsrSeasonId, ArenaPlaylistStatsSeasonId } = data.arenaCsr
+                          const foundRank = parsedCsrMetadata.find(rank => rank.id == HighestCsrAttained.DesignationId)
+                          const foundTier = foundRank.tiers.find(tier => tier.id == HighestCsrAttained.Tier).iconImageUrl
+
+                          return (
+           
+                          )
+                        }}
+                      </Query>
                     </div>
                     <div className='arena-details-box box-i'>
                       <img className='arena-spartan' src={this.props.currentImgUrlSpartan} alt='Users spartan' />
