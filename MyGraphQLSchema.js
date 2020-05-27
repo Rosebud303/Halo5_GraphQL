@@ -48,14 +48,6 @@ const RootQuery = new GraphQLObjectType({
           .then((res) => res.data);
       },
     },
-    csrMetadata: {
-      type: new GraphQLList(CsrMetadataType),
-      resolve() {
-        return instance
-          .get(`metadata/h5/metadata/csr-designations`)
-          .then((res) => res.data.filter(item => item.name != 'Unranked'));
-      },
-    },
     seasonsMetadata: {
       type: new GraphQLList(SeasonsMetadataType),
       resolve() {

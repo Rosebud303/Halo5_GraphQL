@@ -19,26 +19,6 @@ const MapMetadataType = new GraphQLObjectType({
   }),
 });
 
-//**************************************************** CSR METADATA */
-
-const CsrMetadataType = new GraphQLObjectType({
-  name: "CsrMetadata",
-  fields: () => ({
-    name: { type: GraphQLString },
-    bannerImageUrl: { type: GraphQLString },
-    id: { type: GraphQLInt },
-    tiers: { type: new GraphQLList(TierListType) },
-  }),
-});
-
-const TierListType = new GraphQLObjectType({
-  name: "TierList",
-  fields: () => ({
-    id: { type: GraphQLInt },
-    iconImageUrl: { type: GraphQLString },
-  }),
-});
-
 //**************************************************** SEASONS METADATA */
 
 const SeasonsMetadataType = new GraphQLObjectType({
@@ -128,7 +108,6 @@ const SpriteLocationType = new GraphQLObjectType({
 module.exports = {
   WeaponType,
   MapMetadataType,
-  CsrMetadataType,
   SeasonsMetadataType,
   FlexibleStatsMetadataType,
   ImpulsesMetadataType,

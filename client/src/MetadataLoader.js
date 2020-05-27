@@ -17,7 +17,8 @@ export default function MetadataLoader() {
               {({ loading, error, data }) => {
                 if (loading) return <Spinner name={metadata.name} />;
                 if (error) console.log(error);
-                localStorage.setItem(`${metadata.name}`, JSON.stringify(data));
+                console.log(data)
+                localStorage.setItem(`${metadata.name}`, JSON.stringify(data[metadata.name]));
                 return "";
               }}
             </Query>
