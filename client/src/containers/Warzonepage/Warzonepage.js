@@ -93,47 +93,56 @@ class Warzonepage extends Component {
     const foundWeapon = parsedWeaponsMetadata.find((weapon) => weapon.id === findMostEffectiveWeapon(data).WeaponId.StockId);
     return (
       <div>
-        <p>Total Wins: {reduceTotals(data, "TotalGamesWon")}</p>
-        <p>Total Losses: {reduceTotals(data, "TotalGamesLost")}</p>
-        <p>Total Ties: {reduceTotals(data, "TotalGamesTied")}</p>
-        <p>Total Kills: {reduceTotals(data, "TotalKills")}</p>
-        <p>Total Headshots: {reduceTotals(data, "TotalHeadshots")}</p>
-        <p>Total Shots Fired: {reduceTotals(data, "TotalShotsFired")}</p>
-        <p>Total Shots Landed: {reduceTotals(data, "TotalShotsLanded")}</p>
-        <p>Total Damage Dealt: {reduceTotals(data, "TotalWeaponDamage").toFixed(2)}</p>
-        <p>Best Killing Tool: {foundWeapon.name}</p>
-        <p>
-          {foundWeapon.name} Total Kills: {findMostEffectiveWeapon(data).TotalKills}
-        </p>
-        <p>
-          {foundWeapon.name} Total Headshots: {findMostEffectiveWeapon(data).TotalHeadshots}
-        </p>
-        <p>
-          {foundWeapon.name} Total Shots Fired: {findMostEffectiveWeapon(data).TotalShotsFired}
-        </p>
-        <p>
-          {foundWeapon.name} Total Shots Landed: {findMostEffectiveWeapon(data).TotalShotsLanded}
-        </p>
-        <p>
-          {foundWeapon.name} Total Damage Dealt: {findMostEffectiveWeapon(data).TotalDamageDealt.toFixed(2)}
-        </p>
-        <img src={foundWeapon.largeIconImageUrl} alt='players best weapon' />
-        <p>{parsedGameBaseVariants.find((variant) => variant.id === this.state.gameVariantId).name}: Medals</p>
-        {findMostObtainedMedals(data, parsedMedalsMetadata).map((medal) => {
-          const medalStyles = {
-            backgroundImage: `url(${medal.SpriteLocation.spriteSheetUri})`,
-            backgroundPosition: `-${medal.SpriteLocation.left}px -${medal.SpriteLocation.top}px`,
-            backgroundSize: "auto",
-            width: "74px",
-            height: "74px",
-            margin: "2rem",
-          };
-          return (
-            <div>
-              <div style={medalStyles}></div>: {medal.Count}
+        <div className='wz-variant-medals'>
+          <h3>{parsedGameBaseVariants.find((variant) => variant.id === id).name} Medals:</h3>
+          <div className='wz-displayed-medals'>
+            {findMostObtainedMedals(data, parsedMedalsMetadata).map((medal) => {
+              const medalStyles = {
+                backgroundImage: `url(${medal.SpriteLocation.spriteSheetUri})`,
+                backgroundPosition: `-${medal.SpriteLocation.left}px -${medal.SpriteLocation.top}px`,
+                backgroundSize: "auto",
+                width: "74px",
+                height: "74px",
+                // margin: "2rem",
+              };
+              return (
+                <div>
+                  x{medal.Count}
+                  <div style={medalStyles}></div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+        <div className='wz-info-area'>
+          <div>
+            <div className='wz-box'>
+              <h2>Record</h2>
+              <p>Wins: {reduceTotals(data, "TotalGamesWon")}</p>
+              <p>Losses: {reduceTotals(data, "TotalGamesLost")}</p>
+              <p>Ties: {reduceTotals(data, "TotalGamesTied")}</p>
             </div>
-          );
-        })}
+            <div className='wz-box'>
+              <h2>Performance</h2>
+              <p>Kills: {reduceTotals(data, "TotalKills")}</p>
+              <p>Headshots: {reduceTotals(data, "TotalHeadshots")}</p>
+              <p>Shots Fired: {reduceTotals(data, "TotalShotsFired")}</p>
+              <p>Shots Landed: {reduceTotals(data, "TotalShotsLanded")}</p>
+              <p>Total Damage Dealt: {reduceTotals(data, "TotalWeaponDamage").toFixed(2)}</p>
+            </div>
+          </div>
+          <div className='wz-tool-detail'>
+            <h2>Top Weapon: {foundWeapon.name}</h2>
+            <div className='tool-info'>
+              <p>Kills: {findMostEffectiveWeapon(data).TotalKills}</p>
+              <p>Headshots: {findMostEffectiveWeapon(data).TotalHeadshots}</p>
+              <p>Shots Fired: {findMostEffectiveWeapon(data).TotalShotsFired}</p>
+              <p>Shots Landed: {findMostEffectiveWeapon(data).TotalShotsLanded}</p>
+              <p>Total Damage Dealt: {findMostEffectiveWeapon(data).TotalDamageDealt.toFixed(2)}</p>
+            </div>
+            <img src={foundWeapon.largeIconImageUrl} alt='players best weapon' />
+          </div>
+        </div>
       </div>
     );
   };
@@ -146,8 +155,8 @@ class Warzonepage extends Component {
     const regularVariantId = "f6de5351-3797-41e9-8053-7fb111a3a1a0";
 
     return (
-      <div>
-        <h1>Warzone Page Coming Soon...</h1>
+      <div className='warzone-page'>
+        <h1 className='warzone-title'>Warzone</h1>
         <Link to='/homepage'>
           <button>LINK BACK TO HOMEPAGE</button>
         </Link>
@@ -159,34 +168,37 @@ class Warzonepage extends Component {
             return (
               <div className='accordion-section'>
                 <figure>
+                  <label>Fire Fight</label>
                   <img className='game-variant-image' src='https://i.imgur.com/mZmEnAq.jpg' alt='Warzone Firefight Background' />
                   <input type='radio' name='radio-set' defaultChecked='checked' />
                   <figcaption>
                     <Link to='/warzone/variant'>
                       <span onClick={(e) => this.props.setWarzoneId(e.target.id)} id={firefightVariantId}>
-                        Warzone Firefight
+                        (Firefight Maps)
                       </span>
                     </Link>
                     {createContent(data, firefightVariantId)}
                   </figcaption>
                   <figure>
+                    <label>Assault</label>
                     <img className='game-variant-image' src='https://i.imgur.com/h37QJVi.jpg' alt='Warzone Assault Background' />
-                    <input type='radio' name='radio-set' defaultChecked='checked' />
+                    <input type='radio' name='radio-set' defaultChecked='checked' placeholder='Warzone Assault' />
                     <figcaption>
                       <Link to='/warzone/variant'>
                         <span onClick={(e) => this.props.setWarzoneId(e.target.id)} id={assaultVariantId}>
-                          Warzone Assault
+                          (Assault Maps)
                         </span>
                       </Link>
                       {createContent(data, assaultVariantId)}
                     </figcaption>
                     <figure>
+                      <label>Regular</label>
                       <img className='game-variant-image' src='https://i.imgur.com/7F4dFgn.jpg' alt='Warzone Regular Background' />
                       <input type='radio' name='radio-set' id='accordion-selector-last' defaultChecked='checked' />
                       <figcaption>
                         <Link to='/warzone/variant'>
                           <span onClick={(e) => this.props.setWarzoneId(e.target.id)} id={regularVariantId}>
-                            Warzone Regular
+                            (Regular Maps)
                           </span>
                         </Link>
                         {createContent(data, regularVariantId)}
