@@ -93,13 +93,9 @@ class Detailspage extends Component {
     return (
       <main className='details-page-body'>
         <section className='details-page-row'>
-          {/* <h1 className='details-page-heading'>Details Page Coming Soon...</h1> */}
           <Link className='homepage-links' to='/homepage'>
             <p className='detail-link'>BACK TO HOMEPAGE</p>
           </Link>
-          {/* <div className='details-page-section'> */}
-          {/* <header></header> */}
-          {/* </div> */}
         </section>
         <section className='details-page-row arena-section'>
           <Query query={ACCUMULATTIVE_ARENA_QUERY} variables={{ player_name }}>
