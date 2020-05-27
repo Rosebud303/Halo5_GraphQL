@@ -83,39 +83,25 @@ let ACCUMULATIVE_WARZONE_QUERY = gql`
 `;
 
 class Detailspage extends Component {
-  constructor() {
-    super();
-    this.state = {
-      csrData: []
-    }
-  }
-
-  componentDidMount() {
-    axios
-      .create({
-        headers: { "Ocp-Apim-Subscription-Key": api_key },
-      })
-      .get(`https://www.haloapi.com/metadata/h5/metadata/csr-designations`)
-      .then(data => this.setState({ csrData: data.data }))
-  }
 
   render() {
     const player_name = this.props.currentPlayer
-    const parsedGameVariantsMetadata = JSON.parse(localStorage.getItem("gameBaseVariantsMetadata")).gameBaseVariantsMetadata;
-    const parsedMedalsMetadata = JSON.parse(localStorage.getItem("medalsMetadata")).medalsMetadata;
-    const parsedSeasonsMetadata = JSON.parse(localStorage.getItem("seasonsMetadata")).seasonsMetadata;
-    const parsedWeaponsMetadata = JSON.parse(localStorage.getItem("weaponsMetadata")).weaponsMetadata;
+    const parsedCsrMetadata = JSON.parse(localStorage.getItem("csrMetadata"));
+    const parsedGameVariantsMetadata = JSON.parse(localStorage.getItem("gameBaseVariantsMetadata"));
+    const parsedMedalsMetadata = JSON.parse(localStorage.getItem("medalsMetadata"));
+    const parsedSeasonsMetadata = JSON.parse(localStorage.getItem("seasonsMetadata"));
+    const parsedWeaponsMetadata = JSON.parse(localStorage.getItem("weaponsMetadata"));
 
     return (
       <main className='details-page-body'>
         <section className='details-page-row'>
-          {/* <h1 className='details-page-heading'>Details Page Coming Soon...</h1>
-          <Link to='/homepage'>
-            <button>LINK BACK TO HOMEPAGE</button>
+          {/* <h1 className='details-page-heading'>Details Page Coming Soon...</h1> */}
+          <Link className='homepage-links' to='/homepage'>
+            <p className='detail-link'>BACK TO HOMEPAGE</p>
           </Link>
-          <div className='details-page-section'>
-            <header></header>
-          </div> */}
+          {/* <div className='details-page-section'> */}
+          {/* <header></header> */}
+          {/* </div> */}
         </section>
         <section className='details-page-row arena-section'>
           <Query query={ACCUMULATTIVE_ARENA_QUERY} variables={{ player_name }}>
@@ -124,7 +110,7 @@ class Detailspage extends Component {
               if (error) console.log(error);
               const { HighestCsrAttained, HighestCsrPlaylistId, HighestCsrSeasonId, ArenaPlaylistStatsSeasonId, TotalGamesWon, TotalGamesLost, TotalGamesTied, TotalGamesCompleted, TotalKills, TotalDeaths, TotalAssists, TopGameBaseVariants, WeaponWithMostKills, TotalShotsFired, TotalShotsLanded, TotalAssassinations, TotalMeleeKills, TotalGroundPoundKills, TotalShoulderBashKills, MedalAwards } = data.accumulativeArenaStats
               const foundWeapon = parsedWeaponsMetadata.find(weapon => weapon.id === WeaponWithMostKills.WeaponId.StockId)
-              const foundRank = this.state.csrData.find(rank => rank.id == HighestCsrAttained.DesignationId)
+              const foundRank = parsedCsrMetadata.find(rank => rank.id == HighestCsrAttained.DesignationId)
               const foundTier = foundRank.tiers.find(tier => tier.id == HighestCsrAttained.Tier).iconImageUrl
               return (<>
                 <h1 className='details-page-heading'>ARENA STATS SECTION</h1>
