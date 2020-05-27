@@ -137,10 +137,19 @@ class Arenapage extends Component {
               }}
             </Query>
           </div>
-          <h1 className='arena-title'>{this.state.currentGameVariantName || 'Arena Playlist'}</h1>
+          <div>
+            <h1 className='arena-title'>{this.state.currentGameVariantName || 'Arena Playlist'}</h1>
+            {!this.state.currentGameVariantName && <p className='start-instructions'>(select playlist on the left to get started)</p>}
+          </div>
           <div className='buttons-container'>
             <Link to='/homepage' className='homepage-links'>
-              <p className='detail-link arena-button'>BACK TO HOMEPAGE</p>
+              <p className='detail-link arena-button'>HOMEPAGE</p>
+            </Link>
+            <Link to='/details' className='homepage-links'>
+              <p className='detail-link arena-button'>DETAILS PAGE</p>
+            </Link>
+            <Link to='/warzone' className='homepage-links'>
+              <p className='detail-link arena-button'>WARZONE PAGE</p>
             </Link>
           </div>
         </header>
@@ -201,10 +210,10 @@ class Arenapage extends Component {
                     </div>
                     <div className='arena-details-box box-d'>
                       <h4 className='box-title'>Shooting Stats</h4>
-                      <p className='box-details'>Headshots: {TotalHeadshots.toLocaleString()}</p>
                       <p className='box-details'>Total Damage Done: {parseInt(TotalWeaponDamage).toLocaleString()}</p>
                       <p className='box-details'>Shots Fired: {TotalShotsFired.toLocaleString()}</p>
                       <p className='box-details'>Shots Landed: {TotalShotsLanded.toLocaleString()}</p>
+                      <p className='box-details'>Headshots: {TotalHeadshots.toLocaleString()}</p>
                     </div>
                     <div className='arena-details-box box-e'>
                       <h4 className='box-title'>Impulse Stats</h4>
