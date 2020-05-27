@@ -21,6 +21,7 @@ const {
   ArenaGameBasesType,
   ArenaStatsType,
   AccumulativeArenaStatsType,
+  CsrDataType,
 } = require("./ArenaTypes");
 
 //**************************************************** RE-USED INSTANCE VARIABLES */
@@ -108,6 +109,17 @@ const RootQuery = new GraphQLObjectType({
             (res) =>
               res.data.Results[0].Result.ArenaStats.ArenaGameBaseVariantStats
           );
+      },
+    },
+    arenaCsr: {
+      type: CsrDataType,
+      args: {
+        player_name: { type: GraphQLString },
+      },
+      resolve(parent, args) {
+        return instance
+          .get(`stats/h5/servicerecords/arena?players=${args.player_name}`)
+          .then((res) => res.data.Results[0].Result.ArenaStats);
       },
     },
     arenaStats: {
