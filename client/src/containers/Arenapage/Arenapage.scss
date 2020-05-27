@@ -4,7 +4,6 @@
   flex-direction: column;
   height: 100vh;
   width: 100vw;
-  // background-image: url(https://i.imgur.com/YQqsVai.png);
 }
 
 .arena-dropbox-container {
@@ -75,8 +74,8 @@ label {
   grid-template-areas:
     "f i c"
     "a i h"
-    "b i e"
-    "d i g";
+    "b i h"
+    "d i h";
   grid-template-rows: repeat(4);
   grid-template-columns: repeat(3, 33.3% 33.3% 33.3%);
 }
@@ -94,10 +93,17 @@ label {
   }
 }
 
+.kills-details-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 100%;
+}
+
 .arena-spartan {
   width: 100%;
   opacity: 0.9;
-  filter: drop-shadow(1px 1px 20px black);
+  filter: drop-shadow(1px 1px 10px black);
 }
 
 .arena-details-box {
@@ -117,9 +123,22 @@ label {
   padding-top: 40px;
 }
 
+.shared-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
 .box-a {
   grid-area: a;
   animation-delay: calc(3 * 70ms);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+
+  .box-title {
+    font-size: 1.1em;
+  }
 }
 
 .box-b {
@@ -140,22 +159,12 @@ label {
   animation-delay: calc(5 * 70ms);
 }
 
-.box-e {
-  grid-area: e;
-  animation-delay: calc(7 * 70ms);
-}
-
 .box-f {
   grid-area: f;
   animation-delay: calc(1 * 70ms);
   flex-wrap: wrap;
   flex-direction: row;
   flex-shrink: 0.5;
-}
-
-.box-g {
-  grid-area: g;
-  animation-delay: calc(8 * 70ms);
 }
 
 .box-h {
@@ -233,6 +242,19 @@ label {
       transition: opacity 500ms ease-in;
       z-index: 1;
     }
+
+    .best-wep-title {
+      color: #f4f900;
+      font-family: 'Black Ops One', cursive;
+      margin-bottom: 10px;
+      font-size: 2rem;
+      text-align: center;
+      text-transform: uppercase;
+    }
+
+    .box-details {
+      font-size: 2rem;
+    }
   }
 }
 
@@ -259,4 +281,18 @@ label {
       padding: 5px;
     }
   }
+}
+.csr-image-container {
+  display: flex;
+  justify-content: center;
+}
+
+.tier-image {
+  z-index: 1;
+  position: absolute;
+  width: 50%;
+}
+
+.banner-image {
+  width: 60%;
 }
