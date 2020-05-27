@@ -60,6 +60,16 @@ const AccumulativeArenaStatsType = new GraphQLObjectType({
   }),
 });
 
+const CsrDataType = new GraphQLObjectType({
+  name: "CsrData",
+  fields: () => ({
+    HighestCsrAttained: { type: HighestCsrType },
+    HighestCsrPlaylistId: { type: GraphQLString },
+    HighestCsrSeasonId: { type: GraphQLString },
+    ArenaPlaylistStatsSeasonId: { type: GraphQLString },
+  })
+})
+
 const HighestCsrType = new GraphQLObjectType({
   name: "HighestCsr",
   fields: () => ({
@@ -131,4 +141,5 @@ module.exports = {
   ArenaGameBasesType,
   ArenaStatsType,
   AccumulativeArenaStatsType,
+  CsrDataType,
 };
