@@ -1,9 +1,15 @@
+.warzone-page {
+  background: #000;
+  height: 105vh;
+  background-attachment: fixed;
+}
+
 .accordion-section {
   width: 1650px;
-  margin: 20px auto;
+  margin: 70px auto;
   overflow: hidden;
   box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.08);
-  border: 7px solid rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.6);
 }
 
 .accordion-section figure {
@@ -27,6 +33,16 @@
   height: 100%;
 }
 
+.accordion-section label {
+  font-size: 30px;
+  padding: 10px;
+  width: 175px;
+  text-align: center;
+  background: #4c54509e;
+  position: absolute;
+  font-weight: bolder;
+}
+
 .accordion-section input {
   position: absolute;
   top: 0;
@@ -38,7 +54,6 @@
   padding: 0;
   opacity: 0;
   z-index: 100;
-
   appearance: none;
 }
 
@@ -59,9 +74,8 @@
   position: absolute;
   top: 0px;
   transition: all 0.2s linear;
-  overflow: scroll;
-  font-family: 'Orbitron', sans-serif;
-
+  // overflow: scroll;
+  font-family: "Orbitron", sans-serif;
 }
 
 .accordion-section figcaption span {
@@ -72,7 +86,7 @@
   left: 20px;
   overflow: hidden;
   text-align: center;
-  background: rgba(87, 73, 81, 0.3);
+  background: rgba(96, 125, 139, 0.81);
   line-height: 20px;
   font-size: 18px;
   opacity: 0;
@@ -82,6 +96,10 @@
   padding: 20px;
   color: #fff;
   text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
+  &:hover {
+    transition: 0.1s;
+    background: rgba(41, 171, 233, 0.81);
+  }
 }
 
 .accordion-section input:checked + figcaption,
@@ -90,9 +108,9 @@
 }
 
 .accordion-section input:checked + figcaption span {
-  transition: all 0.4s ease-in-out 0.5s;
+  transition: all 0.4s ease-in-out 0.2s;
   opacity: 1;
-  top: 50%;
+  top: 93%;
 }
 
 .accordion-section #accordion-selector-last:checked + figcaption span {
@@ -111,15 +129,109 @@ figure {
   margin: 0px;
 }
 
-.accordion-section input:checked + figcaption p {
+.accordion-section input:checked + figcaption div {
   transition: all 0.4s ease-in-out 0.5s;
   opacity: 1;
-  top: 50%;
+  top: 40%;
 }
 
-.accordion-section p {
+.accordion-section div {
   opacity: 0;
   color: white;
-  font-family: 'Gruppo', cursive;
+  font-family: "Gruppo", cursive;
   font-weight: 900;
+}
+
+.wz-variant-medals {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 40%;
+  margin: auto;
+  background: #00000082;
+  margin-top: 30px;
+}
+
+.wz-variant-medals h3 {
+  font-size: 40px;
+  margin: auto;
+  color: #b5b5b5;
+  background: #0000009e;
+  width: 100%;
+  text-align: center;
+}
+
+.wz-displayed-medals {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+}
+
+.wz-tool-detail {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  background: #000000b5;
+  padding: 20px;
+  // box-shadow: 0px 0px 9px #ffffff6e;
+}
+
+.tool-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  background: #d3cfcf6b;
+  z-index: 1;
+}
+
+.tool-info p {
+  margin-right: 20px;
+  position: sticky;
+  top: 400px;
+}
+
+.tool-info img {
+  margin: auto;
+}
+
+.wz-info-area {
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 30px;
+  // background: #000000a3;
+  padding: 20px;
+}
+
+.wz-info-area > div {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.wz-info-area h2 {
+  margin: auto;
+  text-decoration: underline;
+}
+
+.wz-box {
+  background: #000000b5;
+  padding: 20px;
+}
+
+.wz-tool-detail h2 {
+  // background: #0000006b;
+  margin: auto;
+  width: 26%;
+  text-align: center;
+  padding: 5px;
+}
+
+.wz-tool-detail img {
+  filter: drop-shadow(1px 1px 40px rgba(203, 167, 76, 0.653));
+}
+
+.warzone-title {
+  text-align: center;
+  margin: auto;
 }
