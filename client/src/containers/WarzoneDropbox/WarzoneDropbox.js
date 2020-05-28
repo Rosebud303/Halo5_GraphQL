@@ -3,6 +3,7 @@ import "./WarzoneDropbox.scss";
 import { connect } from "react-redux";
 import { Query } from "react-apollo";
 import gql from "graphql-tag";
+import Header from "../../components/Header/Header";
 
 const WARZONE_DROPDOWN_QUERY = gql`
   query WarzoneQuery($player_name: String!, $GameBaseVariantId: String!) {
@@ -72,34 +73,36 @@ class WarzoneDropbox extends Component {
     const player_name = this.props.currentPlayer;
     const GameBaseVariantId = this.props.warzoneGameVariantId;
     const MapId = this.state.currentMapVariantId;
-
     return (
       <div className='whole-page'>
-        <Query query={WARZONE_DROPDOWN_QUERY} variables={{ player_name, GameBaseVariantId }}>
-          {({ loading, error, data }) => {
-            if (loading) return <option>Loading...</option>;
-            if (error) console.log(error);
-            const parsedMapsMetadata = JSON.parse(localStorage.getItem("mapsMetadata"));
+        <div>
+          <Header title={this.state.currentMapVariantName} header={"Warzone Variant"} button1={"warzone"} button2={"arena"} />
+          <Query query={WARZONE_DROPDOWN_QUERY} variables={{ player_name, GameBaseVariantId }}>
+            {({ loading, error, data }) => {
+              if (loading) return <option>Loading...</option>;
+              if (error) console.log(error);
+              const parsedMapsMetadata = JSON.parse(localStorage.getItem("mapsMetadata"));
 
-            return (
-              <div className='wz-drop-down'>
-                <label htmlFor='filter'> Personal Warzone Playlist:</label>
-                <select onChange={(event) => this.selectMapVariant(event)} name='filter' className='warzone-dropdown'>
-                  <option>No Selection</option>
-                  {data.wzVariantStats
-                    .filter((gameVariant) => gameVariant.GameBaseVariantId === this.props.warzoneGameVariantId)
-                    .map((id) => {
-                      return (
-                        <option id={id.MapId} key={id.MapId}>
-                          {parsedMapsMetadata.find((item) => item.id === id.MapId).name}
-                        </option>
-                      );
-                    })}
-                </select>
-              </div>
-            );
-          }}
-        </Query>
+              return (
+                <div className='wz-drop-down'>
+                  <label htmlFor='filter'> Personal Warzone Playlist:</label>
+                  <select onChange={(event) => this.selectMapVariant(event)} name='filter' className='warzone-dropdown'>
+                    <option>No Selection</option>
+                    {data.wzVariantStats
+                      .filter((gameVariant) => gameVariant.GameBaseVariantId === this.props.warzoneGameVariantId)
+                      .map((id) => {
+                        return (
+                          <option id={id.MapId} key={id.MapId}>
+                            {parsedMapsMetadata.find((item) => item.id === id.MapId).name}
+                          </option>
+                        );
+                      })}
+                  </select>
+                </div>
+              );
+            }}
+          </Query>
+        </div>
         <Query query={MAP_QUERY} variables={{ player_name, GameBaseVariantId, MapId }}>
           {({ loading, error, data }) => {
             if (loading) return <p>Loading...</p>;
@@ -121,8 +124,8 @@ class WarzoneDropbox extends Component {
                     <h3>{this.state.currentMapVariantName}</h3>
                     {MapId && <img src={foundMap.imageUrl} className='images' alt='selected halo 5 map' />}
                   </div>
-                  <p className='heading-details'>Record/Stats</p>
                   <div className='dropbox-data-content'>
+                    <p className='heading-details'>Record/Stats</p>
                     <p>Total Games Won: {data.mapStats.TotalGamesWon}</p>
                     <p>Total Games Lost: {data.mapStats.TotalGamesLost}</p>
                     <p>Total Games Tied: {data.mapStats.TotalGamesTied}</p>
@@ -134,8 +137,8 @@ class WarzoneDropbox extends Component {
                   </div>
                 </div>
                 <div className='second-row'>
-                  <p className='heading-details'>Most Used Tool</p>
                   <div className='weapon-info'>
+                    <p className='heading-details'>Most Used Tool</p>
                     <p>
                       {foundWeapon.name} Kills: {data.mapStats.WeaponWithMostKills.TotalKills}
                     </p>

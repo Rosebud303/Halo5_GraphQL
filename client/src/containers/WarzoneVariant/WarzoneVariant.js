@@ -11,7 +11,6 @@ class WarzoneFireFight extends Component {
     
     return (
       <>
-        <h1>{foundGameVariantName}</h1>
         <WarzoneDropbox warzoneGameVariantId={warzoneGameVariantId} />
       </>
     );
