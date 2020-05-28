@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import gql from "graphql-tag";
 import { Query } from "react-apollo";
 import { connect } from "react-redux";
+import Header from "../../components/Header/Header";
 
 let ACCUMULATTIVE_ARENA_QUERY = gql`
   query ArenaQuery($player_name: String!) {
@@ -140,13 +141,9 @@ class Detailspage extends Component {
     const parsedWeaponsMetadata = JSON.parse(localStorage.getItem("weaponsMetadata"));
 
 
-    return (
+    return (<>
+      <Header header={'Details Page'} button1={'warzone'} button2={'arena'} />
       <main className='details-page-body'>
-        {/* <section className='details-page-row'>
-          <Link className='homepage-links' to='/homepage'>
-            <p className='detail-link'>BACK TO HOMEPAGE</p>
-          </Link>
-        </section> */}
         <Query query={ACCUMULATTIVE_ARENA_QUERY} variables={{ player_name }}>
           {({ loading, error, data }) => {
             if (loading) return <p>Loading...</p>;
@@ -274,6 +271,7 @@ class Detailspage extends Component {
           }}
         </Query>
       </main>
+      </>
     );
   }
 }

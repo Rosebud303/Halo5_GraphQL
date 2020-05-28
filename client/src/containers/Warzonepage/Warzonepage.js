@@ -5,6 +5,8 @@ import { connect } from "react-redux";
 import gql from "graphql-tag";
 import { Query } from "react-apollo";
 import { setWarzoneId } from "../../actions";
+import Header from "../../components/Header/Header";
+
 
 let GAME_VARIANT_WARZONE_QUERY = gql`
   query GameVariantWzQuery($player_name: String!) {
@@ -156,10 +158,7 @@ class Warzonepage extends Component {
 
     return (
       <div className='warzone-page'>
-        <h1 className='warzone-title'>Warzone</h1>
-        <Link to='/homepage'>
-          <button>LINK BACK TO HOMEPAGE</button>
-        </Link>
+        <Header header={'Warzone Page'} button1={'details'} button2={'arena'}/>
         <Query query={GAME_VARIANT_WARZONE_QUERY} variables={{ player_name }}>
           {({ loading, error, data }) => {
             if (loading) return "";
