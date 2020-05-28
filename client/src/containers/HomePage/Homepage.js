@@ -83,14 +83,14 @@ class Homepage extends Component {
             </button>
           </form>
           {/* *********************************DELETE LATER *******************************/}
-          <div className='test-sprites-container'>
+          {/* <div className='test-sprites-container'>
             <div className='test-sprites1'></div>
             <div className='test-sprites2'></div>
             <div className='test-sprites3'></div>
             <div className='test-sprites4'></div>
             <div className='test-sprites5'></div>
             <div className='test-sprites6'></div>
-          </div>
+          </div> */}
           {/* *********************************DELETE LATER *******************************/}
         </div>
         <div className='lesser-spartan-details'>
