@@ -1,6 +1,41 @@
+.whole-page {
+  // background: aliceblue;
+  height: 91vh;
+  background-image: url(https://wallpaperplay.com/walls/full/0/a/1/111571.jpg);
+  background-attachment: fixed;
+}
+
+.whole-page p {
+  font-size: 20px;
+}
+
 .imageHolder {
   height: 305px;
   width: 542px;
+}
+
+.imageHolder h3, .weapon-container h3 {
+  position: absolute;
+  color: white;
+  font-size: 30px;
+  padding: 10px;
+}
+
+// .weapon-container h3 {
+//   color: black;
+//   text-align: right;
+//   font-size: 30px;
+// }
+
+.wz-drop-down {
+  text-align: center;
+}
+
+.weapon-info {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  text-align: right;
 }
 
 .imageHolder img {
@@ -11,12 +46,34 @@
 .dropbox-container,
 .second-row {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
-.main-container,
-.dropbox-data-content,
-.weapon-info {
+.second-row img {
+  background: #404040d1;
+}
+
+.main-container {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 60%;
+  margin: auto;
+  top: 50%;
+  margin-top: 100px;
+  background: #c9c9c9b3;
+  padding: 20px;
+  font-weight: bolder;
+}
+
+.main-container h3 {
+  margin: inherit;
+}
+
+.heading-details {
+  font-weight: bolder;
+  font-size: 50px;
+  text-align: center;
+  text-decoration: underline;
 }
