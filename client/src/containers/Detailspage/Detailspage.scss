@@ -46,13 +46,27 @@
     font-size: 2rem;
     color:  white;
     margin: 0px;
-  };
+  }
 
   .details-page-csr {
     width: 40%;
     margin: 0;
     height: 200px;
+  }
 }
+
+#top-seperator:before {
+  content: '';
+  display: block;
+  margin: 0 auto;
+  width: 80%;
+  border-bottom: 4px solid #ffffff;
+  margin-bottom: 20px;
+  opacity: 0.3;
+}
+
+.details-best-wep-img {
+padding-top: 20px;
 }
 
 .medals-details {
