@@ -1,9 +1,13 @@
+.details-page-container {
+  display: flex;
+  justify-content: center;
+}
+
 .details-page-body {
   display: flex;
   flex-direction: row;
   background: #1F1F1F;
-  width: 99%;
-  margin: 5px;
+  margin-top: 40px;
   border-radius: 10px;
   transition: background 0.3s;
 }
@@ -13,15 +17,15 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  width: 100%;
-  border: solid 2px greenyellow;
+  border: solid 2px #ffffff;
   border-collapse: collapse;
-  opacity: 0.3;
+  opacity: 0.6;
+  background: linear-gradient(399deg, #def2fd75, #8a9db9);
 
   &:hover {
     transition: opacity 400ms;
-    background-color: #141315;
-    border: solid 8px green;
+    background: linear-gradient(329deg, #def2fd75, #21314a); 
+    border: solid 4px #f7f9c6;
     opacity: 1;
   }
 }
@@ -31,9 +35,24 @@
   border-right: 0;
 }
 
-// .csr-container {
-// display: flex;
-// }
+.details-medals-section {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.csr-container {
+  h4 {
+    font-size: 2rem;
+    color:  white;
+    margin: 0px;
+  };
+
+  .details-page-csr {
+    width: 40%;
+    margin: 0;
+    height: 200px;
+}
+}
 
 .medals-details {
   display: flex;
@@ -53,30 +72,30 @@
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  padding: 40px;
+  padding: 10px;
+  width: 100%;
+
+  h2 {
+    color: wheat;
+  }
+}
+
+.details-medals-column {
+  margin: 0px 50px;
 }
 
 .single-medal-container {
   display: flex;
   justify-content: center;
   padding: 0px;
-  // position: relative;
 }
 
 .div-medal {
   position: relative;
 }
 
-.medals-detail-section h2 {
-  text-align: center;
-}
-
-
 .grouped-details-info {
   width: 90%;
-  padding: 10px;
-  margin: 10px;
-  // border: dotted 2px green;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -86,12 +105,6 @@
 .grouped-details-info p{
   margin: 3px;
   color: white;
-}
-
-.medals-section {
-  display: flex;
-  flex-direction: row;
-  align-content: center;
 }
 
 .details-page-heading {
