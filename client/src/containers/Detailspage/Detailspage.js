@@ -179,7 +179,7 @@ class Detailspage extends Component {
                       <h4>{`${foundRank.name} ${HighestCsrAttained.Tier}`}</h4>
                       <img className='details-page-csr' src={foundTier} alt='Players rank tier' />
                     </div>
-                    <div className='grouped-details-info'>
+                    <div id='top-seperator' className='grouped-details-info'>
                       <p>Total Wins: {TotalGamesWon.toLocaleString()}</p>
                       <p>Total Losses: {TotalGamesLost.toLocaleString()}</p>
                       <p>Total Games Tied: {TotalGamesTied}</p>
@@ -190,14 +190,14 @@ class Detailspage extends Component {
                       <p>Total Assists: {Number(TotalAssists).toLocaleString()}</p>
                     </div>
                     <div className='grouped-details-info'>
-                      <p>Accuracy Percentage: {(TotalShotsLanded / TotalShotsFired).toFixed(4) * 100}%</p>
+                      <p>Shooting Accuracy: {(TotalShotsLanded / TotalShotsFired).toFixed(4) * 100}%</p>
                       <p>Assassinations: {TotalAssassinations.toLocaleString()}</p>
                       <p>Melee Kills: {TotalMeleeKills.toLocaleString()}</p>
                       <p>Ground Pound Kills: {TotalGroundPoundKills.toLocaleString()}</p>
                       <p>Shoulder Bash Kills: {TotalShoulderBashKills.toLocaleString()}</p>
                     </div>
-                    <div className='grouped-details-info'>
-                      <img className='warzone-weapon-image' src={foundWeapon.largeIconImageUrl} alt='Weapon' />
+                    <div id='top-seperator' className='grouped-details-info'>
+                      <img className='warzone-weapon-image details-best-wep-img' src={foundWeapon.largeIconImageUrl} alt='Weapon' />
                       <div className='best-wep-info'>
                         <p>{foundWeapon.name}</p>
                         <p className='warzone-box-details'>Kills: {WeaponWithMostKills.TotalKills.toLocaleString()}</p>
@@ -233,15 +233,15 @@ class Detailspage extends Component {
                               <p>Total Games Tied: {TotalGamesTied}</p>
                               <p>Total Games Completed: {(TotalGamesWon + TotalGamesLost + TotalGamesTied).toLocaleString()}</p>
                             </div>
-                            <div className='grouped-details-info'>
+                            <div id='top-seperator' className='grouped-details-info'>
                               <p>Total Kills: {TotalKills.toLocaleString()}</p>
-                              <p>Accuracy Percentage: {((TotalShotsLanded / TotalShotsFired) * 100).toFixed(2)}%</p>
+                              <p>Shooting Accuracy: {((TotalShotsLanded / TotalShotsFired) * 100).toFixed(2)}%</p>
                             </div>
                             <div>
                               <p>temp filler</p>
                             </div>
-                            <div className='grouped-details-info'>
-                              <img className='warzone-weapon-image' src={foundWeapon.largeIconImageUrl} alt='Weapon' />
+                            <div id='top-seperator' className='grouped-details-info'>
+                              <img className='warzone-weapon-image details-best-wep-img' src={foundWeapon.largeIconImageUrl} alt='Weapon' />
                               <div className='best-wep-info'>
                                 <p>{foundWeapon.name}</p>
                                 <p className='warzone-box-details'>Kills: {WeaponWithMostKills.TotalKills.toLocaleString()}</p>
