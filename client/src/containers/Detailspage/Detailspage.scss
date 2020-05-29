@@ -5,22 +5,17 @@
   width: 99%;
   margin: 5px;
   border-radius: 10px;
-  // border: 4px solid #000;
   transition: background 0.3s;
-  // background-image: url(https://slack-imgs.com/?c=1&o1=ro&url=https%3A%2F%2Fwallpaperplay.com%2Fwalls%2Ffull%2F1%2F2%2F6%2F111540.jpg);
-  // background-repeat: no-repeat;
-  // background-size: cover;
-  // background-attachment: fixed;
-  // background-position: center;
 }
 
 .details-page-section {
   display: flex;
   flex-direction: column;
-  // justify-content: space-around;
-  // margin: 10px;
+  justify-content: space-between;
+  align-items: center;
   width: 100%;
   border: solid 2px greenyellow;
+  border-collapse: collapse;
   opacity: 0.3;
 
   &:hover {
@@ -29,6 +24,11 @@
     border: solid 8px green;
     opacity: 1;
   }
+}
+
+.warzone-section {
+  border-left: 0;
+  border-right: 0;
 }
 
 // .csr-container {

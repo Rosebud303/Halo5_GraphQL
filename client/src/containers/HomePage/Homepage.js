@@ -70,7 +70,7 @@ class Homepage extends Component {
               className='welcome-search welcome-search-input'
               name='search'
               onChange={this.handleChange}
-              placeholder='Search Your Spartan...'
+              placeholder='Find New Spartan...'
               required
               type='text'
               value={this.state.searchedPlayer}
@@ -82,16 +82,6 @@ class Homepage extends Component {
               Submit
             </button>
           </form>
-          {/* *********************************DELETE LATER *******************************/}
-          {/* <div className='test-sprites-container'>
-            <div className='test-sprites1'></div>
-            <div className='test-sprites2'></div>
-            <div className='test-sprites3'></div>
-            <div className='test-sprites4'></div>
-            <div className='test-sprites5'></div>
-            <div className='test-sprites6'></div>
-          </div> */}
-          {/* *********************************DELETE LATER *******************************/}
         </div>
         <div className='lesser-spartan-details'>
           <section className='spartan-gfx'>

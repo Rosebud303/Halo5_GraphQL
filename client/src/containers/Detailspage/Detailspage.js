@@ -132,14 +132,12 @@ class Detailspage extends Component {
     })
   }
 
-
   render() {
     const player_name = this.props.currentPlayer;
     const parsedCsrMetadata = JSON.parse(localStorage.getItem("csrMetadata"));
     const parsedGameVariantsMetadata = JSON.parse(localStorage.getItem("gameBaseVariantsMetadata"));
     const parsedSeasonsMetadata = JSON.parse(localStorage.getItem("seasonsMetadata"));
     const parsedWeaponsMetadata = JSON.parse(localStorage.getItem("weaponsMetadata"));
-
 
     return (<>
       <Header header={'Details Page'} button1={'warzone'} button2={'arena'} />
@@ -238,6 +236,9 @@ class Detailspage extends Component {
                             <p>Total Kills: {TotalKills.toLocaleString()}</p>
                             <p>Accuracy Percentage: {((TotalShotsLanded / TotalShotsFired) * 100).toFixed(2)}%</p>
                           </div>
+                          <div>
+                            <p>temp filler</p>
+                          </div>
                           <div className='grouped-details-info'>
                             <img className='warzone-weapon-image' src={foundWeapon.largeIconImageUrl} alt='Weapon' />
                             <div className='best-wep-info'>
@@ -271,7 +272,7 @@ class Detailspage extends Component {
           }}
         </Query>
       </main>
-      </>
+    </>
     );
   }
 }

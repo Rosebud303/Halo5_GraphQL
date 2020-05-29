@@ -285,8 +285,6 @@ class Arenapage extends Component {
                           const foundTier = foundRank.tiers.find(tier => tier.id == HighestCsrAttained.Tier).iconImageUrl
                           const foundPlaylist = parsedSeasonsMetadata.find(playlist => playlist.id === HighestCsrSeasonId)
                           const foundGameMode = foundPlaylist.playlists.find(playlist => playlist.id === HighestCsrPlaylistId)
-                          console.log(foundPlaylist)
-                          console.log(foundGameMode)
 
                           return (<>
                             <div className='csr-image-container'>
