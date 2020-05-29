@@ -55,7 +55,7 @@ class Homepage extends Component {
       })
       .get(
         proxyurl +
-        `https://www.haloapi.com/profile/h5/profiles/${this.props.currentPlayer}/emblem`
+        `https://www.haloapi.com/profile/h5/profiles/${this.props.currentPlayer}/emblem?size=512`
       )
       .then((data) => this.props.setImgUrlEmblem(data.headers["x-final-url"]));
   };
