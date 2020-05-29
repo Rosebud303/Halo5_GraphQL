@@ -135,8 +135,8 @@ class Detailspage extends Component {
   render() {
     const player_name = this.props.currentPlayer;
     const parsedCsrMetadata = JSON.parse(localStorage.getItem("csrMetadata"));
-    const parsedGameVariantsMetadata = JSON.parse(localStorage.getItem("gameBaseVariantsMetadata"));
-    const parsedSeasonsMetadata = JSON.parse(localStorage.getItem("seasonsMetadata"));
+    // const parsedGameVariantsMetadata = JSON.parse(localStorage.getItem("gameBaseVariantsMetadata"));
+    // const parsedSeasonsMetadata = JSON.parse(localStorage.getItem("seasonsMetadata"));
     const parsedWeaponsMetadata = JSON.parse(localStorage.getItem("weaponsMetadata"));
 
     return (<>
@@ -179,7 +179,7 @@ class Detailspage extends Component {
                       <h4>{`${foundRank.name} ${HighestCsrAttained.Tier}`}</h4>
                       <img className='details-page-csr' src={foundTier} alt='Players rank tier' />
                     </div>
-                    <div id='top-seperator' className='grouped-details-info'>
+                    <div id='top-separator' className='grouped-details-info'>
                       <p>Total Wins: {TotalGamesWon.toLocaleString()}</p>
                       <p>Total Losses: {TotalGamesLost.toLocaleString()}</p>
                       <p>Total Games Tied: {TotalGamesTied}</p>
@@ -196,7 +196,7 @@ class Detailspage extends Component {
                       <p>Ground Pound Kills: {TotalGroundPoundKills.toLocaleString()}</p>
                       <p>Shoulder Bash Kills: {TotalShoulderBashKills.toLocaleString()}</p>
                     </div>
-                    <div id='top-seperator' className='grouped-details-info'>
+                    <div id='top-separator' className='grouped-details-info'>
                       <img className='warzone-weapon-image details-best-wep-img' src={foundWeapon.largeIconImageUrl} alt='Weapon' />
                       <div className='best-wep-info'>
                         <p>{foundWeapon.name}</p>
@@ -222,25 +222,27 @@ class Detailspage extends Component {
                         WeaponWithMostKills,
                       } = data.warzoneStats;
                       const foundWeapon = parsedWeaponsMetadata.find((weapon) => weapon.id === WeaponWithMostKills.WeaponId.StockId);
+                      const emblemStyle = { backgroundImage: `url(${this.props.currentImgUrlEmblem})`}
 
                       return (
                         <>
                           <section className='details-page-section warzone-section'>
                             <h1 className='details-page-heading'>WARZONE STATISTICS</h1>
                             <div className='grouped-details-info'>
+                              <div className='details-spartan-container' style={emblemStyle}></div>
+                            </div>
+                            <div id='top-separator' className='grouped-details-info'>
                               <p>Total Wins: {TotalGamesWon.toLocaleString()}</p>
                               <p>Total Losses: {TotalGamesLost.toLocaleString()}</p>
                               <p>Total Games Tied: {TotalGamesTied}</p>
                               <p>Total Games Completed: {(TotalGamesWon + TotalGamesLost + TotalGamesTied).toLocaleString()}</p>
-                            </div>
-                            <div id='top-seperator' className='grouped-details-info'>
                               <p>Total Kills: {TotalKills.toLocaleString()}</p>
                               <p>Shooting Accuracy: {((TotalShotsLanded / TotalShotsFired) * 100).toFixed(2)}%</p>
                             </div>
                             <div>
                               <p>temp filler</p>
                             </div>
-                            <div id='top-seperator' className='grouped-details-info'>
+                            <div id='top-separator' className='grouped-details-info'>
                               <img className='warzone-weapon-image details-best-wep-img' src={foundWeapon.largeIconImageUrl} alt='Weapon' />
                               <div className='best-wep-info'>
                                 <p>{foundWeapon.name}</p>
@@ -281,6 +283,8 @@ class Detailspage extends Component {
 
 const mapStateToProps = (state) => ({
   currentPlayer: state.currentPlayer,
+  currentImgUrlSpartan: state.currentImgUrlSpartan,
+  currentImgUrlEmblem: state.currentImgUrlEmblem,
 });
 
 export default connect(mapStateToProps)(Detailspage);

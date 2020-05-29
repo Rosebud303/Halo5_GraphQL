@@ -55,7 +55,14 @@
   }
 }
 
-#top-seperator:before {
+.details-spartan-container {
+  height: 256px;
+  width: 256px;
+  background-position: center;
+  background-size: cover;
+}
+
+#top-separator:before {
   content: '';
   display: block;
   margin: 0 auto;
