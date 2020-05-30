@@ -74,6 +74,16 @@
   left: 30%;
   bottom: 5%;
   z-index: 1;
+  filter: drop-shadow(1px 1px 5px blanchedalmond);
+}
+
+.details-spartan-name {
+  text-transform: uppercase;
+  position: absolute;
+  bottom: -20%;
+  color: blanchedalmond;
+  font-size: 2.5rem;
+  z-index: 1;
 }
 
 #top-separator:before {
@@ -163,5 +173,5 @@ padding-top: 20px;
 
 .warzone-weapon-image {
   width: 90%;
-  filter: drop-shadow(1px 1px 25px GoldenRod);
+  filter: drop-shadow(1px 1px 5px GoldenRod);
 }

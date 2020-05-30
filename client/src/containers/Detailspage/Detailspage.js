@@ -188,8 +188,6 @@ class Detailspage extends Component {
                       <p>Total Kills: {TotalKills.toLocaleString()}</p>
                       <p>Total Deaths: {TotalDeaths.toLocaleString()}</p>
                       <p>Total Assists: {Number(TotalAssists).toLocaleString()}</p>
-                    </div>
-                    <div className='grouped-details-info'>
                       <p>Shooting Accuracy: {(TotalShotsLanded / TotalShotsFired).toFixed(4) * 100}%</p>
                       <p>Assassinations: {TotalAssassinations.toLocaleString()}</p>
                       <p>Melee Kills: {TotalMeleeKills.toLocaleString()}</p>
@@ -230,8 +228,9 @@ class Detailspage extends Component {
                             <h1 className='details-page-heading'>WARZONE STATISTICS</h1>
                             <div className='grouped-details-info test2'>
                               <img id='details-spartan-pic' src={this.props.currentImgUrlSpartan} />
-                            <div className='details-spartan-container' style={emblemStyle}>
-                            </div>
+                              <h2 className='details-spartan-name'>{this.props.currentPlayer}</h2>
+                              <div className='details-spartan-container' style={emblemStyle}>
+                              </div>
                             </div>
                             <div id='top-separator' className='grouped-details-info'>
                               <p>Total Wins: {TotalGamesWon.toLocaleString()}</p>
@@ -240,9 +239,6 @@ class Detailspage extends Component {
                               <p>Total Games Completed: {(TotalGamesWon + TotalGamesLost + TotalGamesTied).toLocaleString()}</p>
                               <p>Total Kills: {TotalKills.toLocaleString()}</p>
                               <p>Shooting Accuracy: {((TotalShotsLanded / TotalShotsFired) * 100).toFixed(2)}%</p>
-                            </div>
-                            <div>
-                              <p>temp filler</p>
                             </div>
                             <div id='top-separator' className='grouped-details-info'>
                               <img className='warzone-weapon-image details-best-wep-img' src={foundWeapon.largeIconImageUrl} alt='Weapon' />
