@@ -124,7 +124,7 @@ class Detailspage extends Component {
           <div id='div-medal' className='div-medal' style={medalStyles}>
             <p className='medal-count'>x{medal.Count}</p>
           </div>
-          <p className='medal-info'>
+          <p id='medal-info' className='medal-info'>
             {medal.Name} - {medal.Description}
           </p>
         </div>
@@ -135,8 +135,6 @@ class Detailspage extends Component {
   render() {
     const player_name = this.props.currentPlayer;
     const parsedCsrMetadata = JSON.parse(localStorage.getItem("csrMetadata"));
-    // const parsedGameVariantsMetadata = JSON.parse(localStorage.getItem("gameBaseVariantsMetadata"));
-    // const parsedSeasonsMetadata = JSON.parse(localStorage.getItem("seasonsMetadata"));
     const parsedWeaponsMetadata = JSON.parse(localStorage.getItem("weaponsMetadata"));
 
     return (<>
