@@ -222,14 +222,16 @@ class Detailspage extends Component {
                         WeaponWithMostKills,
                       } = data.warzoneStats;
                       const foundWeapon = parsedWeaponsMetadata.find((weapon) => weapon.id === WeaponWithMostKills.WeaponId.StockId);
-                      const emblemStyle = { backgroundImage: `url(${this.props.currentImgUrlEmblem})`}
+                      const emblemStyle = { backgroundImage: `url(${this.props.currentImgUrlEmblem})` }
 
                       return (
                         <>
                           <section className='details-page-section warzone-section'>
                             <h1 className='details-page-heading'>WARZONE STATISTICS</h1>
-                            <div className='grouped-details-info'>
-                              <div className='details-spartan-container' style={emblemStyle}></div>
+                            <div className='grouped-details-info test2'>
+                              <img id='details-spartan-pic' src={this.props.currentImgUrlSpartan} />
+                            <div className='details-spartan-container' style={emblemStyle}>
+                            </div>
                             </div>
                             <div id='top-separator' className='grouped-details-info'>
                               <p>Total Wins: {TotalGamesWon.toLocaleString()}</p>

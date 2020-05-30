@@ -56,10 +56,24 @@
 }
 
 .details-spartan-container {
-  height: 256px;
-  width: 256px;
+  height: 350px;
+  width: 400px;
   background-position: center;
   background-size: cover;
+  opacity: 0.4;
+}
+
+.test2 {
+  position: relative;
+}
+
+#details-spartan-pic {
+  opacity: 1;
+  height: 300px;
+  position: absolute;
+  left: 30%;
+  bottom: 5%;
+  z-index: 1;
 }
 
 #top-separator:before {
