@@ -28,6 +28,18 @@
     background: linear-gradient(329deg, #def2fd75, #21314a); 
     border: solid 4px #f7f9c6;
     opacity: 1;
+
+    .csr-container h4,
+    .details-page-csr,
+    #details-spartan-pic,
+    .details-spartan-name,
+    .div-medal {
+      filter: drop-shadow(1px 1px 5px blanchedalmond);
+    }
+
+    .warzone-weapon-image {
+      filter: drop-shadow(1px 1px 10px GoldenRod);
+    }
   }
 }
 
@@ -74,7 +86,6 @@
   left: 30%;
   bottom: 5%;
   z-index: 1;
-  filter: drop-shadow(1px 1px 5px blanchedalmond);
 }
 
 .details-spartan-name {
@@ -136,8 +147,12 @@ padding-top: 20px;
   padding: 0px;
 }
 
-.div-medal {
+#div-medal {
   position: relative;
+  
+  &:hover {
+    filter: drop-shadow(1px 1px 5px limegreen);
+  } 
 }
 
 .grouped-details-info {
@@ -173,5 +188,4 @@ padding-top: 20px;
 
 .warzone-weapon-image {
   width: 90%;
-  filter: drop-shadow(1px 1px 5px GoldenRod);
 }

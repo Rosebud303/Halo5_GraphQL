@@ -121,7 +121,7 @@ class Detailspage extends Component {
       };
       return (
         <div className='single-medal-container'>
-          <div className='div-medal' style={medalStyles}>
+          <div id='div-medal' className='div-medal' style={medalStyles}>
             <p className='medal-count'>x{medal.Count}</p>
           </div>
           <p className='medal-info'>
