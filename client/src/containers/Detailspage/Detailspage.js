@@ -124,9 +124,9 @@ class Detailspage extends Component {
           <div id='div-medal' className='div-medal' style={medalStyles}>
             <p className='medal-count'>x{medal.Count}</p>
           </div>
-          <p id='medal-info' className='medal-info'>
-            {medal.Name} - {medal.Description}
-          </p>
+            <p id='medal-info' className='medal-info'>
+              {medal.Name} - {medal.Description}
+            </p>
         </div>
       );
     })
