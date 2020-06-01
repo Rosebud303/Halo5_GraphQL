@@ -56,13 +56,15 @@ let ACCUMULATIVE_WARZONE_QUERY = gql`
   query AccumulativeWzQuery($player_name: String!) {
     warzoneStats(player_name: $player_name) {
       TotalKills
+      TotalDeaths
+      TotalAssists
       TotalHeadshots
       TotalWeaponDamage
       TotalShotsFired
       TotalShotsLanded
       TotalGamesWon
       TotalGamesLost
-      TotalGamesTied
+      TotalGamesCompleted
       WeaponWithMostKills {
         TotalKills
         TotalHeadshots
@@ -124,9 +126,9 @@ class Detailspage extends Component {
           <div id='div-medal' className='div-medal' style={medalStyles}>
             <p className='medal-count'>x{medal.Count}</p>
           </div>
-            <p id='medal-info' className='medal-info'>
-              {medal.Name} - {medal.Description}
-            </p>
+          <p id='medal-info' className='medal-info'>
+            {medal.Name} - {medal.Description}
+          </p>
         </div>
       );
     })
@@ -178,27 +180,57 @@ class Detailspage extends Component {
                       <img className='details-page-csr' src={foundTier} alt='Players rank tier' />
                     </div>
                     <div id='top-separator' className='grouped-details-info'>
-                      <p>Total Wins: {TotalGamesWon.toLocaleString()}</p>
-                      <p>Total Losses: {TotalGamesLost.toLocaleString()}</p>
-                      <p>Total Games Tied: {TotalGamesTied}</p>
-                      <p>Total Games Completed: {TotalGamesCompleted.toLocaleString()}</p>
-                      <p>KDA: </p>
-                      <p>Total Kills: {TotalKills.toLocaleString()}</p>
-                      <p>Total Deaths: {TotalDeaths.toLocaleString()}</p>
-                      <p>Total Assists: {Number(TotalAssists).toLocaleString()}</p>
-                      <p>Shooting Accuracy: {(TotalShotsLanded / TotalShotsFired).toFixed(4) * 100}%</p>
-                      <p>Assassinations: {TotalAssassinations.toLocaleString()}</p>
-                      <p>Melee Kills: {TotalMeleeKills.toLocaleString()}</p>
-                      <p>Ground Pound Kills: {TotalGroundPoundKills.toLocaleString()}</p>
-                      <p>Shoulder Bash Kills: {TotalShoulderBashKills.toLocaleString()}</p>
+                      <div className='details-text-aligner'>
+                        <p>Arena Win Rate: </p><span className='green-text'>{(TotalGamesWon / TotalGamesCompleted * 100).toFixed(2)}%</span>
+                      </div>
+                      <div className='details-text-aligner'>
+                        <p>Total Wins: </p><span className='green-text'>{TotalGamesWon.toLocaleString()}</span>
+                      </div>
+                      <div className='details-text-aligner'>
+                        <p>Total Losses: </p><span className='red-text'>{TotalGamesLost.toLocaleString()}</span>
+                      </div>
+                      <div className='details-text-aligner'>
+                        <p>Total Games Tied: </p><span className='neutral-text'>{TotalGamesTied}</span>
+                      </div>
+                      <div className='details-text-aligner'>
+                        <p>Total Games Completed: </p><span className='neutral-text'>{TotalGamesCompleted.toLocaleString()}</span>
+                      </div>
+                      <div className='details-text-aligner'>
+                        <p>Arena KDA: </p><span className='green-text'>{((TotalKills + TotalAssists / 3) / TotalDeaths).toFixed(3)}</span>
+                      </div>
+                      <div className='details-text-aligner'>
+                        <p>Total Kills: </p><span className='green-text'>{TotalKills.toLocaleString()}</span>
+                      </div>
+                      <div className='details-text-aligner'>
+                        <p>Total Deaths: </p><span className='red-text'>{TotalDeaths.toLocaleString()}</span>
+                      </div>
+                      <div className='details-text-aligner'>
+                        <p>Total Assists: </p><span className='neutral-text'>{Number(TotalAssists).toLocaleString()}</span>
+                      </div>
+                      <div className='details-text-aligner'>
+                        <p>Shooting Accuracy: </p><span className='green-text'>{(TotalShotsLanded / TotalShotsFired).toFixed(4) * 100}%</span>
+                      </div>
+                      <div className='details-text-aligner'>
+                        <p>Assassinations: </p><span className='neutral-text'>{TotalAssassinations.toLocaleString()}</span>
+                      </div>
+                      <div className='details-text-aligner'>
+                        <p>Melee Kills: </p><span className='neutral-text'>{TotalMeleeKills.toLocaleString()}</span>
+                      </div>
+                      <div className='details-text-aligner'>
+                        <p>Ground Pound Kills: </p><span className='neutral-text'>{TotalGroundPoundKills.toLocaleString()}</span>
+                      </div>
+                      <div className='details-text-aligner'>
+                        <p>Shoulder Bash Kills: </p><span className='neutral-text'>{TotalShoulderBashKills.toLocaleString()}</span>
+                      </div>
                     </div>
                     <div id='top-separator' className='grouped-details-info'>
+                      <h2 className='details-weapon-heading'>Your Most Deadly Arena Weapon</h2>
                       <img className='warzone-weapon-image details-best-wep-img' src={foundWeapon.largeIconImageUrl} alt='Weapon' />
                       <div className='best-wep-info'>
-                        <p>{foundWeapon.name}</p>
-                        <p className='warzone-box-details'>Kills: {WeaponWithMostKills.TotalKills.toLocaleString()}</p>
-                        <p className='warzone-box-details'>Damage Dealt: {parseInt(WeaponWithMostKills.TotalDamageDealt).toLocaleString()}</p>
-                        <p className='warzone-box-details'>Shots Fired: {WeaponWithMostKills.TotalShotsFired.toLocaleString()}</p>
+                        <p id='details-weapon-name'>{foundWeapon.name}</p>
+                        <p className='warzone-box-details'>Kills - {WeaponWithMostKills.TotalKills.toLocaleString()}</p>
+                        <p className='warzone-box-details'>Damage Dealt - {parseInt(WeaponWithMostKills.TotalDamageDealt).toLocaleString()}</p>
+                        <p className='warzone-box-details'>Shots Fired - {WeaponWithMostKills.TotalShotsFired.toLocaleString()}</p>
                       </div>
                     </div>
                   </section>
@@ -208,13 +240,15 @@ class Detailspage extends Component {
                       if (error) console.log(error);
                       const {
                         TotalKills,
+                        TotalDeaths,
+                        TotalAssists,
                         TotalHeadshots,
                         TotalWeaponDamage,
                         TotalShotsFired,
                         TotalShotsLanded,
                         TotalGamesWon,
                         TotalGamesLost,
-                        TotalGamesTied,
+                        TotalGamesCompleted,
                         WeaponWithMostKills,
                       } = data.warzoneStats;
                       const foundWeapon = parsedWeaponsMetadata.find((weapon) => weapon.id === WeaponWithMostKills.WeaponId.StockId);
@@ -224,27 +258,49 @@ class Detailspage extends Component {
                         <>
                           <section className='details-page-section warzone-section'>
                             <h1 className='details-page-heading'>WARZONE STATISTICS</h1>
-                            <div className='grouped-details-info test2'>
+                            <div className='grouped-details-info warzone-images-container'>
                               <img id='details-spartan-pic' src={this.props.currentImgUrlSpartan} />
                               <h2 className='details-spartan-name'>{this.props.currentPlayer}</h2>
                               <div className='details-spartan-container' style={emblemStyle}>
                               </div>
                             </div>
                             <div id='top-separator' className='grouped-details-info'>
-                              <p>Total Wins: {TotalGamesWon.toLocaleString()}</p>
-                              <p>Total Losses: {TotalGamesLost.toLocaleString()}</p>
-                              <p>Total Games Tied: {TotalGamesTied}</p>
-                              <p>Total Games Completed: {(TotalGamesWon + TotalGamesLost + TotalGamesTied).toLocaleString()}</p>
-                              <p>Total Kills: {TotalKills.toLocaleString()}</p>
-                              <p>Shooting Accuracy: {((TotalShotsLanded / TotalShotsFired) * 100).toFixed(2)}%</p>
+                              <div className='details-text-aligner'>
+                                <p>Warzone Win Rate: </p><span className='green-text'>{(TotalGamesWon / TotalGamesCompleted * 100).toFixed(2)}%</span>
+                              </div>
+                              <div className='details-text-aligner'>
+                                <p>Total Wins: </p><span className='green-text'>{TotalGamesWon.toLocaleString()}</span>
+                              </div>
+                              <div className='details-text-aligner'>
+                                <p>Total Losses: </p><span className='red-text'>{TotalGamesLost.toLocaleString()}</span>
+                              </div>
+                              <div className='details-text-aligner'>
+                                <p>Total Games Completed: </p><span className='neutral-text'>{(TotalGamesWon + TotalGamesLost + TotalGamesTied).toLocaleString()}</span>
+                              </div>
+                              <div className='details-text-aligner'>
+                                <p>Warzone KDA: </p><span className='green-text'>{((TotalKills + TotalAssists / 3) / TotalDeaths).toFixed(3)}</span>
+                              </div>
+                              <div className='details-text-aligner'>
+                                <p>Total Kills: </p><span className='green-text'>{TotalKills.toLocaleString()}</span>
+                              </div>
+                              <div className='details-text-aligner'>
+                                <p>Total Deaths: </p><span className='red-text'>{TotalDeaths.toLocaleString()}</span>
+                              </div>
+                              <div className='details-text-aligner'>
+                                <p>Total Assists: </p><span className='neutral-text'>{TotalAssists.toLocaleString()}</span>
+                              </div>
+                              <div className='details-text-aligner'>
+                                <p>Shooting Accuracy: </p><span className='green-text'>{((TotalShotsLanded / TotalShotsFired) * 100).toFixed(2)}%</span>
+                              </div>
                             </div>
                             <div id='top-separator' className='grouped-details-info'>
+                              <h2 className='details-weapon-heading'>Your Most Deadly Warzone Weapon</h2>
                               <img className='warzone-weapon-image details-best-wep-img' src={foundWeapon.largeIconImageUrl} alt='Weapon' />
                               <div className='best-wep-info'>
-                                <p>{foundWeapon.name}</p>
-                                <p className='warzone-box-details'>Kills: {WeaponWithMostKills.TotalKills.toLocaleString()}</p>
-                                <p className='warzone-box-details'>Damage Dealt: {parseInt(WeaponWithMostKills.TotalDamageDealt).toLocaleString()}</p>
-                                <p className='warzone-box-details'>Shots Fired: {WeaponWithMostKills.TotalShotsFired.toLocaleString()}</p>
+                                <p id='details-weapon-name'>{foundWeapon.name}</p>
+                                <p className='warzone-box-details'>Kills - {WeaponWithMostKills.TotalKills.toLocaleString()}</p>
+                                <p className='warzone-box-details'>Damage Dealt - {parseInt(WeaponWithMostKills.TotalDamageDealt).toLocaleString()}</p>
+                                <p className='warzone-box-details'>Shots Fired - {WeaponWithMostKills.TotalShotsFired.toLocaleString()}</p>
                               </div>
                             </div>
                           </section>
