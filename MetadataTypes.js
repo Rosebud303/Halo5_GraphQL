@@ -67,6 +67,7 @@ const WeaponType = new GraphQLObjectType({
     name: { type: GraphQLString },
     largeIconImageUrl: { type: GraphQLString },
     id: { type: GraphQLString },
+    type: { type: GraphQLString },
   }),
 });
 
@@ -105,6 +106,59 @@ const SpriteLocationType = new GraphQLObjectType({
   }),
 });
 
+//**************************************************** Campaigns */
+
+const CampaignsType = new GraphQLObjectType({
+  name: "Campaign",
+  fields: () => ({
+    missionNumber: { type: GraphQLInt },
+    name: { type: GraphQLString },
+    description: { type: GraphQLString },
+    imageUrl: { type: GraphQLString },
+    type: { type: GraphQLString },
+    id: { type: GraphQLString },
+  }),
+});
+
+//**************************************************** Skulls */
+
+const SkullsType = new GraphQLObjectType({
+  name: "Skulls",
+  fields: () => ({
+    name: { type: GraphQLString },
+    description: { type: GraphQLString },
+    imageUrl: { type: GraphQLString },
+    missionId: { type: GraphQLString },
+    id: { type: GraphQLString },
+  }),
+});
+
+//**************************************************** Vehicles */
+
+const VehiclesType = new GraphQLObjectType({
+  name: "Vehicles",
+  fields: () => ({
+    name: { type: GraphQLString },
+    description: { type: GraphQLString },
+    largeIconImageUrl: { type: GraphQLString },
+    id: { type: GraphQLString },
+  }),
+});
+
+//**************************************************** Enemies */
+
+const EnemiesType = new GraphQLObjectType({
+  name: "Enemies",
+  fields: () => ({
+    faction: { type: GraphQLString },
+    name: { type: GraphQLString },
+    description: { type: GraphQLString },
+    largeIconImageUrl: { type: GraphQLString },
+    id: { type: GraphQLString },
+  }),
+});
+
+
 module.exports = {
   WeaponType,
   MapMetadataType,
@@ -113,4 +167,8 @@ module.exports = {
   ImpulsesMetadataType,
   GameBaseVariantType,
   MedalType,
+  CampaignsType,
+  SkullsType,
+  VehiclesType,
+  EnemiesType
 };

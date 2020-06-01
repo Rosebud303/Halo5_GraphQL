@@ -16,6 +16,47 @@ export const metadataQueryList = [
     `,
   },
   {
+    name: "campaignsMetadata",
+    query: gql`
+      query CampaignsQuery {
+        campaignsMetadata {
+          missionNumber
+          name
+          description
+          imageUrl
+          id
+        }
+      }
+    `,
+  },
+  {
+    name: "skullsMetadata",
+    query: gql`
+      query SkullsQuery {
+        skullsMetadata {
+          name
+          description
+          imageUrl
+          missionId
+          id
+        }
+      }
+    `,
+  },
+  {
+    name: "vehiclesMetadata",
+    query: gql`
+      query VehiclesQuery {
+        vehiclesMetadata {
+          name
+          description
+          largeIconImageUrl
+          id
+        }
+      }
+    `,
+  },
+  {
     name: "medalsMetadata",
     query: gql`
       query MedalsQuery {
@@ -55,6 +96,7 @@ export const metadataQueryList = [
           name
           largeIconImageUrl
           id
+          type
         }
       }
     `,
@@ -92,6 +134,20 @@ export const metadataQueryList = [
             id
           }
           name
+          id
+        }
+      }
+    `,
+  },
+  {
+    name: "enemiesMetadata",
+    query: gql`
+      query EnemiesQuery {
+        enemiesMetadata {
+          faction
+          name
+          description
+          largeIconImageUrl
           id
         }
       }

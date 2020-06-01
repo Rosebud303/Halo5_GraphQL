@@ -9,12 +9,15 @@ const {
 const {
   WeaponType,
   MapMetadataType,
-  CsrMetadataType,
   SeasonsMetadataType,
   FlexibleStatsMetadataType,
   ImpulsesMetadataType,
   GameBaseVariantType,
   MedalType,
+  CampaignsType,
+  SkullsType,
+  VehiclesType,
+  EnemiesType,
 } = require("./MetadataTypes");
 const { WarzoneStatType, ScenarioStatsType } = require("./WarzoneTypes");
 const {
@@ -86,6 +89,38 @@ const RootQuery = new GraphQLObjectType({
       resolve(parent, args) {
         return instanceWithAcceptedLanguage
           .get("metadata/h5/metadata/weapons")
+          .then((res) => res.data);
+      },
+    },
+    campaignsMetadata: {
+      type: new GraphQLList(CampaignsType),
+      resolve(parent, args) {
+        return instanceWithAcceptedLanguage
+          .get("metadata/h5/metadata/campaign-missions")
+          .then((res) => res.data);
+      },
+    },
+    skullsMetadata: {
+      type: new GraphQLList(SkullsType),
+      resolve(parent, args) {
+        return instanceWithAcceptedLanguage
+          .get("metadata/h5/metadata/skulls")
+          .then((res) => res.data);
+      },
+    },
+    enemiesMetadata: {
+      type: new GraphQLList(EnemiesType),
+      resolve(parent, args) {
+        return instanceWithAcceptedLanguage
+          .get("metadata/h5/metadata/enemies")
+          .then((res) => res.data);
+      },
+    },
+    vehiclesMetadata: {
+      type: new GraphQLList(VehiclesType),
+      resolve(parent, args) {
+        return instanceWithAcceptedLanguage
+          .get("metadata/h5/metadata/vehicles")
           .then((res) => res.data);
       },
     },
