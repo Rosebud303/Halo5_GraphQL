@@ -56,13 +56,15 @@ let ACCUMULATIVE_WARZONE_QUERY = gql`
   query AccumulativeWzQuery($player_name: String!) {
     warzoneStats(player_name: $player_name) {
       TotalKills
+      TotalDeaths
+      TotalAssists
       TotalHeadshots
       TotalWeaponDamage
       TotalShotsFired
       TotalShotsLanded
       TotalGamesWon
       TotalGamesLost
-      TotalGamesTied
+      TotalGamesCompleted
       WeaponWithMostKills {
         TotalKills
         TotalHeadshots
@@ -121,10 +123,10 @@ class Detailspage extends Component {
       };
       return (
         <div className='single-medal-container'>
-          <div className='div-medal' style={medalStyles}>
+          <div id='div-medal' className='div-medal' style={medalStyles}>
             <p className='medal-count'>x{medal.Count}</p>
           </div>
-          <p className='medal-info'>
+          <p id='medal-info' className='medal-info'>
             {medal.Name} - {medal.Description}
           </p>
         </div>
@@ -135,143 +137,197 @@ class Detailspage extends Component {
   render() {
     const player_name = this.props.currentPlayer;
     const parsedCsrMetadata = JSON.parse(localStorage.getItem("csrMetadata"));
-    const parsedGameVariantsMetadata = JSON.parse(localStorage.getItem("gameBaseVariantsMetadata"));
-    const parsedSeasonsMetadata = JSON.parse(localStorage.getItem("seasonsMetadata"));
     const parsedWeaponsMetadata = JSON.parse(localStorage.getItem("weaponsMetadata"));
 
     return (<>
       <Header header={'Details Page'} button1={'warzone'} button2={'arena'} />
-      <main className='details-page-body'>
-        <Query query={ACCUMULATTIVE_ARENA_QUERY} variables={{ player_name }}>
-          {({ loading, error, data }) => {
-            if (loading) return <p>Loading...</p>;
-            if (error) console.log(error);
+      <div className='details-page-container'>
+        <main className='details-page-body'>
+          <Query query={ACCUMULATTIVE_ARENA_QUERY} variables={{ player_name }}>
+            {({ loading, error, data }) => {
+              if (loading) return <p>Loading...</p>;
+              if (error) console.log(error);
 
-            const {
-              HighestCsrAttained,
-              TotalGamesWon,
-              TotalGamesLost,
-              TotalGamesTied,
-              TotalGamesCompleted,
-              TotalKills,
-              TotalDeaths,
-              TotalAssists,
-              WeaponWithMostKills,
-              TotalShotsFired,
-              TotalShotsLanded,
-              TotalAssassinations,
-              TotalMeleeKills,
-              TotalGroundPoundKills,
-              TotalShoulderBashKills,
-              MedalAwards,
-            } = data.accumulativeArenaStats;
+              const {
+                HighestCsrAttained,
+                TotalGamesWon,
+                TotalGamesLost,
+                TotalGamesTied,
+                TotalGamesCompleted,
+                TotalKills,
+                TotalDeaths,
+                TotalAssists,
+                WeaponWithMostKills,
+                TotalShotsFired,
+                TotalShotsLanded,
+                TotalAssassinations,
+                TotalMeleeKills,
+                TotalGroundPoundKills,
+                TotalShoulderBashKills,
+                MedalAwards,
+              } = data.accumulativeArenaStats;
 
-            const foundWeapon = parsedWeaponsMetadata.find((weapon) => weapon.id === WeaponWithMostKills.WeaponId.StockId);
-            const foundRank = parsedCsrMetadata.find((rank) => rank.id == HighestCsrAttained.DesignationId);
-            const foundTier = foundRank.tiers.find((tier) => tier.id == HighestCsrAttained.Tier).iconImageUrl;
+              const foundWeapon = parsedWeaponsMetadata.find((weapon) => weapon.id === WeaponWithMostKills.WeaponId.StockId);
+              const foundRank = parsedCsrMetadata.find((rank) => rank.id == HighestCsrAttained.DesignationId);
+              const foundTier = foundRank.tiers.find((tier) => tier.id == HighestCsrAttained.Tier).iconImageUrl;
 
-            return (
-              <>
-                <section className='details-page-section arena-section'>
-                  <h1 className='details-page-heading'>ARENA STATS SECTION</h1>
-                  <div className='grouped-details-info csr-container'>
-                    <h4 onClick={this.findBestMedals}>{`${foundRank.name} ${HighestCsrAttained.Tier}`}</h4>
-                    <img className='' src={foundTier} alt='Players rank tier' />
-                  </div>
-                  <div className='grouped-details-info'>
-                    <p>Total Wins: {TotalGamesWon.toLocaleString()}</p>
-                    <p>Total Losses: {TotalGamesLost.toLocaleString()}</p>
-                    <p>Total Games Tied: {TotalGamesTied}</p>
-                    <p>Total Games Completed: {TotalGamesCompleted.toLocaleString()}</p>
-                    <p>KDA: </p>
-                    <p>Total Kills: {TotalKills.toLocaleString()}</p>
-                    <p>Total Deaths: {TotalDeaths.toLocaleString()}</p>
-                    <p>Total Assists: {Number(TotalAssists).toLocaleString()}</p>
-                  </div>
-                  <div className='grouped-details-info'>
-                    <p>Accuracy Percentage: {(TotalShotsLanded / TotalShotsFired).toFixed(4) * 100}%</p>
-                    <p>Assassinations: {TotalAssassinations.toLocaleString()}</p>
-                    <p>Melee Kills: {TotalMeleeKills.toLocaleString()}</p>
-                    <p>Ground Pound Kills: {TotalGroundPoundKills.toLocaleString()}</p>
-                    <p>Shoulder Bash Kills: {TotalShoulderBashKills.toLocaleString()}</p>
-                  </div>
-                  <div className='grouped-details-info'>
-                    <img className='warzone-weapon-image' src={foundWeapon.largeIconImageUrl} alt='Weapon' />
-                    <div className='best-wep-info'>
-                      <p>{foundWeapon.name}</p>
-                      <p className='warzone-box-details'>Kills: {WeaponWithMostKills.TotalKills.toLocaleString()}</p>
-                      <p className='warzone-box-details'>Damage Dealt: {parseInt(WeaponWithMostKills.TotalDamageDealt).toLocaleString()}</p>
-                      <p className='warzone-box-details'>Shots Fired: {WeaponWithMostKills.TotalShotsFired.toLocaleString()}</p>
+              return (
+                <>
+                  <section className='details-page-section arena-section'>
+                    <h1 className='details-page-heading'>ARENA STATISTICS</h1>
+                    <div className='grouped-details-info csr-container'>
+                      <h4>{`${foundRank.name} ${HighestCsrAttained.Tier}`}</h4>
+                      <img className='details-page-csr' src={foundTier} alt='Players rank tier' />
                     </div>
-                  </div>
-                </section>
-                <Query query={ACCUMULATIVE_WARZONE_QUERY} variables={{ player_name }}>
-                  {({ loading, error, data }) => {
-                    if (loading) return <p>Loading...</p>;
-                    if (error) console.log(error);
-                    const {
-                      TotalKills,
-                      TotalHeadshots,
-                      TotalWeaponDamage,
-                      TotalShotsFired,
-                      TotalShotsLanded,
-                      TotalGamesWon,
-                      TotalGamesLost,
-                      TotalGamesTied,
-                      WeaponWithMostKills,
-                    } = data.warzoneStats;
-                    const foundWeapon = parsedWeaponsMetadata.find((weapon) => weapon.id === WeaponWithMostKills.WeaponId.StockId);
+                    <div id='top-separator' className='grouped-details-info'>
+                      <div className='details-text-aligner'>
+                        <p>Arena Win Rate: </p><span className='green-text'>{(TotalGamesWon / TotalGamesCompleted * 100).toFixed(2)}%</span>
+                      </div>
+                      <div className='details-text-aligner'>
+                        <p>Total Wins: </p><span className='green-text'>{TotalGamesWon.toLocaleString()}</span>
+                      </div>
+                      <div className='details-text-aligner'>
+                        <p>Total Losses: </p><span className='red-text'>{TotalGamesLost.toLocaleString()}</span>
+                      </div>
+                      <div className='details-text-aligner'>
+                        <p>Total Games Tied: </p><span className='neutral-text'>{TotalGamesTied}</span>
+                      </div>
+                      <div className='details-text-aligner'>
+                        <p>Total Games Completed: </p><span className='neutral-text'>{TotalGamesCompleted.toLocaleString()}</span>
+                      </div>
+                      <div className='details-text-aligner'>
+                        <p>Arena KDA: </p><span className='green-text'>{((TotalKills + TotalAssists / 3) / TotalDeaths).toFixed(3)}</span>
+                      </div>
+                      <div className='details-text-aligner'>
+                        <p>Total Kills: </p><span className='green-text'>{TotalKills.toLocaleString()}</span>
+                      </div>
+                      <div className='details-text-aligner'>
+                        <p>Total Deaths: </p><span className='red-text'>{TotalDeaths.toLocaleString()}</span>
+                      </div>
+                      <div className='details-text-aligner'>
+                        <p>Total Assists: </p><span className='neutral-text'>{Number(TotalAssists).toLocaleString()}</span>
+                      </div>
+                      <div className='details-text-aligner'>
+                        <p>Shooting Accuracy: </p><span className='green-text'>{(TotalShotsLanded / TotalShotsFired).toFixed(4) * 100}%</span>
+                      </div>
+                      <div className='details-text-aligner'>
+                        <p>Assassinations: </p><span className='neutral-text'>{TotalAssassinations.toLocaleString()}</span>
+                      </div>
+                      <div className='details-text-aligner'>
+                        <p>Melee Kills: </p><span className='neutral-text'>{TotalMeleeKills.toLocaleString()}</span>
+                      </div>
+                      <div className='details-text-aligner'>
+                        <p>Ground Pound Kills: </p><span className='neutral-text'>{TotalGroundPoundKills.toLocaleString()}</span>
+                      </div>
+                      <div className='details-text-aligner'>
+                        <p>Shoulder Bash Kills: </p><span className='neutral-text'>{TotalShoulderBashKills.toLocaleString()}</span>
+                      </div>
+                    </div>
+                    <div id='top-separator' className='grouped-details-info'>
+                      <h2 className='details-weapon-heading'>Your Most Deadly Arena Weapon</h2>
+                      <img className='warzone-weapon-image details-best-wep-img' src={foundWeapon.largeIconImageUrl} alt='Weapon' />
+                      <div className='best-wep-info'>
+                        <p id='details-weapon-name'>{foundWeapon.name}</p>
+                        <p className='warzone-box-details'>Kills - {WeaponWithMostKills.TotalKills.toLocaleString()}</p>
+                        <p className='warzone-box-details'>Damage Dealt - {parseInt(WeaponWithMostKills.TotalDamageDealt).toLocaleString()}</p>
+                        <p className='warzone-box-details'>Shots Fired - {WeaponWithMostKills.TotalShotsFired.toLocaleString()}</p>
+                      </div>
+                    </div>
+                  </section>
+                  <Query query={ACCUMULATIVE_WARZONE_QUERY} variables={{ player_name }}>
+                    {({ loading, error, data }) => {
+                      if (loading) return <p>Loading...</p>;
+                      if (error) console.log(error);
+                      const {
+                        TotalKills,
+                        TotalDeaths,
+                        TotalAssists,
+                        TotalHeadshots,
+                        TotalWeaponDamage,
+                        TotalShotsFired,
+                        TotalShotsLanded,
+                        TotalGamesWon,
+                        TotalGamesLost,
+                        TotalGamesCompleted,
+                        WeaponWithMostKills,
+                      } = data.warzoneStats;
+                      const foundWeapon = parsedWeaponsMetadata.find((weapon) => weapon.id === WeaponWithMostKills.WeaponId.StockId);
+                      const emblemStyle = { backgroundImage: `url(${this.props.currentImgUrlEmblem})` }
 
-                    return (
-                      <>
-                        <section className='details-page-section warzone-section'>
-                          <h1 className='details-page-heading'>WARZONE STATS SECTION</h1>
-                          <div className='grouped-details-info'>
-                            <p>Total Wins: {TotalGamesWon.toLocaleString()}</p>
-                            <p>Total Losses: {TotalGamesLost.toLocaleString()}</p>
-                            <p>Total Games Tied: {TotalGamesTied}</p>
-                            <p>Total Games Completed: {(TotalGamesWon + TotalGamesLost + TotalGamesTied).toLocaleString()}</p>
-                          </div>
-                          <div className='grouped-details-info'>
-                            <p>Total Kills: {TotalKills.toLocaleString()}</p>
-                            <p>Accuracy Percentage: {((TotalShotsLanded / TotalShotsFired) * 100).toFixed(2)}%</p>
-                          </div>
-                          <div>
-                            <p>temp filler</p>
-                          </div>
-                          <div className='grouped-details-info'>
-                            <img className='warzone-weapon-image' src={foundWeapon.largeIconImageUrl} alt='Weapon' />
-                            <div className='best-wep-info'>
-                              <p>{foundWeapon.name}</p>
-                              <p className='warzone-box-details'>Kills: {WeaponWithMostKills.TotalKills.toLocaleString()}</p>
-                              <p className='warzone-box-details'>Damage Dealt: {parseInt(WeaponWithMostKills.TotalDamageDealt).toLocaleString()}</p>
-                              <p className='warzone-box-details'>Shots Fired: {WeaponWithMostKills.TotalShotsFired.toLocaleString()}</p>
+                      return (
+                        <>
+                          <section className='details-page-section warzone-section'>
+                            <h1 className='details-page-heading'>WARZONE STATISTICS</h1>
+                            <div className='grouped-details-info warzone-images-container'>
+                              <img id='details-spartan-pic' src={this.props.currentImgUrlSpartan} />
+                              <h2 className='details-spartan-name'>{this.props.currentPlayer}</h2>
+                              <div className='details-spartan-container' style={emblemStyle}>
+                              </div>
                             </div>
-                          </div>
-                        </section>
-                        <section className='details-page-section'>
-                          <h1 className='details-page-heading'>MEDALS STATS SECTION</h1>
-                          <p className='details-hover-instructions'>(hover over medal for details)</p>
-                          <div className='medals-detail-section'>
-                            <div>
-                              <h2>Arena Medals</h2>
-                              <div className='medals-details'>{this.contentCreator(MedalAwards)}</div>
+                            <div id='top-separator' className='grouped-details-info'>
+                              <div className='details-text-aligner'>
+                                <p>Warzone Win Rate: </p><span className='green-text'>{(TotalGamesWon / TotalGamesCompleted * 100).toFixed(2)}%</span>
+                              </div>
+                              <div className='details-text-aligner'>
+                                <p>Total Wins: </p><span className='green-text'>{TotalGamesWon.toLocaleString()}</span>
+                              </div>
+                              <div className='details-text-aligner'>
+                                <p>Total Losses: </p><span className='red-text'>{TotalGamesLost.toLocaleString()}</span>
+                              </div>
+                              <div className='details-text-aligner'>
+                                <p>Total Games Completed: </p><span className='neutral-text'>{(TotalGamesWon + TotalGamesLost + TotalGamesTied).toLocaleString()}</span>
+                              </div>
+                              <div className='details-text-aligner'>
+                                <p>Warzone KDA: </p><span className='green-text'>{((TotalKills + TotalAssists / 3) / TotalDeaths).toFixed(3)}</span>
+                              </div>
+                              <div className='details-text-aligner'>
+                                <p>Total Kills: </p><span className='green-text'>{TotalKills.toLocaleString()}</span>
+                              </div>
+                              <div className='details-text-aligner'>
+                                <p>Total Deaths: </p><span className='red-text'>{TotalDeaths.toLocaleString()}</span>
+                              </div>
+                              <div className='details-text-aligner'>
+                                <p>Total Assists: </p><span className='neutral-text'>{TotalAssists.toLocaleString()}</span>
+                              </div>
+                              <div className='details-text-aligner'>
+                                <p>Shooting Accuracy: </p><span className='green-text'>{((TotalShotsLanded / TotalShotsFired) * 100).toFixed(2)}%</span>
+                              </div>
                             </div>
-                            <div>
-                              <h2>WarZone Medals</h2>
-                              <div className='medals-details'>{this.contentCreator(data.warzoneStats.MedalAwards)}</div>
+                            <div id='top-separator' className='grouped-details-info'>
+                              <h2 className='details-weapon-heading'>Your Most Deadly Warzone Weapon</h2>
+                              <img className='warzone-weapon-image details-best-wep-img' src={foundWeapon.largeIconImageUrl} alt='Weapon' />
+                              <div className='best-wep-info'>
+                                <p id='details-weapon-name'>{foundWeapon.name}</p>
+                                <p className='warzone-box-details'>Kills - {WeaponWithMostKills.TotalKills.toLocaleString()}</p>
+                                <p className='warzone-box-details'>Damage Dealt - {parseInt(WeaponWithMostKills.TotalDamageDealt).toLocaleString()}</p>
+                                <p className='warzone-box-details'>Shots Fired - {WeaponWithMostKills.TotalShotsFired.toLocaleString()}</p>
+                              </div>
                             </div>
-                          </div>
-                        </section>
-                      </>
-                    );
-                  }}
-                </Query>
-              </>
-            );
-          }}
-        </Query>
-      </main>
+                          </section>
+                          <section className='details-page-section details-medals-section'>
+                            <h1 className='details-page-heading'>MEDALS</h1>
+                            <p className='details-hover-instructions'>(hover over medal for details)</p>
+                            <div className='medals-detail-section'>
+                              <div className='details-medals-column'>
+                                <h2>ARENA</h2>
+                                <div className='medals-details'>{this.contentCreator(MedalAwards)}</div>
+                              </div>
+                              <div className='details-medals-column'>
+                                <h2>WARZONE</h2>
+                                <div className='medals-details'>{this.contentCreator(data.warzoneStats.MedalAwards)}</div>
+                              </div>
+                            </div>
+                          </section>
+                        </>
+                      );
+                    }}
+                  </Query>
+                </>
+              );
+            }}
+          </Query>
+        </main>
+      </div>
     </>
     );
   }
@@ -279,6 +335,8 @@ class Detailspage extends Component {
 
 const mapStateToProps = (state) => ({
   currentPlayer: state.currentPlayer,
+  currentImgUrlSpartan: state.currentImgUrlSpartan,
+  currentImgUrlEmblem: state.currentImgUrlEmblem,
 });
 
 export default connect(mapStateToProps)(Detailspage);

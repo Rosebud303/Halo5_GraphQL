@@ -2,7 +2,7 @@
   background-color: #28560b;
   align-items: center;
   width: 50%;
-  margin: 20px;
+  margin: 20px 0px 25px 0px;
 
   h3 {
     margin: inherit;
@@ -20,24 +20,25 @@
   }
 
   .slick-dots li button {
-    color: blue;
+    color: none;
     size: 200%;
-    height: 50px;
+    height: 40px;
   }
 
   .slick-dots li button:before {
-    color: red;
-    opacity: 0.4;
+    color: inherit;
+    background-color: red;
+    opacity: 0.8;
     font-size: 10px;
-
+    border: solid 1px white;
+    border-radius: 100%;
   }
 
   .slick-dots li.slick-active button:before{
-    color: blue;
+    color: green;
     opacity: 0.8;
-    filter: drop-shadow(1px 1px 2px black);
-    // border: solid 2px black;
-    // border-radius: 100%;
+    background-color: green;
+    border: solid 1px white;
   }
 }
 

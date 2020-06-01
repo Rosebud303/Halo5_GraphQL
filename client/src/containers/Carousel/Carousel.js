@@ -20,9 +20,7 @@ export default class Carousel extends Component {
 
     const renderSlides = () =>
       articleData.map((article) => {
-        const imgStyle = {
-          backgroundImage: `url(${article.imgLink})`,
-        }
+        const imgStyle = { backgroundImage: `url(${article.imgLink})` }
         return (<div>
           <div className='carousel-slide'>
             <div className='article-img-container' style={imgStyle}></div>
@@ -44,7 +42,7 @@ export default class Carousel extends Component {
           slidesToShow={1}
           slidesToScroll={1}
           autoplay={true}
-          autoplaySpeed={6500}
+          autoplaySpeed={4000}
         >
           {renderSlides()}
         </Slider>

@@ -247,8 +247,8 @@ class Arenapage extends Component {
                       <h4 className='box-title'>Shooting Stats</h4>
                       <div>
                         <p className='box-details'>Total Damage Done: {parseInt(TotalWeaponDamage).toLocaleString()}</p>
+                        <p className='box-details'>Shooting Accuracy: {(TotalShotsLanded / TotalShotsFired * 100).toFixed(2)}%</p>
                         <p className='box-details'>Shots Fired: {TotalShotsFired.toLocaleString()}</p>
-                        <p className='box-details'>Shots Landed: {TotalShotsLanded.toLocaleString()}</p>
                         <p className='box-details'>Headshots: {TotalHeadshots.toLocaleString()}</p>
                       </div>
                     </div>

@@ -1,9 +1,33 @@
+
+.details-text-aligner {
+  width: 60%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.green-text {
+  color: lime;
+}
+
+.red-text {
+  color: #ff0000;
+}
+
+.neutral-text {
+  color: white;
+}
+
+.details-page-container {
+  display: flex;
+  justify-content: center;
+}
+
 .details-page-body {
   display: flex;
   flex-direction: row;
-  background: #1F1F1F;
-  width: 99%;
-  margin: 5px;
+  // background: #1F1F1F;
+  margin-top: 40px;
   border-radius: 10px;
   transition: background 0.3s;
 }
@@ -13,16 +37,34 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  width: 100%;
-  border: solid 2px greenyellow;
+  border: solid 2px #ffffff;
   border-collapse: collapse;
-  opacity: 0.3;
+  opacity: 0.8;
+  background: linear-gradient(399deg, #2c6382a8, #030219bf);
+  padding-bottom: 20px;
+  transition: opacity 400ms;
+
+  span {
+    font-weight: 700;
+  }
 
   &:hover {
-    transition: opacity 400ms;
-    background-color: #141315;
-    border: solid 8px green;
+    background: linear-gradient(399deg, #10425fa8, #060519bf); 
+    border: solid 4px #f7f9c6;
     opacity: 1;
+
+    .csr-container h4,
+    .details-page-csr,
+    #details-spartan-pic,
+    .details-spartan-name,
+    .div-medal {
+      filter: drop-shadow(1px 1px 5px blanchedalmond);
+    }
+
+    .warzone-weapon-image,
+    #details-weapon-name {
+      filter: drop-shadow(1px 1px 10px GoldenRod);
+    }
   }
 }
 
@@ -31,9 +73,65 @@
   border-right: 0;
 }
 
-// .csr-container {
-// display: flex;
-// }
+.details-medals-section {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.csr-container {
+  h4 {
+    font-size: 2rem;
+    color:  white;
+    margin: 0px;
+  }
+
+  .details-page-csr {
+    width: 40%;
+    margin: 0;
+    height: 200px;
+  }
+}
+
+.details-spartan-container {
+  height: 350px;
+  width: 400px;
+  background-position: center;
+  background-size: cover;
+  opacity: 0.4;
+}
+
+.warzone-images-container {
+  position: relative;
+  margin-bottom: 40px;
+}
+
+#details-spartan-pic {
+  opacity: 1;
+  height: 300px;
+  position: absolute;
+  left: 30%;
+  bottom: 5%;
+  z-index: 1;
+}
+
+.details-spartan-name {
+  text-transform: uppercase;
+  position: absolute;
+  bottom: -20%;
+  color: blanchedalmond;
+  font-size: 2.5rem;
+  z-index: 1;
+}
+
+#top-separator:before {
+  content: '';
+  display: block;
+  margin: 0 auto;
+  width: 80%;
+  border-bottom: 4px solid #ffffff;
+  margin-bottom: 20px;
+  opacity: 0.3;
+}
 
 .medals-details {
   display: flex;
@@ -53,30 +151,36 @@
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  padding: 40px;
+  padding: 10px;
+  width: 100%;
+
+  h2 {
+    color: wheat;
+  }
+}
+
+.details-medals-column {
+  margin: 0px 50px;
 }
 
 .single-medal-container {
   display: flex;
   justify-content: center;
   padding: 0px;
-  // position: relative;
-}
 
-.div-medal {
-  position: relative;
-}
+  &:hover {
+    #div-medal {
+      filter: drop-shadow(0px -2px 10px PaleGreen);
+    }
 
-.medals-detail-section h2 {
-  text-align: center;
+    #medal-info {
+      filter: drop-shadow(1px 2px 10px PaleGreen);
+    }
+  }
 }
-
 
 .grouped-details-info {
   width: 90%;
-  padding: 10px;
-  margin: 10px;
-  // border: dotted 2px green;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -88,17 +192,11 @@
   color: white;
 }
 
-.medals-section {
-  display: flex;
-  flex-direction: row;
-  align-content: center;
-}
-
 .details-page-heading {
   text-align: center;
   text-decoration: underline;
   color: wheat;
-  margin-bottom: 10px;
+  margin-bottom: 0px;
 }
 
 .details-hover-instructions {
@@ -114,5 +212,16 @@
 
 .warzone-weapon-image {
   width: 90%;
-  filter: drop-shadow(1px 1px 25px GoldenRod);
+}
+
+.details-weapon-heading {
+  color: wheat;
+}
+
+#details-weapon-name {
+  text-align: center;
+  color: #cab156;
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  text-decoration: underline;
 }
