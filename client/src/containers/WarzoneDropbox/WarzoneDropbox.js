@@ -81,6 +81,7 @@ class WarzoneDropbox extends Component {
             {({ loading, error, data }) => {
               if (loading) return <option>Loading...</option>;
               if (error) console.log(error);
+              
               const parsedMapsMetadata = JSON.parse(localStorage.getItem("mapsMetadata"));
 
               return (
