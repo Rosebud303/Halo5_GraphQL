@@ -158,7 +158,7 @@ class Warzonepage extends Component {
 
     return (
       <div className='warzone-page'>
-        <Header header={'Warzone Page'} button1={'details'} button2={'arena'}/>
+        <Header header={'Warzone Page'} button1={'details'} button2={'arena'} />
         <Query query={GAME_VARIANT_WARZONE_QUERY} variables={{ player_name }}>
           {({ loading, error, data }) => {
             if (loading) return "";
@@ -168,7 +168,7 @@ class Warzonepage extends Component {
               <div className='accordion-section'>
                 <figure>
                   <label>Fire Fight</label>
-                  <img className='game-variant-image' src='https://i.imgur.com/mZmEnAq.jpg' alt='Warzone Firefight Background' />
+                  <img className='game-variant-image' src='https://i.imgur.com/x0qQq4E.jpg' alt='Warzone Firefight Background' />
                   <input type='radio' name='radio-set' defaultChecked='checked' />
                   <figcaption>
                     <Link to='/warzone/variant'>
@@ -180,7 +180,7 @@ class Warzonepage extends Component {
                   </figcaption>
                   <figure>
                     <label>Assault</label>
-                    <img className='game-variant-image' src='https://i.imgur.com/h37QJVi.jpg' alt='Warzone Assault Background' />
+                    <img className='game-variant-image' src='https://i.imgur.com/rV8gvLj.jpg' alt='Warzone Assault Background' />
                     <input type='radio' name='radio-set' defaultChecked='checked' placeholder='Warzone Assault' />
                     <figcaption>
                       <Link to='/warzone/variant'>
@@ -192,8 +192,8 @@ class Warzonepage extends Component {
                     </figcaption>
                     <figure>
                       <label>Regular</label>
-                      <img className='game-variant-image' src='https://i.imgur.com/7F4dFgn.jpg' alt='Warzone Regular Background' />
-                      <input type='radio' name='radio-set' id='accordion-selector-last' defaultChecked='checked' />
+                      <img className='game-variant-image' src='https://i.imgur.com/QdthRRG.jpg' alt='Warzone Regular Background' />
+                      <input type='radio' name='radio-set' defaultChecked='checked' />
                       <figcaption>
                         <Link to='/warzone/variant'>
                           <span onClick={(e) => this.props.setWarzoneId(e.target.id)} id={regularVariantId}>
@@ -202,6 +202,16 @@ class Warzonepage extends Component {
                         </Link>
                         {createContent(data, regularVariantId)}
                       </figcaption>
+                      <figure className='opening-selection'>
+                        <div id='arrow-background'>
+                        </div>
+                        <img id='arrow-indicator' src='https://i.imgur.com/MwPGEJ6.gif' alt='Warzone Regular Background' />
+                        <img className='game-variant-image' src='https://i.imgur.com/COPRcuJ.jpg' alt='Warzone Opening Background' />
+
+                        <input type='radio' name='radio-set' id='accordion-selector-last' defaultChecked='checked' />
+                        <figcaption>
+                        </figcaption>
+                      </figure>
                     </figure>
                   </figure>
                 </figure>

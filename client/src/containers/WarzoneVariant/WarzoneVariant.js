@@ -6,8 +6,6 @@ import WarzoneDropbox from "../WarzoneDropbox/WarzoneDropbox";
 class WarzoneFireFight extends Component {
   render() {
     const warzoneGameVariantId = this.props.currentWzVariantId;
-    const parsedGameVariantsMetadata = JSON.parse(localStorage.getItem("gameBaseVariantsMetadata"));
-    const foundGameVariantName = parsedGameVariantsMetadata.find((variant) => variant.id === warzoneGameVariantId).name;
     
     return (
       <>
