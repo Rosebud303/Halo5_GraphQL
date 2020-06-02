@@ -1,4 +1,4 @@
-const api_key = "696024830e0045f9a1789ed154d07264";
+const api_key = "d7cbaa69bc52480fb83d7c811e7888bd";
 const proxyurl = "https://cors-anywhere.herokuapp.com/";
 
 module.exports = { api_key, proxyurl };
