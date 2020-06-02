@@ -10,7 +10,8 @@ class MetadataPage extends Component {
     super(props)
     this.state = {
       selectedLibraryName: '',
-      selectedLibrary: []
+      selectedLibrary: [],
+      selectedLibraryFilters: []
     }
   }
 

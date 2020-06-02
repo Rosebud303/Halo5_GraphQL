@@ -24,6 +24,7 @@ export const metadataQueryList = [
           name
           description
           imageUrl
+          type
           id
         }
       }
