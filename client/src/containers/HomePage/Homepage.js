@@ -116,6 +116,9 @@ class Homepage extends Component {
             <Link to='/warzone' className='homepage-links'>
               <p className='detail-link warzone-lesser'>WARZONE PAGE</p>
             </Link>
+            <Link to='/libraries' className='homepage-links'>
+              <p className='detail-link warzone-lesser'>LIBRARIES PAGE</p>
+            </Link>
           </section>
         </div>
       </>
