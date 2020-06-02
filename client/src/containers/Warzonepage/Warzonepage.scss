@@ -1,12 +1,12 @@
 .warzone-page {
   background: #000;
-  height: 105vh;
+  height: 100vh;
   background-attachment: fixed;
 }
 
 .accordion-section {
-  width: 1650px;
-  margin: 15px auto;
+  width: 1675px;
+  margin: 30px auto;
   overflow: hidden;
   box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.08);
   border: 1px solid rgba(255, 255, 255, 0.6);
@@ -15,7 +15,7 @@
 .accordion-section figure {
   position: absolute;
   top: 0;
-  left: 175px; /* width of visible piece */
+  left: 125px; /* width of visible piece */
   width: 1300px;
   height: 100%;
   box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.6);
@@ -33,21 +33,38 @@
   height: 100%;
 }
 
-.accordion-section label {
-  font-size: 30px;
+.accordion-section label, #arrow-background {
+  font-size: 1.4rem;
   padding: 10px;
-  width: 175px;
+  width: 125px;
+  height: 42px;
   text-align: center;
   background: #4c54509e;
   position: absolute;
   font-weight: bolder;
+  
+}
+
+#arrow-indicator {
+  transform: rotate(90deg);
+  width: 8%;
+  height: auto;
+  position: absolute;
+  top: -31px;
+  left: 8px;
+}
+
+
+
+.opening-selection {
+  position: relative;
 }
 
 .accordion-section input {
   position: absolute;
   top: 0;
   left: 0;
-  width: 175px; /* just cover visible part */
+  width: 125px; /* just cover visible part */
   height: 100%;
   cursor: pointer;
   border: 0;
@@ -173,7 +190,6 @@ figure {
   width: 50%;
   background: #000000b5;
   padding: 20px;
-  // box-shadow: 0px 0px 9px #ffffff6e;
 }
 
 .tool-info {
@@ -198,8 +214,6 @@ figure {
 .wz-info-area {
   display: flex;
   justify-content: space-evenly;
-  margin-top: 30px;
-  // background: #000000a3;
   padding: 20px;
 }
 
@@ -220,7 +234,6 @@ figure {
 }
 
 .wz-tool-detail h2 {
-  // background: #0000006b;
   margin: auto;
   width: 26%;
   text-align: center;
@@ -234,4 +247,8 @@ figure {
 .warzone-title {
   text-align: center;
   margin: auto;
+}
+
+#arrow-background {
+  opacity: 1;
 }
