@@ -1,11 +1,10 @@
-.library-buttons-container {
-  cursor: pointer;
+.filter-buttons {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  width: 60%;
+  width: 50%;
   margin: auto;
-  background: #b5d3e1;
+  // background: #03a9f4;
   margin-top: 10px;
 
   p {

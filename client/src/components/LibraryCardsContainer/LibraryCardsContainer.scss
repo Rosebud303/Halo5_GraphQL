@@ -1,0 +1,117 @@
+.library-cards-container {
+  background: red;
+
+  ul {
+    // position: relative;
+    margin: 0px auto;
+    padding-top: 20px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  img {
+    width: 100%;
+  }
+
+  li {
+    margin: 0px;
+    // float: left;
+    // opacity: 0;
+    width: 386px;
+    height: 280px;
+    transition: opacity 0.6s ease-in-out;
+    list-style-type: none;
+  }
+  ul a {
+    display: block;
+    position: relative;
+    padding: 10px;
+    background: #fff;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    margin: 4px;
+    width: 320px;
+    height: 240px;
+    overflow: hidden;
+    &:hover span {
+      height: 172px;
+      opacity: 1;
+    }
+  }
+  a span {
+    display: block;
+    background: rgba(113, 123, 161, 0.9);
+    font-weight: bold;
+    padding: 10px;
+    position: absolute;
+    bottom: 60px;
+    left: 10px;
+    width: 300px;
+    height: 0px;
+    overflow: hidden;
+    opacity: 0;
+    text-align: center;
+    text-shadow: 1px 1px 1px #303857;
+    transition: all 0.3s ease-in-out;
+    font-size: 1.4rem;
+    font-family: "Orbitron", sans-serif;
+    font-weight: bolder;
+    color: rgb(182, 182, 182);
+  }
+
+  ul li img {
+    display: block;
+    background: #000;
+  }
+}
+
+#library-medal {
+  margin: 15px;
+}
+
+.library-medal-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 125px;
+  height: 170px;
+  margin: 15px;
+  p {
+    word-wrap: break-word;
+  }
+}
+
+#library-skull a {
+  width: 275px;
+  height: 275px;
+  padding: 10px;
+
+  span {
+    // left: 0;
+    bottom: 9px;
+    height: 256px;
+    width: 256px;
+    transition: all 0.3s ease-in-out;
+    overflow: hidden;
+    text-align: center;
+    // &:hover span {
+    //   height: 172px;
+    //   opacity: 1;
+    // }
+  }
+
+  img {
+    width: auto;
+  }
+}
+
+.library-card-description {
+  font-size: 0.85rem;
+  font-family: "Orbitron", sans-serif;
+  font-weight: 700;
+  color: white;
+  // overflow: scroll;
+}
