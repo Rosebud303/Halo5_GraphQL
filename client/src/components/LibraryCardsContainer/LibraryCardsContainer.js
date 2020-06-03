@@ -1,17 +1,23 @@
-import React from 'react';
-import './LibraryCardsContainer.scss';
+import React from "react";
+import "./LibraryCardsContainer.scss";
 
 const LibraryCardsContainer = (props) => {
-  const libraryCards = props.selectedLibrary.map(card => {
-    console.log(card.name)
-    return (<p>{card.name}</p>)
-  })
+  const libraryCards = props.selectedLibrary.map((card) => {
+    return (
+      <li>
+        <a>
+          <span>{card.name}</span>
+          <img src={card.largeIconImageUrl || card.imageUrl} />
+        </a>
+      </li>
+    );
+  });
 
   return (
-    <div>
-      {libraryCards}
+    <div className='library-cards-container'>
+      <ul>{libraryCards}</ul>
     </div>
-  )
-}
+  );
+};
 
 export default LibraryCardsContainer;

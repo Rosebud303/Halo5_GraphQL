@@ -1,41 +1,47 @@
-import React, { Component } from 'react';
-import './MetadataPage.scss';
-import Header from '../Header/Header';
-import LibrarySelector from '../LibrarySelector/LibrarySelector';
-import LibraryCardsContainer from '../LibraryCardsContainer/LibraryCardsContainer';
-
+import React, { Component } from "react";
+import "./MetadataPage.scss";
+import Header from "../Header/Header";
+import LibrarySelector from "../LibrarySelector/LibrarySelector";
+import LibraryCardsContainer from "../LibraryCardsContainer/LibraryCardsContainer";
+import { LibraryCardsFilters } from "../LibraryCardsFilters/LibraryCardsFilters";
 
 class MetadataPage extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
-      selectedLibraryName: '',
+      selectedLibraryName: "",
       selectedLibrary: [],
-      selectedLibraryFilters: []
-    }
+      selectedLibraryFilters: [],
+    };
   }
 
   changeLibrary = (e) => {
     this.setState({ selectedLibraryName: e.target.innerText.toLowerCase() }, () => {
-      this.changeSelectedLibrary()
-    })
-
-  }
+      this.changeSelectedLibrary();
+    });
+    this.changeLibraryFilters(e);
+  };
 
   changeSelectedLibrary = () => {
-    let library = JSON.parse(localStorage.getItem(`${this.state.selectedLibraryName}Metadata`))
-    this.setState({ selectedLibrary: library })
-  }
+    let library = JSON.parse(localStorage.getItem(`${this.state.selectedLibraryName}Metadata`));
+    this.setState({ selectedLibrary: library });
+  };
+
+  changeLibraryFilters = (e) => {
+    this.setState({ selectedLibraryFilters: JSON.parse(e.target.dataset.filter) });
+  };
 
   render() {
     return (
       <div>
-        <Header title={'Libraries'} button1={'warzone'} button2={'arena'} />
+        <Header title={"Libraries"} button1={"warzone"} button2={"arena"} />
         <LibrarySelector changeLibrary={this.changeLibrary} />
+        {/* {this.state.selectedLibraryFilters[1] &&  />} */}
+        <LibraryCardsFilters selectedLibraryFilters={this.state.selectedLibraryFilters} />
         {this.state.selectedLibrary && <LibraryCardsContainer selectedLibrary={this.state.selectedLibrary} />}
       </div>
-    )
+    );
   }
 }
 
-export default MetadataPage
+export default MetadataPage;
