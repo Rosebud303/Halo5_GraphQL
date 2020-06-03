@@ -27,18 +27,18 @@ class MetadataPage extends Component {
     this.setState({ selectedLibrary: library });
   };
 
-  changeLibraryFilters = (e) => {
-    this.setState({ selectedLibraryFilters: JSON.parse(e.target.dataset.filter) });
+  changeLibraryFilters = async (e) => {
+    this.setState({ selectedLibraryFilters: await JSON.parse(e.target.dataset.filter) });
   };
 
   render() {
+    const { selectedLibrary, selectedLibraryFilters, selectedLibraryName } = this.state;
     return (
       <div>
         <Header title={"Libraries"} button1={"warzone"} button2={"arena"} />
         <LibrarySelector changeLibrary={this.changeLibrary} />
-        {/* {this.state.selectedLibraryFilters[1] &&  />} */}
-        <LibraryCardsFilters selectedLibraryFilters={this.state.selectedLibraryFilters} />
-        {this.state.selectedLibrary && <LibraryCardsContainer selectedLibrary={this.state.selectedLibrary} />}
+        <LibraryCardsFilters selectedLibraryFilters={selectedLibraryFilters} />
+        <LibraryCardsContainer selectedLibraryName={selectedLibraryName} selectedLibrary={selectedLibrary} />
       </div>
     );
   }
