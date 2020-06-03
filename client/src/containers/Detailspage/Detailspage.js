@@ -1,10 +1,10 @@
-import React, { Component } from "react";
-import "./Detailspage.scss";
-import { Link } from "react-router-dom";
-import gql from "graphql-tag";
-import { Query } from "react-apollo";
-import { connect } from "react-redux";
-import Header from "../../components/Header/Header";
+import React, { Component } from 'react';
+import './Detailspage.scss';
+import { Link } from 'react-router-dom';
+import gql from 'graphql-tag';
+import { Query } from 'react-apollo';
+import { connect } from 'react-redux';
+import Header from '../../components/Header/Header';
 
 let ACCUMULATTIVE_ARENA_QUERY = gql`
   query ArenaQuery($player_name: String!) {
@@ -90,20 +90,21 @@ class Detailspage extends Component {
       arenaMedals: [],
       warzoneMedals: [],
     };
-    this.parsedMedalsMetadata = JSON.parse(localStorage.getItem("medalsMetadata"));
+    this.parsedMedalsMetadata = JSON.parse(localStorage.getItem('medalsMetadata'));
 
   }
 
   findBestMedals = (medalsArray) => {
     let medalWithDifficulty = medalsArray.map((medal) => {
       let foundMedal = this.parsedMedalsMetadata.find((found) => found.id === medal.MedalId) || {};
-      if (foundMedal.difficulty === 0) return;
+      const { id, name, description, difficulty, spriteLocation } = foundMedal
+      if (difficulty === 0) return;
       return {
-        Id: foundMedal.id,
-        Name: foundMedal.name,
-        Description: foundMedal.description,
-        Difficulty: foundMedal.difficulty,
-        Location: foundMedal.spriteLocation,
+        Id: id,
+        Name: name,
+        Description: description,
+        Difficulty: difficulty,
+        Location: spriteLocation,
         Count: medal.Count,
       };
     });
@@ -111,23 +112,23 @@ class Detailspage extends Component {
   };
 
   contentCreator = (queriedData) => {
-    return this.findBestMedals(queriedData).map((medal) => {
+    return this.findBestMedals(queriedData).map(({ Location: { spriteSheetUri, left, top }, Count, Name, Description }) => {
       const medalStyles = {
-        backgroundImage: `url(${medal.Location.spriteSheetUri})`,
-        backgroundPosition: `-${medal.Location.left}px -${medal.Location.top}px`,
-        backgroundSize: "auto",
-        width: "74px",
-        height: "74px",
-        margin: "8px",
-        size: "50%",
+        backgroundImage: `url(${spriteSheetUri})`,
+        backgroundPosition: `-${left}px -${top}px`,
+        backgroundSize: 'auto',
+        width: '74px',
+        height: '74px',
+        margin: '8px',
+        size: '50%',
       };
       return (
         <div className='single-medal-container'>
           <div id='div-medal' className='div-medal' style={medalStyles}>
-            <p className='medal-count'>x{medal.Count}</p>
+            <p className='medal-count'>x{Count}</p>
           </div>
           <p id='medal-info' className='medal-info'>
-            {medal.Name} - {medal.Description}
+            {Name} - {Description}
           </p>
         </div>
       );
@@ -136,8 +137,8 @@ class Detailspage extends Component {
 
   render() {
     const player_name = this.props.currentPlayer;
-    const parsedCsrMetadata = JSON.parse(localStorage.getItem("csrMetadata"));
-    const parsedWeaponsMetadata = JSON.parse(localStorage.getItem("weaponsMetadata"));
+    const parsedCsrMetadata = JSON.parse(localStorage.getItem('csrMetadata'));
+    const parsedWeaponsMetadata = JSON.parse(localStorage.getItem('weaponsMetadata'));
 
     return (<>
       <Header header={'Details Page'} button1={'warzone'} button2={'arena'} />
@@ -242,8 +243,6 @@ class Detailspage extends Component {
                         TotalKills,
                         TotalDeaths,
                         TotalAssists,
-                        TotalHeadshots,
-                        TotalWeaponDamage,
                         TotalShotsFired,
                         TotalShotsLanded,
                         TotalGamesWon,

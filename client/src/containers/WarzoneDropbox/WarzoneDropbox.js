@@ -1,9 +1,9 @@
-import React, { Component } from "react";
-import "./WarzoneDropbox.scss";
-import { connect } from "react-redux";
-import { Query } from "react-apollo";
-import gql from "graphql-tag";
-import Header from "../../components/Header/Header";
+import React, { Component } from 'react';
+import './WarzoneDropbox.scss';
+import { connect } from 'react-redux';
+import { Query } from 'react-apollo';
+import gql from 'graphql-tag';
+import Header from '../../components/Header/Header';
 
 const WARZONE_DROPDOWN_QUERY = gql`
   query WarzoneQuery($player_name: String!, $GameBaseVariantId: String!) {
@@ -44,11 +44,11 @@ const MAP_QUERY = gql`
 `;
 
 class WarzoneDropbox extends Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
     this.state = {
-      currentMapVariantId: "",
-      currentMapVariantName: "",
+      currentMapVariantId: '',
+      currentMapVariantName: '',
     };
   }
 
@@ -60,7 +60,7 @@ class WarzoneDropbox extends Component {
     let mapVarId = selectOptions[optionIndex].id;
     let mapVarIdName = selectOptions[optionIndex].text;
     await this.setState({
-      currentMapVariantId: "",
+      currentMapVariantId: '',
       currentMapVariantName: e.target.options[emptyOption],
     });
     this.setState({
@@ -70,27 +70,28 @@ class WarzoneDropbox extends Component {
   };
 
   render() {
-    const player_name = this.props.currentPlayer;
-    const GameBaseVariantId = this.props.warzoneGameVariantId;
-    const MapId = this.state.currentMapVariantId;
+    const { props: { currentPlayer, warzoneGameVariantId }, state: { currentMapVariantId, currentMapVariantName }, selectMapVariant } = this
+    const player_name = currentPlayer;
+    const GameBaseVariantId = warzoneGameVariantId;
+    const MapId = currentMapVariantId;
+
     return (
       <div className='whole-page'>
         <div>
-          <Header title={this.state.currentMapVariantName} header={"Warzone Variant"} button1={"warzone"} button2={"arena"} />
+          <Header title={currentMapVariantName} header={'Warzone Variant'} button1={'warzone'} button2={'arena'} />
           <Query query={WARZONE_DROPDOWN_QUERY} variables={{ player_name, GameBaseVariantId }}>
             {({ loading, error, data }) => {
               if (loading) return <option>Loading...</option>;
               if (error) console.log(error);
-              
-              const parsedMapsMetadata = JSON.parse(localStorage.getItem("mapsMetadata"));
+              const parsedMapsMetadata = JSON.parse(localStorage.getItem('mapsMetadata'));
 
               return (
                 <div className='wz-drop-down'>
                   <label htmlFor='filter'> Personal Warzone Playlist:</label>
-                  <select onChange={(event) => this.selectMapVariant(event)} name='filter' className='warzone-dropdown'>
+                  <select onChange={(event) => selectMapVariant(event)} name='filter' className='warzone-dropdown'>
                     <option>No Selection</option>
                     {data.wzVariantStats
-                      .filter((gameVariant) => gameVariant.GameBaseVariantId === this.props.warzoneGameVariantId)
+                      .filter((gameVariant) => gameVariant.GameBaseVariantId === warzoneGameVariantId)
                       .map((id) => {
                         return (
                           <option id={id.MapId} key={id.MapId}>
@@ -108,21 +109,22 @@ class WarzoneDropbox extends Component {
           {({ loading, error, data }) => {
             if (loading) return <p>Loading...</p>;
             if (error) console.log(error);
-            const parsedMapsMetadata = JSON.parse(localStorage.getItem("mapsMetadata"));
-            const parsedWeaponsMetadata = JSON.parse(localStorage.getItem("weaponsMetadata"));
+            const parsedMapsMetadata = JSON.parse(localStorage.getItem('mapsMetadata'));
+            const parsedWeaponsMetadata = JSON.parse(localStorage.getItem('weaponsMetadata'));
             const foundMap = parsedMapsMetadata.find((map) => map.id === MapId);
             const foundWeapon = parsedWeaponsMetadata.find((weapon) => {
               if (data.mapStats) {
                 return weapon.id === data.mapStats.WeaponWithMostKills.WeaponId.StockId;
               }
             });
+            
             return !data.mapStats ? (
               <p>Select From Dropdown...</p>
             ) : (
                 <div className='main-container'>
                   <div className='dropbox-container'>
                     <div className='imageHolder'>
-                      <h3>{this.state.currentMapVariantName}</h3>
+                      <h3>{currentMapVariantName}</h3>
                       {MapId && <img src={foundMap.imageUrl} className='images' alt='selected halo 5 map' />}
                     </div>
                     <div className='dropbox-data-content'>

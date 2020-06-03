@@ -19,15 +19,15 @@ export default class Carousel extends Component {
     ]
 
     const renderSlides = () =>
-      articleData.map((article) => {
-        const imgStyle = { backgroundImage: `url(${article.imgLink})` }
+      articleData.map(({ imgLink, title, summary, url }) => {
+        const imgStyle = { backgroundImage: `url(${imgLink})` }
         return (<div>
           <div className='carousel-slide'>
             <div className='article-img-container' style={imgStyle}></div>
             <div className='article-info'>
-              <h3>{article.title}</h3>
-              <p>{article.summary}</p>
-              <a href={article.url} target='_blank'>Click Here to Read More..</a>
+              <h3>{title}</h3>
+              <p>{summary}</p>
+              <a href={url} target='_blank'>Click Here to Read More..</a>
             </div>
           </div>
         </div>

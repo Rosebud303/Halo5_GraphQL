@@ -1,18 +1,18 @@
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import { connect } from "react-redux";
-import "./Homepage.scss";
-import * as actions from "../../actions";
-import Carousel from "../Carousel/Carousel";
-import { api_key, proxyurl } from "../../apikey";
-import axios from "axios";
-import Spinner from "../../Spinner/Spinner";
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import './Homepage.scss';
+import * as actions from '../../actions';
+import Carousel from '../Carousel/Carousel';
+import { api_key, proxyurl } from '../../apikey';
+import axios from 'axios';
+import Spinner from '../../Spinner/Spinner';
 
 class Homepage extends Component {
   constructor() {
     super();
     this.state = {
-      searchedPlayer: "",
+      searchedPlayer: '',
     };
   }
 
@@ -29,8 +29,8 @@ class Homepage extends Component {
 
   handleSubmit = async (event) => {
     event.preventDefault();
-    this.props.setImgUrlSpartan("");
-    this.props.setImgUrlEmblem("");
+    this.props.setImgUrlSpartan('');
+    this.props.setImgUrlEmblem('');
     await this.props.currentSearchedPlayer(this.state.searchedPlayer);
     this.setUrlSpartan();
     this.setUrlEmblem();
@@ -39,41 +39,42 @@ class Homepage extends Component {
   setUrlSpartan = () => {
     axios
       .create({
-        headers: { "Ocp-Apim-Subscription-Key": api_key },
+        headers: { 'Ocp-Apim-Subscription-Key': api_key },
       })
       .get(
         proxyurl +
         `https://www.haloapi.com/profile/h5/profiles/${this.props.currentPlayer}/spartan?size=512`
       )
-      .then((data) => this.props.setImgUrlSpartan(data.headers["x-final-url"]));
+      .then((data) => this.props.setImgUrlSpartan(data.headers['x-final-url']));
   };
 
   setUrlEmblem = () => {
     axios
       .create({
-        headers: { "Ocp-Apim-Subscription-Key": api_key },
+        headers: { 'Ocp-Apim-Subscription-Key': api_key },
       })
       .get(
         proxyurl +
         `https://www.haloapi.com/profile/h5/profiles/${this.props.currentPlayer}/emblem?size=512`
       )
-      .then((data) => this.props.setImgUrlEmblem(data.headers["x-final-url"]));
+      .then((data) => this.props.setImgUrlEmblem(data.headers['x-final-url']));
   };
 
   render() {
+    const {handleSubmit, handleChange, state: {searchedPlayer}, props: { currentImgUrlSpartan, currentImgUrlEmblem}} = this
     return (
       <>
         <div className='carousel-search-options'>
           <Carousel />
-          <form className='welcome-form' onSubmit={this.handleSubmit}>
+          <form className='welcome-form' onSubmit={handleSubmit}>
             <input
               className='welcome-search welcome-search-input'
               name='search'
-              onChange={this.handleChange}
+              onChange={handleChange}
               placeholder='Find New Spartan...'
               required
               type='text'
-              value={this.state.searchedPlayer}
+              value={searchedPlayer}
             />
             <button
               className='welcome-search welcome-search-button'
@@ -85,24 +86,24 @@ class Homepage extends Component {
         </div>
         <div className='lesser-spartan-details'>
           <section className='spartan-gfx'>
-            {this.props.currentImgUrlSpartan ? (
+            {currentImgUrlSpartan ? (
               <img
                 alt='Spartan Appearance'
-                lowsrc={"../../Spinner/Spinner"}
+                lowsrc={'../../Spinner/Spinner'}
                 className='lesser-spartan-img'
-                src={this.props.currentImgUrlSpartan}
+                src={currentImgUrlSpartan}
               />
             ) : (
-                <Spinner name={"Spartan"} />
+                <Spinner name={'Spartan'} />
               )}
-            {this.props.currentImgUrlEmblem ? (
+            {currentImgUrlEmblem ? (
               <img
                 alt='Player Emblem'
                 className='lesser-emblem'
-                src={this.props.currentImgUrlEmblem}
+                src={currentImgUrlEmblem}
               />
             ) : (
-                <Spinner name={"Spartan"} />
+                <Spinner name={'Spartan'} />
               )}
           </section>
           <section className='banner-company-links'>

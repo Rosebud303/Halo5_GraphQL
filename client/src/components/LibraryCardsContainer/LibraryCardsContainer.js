@@ -1,43 +1,45 @@
-import React from "react";
-import "./LibraryCardsContainer.scss";
+import React from 'react';
+import './LibraryCardsContainer.scss';
 
-const LibraryCardsContainer = (props) => {
-  const libraryCards = props.selectedLibrary.map((card) => {
-    if (props.selectedLibraryName === "medals" && card.spriteLocation) {
+const LibraryCardsContainer = ({ selectedLibrary, selectedLibraryName }) => {
+  const libraryCards = selectedLibrary.map((card) => {
+    if (selectedLibraryName === 'medals' && card.spriteLocation) {
+      const { spriteLocation: { spriteSheetUri, left, top }, name, description } = card
       const medalStyle = {
-        backgroundImage: `url(${card.spriteLocation.spriteSheetUri})`,
-        backgroundPosition: `-${card.spriteLocation.left}px -${card.spriteLocation.top}px`,
-        backgroundSize: "auto",
-        width: "74px",
-        height: "74px",
+        backgroundImage: `url(${spriteSheetUri})`,
+        backgroundPosition: `-${left}px -${top}px`,
+        backgroundSize: 'auto',
+        width: '74px',
+        height: '74px',
       };
       return (
         <div className='library-medal-container'>
           <li id='library-medal' style={medalStyle}></li>
-          <p>{card.name}</p>
+          <p>{name}</p>
         </div>
       );
     }
-    if (props.selectedLibraryName === "skulls") {
+    const { name, description, largeIconImageUrl, imageUrl, faction, type } = card
+    if (selectedLibraryName === 'skulls') {
       return (
         <li id='library-skull'>
           <a>
-            <span>{card.name} <p className='library-card-description'>{card.description}</p></span>
-            <img src={card.largeIconImageUrl || card.imageUrl} />
-            </a>
+            <span>{name} <p className='library-card-description'>{description}</p></span>
+            <img src={largeIconImageUrl || imageUrl} />
+          </a>
         </li>
       );
     }
     return (
       <li>
         <a>
-          <span>{card.name}
-            <p className='library-card-description'>{card.description}</p>
-            <p className='library-card-description'>{card.faction}</p>
-            <p className='library-card-description'>{card.type}</p>
+          <span>{name}
+            <p className='library-card-description'>{description}</p>
+            <p className='library-card-description'>{faction}</p>
+            <p className='library-card-description'>{type}</p>
           </span>
-          
-          <img src={card.largeIconImageUrl || card.imageUrl} />
+
+          <img src={largeIconImageUrl || imageUrl} />
         </a>
       </li>
     );

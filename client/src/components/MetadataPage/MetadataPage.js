@@ -1,15 +1,15 @@
-import React, { Component } from "react";
-import "./MetadataPage.scss";
-import Header from "../Header/Header";
-import LibrarySelector from "../LibrarySelector/LibrarySelector";
-import LibraryCardsContainer from "../LibraryCardsContainer/LibraryCardsContainer";
-import { LibraryCardsFilters } from "../LibraryCardsFilters/LibraryCardsFilters";
+import React, { Component } from 'react';
+import './MetadataPage.scss';
+import Header from '../Header/Header';
+import LibrarySelector from '../LibrarySelector/LibrarySelector';
+import LibraryCardsContainer from '../LibraryCardsContainer/LibraryCardsContainer';
+import { LibraryCardsFilters } from '../LibraryCardsFilters/LibraryCardsFilters';
 
 class MetadataPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedLibraryName: "",
+      selectedLibraryName: '',
       selectedLibrary: [],
       selectedLibraryFilters: [],
     };
@@ -27,16 +27,17 @@ class MetadataPage extends Component {
     this.setState({ selectedLibrary: library });
   };
 
-  changeLibraryFilters = async (e) => {
-    this.setState({ selectedLibraryFilters: await JSON.parse(e.target.dataset.filter) });
+  changeLibraryFilters = (e) => {
+    this.setState({ selectedLibraryFilters: JSON.parse(e.target.dataset.filter) });
   };
 
   render() {
-    const { selectedLibrary, selectedLibraryFilters, selectedLibraryName } = this.state;
+    const { state: { selectedLibrary, selectedLibraryFilters, selectedLibraryName }, changeLibrary } = this;
+    
     return (
       <div>
-        <Header title={"Libraries"} button1={"warzone"} button2={"arena"} />
-        <LibrarySelector changeLibrary={this.changeLibrary} />
+        <Header title={'Libraries'} button1={'warzone'} button2={'arena'} />
+        <LibrarySelector changeLibrary={changeLibrary} />
         <LibraryCardsFilters selectedLibraryFilters={selectedLibraryFilters} />
         <LibraryCardsContainer selectedLibraryName={selectedLibraryName} selectedLibrary={selectedLibrary} />
       </div>

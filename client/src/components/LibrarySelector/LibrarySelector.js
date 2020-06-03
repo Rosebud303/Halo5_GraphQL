@@ -1,28 +1,28 @@
-import React from "react";
-import "./LibrarySelector.scss";
+import React from 'react';
+import './LibrarySelector.scss';
 
-const LibrarySelector = (props) => {
+const LibrarySelector = ({ changeLibrary }) => {
   return (
     <div className='library-buttons-container'>
-      <p className='libraries-button' data-filter={JSON.stringify(["OsirisTeam", "BlueTeam"])} onClick={(event) => props.changeLibrary(event)}>
+      <p className='libraries-button' data-filter={JSON.stringify(['OsirisTeam', 'BlueTeam'])} onClick={(event) => changeLibrary(event)}>
         Campaigns
       </p>
-      <p className='libraries-button' data-filter={JSON.stringify([])} onClick={(event) => props.changeLibrary(event)}>
+      <p className='libraries-button' data-filter={JSON.stringify([])} onClick={(event) => changeLibrary(event)}>
         Vehicles
       </p>
-      <p className='libraries-button' data-filter={JSON.stringify([])} onClick={(event) => props.changeLibrary(event)}>
+      <p className='libraries-button' data-filter={JSON.stringify([])} onClick={(event) => changeLibrary(event)}>
         Skulls
       </p>
-      <p className='libraries-button' data-filter={JSON.stringify(["Standard", "Unknown", "Power"])} onClick={(event) => props.changeLibrary(event)}>
+      <p className='libraries-button' data-filter={JSON.stringify(['Standard', 'Unknown', 'Power'])} onClick={(event) => changeLibrary(event)}>
         Weapons
       </p>
-      <p className='libraries-button' data-filter={JSON.stringify(["Vehicles", "KillingSpree", "Style", "WeaponProficiency", "MultiKill", "Warzone"])} onClick={(event) => props.changeLibrary(event)}>
+      <p className='libraries-button' data-filter={JSON.stringify(['Vehicles', 'KillingSpree', 'Style', 'WeaponProficiency', 'MultiKill', 'Warzone'])} onClick={(event) => changeLibrary(event)}>
         Medals
       </p>
-      <p className='libraries-button' data-filter={JSON.stringify(["Covenant", "Promethean", "Unsc"])} onClick={(event) => props.changeLibrary(event)}>
+      <p className='libraries-button' data-filter={JSON.stringify(['Covenant', 'Promethean', 'Unsc'])} onClick={(event) => changeLibrary(event)}>
         Enemies
       </p>
-      <p className='libraries-button' data-filter={JSON.stringify(["Campaign", "Warzone", "Arena", "Custom"])} onClick={(event) => props.changeLibrary(event)}>
+      <p className='libraries-button' data-filter={JSON.stringify(['Campaign', 'Warzone', 'Arena', 'Custom'])} onClick={(event) => changeLibrary(event)}>
         Maps
       </p>
     </div>

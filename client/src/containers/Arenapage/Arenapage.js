@@ -1,9 +1,9 @@
-import React, { Component } from "react";
-import "./Arenapage.scss";
-import { Link } from "react-router-dom";
-import { connect } from "react-redux";
-import { Query } from "react-apollo";
-import gql from "graphql-tag";
+import React, { Component } from 'react';
+import './Arenapage.scss';
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { Query } from 'react-apollo';
+import gql from 'graphql-tag';
 
 let ARENA_DROPDOWN_QUERY = gql`
   query GameVariantIdQuery($player_name: String!) {
@@ -75,11 +75,11 @@ let ARENA_CSR_QUERY = gql`
 `
 
 class Arenapage extends Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
     this.state = {
-      currentGameVariant: "",
-      currentGameVariantName: "",
+      currentGameVariant: '',
+      currentGameVariantName: '',
     };
   }
 
@@ -91,7 +91,7 @@ class Arenapage extends Component {
     let gameVarId = selectOptions[optionIndex].id;
     let gameVarIdName = selectOptions[optionIndex].text;
     await this.setState({
-      currentGameVariant: "",
+      currentGameVariant: '',
       currentGameVariantName: e.target.options[emptyOption],
     });
     this.setState({
@@ -103,10 +103,10 @@ class Arenapage extends Component {
   render() {
     const player_name = this.props.currentPlayer;
     const GameBaseVariantId = this.state.currentGameVariant;
-    const parsedWeaponsMetadata = JSON.parse(localStorage.getItem("weaponsMetadata"));
-    const parsedMedalsMetadata = JSON.parse(localStorage.getItem("medalsMetadata"));
-    const parsedCsrMetadata = JSON.parse(localStorage.getItem("csrMetadata"));
-    const parsedSeasonsMetadata = JSON.parse(localStorage.getItem("seasonsMetadata"));
+    const parsedWeaponsMetadata = JSON.parse(localStorage.getItem('weaponsMetadata'));
+    const parsedMedalsMetadata = JSON.parse(localStorage.getItem('medalsMetadata'));
+    const parsedCsrMetadata = JSON.parse(localStorage.getItem('csrMetadata'));
+    const parsedSeasonsMetadata = JSON.parse(localStorage.getItem('seasonsMetadata'));
 
     return (
       <div className='arena-page'>
@@ -121,7 +121,7 @@ class Arenapage extends Component {
                 if (loading) return <option>Loading...</option>;
                 if (error) console.log(error);
                 const parsedGameVariantMetadata = JSON.parse(
-                  localStorage.getItem("gameBaseVariantsMetadata")
+                  localStorage.getItem('gameBaseVariantsMetadata')
                 );
 
                 return (
@@ -175,20 +175,22 @@ class Arenapage extends Component {
             variables={{ player_name, GameBaseVariantId }}
           >
             {({ loading, error, data }) => {
-              if (loading) return "";
+              if (loading) return '';
               if (error) console.log(error);
               const { TotalGamesWon, TotalGamesLost, TotalGamesTied, TotalGamesCompleted, TotalKills, TotalDeaths, TotalAssists, WeaponWithMostKills, TotalAssassinations, TotalMeleeKills, TotalGroundPoundKills, TotalShoulderBashKills, TotalGrenadeKills, TotalPowerWeaponKills, TotalHeadshots, TotalWeaponDamage, TotalShotsFired, TotalShotsLanded, Impulses, MedalAwards, FlexibleStats } = data.arenaStats
               const foundWeapon = parsedWeaponsMetadata.find((weapon) => weapon.id === WeaponWithMostKills.WeaponId.StockId);
+              
               const findBestMedals = () => {
                 let medalWithDifficulty = MedalAwards.map(medal => {
                   let foundMedal = parsedMedalsMetadata.find(found => found.id === medal.MedalId) || {}
-                  if (foundMedal.difficulty === 0) return
+                  const {difficulty, id, name, description, spriteLocation} = foundMedal
+                  if (difficulty === 0) return
                   return {
-                    Id: foundMedal.id,
-                    Name: foundMedal.name,
-                    Description: foundMedal.description,
-                    Difficulty: foundMedal.difficulty,
-                    Location: foundMedal.spriteLocation,
+                    Id: id,
+                    Name: name,
+                    Description: description,
+                    Difficulty: difficulty,
+                    Location: spriteLocation,
                     Count: medal.Count
                   }
                 })
@@ -255,10 +257,10 @@ class Arenapage extends Component {
                     <div className='arena-details-box box-f'>
                       <h4 className='box-title'>Top Medals</h4>
                       <p className='hover-instructions'>(hover for details)</p>
-                      {findBestMedals().map(medal => {
+                      {findBestMedals().map(({ Location: { spriteSheetUri, left, top }, Count, Name, Description }) => {
                         const medalStyles = {
-                          backgroundImage: `url(${medal.Location.spriteSheetUri})`,
-                          backgroundPosition: `-${medal.Location.left}px -${medal.Location.top}px`,
+                          backgroundImage: `url(${spriteSheetUri})`,
+                          backgroundPosition: `-${left}px -${top}px`,
                           backgroundSize: 'auto',
                           width: '74px',
                           height: '74px',
@@ -267,8 +269,8 @@ class Arenapage extends Component {
                         };
                         return (
                           <div className='single-medal-container'>
-                            <div style={medalStyles}><p>x{medal.Count}</p></div>
-                            <p className='medal-info'><strong>{medal.Name}</strong> - {medal.Description}</p>
+                            <div style={medalStyles}><p>x{Count}</p></div>
+                            <p className='medal-info'><strong>{Name}</strong> - {Description}</p>
                           </div>
                         )
                       })}
