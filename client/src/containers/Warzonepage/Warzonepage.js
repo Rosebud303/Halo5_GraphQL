@@ -1,11 +1,11 @@
-import React, { Component } from "react";
-import "./Warzonepage.scss";
-import { Link } from "react-router-dom";
-import { connect } from "react-redux";
-import gql from "graphql-tag";
-import { Query } from "react-apollo";
-import { setWarzoneId } from "../../actions";
-import Header from "../../components/Header/Header";
+import React, { Component } from 'react';
+import './Warzonepage.scss';
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import gql from 'graphql-tag';
+import { Query } from 'react-apollo';
+import { setWarzoneId } from '../../actions';
+import Header from '../../components/Header/Header';
 
 
 let GAME_VARIANT_WARZONE_QUERY = gql`
@@ -40,14 +40,14 @@ let GAME_VARIANT_WARZONE_QUERY = gql`
 `;
 
 class Warzonepage extends Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
     this.state = {
-      gameVariantId: "dfd51ee3-9060-46c3-b131-08d946c4c7b9",
+      gameVariantId: 'dfd51ee3-9060-46c3-b131-08d946c4c7b9',
     };
-    this.parsedGameBaseVariants = JSON.parse(localStorage.getItem("gameBaseVariantsMetadata"));
-    this.parsedWeaponsMetadata = JSON.parse(localStorage.getItem("weaponsMetadata"));
-    this.parsedMedalsMetadata = JSON.parse(localStorage.getItem("medalsMetadata"));
+    this.parsedGameBaseVariants = JSON.parse(localStorage.getItem('gameBaseVariantsMetadata'));
+    this.parsedWeaponsMetadata = JSON.parse(localStorage.getItem('weaponsMetadata'));
+    this.parsedMedalsMetadata = JSON.parse(localStorage.getItem('medalsMetadata'));
   }
 
   reduceTotals = (data, property) => {
@@ -63,7 +63,7 @@ class Warzonepage extends Component {
     })[0].WeaponWithMostKills;
   };
 
-  findMostObtainedMedals = (data, parsedMedalsMetadata) => {
+  findMostObtainedMedals = (data) => {
     let allMedals = data.reduce((acc, cur) => {
       cur.MedalAwards.forEach((item) => {
         if (!acc[item.MedalId]) {
@@ -80,7 +80,7 @@ class Warzonepage extends Component {
       })
       .slice(0, 6);
     return sortedMedals.map((item) => {
-      let foundMedal = parsedMedalsMetadata.find((medal) => medal.id === item);
+      let foundMedal = this.parsedMedalsMetadata.find((medal) => medal.id === item);
       return {
         Count: allMedals[item],
         Name: foundMedal.name,
@@ -90,22 +90,22 @@ class Warzonepage extends Component {
   };
 
   createContent = (wholeData, id) => {
-    const { reduceTotals, findMostEffectiveWeapon, findMostObtainedMedals, parsedGameBaseVariants, parsedMedalsMetadata, parsedWeaponsMetadata } = this;
+    const { reduceTotals, findMostEffectiveWeapon, findMostObtainedMedals, parsedGameBaseVariants, parsedWeaponsMetadata } = this;
     const data = wholeData.scenarioStats.filter((item) => item.GameBaseVariantId === id);
     const foundWeapon = parsedWeaponsMetadata.find((weapon) => weapon.id === findMostEffectiveWeapon(data).WeaponId.StockId);
+
     return (
       <div>
         <div className='wz-variant-medals'>
           <h3>{parsedGameBaseVariants.find((variant) => variant.id === id).name} Medals:</h3>
           <div className='wz-displayed-medals'>
-            {findMostObtainedMedals(data, parsedMedalsMetadata).map((medal) => {
+            {findMostObtainedMedals(data).map((medal) => {
               const medalStyles = {
                 backgroundImage: `url(${medal.SpriteLocation.spriteSheetUri})`,
                 backgroundPosition: `-${medal.SpriteLocation.left}px -${medal.SpriteLocation.top}px`,
-                backgroundSize: "auto",
-                width: "74px",
-                height: "74px",
-                // margin: "2rem",
+                backgroundSize: 'auto',
+                width: '74px',
+                height: '74px',
               };
               return (
                 <div>
@@ -120,17 +120,17 @@ class Warzonepage extends Component {
           <div>
             <div className='wz-box'>
               <h2>Record</h2>
-              <p>Wins: {reduceTotals(data, "TotalGamesWon")}</p>
-              <p>Losses: {reduceTotals(data, "TotalGamesLost")}</p>
-              <p>Ties: {reduceTotals(data, "TotalGamesTied")}</p>
+              <p>Wins: {reduceTotals(data, 'TotalGamesWon')}</p>
+              <p>Losses: {reduceTotals(data, 'TotalGamesLost')}</p>
+              <p>Ties: {reduceTotals(data, 'TotalGamesTied')}</p>
             </div>
             <div className='wz-box'>
               <h2>Performance</h2>
-              <p>Kills: {reduceTotals(data, "TotalKills")}</p>
-              <p>Headshots: {reduceTotals(data, "TotalHeadshots")}</p>
-              <p>Shots Fired: {reduceTotals(data, "TotalShotsFired")}</p>
-              <p>Shots Landed: {reduceTotals(data, "TotalShotsLanded")}</p>
-              <p>Total Damage Dealt: {reduceTotals(data, "TotalWeaponDamage").toFixed(2)}</p>
+              <p>Kills: {reduceTotals(data, 'TotalKills')}</p>
+              <p>Headshots: {reduceTotals(data, 'TotalHeadshots')}</p>
+              <p>Shots Fired: {reduceTotals(data, 'TotalShotsFired')}</p>
+              <p>Shots Landed: {reduceTotals(data, 'TotalShotsLanded')}</p>
+              <p>Total Damage Dealt: {reduceTotals(data, 'TotalWeaponDamage').toFixed(2)}</p>
             </div>
           </div>
           <div className='wz-tool-detail'>
@@ -150,18 +150,18 @@ class Warzonepage extends Component {
   };
 
   render() {
-    const { parsedGameBaseVariants, createContent } = this;
-    let player_name = this.props.currentPlayer;
-    const firefightVariantId = "dfd51ee3-9060-46c3-b131-08d946c4c7b9";
-    const assaultVariantId = "42f97cca-2cb4-497a-a0fd-ceef1ba46bcc";
-    const regularVariantId = "f6de5351-3797-41e9-8053-7fb111a3a1a0";
+    const { createContent, props: { currentPlayer, setWarzoneId, } } = this;
+    let player_name = currentPlayer;
+    const firefightVariantId = 'dfd51ee3-9060-46c3-b131-08d946c4c7b9';
+    const assaultVariantId = '42f97cca-2cb4-497a-a0fd-ceef1ba46bcc';
+    const regularVariantId = 'f6de5351-3797-41e9-8053-7fb111a3a1a0';
 
     return (
       <div className='warzone-page'>
         <Header header={'Warzone Page'} button1={'details'} button2={'arena'} />
         <Query query={GAME_VARIANT_WARZONE_QUERY} variables={{ player_name }}>
           {({ loading, error, data }) => {
-            if (loading) return "";
+            if (loading) return '';
             if (error) console.log(error);
             console.log(data);
             return (
@@ -172,7 +172,7 @@ class Warzonepage extends Component {
                   <input type='radio' name='radio-set' defaultChecked='checked' />
                   <figcaption>
                     <Link to='/warzone/variant'>
-                      <span onClick={(e) => this.props.setWarzoneId(e.target.id)} id={firefightVariantId}>
+                      <span onClick={(e) => setWarzoneId(e.target.id)} id={firefightVariantId}>
                         (Firefight Maps)
                       </span>
                     </Link>
@@ -184,7 +184,7 @@ class Warzonepage extends Component {
                     <input type='radio' name='radio-set' defaultChecked='checked' placeholder='Warzone Assault' />
                     <figcaption>
                       <Link to='/warzone/variant'>
-                        <span onClick={(e) => this.props.setWarzoneId(e.target.id)} id={assaultVariantId}>
+                        <span onClick={(e) => setWarzoneId(e.target.id)} id={assaultVariantId}>
                           (Assault Maps)
                         </span>
                       </Link>
@@ -196,7 +196,7 @@ class Warzonepage extends Component {
                       <input type='radio' name='radio-set' defaultChecked='checked' />
                       <figcaption>
                         <Link to='/warzone/variant'>
-                          <span onClick={(e) => this.props.setWarzoneId(e.target.id)} id={regularVariantId}>
+                          <span onClick={(e) => setWarzoneId(e.target.id)} id={regularVariantId}>
                             (Regular Maps)
                           </span>
                         </Link>
@@ -207,7 +207,6 @@ class Warzonepage extends Component {
                         </div>
                         <img id='arrow-indicator' src='https://i.imgur.com/MwPGEJ6.gif' alt='Warzone Regular Background' />
                         <img className='game-variant-image' src='https://i.imgur.com/COPRcuJ.jpg' alt='Warzone Opening Background' />
-
                         <input type='radio' name='radio-set' id='accordion-selector-last' defaultChecked='checked' />
                         <figcaption>
                         </figcaption>

@@ -1,17 +1,17 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import "./WelcomePage.scss";
-import { Redirect } from "react-router-dom";
-import * as actions from "../../actions";
-import axios from "axios";
-import { api_key } from "../../apikey";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import './WelcomePage.scss';
+import { Redirect } from 'react-router-dom';
+import * as actions from '../../actions';
+import axios from 'axios';
+import { api_key } from '../../apikey';
 
 class WelcomePage extends Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
 
     this.state = {
-      searchedPlayer: "",
+      searchedPlayer: '',
       searched: false,
     };
   }
@@ -20,7 +20,7 @@ class WelcomePage extends Component {
     if (!localStorage.csrMetadata) {
       axios
         .create({
-          headers: { "Ocp-Apim-Subscription-Key": api_key },
+          headers: { 'Ocp-Apim-Subscription-Key': api_key },
         })
         .get(`https://www.haloapi.com/metadata/h5/metadata/csr-designations`)
         .then(data => localStorage.setItem('csrMetadata', JSON.stringify(data.data)))
@@ -40,7 +40,8 @@ class WelcomePage extends Component {
   };
 
   render() {
-    const redirectPath = this.state.searched ? "/homepage" : "/";
+    const { state: { searched, searchedPlayer }, handleSubmit, handleChange } = this
+    const redirectPath = searched ? '/homepage' : '/';
 
     return (
       <>
@@ -48,16 +49,16 @@ class WelcomePage extends Component {
           <h1 className='welcome-heading'>Halo Search GraphQL</h1>
         </header>
         <div className='welcome-page'>
-          <form className='welcome-form' onSubmit={this.handleSubmit}>
+          <form className='welcome-form' onSubmit={handleSubmit}>
             <Redirect to={redirectPath} />
             <input
               className='welcome-search welcome-search-input'
               name='search'
-              onChange={this.handleChange}
+              onChange={handleChange}
               placeholder='Search Your Spartan...'
               required
               type='text'
-              value={this.state.searchedPlayer}
+              value={searchedPlayer}
             />
             <button
               className='welcome-search welcome-search-button'

@@ -1,13 +1,13 @@
-import React, { Component } from "react";
-import { Route, Switch } from "react-router-dom";
-import WelcomePage from "../WelcomePage/WelcomePage";
-import Homepage from "../HomePage/Homepage";
-import Detailspage from "../Detailspage/Detailspage";
-import Arenapage from "../Arenapage/Arenapage";
-import Warzonepage from "../Warzonepage/Warzonepage";
-import MetadataLoader from "../../MetadataLoader";
-import WarzoneVariant from "../WarzoneVariant/WarzoneVariant";
-import MetadataPage from "../../components/MetadataPage/MetadataPage";
+import React, { Component } from 'react';
+import { Route, Switch } from 'react-router-dom';
+import WelcomePage from '../WelcomePage/WelcomePage';
+import Homepage from '../HomePage/Homepage';
+import Detailspage from '../Detailspage/Detailspage';
+import Arenapage from '../Arenapage/Arenapage';
+import Warzonepage from '../Warzonepage/Warzonepage';
+import MetadataLoader from '../../MetadataLoader';
+import WarzoneVariant from '../WarzoneVariant/WarzoneVariant';
+import MetadataPage from '../../components/MetadataPage/MetadataPage';
 
 export default class App extends Component {
   render() {
