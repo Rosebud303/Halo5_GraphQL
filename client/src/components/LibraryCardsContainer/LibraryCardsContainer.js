@@ -30,19 +30,23 @@ const LibraryCardsContainer = ({ selectedLibrary, selectedLibraryName }) => {
         </li>
       );
     }
-    return (
-      <li>
-        <a>
-          <span>{name}
-            <p className='library-card-description'>{description}</p>
-            <p className='library-card-description'>{faction}</p>
-            <p className='library-card-description'>{type}</p>
-          </span>
+    if (selectedLibraryName === 'weapons' && type === 'Vehicle') {
+      return 
+    }
+      return (
+        <li>
+          <a>
+            <span>
+              {name}
+              <p className='library-card-description'>{description}</p>
+              <p className='library-card-description'>{faction}</p>
+              <p className='library-card-description'>{type}</p>
+            </span>
 
-          <img src={largeIconImageUrl || imageUrl} />
-        </a>
-      </li>
-    );
+            <img src={largeIconImageUrl || imageUrl} />
+          </a>
+        </li>
+      );
   });
 
   return (
