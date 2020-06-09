@@ -1,11 +1,11 @@
 import React from 'react';
 import './LibraryCardsFilters.scss'
 
-export const LibraryCardsFilters = (props) => {
-  let filters = props.selectedLibraryFilters.map(filter => <p>{filter}</p>)
+export const LibraryCardsFilters = ({ selectedLibraryFilters, filterChosenLibrary}) => {
+  let filters = selectedLibraryFilters.map(filter => <p onClick={(event) => filterChosenLibrary(event)} >{filter}</p>)
   return (
     <div className='filter-buttons'>
-      <p>ALL</p>
+      <p onClick={(event) => filterChosenLibrary(event)}>ALL</p>
       {filters}
     </div>
   )
