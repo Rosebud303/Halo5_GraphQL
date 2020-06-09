@@ -16,6 +16,7 @@ const LibraryCardsContainer = ({ selectedLibrary, selectedLibraryName }) => {
         <div className='library-medal-container'>
           <li id='library-medal' style={medalStyle}></li>
           <p>{name}</p>
+          <p className='meta-medal-description'>{description}</p>
         </div>
       );
     }
