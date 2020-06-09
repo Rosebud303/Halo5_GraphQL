@@ -3,76 +3,7 @@ import './Arenapage.scss';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Query } from 'react-apollo';
-import gql from 'graphql-tag';
-
-let ARENA_DROPDOWN_QUERY = gql`
-  query GameVariantIdQuery($player_name: String!) {
-    arenaGameBases(player_name: $player_name) {
-      GameBaseVariantId
-    }
-  }
-`;
-
-let SELECTED_VARIANT_QUERY = gql`
-  query ArenaQuery($player_name: String!, $GameBaseVariantId: String!) {
-    arenaStats(player_name: $player_name GameBaseVariantId: $GameBaseVariantId) {
-      TotalGamesWon
-      TotalGamesLost
-      TotalGamesTied
-      TotalGamesCompleted
-      TotalKills
-      TotalDeaths
-      TotalAssists
-      WeaponWithMostKills {
-        WeaponId {
-          StockId
-        }
-        TotalKills
-        TotalDamageDealt
-        TotalShotsFired
-        TotalShotsLanded
-      }
-      TotalAssassinations
-      TotalMeleeKills
-      TotalGroundPoundKills
-      TotalShoulderBashKills
-      TotalGrenadeKills
-      TotalPowerWeaponKills
-      TotalHeadshots
-      TotalWeaponDamage
-      TotalShotsFired
-      TotalShotsLanded
-      Impulses {
-        Id
-        Count
-      }
-      MedalAwards {
-        MedalId
-        Count
-      }
-      FlexibleStats {
-        MedalStatCounts {
-          Id
-          Count
-        }
-      }
-    }
-  }
-`;
-
-let ARENA_CSR_QUERY = gql`
-  query CsrQuery($player_name: String!) {
-    arenaCsr(player_name: $player_name) {
-      HighestCsrAttained {
-        Tier
-        DesignationId
-        PercentToNextTier
-      }
-      HighestCsrPlaylistId
-      HighestCsrSeasonId
-    }
-  }
-`
+import { ARENA_DROPDOWN_QUERY, SELECTED_VARIANT_QUERY, ARENA_CSR_QUERY } from '../../Queries/GraphQLQueries';
 
 class Arenapage extends Component {
   constructor() {
@@ -179,11 +110,11 @@ class Arenapage extends Component {
               if (error) console.log(error);
               const { TotalGamesWon, TotalGamesLost, TotalGamesTied, TotalGamesCompleted, TotalKills, TotalDeaths, TotalAssists, WeaponWithMostKills, TotalAssassinations, TotalMeleeKills, TotalGroundPoundKills, TotalShoulderBashKills, TotalGrenadeKills, TotalPowerWeaponKills, TotalHeadshots, TotalWeaponDamage, TotalShotsFired, TotalShotsLanded, Impulses, MedalAwards, FlexibleStats } = data.arenaStats
               const foundWeapon = parsedWeaponsMetadata.find((weapon) => weapon.id === WeaponWithMostKills.WeaponId.StockId);
-              
+
               const findBestMedals = () => {
                 let medalWithDifficulty = MedalAwards.map(medal => {
                   let foundMedal = parsedMedalsMetadata.find(found => found.id === medal.MedalId) || {}
-                  const {difficulty, id, name, description, spriteLocation} = foundMedal
+                  const { difficulty, id, name, description, spriteLocation } = foundMedal
                   if (difficulty === 0) return
                   return {
                     Id: id,

@@ -1,14 +1,14 @@
-const { GraphQLObjectType, GraphQLString, GraphQLInt, GraphQLList } = require("graphql");
+const { GraphQLObjectType, GraphQLString, GraphQLInt, GraphQLList } = require('graphql');
 
 const ArenaGameBasesType = new GraphQLObjectType({
-  name: "ArenaGameBases",
+  name: 'ArenaGameBases',
   fields: () => ({
     GameBaseVariantId: { type: GraphQLString },
   }),
 });
 
 const ArenaStatsType = new GraphQLObjectType({
-  name: "ArenaStats",
+  name: 'ArenaStats',
   fields: () => ({
     TotalGamesWon: { type: GraphQLInt },
     TotalGamesLost: { type: GraphQLInt },
@@ -35,7 +35,7 @@ const ArenaStatsType = new GraphQLObjectType({
 });
 
 const AccumulativeArenaStatsType = new GraphQLObjectType({
-  name: "AccumulativeArenaStats",
+  name: 'AccumulativeArenaStats',
   fields: () => ({
     HighestCsrAttained: { type: HighestCsrType },
     HighestCsrPlaylistId: { type: GraphQLString },
@@ -61,7 +61,7 @@ const AccumulativeArenaStatsType = new GraphQLObjectType({
 });
 
 const CsrDataType = new GraphQLObjectType({
-  name: "CsrData",
+  name: 'CsrData',
   fields: () => ({
     HighestCsrAttained: { type: HighestCsrType },
     HighestCsrPlaylistId: { type: GraphQLString },
@@ -70,7 +70,7 @@ const CsrDataType = new GraphQLObjectType({
 })
 
 const HighestCsrType = new GraphQLObjectType({
-  name: "HighestCsr",
+  name: 'HighestCsr',
   fields: () => ({
     Tier: { type: GraphQLInt },
     DesignationId: { type: GraphQLInt },
@@ -79,7 +79,7 @@ const HighestCsrType = new GraphQLObjectType({
 });
 
 const TopVariantsType = new GraphQLObjectType({
-  name: "TopVariants",
+  name: 'TopVariants',
   fields: () => ({
     GameBaseVariantId: { type: GraphQLString },
     GameBaseVariantRank: { type: GraphQLString },
@@ -88,7 +88,7 @@ const TopVariantsType = new GraphQLObjectType({
 });
 
 const TopWeaponType = new GraphQLObjectType({
-  name: "TopWeapon",
+  name: 'TopWeapon',
   fields: () => ({
     WeaponId: { type: TopWeaponIdType },
     TotalKills: { type: GraphQLInt },
@@ -99,14 +99,14 @@ const TopWeaponType = new GraphQLObjectType({
 });
 
 const TopWeaponIdType = new GraphQLObjectType({
-  name: "TopWeaponId",
+  name: 'TopWeaponId',
   fields: () => ({
     StockId: { type: GraphQLString },
   }),
 });
 
 const ArenaImpulseType = new GraphQLObjectType({
-  name: "ArenaImpulse",
+  name: 'ArenaImpulse',
   fields: () => ({
     Id: { type: GraphQLString },
     Count: { type: GraphQLInt },
@@ -114,7 +114,7 @@ const ArenaImpulseType = new GraphQLObjectType({
 });
 
 const ArenaMedalType = new GraphQLObjectType({
-  name: "ArenaMedal",
+  name: 'ArenaMedal',
   fields: () => ({
     MedalId: { type: GraphQLString },
     Count: { type: GraphQLInt },
@@ -122,14 +122,14 @@ const ArenaMedalType = new GraphQLObjectType({
 });
 
 const ArenaFlexibleStatsType = new GraphQLObjectType({
-  name: "ArenaFlexibleStats",
+  name: 'ArenaFlexibleStats',
   fields: () => ({
     MedalStatCounts: { type: new GraphQLList(ArenaFlexibleMedalType) },
   }),
 });
 
 const ArenaFlexibleMedalType = new GraphQLObjectType({
-  name: "ArenaFlexibleMedal",
+  name: 'ArenaFlexibleMedal',
   fields: () => ({
     Id: { type: GraphQLString },
     Count: { type: GraphQLInt },

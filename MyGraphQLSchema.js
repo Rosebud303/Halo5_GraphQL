@@ -1,11 +1,11 @@
-const { api_key } = require("./client/src/apikey");
-const axios = require("axios");
+const { api_key } = require('./client/src/apikey');
+const axios = require('axios');
 const {
   GraphQLObjectType,
   GraphQLString,
   GraphQLList,
   GraphQLSchema,
-} = require("graphql");
+} = require('graphql');
 const {
   WeaponType,
   MapMetadataType,
@@ -18,31 +18,31 @@ const {
   SkullsType,
   VehiclesType,
   EnemiesType,
-} = require("./MetadataTypes");
-const { WarzoneStatType, ScenarioStatsType } = require("./WarzoneTypes");
+} = require('./MetadataTypes');
+const { WarzoneStatType, ScenarioStatsType } = require('./WarzoneTypes');
 const {
   ArenaGameBasesType,
   ArenaStatsType,
   AccumulativeArenaStatsType,
   CsrDataType,
-} = require("./ArenaTypes");
+} = require('./ArenaTypes');
 
 //**************************************************** RE-USED INSTANCE VARIABLES */
 
 const instance = axios.create({
-  baseURL: "https://www.haloapi.com/",
-  headers: { "Ocp-Apim-Subscription-Key": api_key },
+  baseURL: 'https://www.haloapi.com/',
+  headers: { 'Ocp-Apim-Subscription-Key': api_key },
 });
 
 const instanceWithAcceptedLanguage = axios.create({
-  baseURL: "https://www.haloapi.com/",
-  headers: { "Accept-Language": "en", "Ocp-Apim-Subscription-Key": api_key },
+  baseURL: 'https://www.haloapi.com/',
+  headers: { 'Accept-Language': 'en', 'Ocp-Apim-Subscription-Key': api_key },
 });
 
 //**************************************************** ROOT QUERY */
 
 const RootQuery = new GraphQLObjectType({
-  name: "RootQueryType",
+  name: 'RootQueryType',
   fields: {
     mapsMetadata: {
       type: new GraphQLList(MapMetadataType),
@@ -80,7 +80,7 @@ const RootQuery = new GraphQLObjectType({
       type: new GraphQLList(GameBaseVariantType),
       resolve(parent, args) {
         return instanceWithAcceptedLanguage
-          .get("metadata/h5/metadata/game-base-variants")
+          .get('metadata/h5/metadata/game-base-variants')
           .then((res) => res.data);
       },
     },
@@ -88,7 +88,7 @@ const RootQuery = new GraphQLObjectType({
       type: new GraphQLList(WeaponType),
       resolve(parent, args) {
         return instanceWithAcceptedLanguage
-          .get("metadata/h5/metadata/weapons")
+          .get('metadata/h5/metadata/weapons')
           .then((res) => res.data);
       },
     },
@@ -96,7 +96,7 @@ const RootQuery = new GraphQLObjectType({
       type: new GraphQLList(CampaignsType),
       resolve(parent, args) {
         return instanceWithAcceptedLanguage
-          .get("metadata/h5/metadata/campaign-missions")
+          .get('metadata/h5/metadata/campaign-missions')
           .then((res) => res.data);
       },
     },
@@ -104,7 +104,7 @@ const RootQuery = new GraphQLObjectType({
       type: new GraphQLList(SkullsType),
       resolve(parent, args) {
         return instanceWithAcceptedLanguage
-          .get("metadata/h5/metadata/skulls")
+          .get('metadata/h5/metadata/skulls')
           .then((res) => res.data);
       },
     },
@@ -112,7 +112,7 @@ const RootQuery = new GraphQLObjectType({
       type: new GraphQLList(EnemiesType),
       resolve(parent, args) {
         return instanceWithAcceptedLanguage
-          .get("metadata/h5/metadata/enemies")
+          .get('metadata/h5/metadata/enemies')
           .then((res) => res.data);
       },
     },
@@ -120,7 +120,7 @@ const RootQuery = new GraphQLObjectType({
       type: new GraphQLList(VehiclesType),
       resolve(parent, args) {
         return instanceWithAcceptedLanguage
-          .get("metadata/h5/metadata/vehicles")
+          .get('metadata/h5/metadata/vehicles')
           .then((res) => res.data);
       },
     },
@@ -128,7 +128,7 @@ const RootQuery = new GraphQLObjectType({
       type: new GraphQLList(MedalType),
       resolve(parent, args) {
         return instanceWithAcceptedLanguage
-          .get("metadata/h5/metadata/medals")
+          .get('metadata/h5/metadata/medals')
           .then((res) => res.data);
       },
     },

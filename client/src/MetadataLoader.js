@@ -1,7 +1,7 @@
-import React from "react";
-import { Query } from "react-apollo";
-import Spinner from "./Spinner/Spinner";
-import { metadataQueryList } from "./MetadataQueries/MetadataQueries";
+import React from 'react';
+import { Query } from 'react-apollo';
+import Spinner from './Spinner/Spinner';
+import { metadataQueryList } from './Queries/MetadataQueries';
 
 export default function MetadataLoader() {
   return (
@@ -18,7 +18,7 @@ export default function MetadataLoader() {
                 if (loading) return <Spinner name={metadata.name} />;
                 if (error) console.log(error);
                 localStorage.setItem(`${metadata.name}`, JSON.stringify(data[metadata.name]));
-                return "";
+                return '';
               }}
             </Query>
           );

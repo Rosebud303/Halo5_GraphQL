@@ -2,42 +2,10 @@ import React, { Component } from 'react';
 import './Warzonepage.scss';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import gql from 'graphql-tag';
 import { Query } from 'react-apollo';
 import { setWarzoneId } from '../../actions';
 import Header from '../../components/Header/Header';
-
-
-let GAME_VARIANT_WARZONE_QUERY = gql`
-  query GameVariantWzQuery($player_name: String!) {
-    scenarioStats(player_name: $player_name) {
-      GameBaseVariantId
-      MapId
-      TotalKills
-      TotalHeadshots
-      TotalWeaponDamage
-      TotalShotsFired
-      TotalShotsLanded
-      TotalGamesWon
-      TotalGamesLost
-      TotalGamesTied
-      WeaponWithMostKills {
-        TotalKills
-        TotalHeadshots
-        TotalShotsFired
-        TotalShotsLanded
-        TotalDamageDealt
-        WeaponId {
-          StockId
-        }
-      }
-      MedalAwards {
-        MedalId
-        Count
-      }
-    }
-  }
-`;
+import { GAME_VARIANT_WARZONE_QUERY } from '../../Queries/GraphQLQueries';
 
 class Warzonepage extends Component {
   constructor() {

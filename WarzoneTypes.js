@@ -5,10 +5,10 @@ const {
   GraphQLList,
   GraphQLFloat,
   GraphQLID,
-} = require("graphql");
+} = require('graphql');
 
 const WarzoneStatType = new GraphQLObjectType({
-  name: "WarzoneStat",
+  name: 'WarzoneStat',
   fields: () => ({
     ScenarioStats: { type: new GraphQLList(ScenarioStatsType) },
     TotalKills: { type: GraphQLInt },
@@ -28,7 +28,7 @@ const WarzoneStatType = new GraphQLObjectType({
 });
 
 const WeaponWithMostKillsType = new GraphQLObjectType({
-  name: "WeaponWithMostKills",
+  name: 'WeaponWithMostKills',
   fields: () => ({
     TotalKills: { type: GraphQLInt },
     TotalHeadshots: { type: GraphQLInt },
@@ -40,14 +40,14 @@ const WeaponWithMostKillsType = new GraphQLObjectType({
 });
 
 const WeaponIdType = new GraphQLObjectType({
-  name: "WeaponId",
+  name: 'WeaponId',
   fields: () => ({
     StockId: { type: GraphQLID },
   }),
 });
 
 const MedalIdType = new GraphQLObjectType({
-  name: "MedalId",
+  name: 'MedalId',
   fields: () => ({
     MedalId: { type: GraphQLID },
     Count: { type: GraphQLInt },
@@ -57,7 +57,7 @@ const MedalIdType = new GraphQLObjectType({
 // Game Variant Warzones
 
 const ScenarioStatsType = new GraphQLObjectType({
-  name: "ScenarioStats",
+  name: 'ScenarioStats',
   fields: () => ({
     GameBaseVariantId: { type: GraphQLString },
     MapId: { type: GraphQLString },
@@ -75,7 +75,7 @@ const ScenarioStatsType = new GraphQLObjectType({
 });
 
 const GameVariantWeaponType = new GraphQLObjectType({
-  name: "GameVariantWeapon",
+  name: 'GameVariantWeapon',
   fields: () => ({
     TotalKills: { type: GraphQLInt },
     TotalHeadshots: { type: GraphQLInt },
@@ -87,14 +87,14 @@ const GameVariantWeaponType = new GraphQLObjectType({
 });
 
 const GameVariantWeaponIdType = new GraphQLObjectType({
-  name: "GameVariantWeaponId",
+  name: 'GameVariantWeaponId',
   fields: () => ({
     StockId: { type: GraphQLID },
   }),
 });
 
 const GameVariantMedalIdType = new GraphQLObjectType({
-  name: "GameVariantMedalId",
+  name: 'GameVariantMedalId',
   fields: () => ({
     MedalId: { type: GraphQLID },
     Count: { type: GraphQLInt },
