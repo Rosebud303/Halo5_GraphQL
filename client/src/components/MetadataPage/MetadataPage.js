@@ -12,6 +12,7 @@ class MetadataPage extends Component {
       selectedLibraryName: '',
       selectedLibrary: [],
       selectedLibraryFilters: [],
+      selectedCompare: '',
     };
   }
 
@@ -20,6 +21,7 @@ class MetadataPage extends Component {
       this.changeSelectedLibrary();
     });
     this.changeLibraryFilters(e);
+    this.setState({ selectedCompare: e.target.dataset.compare })
   };
 
   changeSelectedLibrary = () => {
@@ -31,14 +33,37 @@ class MetadataPage extends Component {
     this.setState({ selectedLibraryFilters: JSON.parse(e.target.dataset.filter) });
   };
 
+  filterChosenLibrary = async (e) => {
+    const btnText = e.target.innerText
+    const filterProp = this.state.selectedCompare
+    await this.changeSelectedLibrary()
+    if (btnText === 'ALL') return
+    if (this.state.selectedLibraryName === 'maps') {
+      const lowerCasedBtnText = btnText.toLowerCase();
+      const correctBtnText = lowerCasedBtnText.charAt(0).toUpperCase() + lowerCasedBtnText.slice(1)
+
+      var newLibrary = this.state.selectedLibrary.filter(library => {
+        if (!library[filterProp]) return
+        else return library[filterProp].includes(correctBtnText)
+      })
+    } else {
+      var newLibrary = this.state.selectedLibrary.filter(library => {
+        return library[filterProp].toUpperCase() == btnText
+      })
+    }
+
+
+    this.setState({ selectedLibrary: newLibrary })
+  };
+
   render() {
-    const { state: { selectedLibrary, selectedLibraryFilters, selectedLibraryName }, changeLibrary } = this;
-    
+    const { state: { selectedLibrary, selectedLibraryFilters, selectedLibraryName }, changeLibrary, filterChosenLibrary } = this;
+
     return (
       <div>
         <Header title={'Libraries'} button1={'warzone'} button2={'arena'} />
         <LibrarySelector changeLibrary={changeLibrary} />
-        <LibraryCardsFilters selectedLibraryFilters={selectedLibraryFilters} />
+        <LibraryCardsFilters selectedLibraryFilters={selectedLibraryFilters} filterChosenLibrary={filterChosenLibrary} />
         <LibraryCardsContainer selectedLibraryName={selectedLibraryName} selectedLibrary={selectedLibrary} />
       </div>
     );
