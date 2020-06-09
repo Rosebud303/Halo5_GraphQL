@@ -60,7 +60,7 @@ class MetadataPage extends Component {
     const { state: { selectedLibrary, selectedLibraryFilters, selectedLibraryName }, changeLibrary, filterChosenLibrary } = this;
 
     return (
-      <div>
+      <div className='metadata-body'>
         <Header title={'Libraries'} button1={'warzone'} button2={'arena'} />
         <LibrarySelector changeLibrary={changeLibrary} />
         <LibraryCardsFilters selectedLibraryFilters={selectedLibraryFilters} filterChosenLibrary={filterChosenLibrary} />

@@ -5,15 +5,22 @@
   align-items: center;
   width: 60%;
   margin: auto;
-  background: #b5d3e1;
+  // background: #b5d3e1;
   margin-top: 10px;
 
   p {
-    border: 1px solid black;
+    border: 2px solid white;
     text-transform: uppercase;
     padding: 5px;
+    color: white;
+    font-weight: bolder;
+    
     &:hover {
       cursor: pointer;
+      transition: 300ms;
+      border: 2px solid black;
+      color: black;
+      background: white;
     }
   }
 }
