@@ -13,7 +13,7 @@ const LibrarySelector = ({ changeLibrary }) => {
       <p className='libraries-button' data-compare='' data-filter={JSON.stringify([])} onClick={(event) => changeLibrary(event)}>
         Skulls
       </p>
-      <p className='libraries-button' data-compare='type' data-filter={JSON.stringify(['Standard', 'Unknown', 'Power'])} onClick={(event) => changeLibrary(event)}>
+      <p className='libraries-button' data-compare='type' data-filter={JSON.stringify(['Standard', 'Power', 'Unknown'])} onClick={(event) => changeLibrary(event)}>
         Weapons
       </p>
       <p className='libraries-button' data-compare='classification' data-filter={JSON.stringify(['Vehicles', 'KillingSpree', 'Style', 'WeaponProficiency', 'MultiKill', 'Warzone'])} onClick={(event) => changeLibrary(event)}>

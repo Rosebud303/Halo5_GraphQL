@@ -1,87 +1,9 @@
 import React, { Component } from 'react';
 import './Detailspage.scss';
-import { Link } from 'react-router-dom';
-import gql from 'graphql-tag';
 import { Query } from 'react-apollo';
 import { connect } from 'react-redux';
 import Header from '../../components/Header/Header';
-
-let ACCUMULATTIVE_ARENA_QUERY = gql`
-  query ArenaQuery($player_name: String!) {
-    accumulativeArenaStats(player_name: $player_name) {
-      HighestCsrAttained {
-        Tier
-        DesignationId
-        PercentToNextTier
-      }
-      HighestCsrPlaylistId
-      HighestCsrSeasonId
-      ArenaPlaylistStatsSeasonId
-      TotalGamesWon
-      TotalGamesLost
-      TotalGamesTied
-      TotalGamesCompleted
-      TotalKills
-      TotalDeaths
-      TotalAssists
-      TopGameBaseVariants {
-        GameBaseVariantId
-        GameBaseVariantRank
-        NumberOfMatchesWon
-      }
-      WeaponWithMostKills {
-        WeaponId {
-          StockId
-        }
-        TotalKills
-        TotalDamageDealt
-        TotalShotsFired
-        TotalShotsLanded
-      }
-      TotalShotsFired
-      TotalShotsLanded
-      TotalAssassinations
-      TotalMeleeKills
-      TotalGroundPoundKills
-      TotalShoulderBashKills
-      MedalAwards {
-        MedalId
-        Count
-      }
-    }
-  }
-`;
-
-let ACCUMULATIVE_WARZONE_QUERY = gql`
-  query AccumulativeWzQuery($player_name: String!) {
-    warzoneStats(player_name: $player_name) {
-      TotalKills
-      TotalDeaths
-      TotalAssists
-      TotalHeadshots
-      TotalWeaponDamage
-      TotalShotsFired
-      TotalShotsLanded
-      TotalGamesWon
-      TotalGamesLost
-      TotalGamesCompleted
-      WeaponWithMostKills {
-        TotalKills
-        TotalHeadshots
-        TotalShotsFired
-        TotalShotsLanded
-        TotalDamageDealt
-        WeaponId {
-          StockId
-        }
-      }
-      MedalAwards {
-        MedalId
-        Count
-      }
-    }
-  }
-`;
+import { ACCUMULATIVE_ARENA_QUERY, ACCUMULATIVE_WARZONE_QUERY } from '../../Queries/GraphQLQueries';
 
 class Detailspage extends Component {
   constructor() {
@@ -144,7 +66,7 @@ class Detailspage extends Component {
       <Header header={'Details Page'} button1={'warzone'} button2={'arena'} />
       <div className='details-page-container'>
         <main className='details-page-body'>
-          <Query query={ACCUMULATTIVE_ARENA_QUERY} variables={{ player_name }}>
+          <Query query={ACCUMULATIVE_ARENA_QUERY} variables={{ player_name }}>
             {({ loading, error, data }) => {
               if (loading) return <p>Loading...</p>;
               if (error) console.log(error);

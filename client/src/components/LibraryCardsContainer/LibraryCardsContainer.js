@@ -15,7 +15,7 @@ const LibraryCardsContainer = ({ selectedLibrary, selectedLibraryName }) => {
       return (
         <div className='library-medal-container'>
           <li id='library-medal' style={medalStyle}></li>
-          <p>{name}</p>
+          <p className='meta-medal-title'>{name}</p>
           <p className='meta-medal-description'>{description}</p>
         </div>
       );

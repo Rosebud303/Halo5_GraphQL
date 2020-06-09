@@ -1,8 +1,8 @@
 .library-cards-container {
-  background: red;
+  background: black;
+  margin-top: 40px;
 
   ul {
-    // position: relative;
     margin: 0px auto;
     padding-top: 20px;
     display: flex;
@@ -17,8 +17,6 @@
 
   li {
     margin: 0px;
-    // float: left;
-    // opacity: 0;
     width: 386px;
     height: 280px;
     transition: opacity 0.6s ease-in-out;
@@ -72,6 +70,7 @@
 
 .library-medal-container {
   display: flex;
+  position: relative;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -79,8 +78,38 @@
   width: 125px;
   height: 170px;
   margin: 15px;
-  p {
-    word-wrap: break-word;
+  
+  .meta-medal-title {
+    font-size: 1rem;
+    position: absolute;
+    top: 80%;
+    color: white;
+    font-weight: bolder;
+  }
+
+  .meta-medal-description {
+    position: absolute;
+    opacity: 0;
+    color: white;
+    background: #303857;
+    bottom: 70%;
+    font-size: 1rem;
+    padding: 5px;
+    font-weight: bolder;
+}
+
+  &:hover {
+    cursor: alias;
+
+    .meta-medal-description {
+      opacity: 1;
+      transition: opacity (500ms);
+    }
+
+    li {
+      opacity: 0.8;
+      transition: opacity (500ms);
+    }
   }
 }
 
@@ -90,17 +119,12 @@
   padding: 10px;
 
   span {
-    // left: 0;
     bottom: 9px;
     height: 256px;
     width: 256px;
     transition: all 0.3s ease-in-out;
     overflow: hidden;
     text-align: center;
-    // &:hover span {
-    //   height: 172px;
-    //   opacity: 1;
-    // }
   }
 
   img {
@@ -113,5 +137,4 @@
   font-family: "Orbitron", sans-serif;
   font-weight: 700;
   color: white;
-  // overflow: scroll;
 }

@@ -2,46 +2,8 @@ import React, { Component } from 'react';
 import './WarzoneDropbox.scss';
 import { connect } from 'react-redux';
 import { Query } from 'react-apollo';
-import gql from 'graphql-tag';
 import Header from '../../components/Header/Header';
-
-const WARZONE_DROPDOWN_QUERY = gql`
-  query WarzoneQuery($player_name: String!, $GameBaseVariantId: String!) {
-    wzVariantStats(player_name: $player_name, GameBaseVariantId: $GameBaseVariantId) {
-      GameBaseVariantId
-      MapId
-    }
-  }
-`;
-
-const MAP_QUERY = gql`
-  query MapQuery($player_name: String!, $GameBaseVariantId: String!, $MapId: String!) {
-    mapStats(player_name: $player_name, GameBaseVariantId: $GameBaseVariantId, MapId: $MapId) {
-      TotalKills
-      TotalHeadshots
-      TotalWeaponDamage
-      TotalShotsFired
-      TotalShotsLanded
-      TotalGamesWon
-      TotalGamesLost
-      TotalGamesTied
-      WeaponWithMostKills {
-        TotalKills
-        TotalHeadshots
-        TotalShotsFired
-        TotalShotsLanded
-        TotalDamageDealt
-        WeaponId {
-          StockId
-        }
-      }
-      MedalAwards {
-        MedalId
-        Count
-      }
-    }
-  }
-`;
+import { WARZONE_DROPDOWN_QUERY, MAP_QUERY } from '../../Queries/GraphQLQueries';
 
 class WarzoneDropbox extends Component {
   constructor() {
@@ -117,7 +79,7 @@ class WarzoneDropbox extends Component {
                 return weapon.id === data.mapStats.WeaponWithMostKills.WeaponId.StockId;
               }
             });
-            
+
             return !data.mapStats ? (
               <p>Select From Dropdown...</p>
             ) : (

@@ -4,12 +4,12 @@ const {
   GraphQLInt,
   GraphQLList,
   GraphQLID
-} = require("graphql");
+} = require('graphql');
 
 //**************************************************** MAP METADATA */
 
 const MapMetadataType = new GraphQLObjectType({
-  name: "MapMetadata",
+  name: 'MapMetadata',
   fields: () => ({
     name: { type: GraphQLString },
     description: { type: GraphQLString },
@@ -22,7 +22,7 @@ const MapMetadataType = new GraphQLObjectType({
 //**************************************************** SEASONS METADATA */
 
 const SeasonsMetadataType = new GraphQLObjectType({
-  name: "SeasonsMetadata",
+  name: 'SeasonsMetadata',
   fields: () => ({
     playlists: { type: new GraphQLList(PlaylistType) },
     name: { type: GraphQLString },
@@ -31,7 +31,7 @@ const SeasonsMetadataType = new GraphQLObjectType({
 });
 
 const PlaylistType = new GraphQLObjectType({
-  name: "Playlist",
+  name: 'Playlist',
   fields: () => ({
     name: { type: GraphQLString },
     description: { type: GraphQLString },
@@ -42,7 +42,7 @@ const PlaylistType = new GraphQLObjectType({
 //**************************************************** FLEXIBLE STATS METADATA */
 
 const FlexibleStatsMetadataType = new GraphQLObjectType({
-  name: "FlexibleStatsMetadata",
+  name: 'FlexibleStatsMetadata',
   fields: () => ({
     name: { type: GraphQLString },
     id: { type: GraphQLString },
@@ -52,7 +52,7 @@ const FlexibleStatsMetadataType = new GraphQLObjectType({
 //**************************************************** IMPULSES METADATA */
 
 const ImpulsesMetadataType = new GraphQLObjectType({
-  name: "ImpulsesMetadata",
+  name: 'ImpulsesMetadata',
   fields: () => ({
     internalName: { type: GraphQLString },
     id: { type: GraphQLString },
@@ -62,7 +62,7 @@ const ImpulsesMetadataType = new GraphQLObjectType({
 //**************************************************** WEAPONS METADATA */
 
 const WeaponType = new GraphQLObjectType({
-  name: "Weapon",
+  name: 'Weapon',
   fields: () => ({
     name: { type: GraphQLString },
     largeIconImageUrl: { type: GraphQLString },
@@ -74,7 +74,7 @@ const WeaponType = new GraphQLObjectType({
 //**************************************************** GAME BASE VARIANTS */
 
 const GameBaseVariantType = new GraphQLObjectType({
-  name: "GameBaseVariant",
+  name: 'GameBaseVariant',
   fields: () => ({
     name: { type: GraphQLString },
     iconUrl: { type: GraphQLString },
@@ -85,7 +85,7 @@ const GameBaseVariantType = new GraphQLObjectType({
 //**************************************************** Medals */
 
 const MedalType = new GraphQLObjectType({
-  name: "Medals",
+  name: 'Medals',
   fields: () => ({
     name: { type: GraphQLString },
     description: { type: GraphQLString },
@@ -98,7 +98,7 @@ const MedalType = new GraphQLObjectType({
 });
 
 const SpriteLocationType = new GraphQLObjectType({
-  name: "SpriteLocationUrl",
+  name: 'SpriteLocationUrl',
   fields: () => ({
     spriteSheetUri: { type: GraphQLString },
     left: { type: GraphQLInt },
@@ -109,7 +109,7 @@ const SpriteLocationType = new GraphQLObjectType({
 //**************************************************** Campaigns */
 
 const CampaignsType = new GraphQLObjectType({
-  name: "Campaign",
+  name: 'Campaign',
   fields: () => ({
     missionNumber: { type: GraphQLInt },
     name: { type: GraphQLString },
@@ -123,7 +123,7 @@ const CampaignsType = new GraphQLObjectType({
 //**************************************************** Skulls */
 
 const SkullsType = new GraphQLObjectType({
-  name: "Skulls",
+  name: 'Skulls',
   fields: () => ({
     name: { type: GraphQLString },
     description: { type: GraphQLString },
@@ -136,7 +136,7 @@ const SkullsType = new GraphQLObjectType({
 //**************************************************** Vehicles */
 
 const VehiclesType = new GraphQLObjectType({
-  name: "Vehicles",
+  name: 'Vehicles',
   fields: () => ({
     name: { type: GraphQLString },
     description: { type: GraphQLString },
@@ -148,7 +148,7 @@ const VehiclesType = new GraphQLObjectType({
 //**************************************************** Enemies */
 
 const EnemiesType = new GraphQLObjectType({
-  name: "Enemies",
+  name: 'Enemies',
   fields: () => ({
     faction: { type: GraphQLString },
     name: { type: GraphQLString },
