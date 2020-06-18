@@ -8,6 +8,7 @@ import { api_key, proxyurl } from '../../apikey';
 import axios from 'axios';
 import Spinner from '../../Spinner/Spinner';
 
+
 class Homepage extends Component {
   constructor() {
     super();
@@ -34,6 +35,7 @@ class Homepage extends Component {
     await this.props.currentSearchedPlayer(this.state.searchedPlayer);
     this.setUrlSpartan();
     this.setUrlEmblem();
+    this.clearInputs();
   };
 
   setUrlSpartan = () => {
@@ -60,8 +62,20 @@ class Homepage extends Component {
       .then((data) => this.props.setImgUrlEmblem(data.headers['x-final-url']));
   };
 
+  clearInputs = () => {
+    this.setState({ searchedPlayer: '' });
+  }
+
   render() {
-    const {handleSubmit, handleChange, state: {searchedPlayer}, props: { currentImgUrlSpartan, currentImgUrlEmblem}} = this
+    const { handleSubmit, handleChange, state: { searchedPlayer }, props: { currentPlayer, currentImgUrlSpartan, currentImgUrlEmblem } } = this
+    const spartanImageStyle = {
+      backgroundImage: `url(${currentImgUrlSpartan})`,
+      backgroundPosition: `-90px -25px`,
+      backgroundSize: 'auto',
+      width: '200px',
+      height: '230px'
+    }
+
     return (
       <>
         <div className='carousel-search-options'>
@@ -86,25 +100,32 @@ class Homepage extends Component {
         </div>
         <div className='lesser-spartan-details'>
           <section className='spartan-gfx'>
-            {currentImgUrlSpartan ? (
-              <img
-                alt='Spartan Appearance'
-                lowsrc={'../../Spinner/Spinner'}
-                className='lesser-spartan-img'
-                src={currentImgUrlSpartan}
-              />
-            ) : (
-                <Spinner name={'Spartan'} />
-              )}
-            {currentImgUrlEmblem ? (
-              <img
-                alt='Player Emblem'
-                className='lesser-emblem'
-                src={currentImgUrlEmblem}
-              />
-            ) : (
-                <Spinner name={'Spartan'} />
-              )}
+            <p className='id-card-name'>{currentPlayer}</p>
+
+            <div className='id-card-images'>
+              <div className='id-image-container-1'>
+                {currentImgUrlSpartan ? (
+
+                  <div className='spartan-image-container' style={spartanImageStyle}></div>
+
+
+                ) : (
+                    <Spinner name={'Spartan'} />
+                  )}
+              </div>
+              <div className='id-image-container-2'>
+                {currentImgUrlEmblem ? (
+                  <img
+                    alt='Player Emblem'
+                    className='lesser-emblem'
+                    src={currentImgUrlEmblem}
+                  />
+                ) : (
+                    <Spinner name={'Spartan'} />
+                  )}
+              </div>
+            </div>
+
           </section>
           <section className='banner-company-links'>
             <h3 className='lesser-company'>COMPANY PLACEHOLDER</h3>
