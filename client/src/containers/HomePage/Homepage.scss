@@ -1,8 +1,6 @@
 .carousel-search-options {
   height: 50vh;
-  background: rgb(179, 95, 95);
   display: flex;
-  // justify-content: center;
   align-content: space-around;
   align-items: center;
   flex-direction: column;
@@ -11,48 +9,78 @@
 .lesser-spartan-details {
   display: flex;
   height: 50vh;
-  background: rgb(165, 165, 226);
 }
 
 .spartan-gfx {
   width: 50%;
-  background: linear-gradient(45deg, #09a53d42, #e2e2e2);
   display: flex;
-  flex-direction: row;
-  justify-content: space-around;
+  flex-direction: column;
   align-items: center;
-  box-shadow: inset 0px 0px 20px #1311118f;
 }
+
+
 
 .banner-company-links {
   width: 50%;
-  background: linear-gradient(45deg, #e2e2e2, #09a53d42);
-  box-shadow: inset 0px 0px 20px #1311118f;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
 }
 
-.lesser-spartan-img {
-  width: auto;
-  height: auto;
-  border-radius: 6px;
-  max-width: 500px;
-  max-height: 500px;
-  opacity: 0.9;
-  background: linear-gradient(45deg, black, transparent);
-  box-shadow: inset 0px 0px 20px 10px #050a04;
+
+.spartan-image-container {
+}
+
+.id-card-name {
+  font-size: 2rem;
+  margin: 0;
+  padding: 10px;
+  width: 441px;
+  border: solid 1px black;
+  text-align: center;
+  border-bottom: solid 3px #3c0000;
+  text-transform: uppercase;
+  font-family: 'Gruppo', cursive;
+  font-weight: bolder;
+  border-radius: 5px 5px 0px 0px;
+  background: linear-gradient(rgba(45, 132, 96, 0.15),rgba(15, 15, 31, 0.95));
+  background-image: url(https://i.imgur.com/azP2W6E.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: white;
+}
+
+.id-card-images {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background-color: lightgrey;
+  border: solid 1px black;
+  border-radius: 0px 0px 5px 5px;
+  background-image: url(https://i.imgur.com/Y4hWC9F.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.id-image-container-1 {
+  margin: 15px;
+  border: solid 2px white;
+  background: #8c8c8cbd;
+}
+
+.id-image-container-2 {
+  padding: 15px;
+  width: 25%;
 }
 
 .lesser-emblem {
+  max-height: 175px;
   width: auto;
-  height: auto;
-  max-width: 150px;
-  /* max-height: 100px; */
-  box-shadow: 0px 0px 20px 9px #00000073;
-  border-radius: 10px;
-  background: linear-gradient(45deg, #000000b3, #00000030);
+  border-radius: 3px;
+  background: #adadadc7;
 }
 
 .homepage-links {
@@ -66,7 +94,7 @@
   text-shadow: 15px 16px 19px #0c0c0c73;
   box-shadow: inset 0px 0px 9px 7px #0000003b;
   border-radius: 4px;
-    font-family: 'Orbitron', sans-serif;
+  font-family: 'Orbitron', sans-serif;
 }
 
 .homepage-links:hover {
@@ -81,60 +109,3 @@
 .homepage-links:focus {
   outline: none;
 }
-
-//* *********************************DELETE LATER *******************************/
-
-// .test-sprites-container {
-//   display: flex;
-//   flex-direction: row;
-// }
-// .test-sprites1 {
-//   background-image: url("https://content.halocdn.com/media/Default/games/halo-5-guardians/sprites/medals_10-26-17-1ed917479dd14818b09ef10e29ff60b1.png");
-//   background-position: -1480px -0px;
-//   background-size: auto;
-//   width: 74px;
-//   height: 74px;
-//   margin: 2rem;
-// }
-// .test-sprites2 {
-//   background-image: url("https://content.halocdn.com/media/Default/games/halo-5-guardians/sprites/medals_10-26-17-1ed917479dd14818b09ef10e29ff60b1.png");
-//   background-position: -0px -148px;
-//   background-size: auto;
-//   width: 74px;
-//   height: 74px;
-//   margin: 2rem;
-// }
-// .test-sprites3 {
-//   background-image: url("https://content.halocdn.com/media/Default/games/halo-5-guardians/sprites/medals_10-26-17-1ed917479dd14818b09ef10e29ff60b1.png");
-//   background-position: -1480px -74px;
-//   background-size: auto;
-//   width: 74px;
-//   height: 74px;
-//   margin: 2rem;
-// }
-// .test-sprites4 {
-//   background-image: url("https://content.halocdn.com/media/Default/games/halo-5-guardians/sprites/medals_10-26-17-1ed917479dd14818b09ef10e29ff60b1.png");
-//   background-position: -1036px -444px;
-//   background-size: auto;
-//   width: 74px;
-//   height: 74px;
-//   margin: 2rem;
-// }
-// .test-sprites5 {
-//   background-image: url("https://content.halocdn.com/media/Default/games/halo-5-guardians/sprites/medals_10-26-17-1ed917479dd14818b09ef10e29ff60b1.png");
-//   background-position: -888px -666px;
-//   background-size: auto;
-//   width: 74px;
-//   height: 74px;
-//   margin: 2rem;
-// }
-// .test-sprites6 {
-//   background-image: linear-gradient(255, 255, 255)
-//     url("https://content.halocdn.com/media/Default/games/halo-5-guardians/sprites/medals_10-26-17-1ed917479dd14818b09ef10e29ff60b1.png");
-//   background-position: -592px -370px;
-//   background-size: auto;
-//   width: 74px;
-//   height: 74px;
-//   margin: 2rem;
-// }
-//* *********************************DELETE LATER *******************************/
