@@ -49,7 +49,7 @@ class WarzoneDropbox extends Component {
 
               return (
                 <div className='wz-drop-down'>
-                  <label htmlFor='filter'> Personal Warzone Playlist:</label>
+                  <label id='playlist' htmlFor='filter'> Personal Warzone Playlist:</label>
                   <select onChange={(event) => selectMapVariant(event)} name='filter' className='warzone-dropdown'>
                     <option>No Selection</option>
                     {data.wzVariantStats
@@ -86,7 +86,7 @@ class WarzoneDropbox extends Component {
                 <div className='main-container'>
                   <div className='dropbox-container'>
                     <div className='imageHolder'>
-                      <h3>{currentMapVariantName}</h3>
+                      <h3 id='imageHolderName'>{currentMapVariantName}</h3>
                       {MapId && <img src={foundMap.imageUrl} className='images' alt='selected halo 5 map' />}
                     </div>
                     <div className='dropbox-data-content'>
