@@ -44,9 +44,9 @@ class WelcomePage extends Component {
     const redirectPath = searched ? '/homepage' : '/';
 
     return (
-      <>
-        <header>
-          <h1 className='welcome-heading'>Halo Search GraphQL</h1>
+      <div className='welcome'>
+        <header className='welcome-banner'>
+          <img src='https://i.imgur.com/z1qbHFr.png'/>
         </header>
         <div className='welcome-page'>
           <form className='welcome-form' onSubmit={handleSubmit}>
@@ -68,7 +68,7 @@ class WelcomePage extends Component {
             </button>
           </form>
         </div>
-      </>
+      </div>
     );
   }
 }
