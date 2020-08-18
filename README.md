@@ -31,7 +31,7 @@ This application allows for users to
  ![FAQ](https://i.imgur.com/ayKYh9D.png)
 
 ## Backend
-Solarizer's frontend is supported by two API endpoints: a Python/Flask API combining power generation and utility rate data, and a Rails API serving ecotips and frequently asked questions. The first is hosted at [solarize-be](https://github.com/PaulDebevec/solarize-be), and the second at [solarizer-api](https://github.com/jrsewell400/solarizer-api)
+Halo 5 GraphQL's frontend is supported by multiple endpoints developed and structured in the GraphQL backend created for this application.  
 
 ## Contributors
 * [Jeremy Poulter](https://github.com/J-Poulter) (frontend & backend)
