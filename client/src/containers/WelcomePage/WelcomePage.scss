@@ -65,6 +65,7 @@ h1 {
 
 button:hover {
   cursor: pointer;
+  transition: 200ms;
   transform: scale(0.95);
   opacity: 0.8;
   background: #5c8fba;
