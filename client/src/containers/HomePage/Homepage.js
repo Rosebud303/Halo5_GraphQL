@@ -4,10 +4,11 @@ import { connect } from 'react-redux';
 import './Homepage.scss';
 import * as actions from '../../actions';
 import Carousel from '../Carousel/Carousel';
-import { api_key, proxyurl } from '../../apikey';
+// import { api_key, proxyurl } from '../../apikey';
 import axios from 'axios';
 import Spinner from '../../Spinner/Spinner';
-
+let api_key = process.env.api_key
+let proxyurl = process.env.proxyurl
 
 class Homepage extends Component {
   constructor() {
