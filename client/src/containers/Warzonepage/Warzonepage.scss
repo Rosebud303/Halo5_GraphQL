@@ -125,9 +125,10 @@
 }
 
 .accordion-section input:checked + figcaption span {
-  transition: all 0.4s ease-in-out 0.2s;
+  transition: all 0.2s ease-in-out 0.2s;
   opacity: 1;
   top: 93%;
+
 }
 
 .accordion-section #accordion-selector-last:checked + figcaption span {
