@@ -1,10 +1,21 @@
-.welcome-heading {
-  text-align: center;
-  font-size: 3rem;
-  background-color: #506c5adb;
-  padding: 2rem;
-  margin: 0;
-  box-shadow: inset 0px 0px 11px 6px #424259a8;
+.welcome {
+  background: linear-gradient(217deg, rgba(0,0,0,0), rgba(0,0,0,56%) 103.71%),
+            linear-gradient(127deg, rgba(127,140,125, 80%), rgba(0,0,0,0) 80.71%),
+            linear-gradient(336deg, rgba(0,0,0,100%), rgba(0,0,0,100%) 80.71%);
+  height: 100vh;
+}
+
+.welcome img {
+  filter: drop-shadow(6px 8px 6px black);
+  position: absolute;
+  top: 30px;
+  height: 60px;
+}
+
+.welcome-banner {
+  display: flex;
+  justify-content: center;
+  height: 100px;
 }
 
 h1 {
@@ -19,16 +30,11 @@ h1 {
   height: 87vh;
   align-items: center;
   justify-content: center;
-  background-image: linear-gradient(
-      rgba(45, 132, 96, 0.15),
-      rgba(15, 15, 31, 0.95)
-    ),
-    url(https://i.imgur.com/8hC5wHt.png);
+  background-image:
+    url(https://i.imgur.com/AvQF2af.png);
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
-  background-color: white;
-  box-shadow: inset 0px 11px 11px #1c1c27c4;
 }
 
 .welcome-form {
@@ -42,39 +48,28 @@ h1 {
 .welcome-search {
   font-size: 2em;
   border-color: #9165654f;
-  border-width: 3px;
-  border-style: ridge;
   font-family: 'Orbitron', sans-serif;
 }
 
 .welcome-search-input {
-  background-color: #ffffffb8;
+  background-color: #ffffff;
   border-right: none;
-  border-radius: 10px 0 0 10px;
+  border-radius: 2px 0 0 2px;
 }
 
 .welcome-search-button {
-  background-color: rgba(127, 140, 125, 0.776);
+  background-color: rgb(127, 140, 125);
   border-left: none;
-  border-radius: 0 10px 10px 0;
+  border-radius: 0 2px 2px 0;
 }
-
-// button {
-//   border-radius: 5px;
-//   border: 1px solid white;
-//   background-color: #498467;
-//   color: WHITE;
-//   font-size: 12px;
-//   font-weight: bold;
-//   padding: 10px;
-//   letter-spacing: 1px;
-//   transition: transform 150ms ease-in;
-// }
 
 button:hover {
   cursor: pointer;
+  transition: 200ms;
   transform: scale(0.95);
   opacity: 0.8;
+  background: #5c8fba;
+  color: white;
 }
 
 button:focus {
