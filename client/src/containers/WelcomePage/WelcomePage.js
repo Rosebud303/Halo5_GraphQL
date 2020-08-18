@@ -4,7 +4,8 @@ import './WelcomePage.scss';
 import { Redirect } from 'react-router-dom';
 import * as actions from '../../actions';
 import axios from 'axios';
-import { api_key } from '../../apikey';
+// import { api_key } from '../../apikey';
+let api_key = process.env.api_key
 
 class WelcomePage extends Component {
   constructor() {
@@ -46,7 +47,7 @@ class WelcomePage extends Component {
     return (
       <div className='welcome'>
         <header className='welcome-banner'>
-          <img src='https://i.imgur.com/z1qbHFr.png'/>
+          <img src='https://i.imgur.com/z1qbHFr.png' />
         </header>
         <div className='welcome-page'>
           <form className='welcome-form' onSubmit={handleSubmit}>
