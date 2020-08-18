@@ -8,13 +8,13 @@ This application allows for users to
 ## Prerequisites
 * Node.js 12.18.1
 
-## Setup Local Server
+## Setup Local Server (site is deployed with link above for easier access)
 1. Clone this repository: `git clone https://github.com/Rosebud303/Halo5_GraphQL.git`
-2. Enter the local directory: `cd client`
-3. Install package dependencies: `npm install`
-4. Run test suite: `npm test` then `a` to run all tests
-4. Launch server: `npm run dev`
-5. Visit [localhost:3000](localhost:3000) to view the application in your browser
+2. Install outer package dependencies: `npm install`
+3. Enter the local directory: `cd client`
+4. Install package dependencies: `npm install`
+5. Launch server: `npm run dev`
+6. Visit [localhost:3000](localhost:3000) to view the application in your browser
 
 ## Walkthrough
  1. Visit the production or localhost application and enter your address and click Begin  
@@ -30,7 +30,7 @@ This application allows for users to
  6. The FAQ is available from the home page by clicking "What is Solarizer?"
  ![FAQ](https://i.imgur.com/ayKYh9D.png)
 
-## Backend
+## Backend & Storage
 Halo 5 GraphQL's frontend is supported by multiple endpoints developed and structured in the GraphQL backend created for this application.  
 
 ## Contributors
