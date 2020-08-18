@@ -1,6 +1,4 @@
-// const { api_key } = require('./client/src/apikey');
-let api_key = process.env.api_key
-
+const { api_key } = require('./client/src/apikey');
 const axios = require('axios');
 const {
   GraphQLObjectType,
