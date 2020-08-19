@@ -98,6 +98,9 @@ class Arenapage extends Component {
             <Link to='/warzone' className='homepage-links'>
               <p className='detail-link arena-button'>WARZONE PAGE</p>
             </Link>
+            <Link to='/libraries' className='homepage-links'>
+              <p className='detail-link arena-button'>LIBRARIES PAGE</p>
+            </Link>
           </div>
         </header>
         {this.state.currentGameVariant && (

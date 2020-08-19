@@ -126,7 +126,7 @@ class Warzonepage extends Component {
 
     return (
       <div className='warzone-page'>
-        <Header header={'Warzone Page'} button1={'details'} button2={'arena'} />
+        <Header header={'Warzone Page'} button1={'details'} button2={'arena'} button3={'libraries'} />
         <Query query={GAME_VARIANT_WARZONE_QUERY} variables={{ player_name }}>
           {({ loading, error, data }) => {
             if (loading) return '';
