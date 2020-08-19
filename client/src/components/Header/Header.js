@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './Header.scss';
 
-export default function Header({ title, header, button1, button2 }) {
+export default function Header({ title, header, button1, button2, button3 }) {
 
   return (
     <header id='header-all' className='arena-header header-all'>
@@ -18,6 +18,9 @@ export default function Header({ title, header, button1, button2 }) {
         </Link>
         <Link to={`/${button2}`} className='homepage-links'>
           <p id='buttons' className='detail-link arena-button'>{`${button2} Page`}</p>
+        </Link>
+        <Link to={`/${button3}`} className='homepage-links'>
+          <p id='buttons' className='detail-link arena-button'>{`${button3} Page`}</p>
         </Link>
       </div>
     </header>
