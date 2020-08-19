@@ -11,7 +11,7 @@ const Header = ({ title, header, button1, button2, button3, currentPlayer }) => 
         <h1 className='arena-title header-title'>{title || header}</h1>
       </div>
       <div className='heading-right-side'>
-        <p>{currentPlayer}</p>
+        <p id='header-player-name'>{currentPlayer}</p>
         <div className='buttons-container'>
           <Link to='/homepage' className='homepage-links'>
             <p id='buttons' className='detail-link arena-button'>HOMEPAGE</p>
