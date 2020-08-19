@@ -40,7 +40,7 @@ class WarzoneDropbox extends Component {
     return (
       <div className='whole-page'>
         <div>
-          <Header title={currentMapVariantName} header={'Warzone Variant'} button1={'warzone'} button2={'arena'} />
+          <Header title={currentMapVariantName} header={'Warzone Variant'} button1={'warzone'} button2={'arena'} button3={'libraries'} />
           <Query query={WARZONE_DROPDOWN_QUERY} variables={{ player_name, GameBaseVariantId }}>
             {({ loading, error, data }) => {
               if (loading) return <option>Loading...</option>;

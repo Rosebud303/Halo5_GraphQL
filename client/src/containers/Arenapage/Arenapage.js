@@ -43,6 +43,7 @@ class Arenapage extends Component {
       <div className='arena-page'>
         <header className='arena-header'>
           <div className='dropdown-container'>
+            <p id='header-player-name'>{player_name}</p>
             <Query
               query={ARENA_DROPDOWN_QUERY}
               variables={{ player_name }}
@@ -97,6 +98,9 @@ class Arenapage extends Component {
             </Link>
             <Link to='/warzone' className='homepage-links'>
               <p className='detail-link arena-button'>WARZONE PAGE</p>
+            </Link>
+            <Link to='/libraries' className='homepage-links'>
+              <p className='detail-link arena-button'>LIBRARIES PAGE</p>
             </Link>
           </div>
         </header>
