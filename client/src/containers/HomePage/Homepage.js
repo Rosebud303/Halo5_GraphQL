@@ -22,6 +22,7 @@ class Homepage extends Component {
     this.state = {
       searchedPlayer: '',
       currentDescription: descriptions[0],
+      profileInfo: {}
 
     };
   }
@@ -29,6 +30,7 @@ class Homepage extends Component {
   componentDidMount() {
     this.setUrlSpartan();
     this.setUrlEmblem();
+    this.setSpartanProfileInfo();
   }
 
   handleMouseOver = (e) => {
@@ -57,6 +59,18 @@ class Homepage extends Component {
     this.clearInputs();
   };
 
+  setSpartanProfileInfo = () => {
+    axios
+      .create({
+        headers: { 'Ocp-Apim-Subscription-Key': api_key },
+      })
+      .get(
+        proxyurl +
+        `https://www.haloapi.com/profile/h5/profiles/${this.props.currentPlayer}/appearance`
+      )
+      .then((data) => this.setState({profileInfo: data.data}));
+  };
+    
   setUrlSpartan = () => {
     axios
       .create({
