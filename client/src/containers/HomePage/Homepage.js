@@ -14,12 +14,28 @@ class Homepage extends Component {
     super();
     this.state = {
       searchedPlayer: '',
+      currentIndex: 0,
+      descriptions: [
+        'this is your profile',
+        'this is your details',
+        'this is your arena',
+        'this is your warzone',
+        'these are the metadata libraries'
+      ]
     };
   }
 
   componentDidMount() {
     this.setUrlSpartan();
     this.setUrlEmblem();
+  }
+
+  handleMouseOver = (e) => {
+    this.setState({currentIndex: parseInt(e.target.id)})
+  }
+
+  handleMouseOut = () => {
+    this.setState({currentIndex: 0})
   }
 
   handleChange = (event) => {
@@ -128,18 +144,19 @@ class Homepage extends Component {
 
           </section>
           <section className='banner-company-links'>
+            <p>{this.state.currentIndex}</p>
             <h3 className='lesser-company'>COMPANY PLACEHOLDER</h3>
-            <Link to='/details' className='homepage-links'>
-              <p className='detail-link details'>DETAILS PAGE</p>
+            <Link onMouseOver={(event) => this.handleMouseOver(event)} onMouseOut={() => this.handleMouseOut()} id='1' to='/details' className='homepage-links'>
+              <p onMouseOver={(event) => this.handleMouseOver(event)} onMouseOut={() => this.handleMouseOut()} id='1' className='detail-link details'>DETAILS PAGE</p>
             </Link>
-            <Link to='/arena' className='homepage-links'>
-              <p className='detail-link arena-lesser'>ARENA PAGE</p>
+            <Link onMouseOver={(event) => this.handleMouseOver(event)} onMouseOut={() => this.handleMouseOut()} id='2' to='/arena' className='homepage-links'>
+              <p onMouseOver={(event) => this.handleMouseOver(event)} onMouseOut={() => this.handleMouseOut()} id='2' className='detail-link arena-lesser'>ARENA PAGE</p>
             </Link>
-            <Link to='/warzone' className='homepage-links'>
-              <p className='detail-link warzone-lesser'>WARZONE PAGE</p>
+            <Link onMouseOver={(event) => this.handleMouseOver(event)} onMouseOut={() => this.handleMouseOut()} id='3' to='/warzone' className='homepage-links'>
+              <p onMouseOver={(event) => this.handleMouseOver(event)} onMouseOut={() => this.handleMouseOut()} id='3' className='detail-link warzone-lesser'>WARZONE PAGE</p>
             </Link>
-            <Link to='/libraries' className='homepage-links'>
-              <p className='detail-link warzone-lesser'>LIBRARIES PAGE</p>
+            <Link onMouseOver={(event) => this.handleMouseOver(event)} onMouseOut={() => this.handleMouseOut()} id='4' to='/libraries' className='homepage-links'>
+              <p onMouseOver={(event) => this.handleMouseOver(event)} onMouseOut={() => this.handleMouseOut()} id='4' className='detail-link warzone-lesser'>LIBRARIES PAGE</p>
             </Link>
           </section>
         </div>
