@@ -8,7 +8,7 @@ import { api_key, proxyurl } from '../../apikey';
 import axios from 'axios';
 import Spinner from '../../Spinner/Spinner';
 
-const descriptions =  [
+const descriptions = [
   'this is your profile',
   'this is your details',
   'this is your arena',
@@ -35,70 +35,73 @@ class Homepage extends Component {
     this.setState({ currentDescription: descriptions[parseInt(e.target.id)] })
   }
 
-    handleMouseOut = () => {
-      this.setState({ currentDescription: descriptions[0] })
+  handleMouseOut = () => {
+    this.setState({ currentDescription: descriptions[0] })
+  }
+
+
+
+  handleChange = (event) => {
+    this.setState({
+      searchedPlayer: event.target.value,
+    });
+  };
+
+  handleSubmit = async (event) => {
+    event.preventDefault();
+    this.props.setImgUrlSpartan('');
+    this.props.setImgUrlEmblem('');
+    await this.props.currentSearchedPlayer(this.state.searchedPlayer);
+    this.setUrlSpartan();
+    this.setUrlEmblem();
+    this.clearInputs();
+  };
+
+  setUrlSpartan = () => {
+    axios
+      .create({
+        headers: { 'Ocp-Apim-Subscription-Key': api_key },
+      })
+      .get(
+        proxyurl +
+        `https://www.haloapi.com/profile/h5/profiles/${this.props.currentPlayer}/spartan?size=512`
+      )
+      .then((data) => this.props.setImgUrlSpartan(data.headers['x-final-url']));
+  };
+
+  setUrlEmblem = () => {
+    axios
+      .create({
+        headers: { 'Ocp-Apim-Subscription-Key': api_key },
+      })
+      .get(
+        proxyurl +
+        `https://www.haloapi.com/profile/h5/profiles/${this.props.currentPlayer}/emblem?size=512`
+      )
+      .then((data) => this.props.setImgUrlEmblem(data.headers['x-final-url']));
+  };
+
+  clearInputs = () => {
+    this.setState({ searchedPlayer: '' });
+  }
+
+  render() {
+    const { handleSubmit, handleChange, state: { searchedPlayer }, props: { currentPlayer, currentImgUrlSpartan, currentImgUrlEmblem } } = this
+    const spartanImageStyle = {
+      backgroundImage: `url(${currentImgUrlSpartan})`,
+      backgroundPosition: `-90px -25px`,
+      backgroundSize: 'auto',
+      width: '200px',
+      height: '230px'
     }
 
-
-
-    handleChange = (event) => {
-      this.setState({
-        searchedPlayer: event.target.value,
-      });
-    };
-
-    handleSubmit = async (event) => {
-      event.preventDefault();
-      this.props.setImgUrlSpartan('');
-      this.props.setImgUrlEmblem('');
-      await this.props.currentSearchedPlayer(this.state.searchedPlayer);
-      this.setUrlSpartan();
-      this.setUrlEmblem();
-      this.clearInputs();
-    };
-
-    setUrlSpartan = () => {
-      axios
-        .create({
-          headers: { 'Ocp-Apim-Subscription-Key': api_key },
-        })
-        .get(
-          proxyurl +
-          `https://www.haloapi.com/profile/h5/profiles/${this.props.currentPlayer}/spartan?size=512`
-        )
-        .then((data) => this.props.setImgUrlSpartan(data.headers['x-final-url']));
-    };
-
-    setUrlEmblem = () => {
-      axios
-        .create({
-          headers: { 'Ocp-Apim-Subscription-Key': api_key },
-        })
-        .get(
-          proxyurl +
-          `https://www.haloapi.com/profile/h5/profiles/${this.props.currentPlayer}/emblem?size=512`
-        )
-        .then((data) => this.props.setImgUrlEmblem(data.headers['x-final-url']));
-    };
-
-    clearInputs = () => {
-      this.setState({ searchedPlayer: '' });
-    }
-
-    render() {
-      const { handleSubmit, handleChange, state: { searchedPlayer }, props: { currentPlayer, currentImgUrlSpartan, currentImgUrlEmblem } } = this
-      const spartanImageStyle = {
-        backgroundImage: `url(${currentImgUrlSpartan})`,
-        backgroundPosition: `-90px -25px`,
-        backgroundSize: 'auto',
-        width: '200px',
-        height: '230px'
-      }
-
-      return (
-        <>
-          <div className='carousel-search-options'>
-            <Carousel />
+    return (
+      <>
+        <div className='carousel-search-options'>
+          <Carousel />
+        </div>
+        <div className='lesser-spartan-details'>
+          <section className='banner-company-links'>
             <form className='welcome-form' onSubmit={handleSubmit}>
               <input
                 className='welcome-search welcome-search-input'
@@ -114,58 +117,57 @@ class Homepage extends Component {
                 type='submit'
               >
                 Submit
-            </button>
+                </button>
             </form>
-          </div>
-          <div className='lesser-spartan-details'>
-            <section className='spartan-gfx'>
-              <p className='id-card-name'>{currentPlayer}</p>
-
-              <div className='id-card-images'>
-                <div className='id-image-container-1'>
-                  {currentImgUrlSpartan ? (
-
-                    <div className='spartan-image-container' style={spartanImageStyle}></div>
-
-
-                  ) : (
-                      <Spinner name={'Spartan'} />
-                    )}
-                </div>
-                <div className='id-image-container-2'>
-                  {currentImgUrlEmblem ? (
-                    <img
-                      alt='Player Emblem'
-                      className='lesser-emblem'
-                      src={currentImgUrlEmblem}
-                    />
-                  ) : (
-                      <Spinner name={'Spartan'} />
-                    )}
-                </div>
+            <div className='buttons-descriptions-section'>
+              <div>
+                <Link onMouseOver={(event) => this.handleMouseOver(event)} onMouseOut={() => this.handleMouseOut()} id='1' to='/details' className='homepage-links'>
+                  <p onMouseOver={(event) => this.handleMouseOver(event)} onMouseOut={() => this.handleMouseOut()} id='1' className='detail-link details'>DETAILS PAGE</p>
+                </Link>
+                <Link onMouseOver={(event) => this.handleMouseOver(event)} onMouseOut={() => this.handleMouseOut()} id='2' to='/arena' className='homepage-links'>
+                  <p onMouseOver={(event) => this.handleMouseOver(event)} onMouseOut={() => this.handleMouseOut()} id='2' className='detail-link arena-lesser'>ARENA PAGE</p>
+                </Link>
+                <Link onMouseOver={(event) => this.handleMouseOver(event)} onMouseOut={() => this.handleMouseOut()} id='3' to='/warzone' className='homepage-links'>
+                  <p onMouseOver={(event) => this.handleMouseOver(event)} onMouseOut={() => this.handleMouseOut()} id='3' className='detail-link warzone-lesser'>WARZONE PAGE</p>
+                </Link>
+                <Link onMouseOver={(event) => this.handleMouseOver(event)} onMouseOut={() => this.handleMouseOut()} id='4' to='/libraries' className='homepage-links'>
+                  <p onMouseOver={(event) => this.handleMouseOver(event)} onMouseOut={() => this.handleMouseOut()} id='4' className='detail-link warzone-lesser'>LIBRARIES PAGE</p>
+                </Link>
               </div>
+              <div className='descript-container'>
+                <p className='description'>{this.state.currentDescription}</p>
+              </div>
+            </div>
+          </section>
+          <section className='spartan-gfx'>
+            <p className='id-card-name'>{currentPlayer}</p>
 
-            </section>
-            <section className='banner-company-links'>
-              <p className='description'>{this.state.currentDescription}</p>
-              <h3 className='lesser-company'>COMPANY PLACEHOLDER</h3>
-              <Link onMouseOver={(event) => this.handleMouseOver(event)} onMouseOut={() => this.handleMouseOut()} id='1' to='/details' className='homepage-links'>
-                <p onMouseOver={(event) => this.handleMouseOver(event)} onMouseOut={() => this.handleMouseOut()} id='1' className='detail-link details'>DETAILS PAGE</p>
-              </Link>
-              <Link onMouseOver={(event) => this.handleMouseOver(event)} onMouseOut={() => this.handleMouseOut()} id='2' to='/arena' className='homepage-links'>
-                <p onMouseOver={(event) => this.handleMouseOver(event)} onMouseOut={() => this.handleMouseOut()} id='2' className='detail-link arena-lesser'>ARENA PAGE</p>
-              </Link>
-              <Link onMouseOver={(event) => this.handleMouseOver(event)} onMouseOut={() => this.handleMouseOut()} id='3' to='/warzone' className='homepage-links'>
-                <p onMouseOver={(event) => this.handleMouseOver(event)} onMouseOut={() => this.handleMouseOut()} id='3' className='detail-link warzone-lesser'>WARZONE PAGE</p>
-              </Link>
-              <Link onMouseOver={(event) => this.handleMouseOver(event)} onMouseOut={() => this.handleMouseOut()} id='4' to='/libraries' className='homepage-links'>
-                <p onMouseOver={(event) => this.handleMouseOver(event)} onMouseOut={() => this.handleMouseOut()} id='4' className='detail-link warzone-lesser'>LIBRARIES PAGE</p>
-              </Link>
-            </section>
-          </div>
-        </>
-      );
-    }
+            <div className='id-card-images'>
+              <div className='id-image-container-1'>
+                {currentImgUrlSpartan ? (
+
+                  <div className='spartan-image-container' style={spartanImageStyle}></div>
+                ) : (
+                    <Spinner name={'Spartan'} />
+                  )}
+              </div>
+              <div className='id-image-container-2'>
+                {currentImgUrlEmblem ? (
+                  <img
+                    alt='Player Emblem'
+                    className='lesser-emblem'
+                    src={currentImgUrlEmblem}
+                  />
+                ) : (
+                    <Spinner name={'Spartan'} />
+                  )}
+              </div>
+            </div>
+          </section>
+        </div>
+      </>
+    );
+  }
 }
 
 const mapStateToProps = (state) => ({
