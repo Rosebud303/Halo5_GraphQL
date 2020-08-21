@@ -103,3 +103,14 @@
 .homepage-links:focus {
   outline: none;
 }
+
+.buttons-descriptions-section {
+  display: flex;
+  justify-content: space-around;
+  width: 70%;
+  background: red;
+}
+
+.descript-container {
+  width: 40%;
+}
