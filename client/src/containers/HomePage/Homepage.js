@@ -170,7 +170,10 @@ class Homepage extends Component {
                   )}
               </div>
               <div className='id-image-container-2'>
-                
+                <p>Alias: {profileInfo.ServiceTag}</p>
+                <p>DOB: {firstModified}</p>
+                <p>Last Seen On: {lastModified}</p>
+                <p>Company Allegiance: {profileInfo.Company ? profileInfo.Company.Name : 'No Company'}</p>
                 {currentImgUrlEmblem ? (
                   <img
                     alt='Player Emblem'
