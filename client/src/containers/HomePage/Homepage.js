@@ -153,8 +153,11 @@ class Homepage extends Component {
                   <p onMouseOver={(event) => handleMouseOver(event)} onMouseOut={() => handleMouseOut()} id='4' className='detail-link warzone-lesser'>LIBRARIES PAGE</p>
                 </Link>
               </div>
-              <div className='descript-container'>
-                <p className='description'>{currentDescription}</p>
+              <div className='full-descript'>
+                <div>"Name of Button Here"</div>
+                <div className='descript-container'>
+                  <p className='description'>{currentDescription}</p>
+                </div>
               </div>
             </div>
           </section>
