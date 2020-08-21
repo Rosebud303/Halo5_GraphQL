@@ -23,7 +23,8 @@ class Homepage extends Component {
       searchedPlayer: '',
       currentDescription: descriptions[0],
       profileInfo: {},
-
+      firstModified: '',
+      lastModified: ''
     };
   }
 
@@ -69,7 +70,8 @@ class Homepage extends Component {
       )
       .then((data) => this.setState({
         profileInfo: data.data,
-
+        firstModified: data.data.FirstModifiedUtc.ISO8601Date,
+        lastModified: data.data.LastModifiedUtc.ISO8601Date
       }));
   };
 
@@ -168,7 +170,7 @@ class Homepage extends Component {
                   )}
               </div>
               <div className='id-image-container-2'>
-
+                
                 {currentImgUrlEmblem ? (
                   <img
                     alt='Player Emblem'
