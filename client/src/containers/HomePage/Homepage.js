@@ -70,8 +70,8 @@ class Homepage extends Component {
       )
       .then((data) => this.setState({
         profileInfo: data.data,
-        firstModified: data.data.FirstModifiedUtc.ISO8601Date,
-        lastModified: data.data.LastModifiedUtc.ISO8601Date
+        firstModified: (data.data.FirstModifiedUtc.ISO8601Date.slice(0, 10)),
+        lastModified: (data.data.LastModifiedUtc.ISO8601Date.slice(0, 10))
       }));
   };
 
@@ -104,7 +104,8 @@ class Homepage extends Component {
   }
 
   render() {
-    const { handleSubmit, handleChange, handleMouseOver, handleMouseOut, state: { currentDescription, searchedPlayer, profileInfo, lastModified, firstModified }, props: { currentPlayer, currentImgUrlSpartan, currentImgUrlEmblem } } = this
+    const { handleSubmit, handleChange, handleMouseOver, handleMouseOut, state: { currentDescription, searchedPlayer, profileInfo, lastModified, firstModified }, props: { currentPlayer, currentImgUrlSpartan, currentImgUrlEmblem }
+    } = this
     const spartanImageStyle = {
       backgroundImage: `url(${currentImgUrlSpartan})`,
       backgroundPosition: `-90px -25px`,
