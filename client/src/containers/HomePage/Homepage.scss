@@ -78,7 +78,7 @@
 }
 
 .homepage-links {
-  border: solid 1px black;
+  // border: solid 1px black;
   width: 10rem;
   display: flex;
   justify-content: center;
@@ -89,6 +89,7 @@
   box-shadow: inset 0px 0px 9px 7px #0000003b;
   border-radius: 4px;
   font-family: 'Orbitron', sans-serif;
+  background: blue;
 }
 
 .homepage-links:hover {
@@ -107,10 +108,21 @@
 .buttons-descriptions-section {
   display: flex;
   justify-content: space-around;
-  width: 70%;
-  background: red;
+  width: 55%;
+  // background: red;
+  height: 60%;
+  align-items: center;
 }
 
 .descript-container {
   width: 40%;
+  height: 70%;
+  text-align: center;
+}
+
+.button-links-home {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 }

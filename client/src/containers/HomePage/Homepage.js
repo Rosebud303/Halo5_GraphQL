@@ -139,7 +139,7 @@ class Homepage extends Component {
                 </button>
             </form>
             <div className='buttons-descriptions-section'>
-              <div>
+              <div className='button-links-home'>
                 <Link onMouseOver={(event) => handleMouseOver(event)} onMouseOut={() => handleMouseOut()} id='1' to='/details' className='homepage-links'>
                   <p onMouseOver={(event) => handleMouseOver(event)} onMouseOut={() => handleMouseOut()} id='1' className='detail-link details'>DETAILS PAGE</p>
                 </Link>
