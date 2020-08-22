@@ -4,6 +4,8 @@
   align-content: space-around;
   align-items: center;
   flex-direction: column;
+  background-color: black;
+  overflow-y: scroll;
 }
 
 .lesser-spartan-details {
@@ -280,4 +282,8 @@
   font-size: 15px;
   color: #4e5caa;
   font-weight: bolder
+}
+
+.current-player-id {
+  text-transform: uppercase;
 }
