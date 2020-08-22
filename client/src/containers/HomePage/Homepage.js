@@ -174,20 +174,6 @@ class Homepage extends Component {
             </div>
           </section>
           <section className='spartan-gfx'>
-            {/* <p className='id-card-name'>{currentPlayer}</p>
-
-            <div className='id-card-images'>
-              <div className='id-image-container-1'>
-                
-              </div>
-              <div className='id-image-container-2'>
-                <p>Alias: {profileInfo.ServiceTag}</p>
-                <p>DOB: {firstModified}</p>
-                <p>Last Seen On: {lastModified}</p>
-                <p>Company Allegiance: {profileInfo.Company ? profileInfo.Company.Name : 'No Company'}</p>
-              </div>
-            </div> */}
-
             <div className='identification-card-container'>
               <div className='id-left-side-container'>
                 <div className='id-left-title-container'>
@@ -239,7 +225,6 @@ class Homepage extends Component {
               <div className='id-right-side-container'>
                 <div className='id-spartan-face-container'>
                   {currentImgUrlSpartan ? (
-
                     <div className='spartan-image-container' style={spartanImageStyle}></div>
                   ) : (
                       <Spinner name={'Spartan'} />
@@ -250,7 +235,6 @@ class Homepage extends Component {
                 </div>
               </div>
             </div>
-
           </section>
         </div>
       </>
