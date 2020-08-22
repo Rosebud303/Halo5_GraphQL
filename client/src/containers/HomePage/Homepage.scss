@@ -11,6 +11,10 @@
 .lesser-spartan-details {
   display: flex;
   height: 50vh;
+  background-image: url(https://i.imgur.com/45hUgCs.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 450px;
 }
 
 .spartan-gfx {
@@ -19,6 +23,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  padding-left: 8%;
 }
 
 .banner-company-links {
@@ -27,6 +32,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
+  text-align: center;
 }
 
 .id-card-name {
@@ -106,15 +112,17 @@
 
 .buttons-descriptions-section {
   display: flex;
+  flex-direction: column;
   justify-content: space-around;
   width: 55%;
   height: 60%;
   align-items: center;
-  background: #56515194
+  background: white;
+  margin-right: 20%;
 }
 
 .descript-container {
-  height: 70%;
+  height: 400px;
   text-align: center;
   padding: 5px;
   width: 200px;
@@ -122,11 +130,12 @@
 
 .identification-card-container {
   height: 70%;
-  width: 60%;
+  width: 73%;
   border-radius:  10px;
   border: solid 2px black;
   display: flex;
   padding: 1%;  
+  background-color: white;
 }
 
 .id-left-side-container {
@@ -257,7 +266,7 @@
 .button-links-home {
   height: 100%;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: space-around;
 }
 
@@ -286,4 +295,8 @@
 
 .current-player-id {
   text-transform: uppercase;
+}
+
+.enemy-pic {
+  max-width: 30%;
 }

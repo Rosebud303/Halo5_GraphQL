@@ -132,8 +132,8 @@ class Homepage extends Component {
         </div>
         <div className='lesser-spartan-details'>
           <section className='banner-company-links'>
-
             <div className='buttons-descriptions-section'>
+              <h1>( Navigation Links )</h1>
               <div className='button-links-home'>
                 <Link onMouseOver={(event) => handleMouseOver(event)} onMouseOut={() => handleMouseOut()} id='1' to='/details' className='homepage-links'>
                   <p onMouseOver={(event) => handleMouseOver(event)} onMouseOut={() => handleMouseOut()} id='1' className='detail-link details'>OVERVIEW</p>
@@ -153,7 +153,7 @@ class Homepage extends Component {
                 <div className='descript-container'>
                   <p className='description'>{currentDescription}</p>
                 </div>
-                <p className='description-info'>| hover buttons for details |</p>
+                <p className='description-info'>| hover links for details |</p>
               </div>
             </div>
           </section>
