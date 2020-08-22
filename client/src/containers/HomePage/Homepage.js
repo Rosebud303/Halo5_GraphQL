@@ -183,7 +183,7 @@ class Homepage extends Component {
                 <div className='id-left-content-container'>
                   <div className='id-left-images-container'>
                     <div className='id-left-images'>
-                      <img className='id-left-pics' src='https://img.icons8.com/plasticine/100/000000/sim-card-chip.png' />
+                      <img className='id-left-pics' src='https://i.imgur.com/NWlB6Wd.jpg' />
                     </div>
                     <div className='id-left-images'>
                       {currentImgUrlEmblem ? (
@@ -198,6 +198,8 @@ class Homepage extends Component {
                     </div>
                   </div>
                   <div className='id-left-information-container'>
+                    <p>NAME:</p>
+                    <p className='id-text-values current-player'>{currentPlayer}</p>
                     <p>ALIAS:</p>
                     <p className='id-text-values'>{profileInfo.ServiceTag}</p>
                     <p>DOB:</p>
