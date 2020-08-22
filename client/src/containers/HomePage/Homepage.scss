@@ -79,9 +79,7 @@
 
 .descript-container {
   height: 400px;
-  text-align: center;
   padding: 5px;
-  width: 200px;
 }
 
 .identification-card-container {
@@ -248,7 +246,8 @@
 .description-info {
   font-size: 15px;
   color: #4e5caa;
-  font-weight: bolder
+  font-weight: bolder;
+  margin-top: 0;
 }
 
 .current-player-id {

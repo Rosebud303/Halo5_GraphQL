@@ -9,11 +9,11 @@ import axios from 'axios';
 import Spinner from '../../Spinner/Spinner';
 
 const descriptions = [
-  'come explore our newly developed application, tasked with making it easier for you to find out more about your Spartan Profile! ',
-  'This page gives you a quick overview of your entire Halo 5 history! See your accolades throughout your Halo 5 career.',
-  "Check out how well you performed in Halo 5's most popular PvP mode, ARENA! Scroll through your own personal playlist for more details.",
-  "Grunts, Elites, and Bosses, you've slayed them all! Found out how well you did in this multiplayer PvE mode",
-  'Want to find out more about Halo 5? Our libraries page will show you all the aspects of Halo 5'
+  'come explore our newly developed application based on the wildly popular game, Halo 5! Feel free to search your personal profile and explore your very own history in this online multiplayer game! Thank you for trying out Halo 5 Search!',
+  'This page gives you a quick overview of your entire Halo 5 history! Totaling your records all on one page. Our overview feature allows for a quick glance into your personal stats accumulated over your Halo 5 play time. Come see your accolades throughout your Halo 5 career.',
+  "Check out how well you performed in Halo 5's most popular PvP mode, ARENA! Scroll through your own personal playlist and find out how well you did on every map you ever played! Other information such as most used weapon and most won medals will also be available for each played map.",
+  "Grunts, Elites, and Bosses, you've slayed them all! Want to know how many of them you took down? Look no further! Our Warzone feature will allow you to see just how much damage you caused to your enemies! Click link to find out how well you did in this multiplayer PvE mode",
+  'Want to find out more about Halo 5? Our libraries page will show you all the aspects of Halo 5. We have included this library page for other miscellaneous information about Halo 5. For the person that just wants to explore a little more about the world of Halo 5.'
 ]
 
 const titles = [
@@ -149,11 +149,11 @@ class Homepage extends Component {
                 </Link>
               </div>
               <div className='full-descript'>
+                <p className='description-info'>| hover links for details |</p>
                 <div className='descript-title'>{currentTitle}</div>
                 <div className='descript-container'>
                   <p className='description'>{currentDescription}</p>
                 </div>
-                <p className='description-info'>| hover links for details |</p>
               </div>
             </div>
           </section>
