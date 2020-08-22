@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Query } from 'react-apollo';
 import { ARENA_DROPDOWN_QUERY, SELECTED_VARIANT_QUERY, ARENA_CSR_QUERY } from '../../Queries/GraphQLQueries';
+import EmptyContent from '../../components/EmptyContent/EmptyContent';
 
 class Arenapage extends Component {
   constructor() {
@@ -38,6 +39,7 @@ class Arenapage extends Component {
     const parsedMedalsMetadata = JSON.parse(localStorage.getItem('medalsMetadata'));
     const parsedCsrMetadata = JSON.parse(localStorage.getItem('csrMetadata'));
     const parsedSeasonsMetadata = JSON.parse(localStorage.getItem('seasonsMetadata'));
+    const arenaMessage = 'To get started, make a selection from the playlist at the top left of the page.  The playlists included are taylored around your players stats.'
 
     return (
       <div className='arena-page'>
@@ -104,6 +106,7 @@ class Arenapage extends Component {
             </Link>
           </div>
         </header>
+        {!this.state.currentGameVariant && <EmptyContent message={arenaMessage} />}
         {this.state.currentGameVariant && (
           <Query
             query={SELECTED_VARIANT_QUERY}
