@@ -132,23 +132,7 @@ class Homepage extends Component {
         </div>
         <div className='lesser-spartan-details'>
           <section className='banner-company-links'>
-            <form className='welcome-form' onSubmit={handleSubmit}>
-              <input
-                className='welcome-search welcome-search-input'
-                name='search'
-                onChange={handleChange}
-                placeholder='Find New Spartan...'
-                required
-                type='text'
-                value={searchedPlayer}
-              />
-              <button
-                className='welcome-search welcome-search-button'
-                type='submit'
-              >
-                Submit
-                </button>
-            </form>
+
             <div className='buttons-descriptions-section'>
               <div className='button-links-home'>
                 <Link onMouseOver={(event) => handleMouseOver(event)} onMouseOut={() => handleMouseOut()} id='1' to='/details' className='homepage-links'>
@@ -174,6 +158,23 @@ class Homepage extends Component {
             </div>
           </section>
           <section className='spartan-gfx'>
+            <form className='welcome-form' onSubmit={handleSubmit}>
+              <input
+                className='welcome-search welcome-search-input'
+                name='search'
+                onChange={handleChange}
+                placeholder='Find New Spartan...'
+                required
+                type='text'
+                value={searchedPlayer}
+              />
+              <button
+                className='welcome-search welcome-search-button'
+                type='submit'
+              >
+                Submit
+                </button>
+            </form>
             <div className='identification-card-container'>
               <div className='id-left-side-container'>
                 <div className='id-left-title-container'>
@@ -198,7 +199,7 @@ class Homepage extends Component {
                   </div>
                   <div className='id-left-information-container'>
                     <p>NAME:</p>
-                    <p className='id-text-values current-player'>{currentPlayer}</p>
+                    <p className='id-text-values current-player-id'>{currentPlayer}</p>
                     <p>ALIAS:</p>
                     <p className='id-text-values'>{profileInfo.ServiceTag}</p>
                     <p>DOB:</p>
@@ -214,7 +215,7 @@ class Homepage extends Component {
                         <p>UNIT</p>
                       </div>
                       <div className='id-bottom-content-row'>
-                        <p className='id-text-values'>5ft 2in</p>
+                        <p className='id-text-values'>7ft 2in</p>
                         <p className='id-text-values'>287lb</p>
                         <p className='id-text-values'>MK1</p>
                       </div>
