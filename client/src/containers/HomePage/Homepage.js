@@ -187,17 +187,28 @@ class Homepage extends Component {
               </div>
             </div> */}
 
-            <div className='identification-card'>
-              <div className='id-left-side'>
-                <div className='id-left-title'>
-
+            <div className='identification-card-container'>
+              <div className='id-left-side-container'>
+                <div className='id-left-title-container'>
+                  <p className='id-card-title'>SPARTAN REGISTRY IDENTIFICATION</p>
                 </div>
-                <div className='id-left-content'>
-                  
+                <div className='id-left-content-container'>
+                  <div className='id-left-images-container'>
+                    <div className='id-left-images'></div>
+                    <div className='id-left-images'></div>
+                  </div>
+                  <div className='id-left-information-container'>
+
+                  </div>
                 </div>
               </div>
-              <div className='id-right-side'>
+              <div className='id-right-side-container'>
+                <div className='id-spartan-face-container'>
 
+                </div>
+                <div className='id-barcode-container'>
+
+                </div>
               </div>
             </div>
 
