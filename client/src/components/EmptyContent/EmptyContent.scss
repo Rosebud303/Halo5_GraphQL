@@ -1,0 +1,24 @@
+.no-content-container {
+  background-color: gray;
+  width: 40%;
+  height: 30%;
+  margin-top: 5rem;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 2%;
+  justify-content: space-between;
+
+}
+
+.no-content-title {
+  background-color: teal;
+  width: 80%;
+}
+
+.no-content-message {
+  background-color: yellow;
+  width: 70%;
+  height: 60%;
+}
