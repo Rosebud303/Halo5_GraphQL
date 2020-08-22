@@ -159,7 +159,7 @@ class Homepage extends Component {
             </div>
           </section>
           <section className='spartan-gfx'>
-            <p className='id-card-name'>{currentPlayer}</p>
+            {/* <p className='id-card-name'>{currentPlayer}</p>
 
             <div className='id-card-images'>
               <div className='id-image-container-1'>
@@ -185,7 +185,22 @@ class Homepage extends Component {
                     <Spinner name={'Spartan'} />
                   )}
               </div>
+            </div> */}
+
+            <div className='identification-card'>
+              <div className='id-left-side'>
+                <div className='id-left-title'>
+
+                </div>
+                <div className='id-left-content'>
+                  
+                </div>
+              </div>
+              <div className='id-right-side'>
+
+              </div>
             </div>
+
           </section>
         </div>
       </>
