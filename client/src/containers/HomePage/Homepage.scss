@@ -35,50 +35,6 @@
   text-align: center;
 }
 
-.id-card-name {
-  font-size: 2rem;
-  margin: 0;
-  padding: 10px;
-  width: 441px;
-  border: solid 1px black;
-  text-align: center;
-  border-bottom: solid 3px #3c0000;
-  text-transform: uppercase;
-  font-family: 'Gruppo', cursive;
-  font-weight: bolder;
-  border-radius: 5px 5px 0px 0px;
-  background: linear-gradient(rgba(45, 132, 96, 0.15),rgba(15, 15, 31, 0.95));
-  background-image: url(https://i.imgur.com/azP2W6E.jpg);
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  color: white;
-}
-
-.id-card-images {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  background-color: lightgrey;
-  border: solid 1px black;
-  border-radius: 0px 0px 5px 5px;
-  background-image: url(https://i.imgur.com/Y4hWC9F.jpg);
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
-.id-image-container-1 {
-  margin: 15px;
-  border: solid 2px white;
-  background: #8c8c8cbd;
-}
-
-.id-image-container-2 {
-  padding: 15px;
-  width: 25%;
-}
-
 .lesser-emblem {
   max-height: 175px;
   width: auto;
