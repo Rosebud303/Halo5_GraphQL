@@ -78,7 +78,6 @@
 }
 
 .homepage-links {
-  // border: solid 1px black;
   width: 10rem;
   display: flex;
   justify-content: center;
@@ -87,9 +86,9 @@
   font-weight: bolder;
   text-shadow: 15px 16px 19px #0c0c0c73;
   box-shadow: inset 0px 0px 9px 7px #0000003b;
-  border-radius: 4px;
+  border-radius: 2px;
   font-family: 'Orbitron', sans-serif;
-  background: blue;
+  background: #5b8582;
 }
 
 .homepage-links:hover {
@@ -111,13 +110,18 @@
   width: 55%;
   height: 60%;
   align-items: center;
+  background: #56515194
 }
 
 .descript-container {
   height: 70%;
   text-align: center;
   padding: 5px;
-  width: 150px;
+  width: 200px;
+}
+
+.description {
+ font-size: 20px;
 }
 
 .button-links-home {
@@ -132,5 +136,15 @@
   background: #e4e1e1;
   padding: 10px;
   border-radius: 1px;
-  box-shadow: 0px 0px 5px 0px #9a9898
+  box-shadow: 0px 0px 5px 0px #9a9898;
+  text-align: center;
+}
+
+.descript-title {
+  font-size: 30px;
+  font-weight: bolder;
+}
+
+.description-info {
+  font-size: 12px;
 }
