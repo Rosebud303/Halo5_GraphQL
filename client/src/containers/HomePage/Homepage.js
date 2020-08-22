@@ -108,10 +108,12 @@ class Homepage extends Component {
     } = this
     const spartanImageStyle = {
       backgroundImage: `url(${currentImgUrlSpartan})`,
-      backgroundPosition: `-90px -25px`,
+      backgroundPosition: `-110px -25px`,
       backgroundSize: 'auto',
       width: '200px',
-      height: '230px'
+      height: '230px',
+      maxWidth: '100%',
+      maxHeight: '100%'
     }
 
     return (
@@ -163,27 +165,13 @@ class Homepage extends Component {
 
             <div className='id-card-images'>
               <div className='id-image-container-1'>
-                {currentImgUrlSpartan ? (
-
-                  <div className='spartan-image-container' style={spartanImageStyle}></div>
-                ) : (
-                    <Spinner name={'Spartan'} />
-                  )}
+                
               </div>
               <div className='id-image-container-2'>
                 <p>Alias: {profileInfo.ServiceTag}</p>
                 <p>DOB: {firstModified}</p>
                 <p>Last Seen On: {lastModified}</p>
                 <p>Company Allegiance: {profileInfo.Company ? profileInfo.Company.Name : 'No Company'}</p>
-                {currentImgUrlEmblem ? (
-                  <img
-                    alt='Player Emblem'
-                    className='lesser-emblem'
-                    src={currentImgUrlEmblem}
-                  />
-                ) : (
-                    <Spinner name={'Spartan'} />
-                  )}
               </div>
             </div> */}
 
@@ -194,20 +182,56 @@ class Homepage extends Component {
                 </div>
                 <div className='id-left-content-container'>
                   <div className='id-left-images-container'>
-                    <div className='id-left-images'></div>
-                    <div className='id-left-images'></div>
+                    <div className='id-left-images'>
+                      <img className='id-left-pics' src='https://img.icons8.com/plasticine/100/000000/sim-card-chip.png' />
+                    </div>
+                    <div className='id-left-images'>
+                      {currentImgUrlEmblem ? (
+                        <img
+                          alt='Player Emblem'
+                          className='lesser-emblem id-left-pics'
+                          src={currentImgUrlEmblem}
+                        />
+                      ) : (
+                          <Spinner name={'Spartan'} />
+                        )}
+                    </div>
                   </div>
                   <div className='id-left-information-container'>
-
+                    <p>ALIAS:</p>
+                    <p className='id-text-values'>{profileInfo.ServiceTag}</p>
+                    <p>DOB:</p>
+                    <p className='id-text-values'>{firstModified}</p>
+                    <p>LAST SEEN ON:</p>
+                    <p className='id-text-values'>{lastModified}</p>
+                    <p>COMPANY ALLEGIANCE:</p>
+                    <p className='id-text-values'>{profileInfo.Company ? profileInfo.Company.Name : 'No Company'}</p>
+                    <div className='id-bottom-content'>
+                      <div className='id-bottom-content-row'>
+                        <p>HEIGHT</p>
+                        <p>WEIGHT</p>
+                        <p>UNIT</p>
+                      </div>
+                      <div className='id-bottom-content-row'>
+                        <p className='id-text-values'>5ft 2in</p>
+                        <p className='id-text-values'>287lb</p>
+                        <p className='id-text-values'>MK1</p>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
               <div className='id-right-side-container'>
                 <div className='id-spartan-face-container'>
+                  {currentImgUrlSpartan ? (
 
+                    <div className='spartan-image-container' style={spartanImageStyle}></div>
+                  ) : (
+                      <Spinner name={'Spartan'} />
+                    )}
                 </div>
                 <div className='id-barcode-container'>
-
+                  <img className='barcode-image' src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAXAAAACJCAMAAAACLZNoAAAAdVBMVEX///8AAACpqanJycloaGjAwMC9vb24uLjl5eXa2trV1dWlpaWurq7R0dHFxcVbW1s4ODienp50dHRubm7v7+/4+PhiYmLo6OgjIyOJiYlTU1MbGxuAgICTk5NkZGQ9PT1FRUUtLS0XFxcQEBCMjIwzMzNWVlb945BOAAADkklEQVR4nO3SW3PaMBCG4RUIzMkQy5yDSQgk//8ndnclQ5OZdjLTTi86ry44yJL220cWYTAYjL85JuEmy1BJE/IQCVudDDq10M+1Lgl7/Vjrn4F+N2EiR1sVwtkPGIRaTr7uEkLUrzosZB5msgo+9eGrrIRI8gK6eSXTMPcCE38cLlrg5OuCbhUrsdFVNsZhLJ1vfMqbQ2hKkG0+b+N1q7DUIDv99Zar1hq40hU2ZVv9vBzkoNMbO+uovXYy0r+1F3t/cwCRYZla5V5bmWnVSqPYeA3FLpReT31jR23M0nVhKlFLFNXHVtlpvaGGmOcnVi/6SWMPa5DPTwV8Ufq0EFcLYWOhuQ6+7imE5H1WegtTOeuql+DpxUvII1fUXAMH3/ljLZHBhwXc+4z+bBRG/jr0ferPeQkSg78MG69r4If+5lfl5nvw1+cCmcG7HnylvTb3a9Z1F51sfXMGP2fwpOBzvfuRrzpe7+C513tj+U3K6Votse/B+63/K/j2T8H7IN8Bn30DvAIccMABBxxwwAEHHHDAAQcccMABBxxwwAEHHHDAAQcccMABBxxwwAEHHHDAAQcccMABBxxwwAEHHHDAAQcccMABBxxwwAEHHHDAAQcccMABBxxwwAEHHHDAAQcccMABBxxwwAEHHHDAAQcccMABBxxwwAEHHHDAAQcccMABBxxwwAEHHHDAAQcccMABBxxwwAEHHHDAAQcccMABBxxwwAEHHHDAAQcccMABBxxwwAEHHHDAAQcccMABBxxwwAEHHHDAAQcccMABBxxwwAEHHHDAAQcccMABBxxwwAEHHHDAAQcccMB/B35zjSY/sePP5aQe/Pr+BfyYQ3wFf89T1udcQ2yDT61+Ak99rvMdfOKPr5cv4B85iI2x3n0Gf+nBmxJk62+IgrcF/OS6+1z1E/jVNXrw26/AX/bloi1I3d+8NTbTdRbFwcMdfPEZ/KOAd/46bOTtAZ63yjpWMo21jJIPbTo2sm5TW8uwTdFSnQ7WlE4Nrf24k05fqFNKTaaMU1n4ukNKVmsah7KME2miT+VVVkJkoBXsX9vIJC6tQLv2x1piHe0+pzpld9ApYdk6izMZp6Sn3XxzTMleltF5LY0Hlk20urUHsfNKNgtSlxI3XXdu/DQLUmkQi5w6rTuWWamqgTPAI0ijNZM1NokjLZGvpUvZzk2s10XfWOfrMtO83VgUG+P7VsY/HT8AXmPI/Zt4YIgAAAAASUVORK5CYII=' />
                 </div>
               </div>
             </div>
