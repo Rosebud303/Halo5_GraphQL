@@ -9,11 +9,19 @@ import axios from 'axios';
 import Spinner from '../../Spinner/Spinner';
 
 const descriptions = [
-  'this is your profile',
-  'this is your details',
-  'this is your arena',
-  'this is your warzone',
-  'these are the metadata libraries'
+  'come explore our newly developed application, tasked with making it easier for you to find out more about your Spartan Profile! ',
+  'This page gives you a quick overview of your entire Halo 5 history! See your accolades throughout your Halo 5 career.',
+  "Check out how well you performed in Halo 5's most popular PvP mode, ARENA! Scroll through your own personal playlist for more details.",
+  "Grunts, Elites, and Bosses, you've slayed them all! Found out how well you did in this multiplayer PvE mode",
+  'Want to find out more about Halo 5? Our libraries page will show you all the aspects of Halo 5'
+]
+
+const titles = [
+  'Welcome,',
+  'Overview',
+  'Arena',
+  'Warzone',
+  'Library'
 ]
 
 class Homepage extends Component {
@@ -22,6 +30,7 @@ class Homepage extends Component {
     this.state = {
       searchedPlayer: '',
       currentDescription: descriptions[0],
+      currentTitle: titles[0],
       profileInfo: {},
       firstModified: '',
       lastModified: ''
@@ -35,11 +44,11 @@ class Homepage extends Component {
   }
 
   handleMouseOver = (e) => {
-    this.setState({ currentDescription: descriptions[parseInt(e.target.id)] })
+    this.setState({ currentDescription: descriptions[parseInt(e.target.id)], currentTitle: titles[e.target.id] })
   }
 
   handleMouseOut = () => {
-    this.setState({ currentDescription: descriptions[0] })
+    this.setState({ currentDescription: descriptions[0], currentTitle: titles[0] })
   }
 
   handleChange = (event) => {
@@ -104,7 +113,7 @@ class Homepage extends Component {
   }
 
   render() {
-    const { handleSubmit, handleChange, handleMouseOver, handleMouseOut, state: { currentDescription, searchedPlayer, profileInfo, lastModified, firstModified }, props: { currentPlayer, currentImgUrlSpartan, currentImgUrlEmblem }
+    const { handleSubmit, handleChange, handleMouseOver, handleMouseOut, state: { currentTitle, currentDescription, searchedPlayer, profileInfo, lastModified, firstModified }, props: { currentPlayer, currentImgUrlSpartan, currentImgUrlEmblem }
     } = this
     const spartanImageStyle = {
       backgroundImage: `url(${currentImgUrlSpartan})`,
@@ -139,22 +148,26 @@ class Homepage extends Component {
                 </button>
             </form>
             <div className='buttons-descriptions-section'>
-              <div>
+              <div className='button-links-home'>
                 <Link onMouseOver={(event) => handleMouseOver(event)} onMouseOut={() => handleMouseOut()} id='1' to='/details' className='homepage-links'>
-                  <p onMouseOver={(event) => handleMouseOver(event)} onMouseOut={() => handleMouseOut()} id='1' className='detail-link details'>DETAILS PAGE</p>
+                  <p onMouseOver={(event) => handleMouseOver(event)} onMouseOut={() => handleMouseOut()} id='1' className='detail-link details'>OVERVIEW</p>
                 </Link>
                 <Link onMouseOver={(event) => handleMouseOver(event)} onMouseOut={() => handleMouseOut()} id='2' to='/arena' className='homepage-links'>
-                  <p onMouseOver={(event) => handleMouseOver(event)} onMouseOut={() => handleMouseOut()} id='2' className='detail-link arena-lesser'>ARENA PAGE</p>
+                  <p onMouseOver={(event) => handleMouseOver(event)} onMouseOut={() => handleMouseOut()} id='2' className='detail-link arena-lesser'>ARENA</p>
                 </Link>
                 <Link onMouseOver={(event) => handleMouseOver(event)} onMouseOut={() => handleMouseOut()} id='3' to='/warzone' className='homepage-links'>
-                  <p onMouseOver={(event) => handleMouseOver(event)} onMouseOut={() => handleMouseOut()} id='3' className='detail-link warzone-lesser'>WARZONE PAGE</p>
+                  <p onMouseOver={(event) => handleMouseOver(event)} onMouseOut={() => handleMouseOut()} id='3' className='detail-link warzone-lesser'>WARZONE</p>
                 </Link>
                 <Link onMouseOver={(event) => handleMouseOver(event)} onMouseOut={() => handleMouseOut()} id='4' to='/libraries' className='homepage-links'>
-                  <p onMouseOver={(event) => handleMouseOver(event)} onMouseOut={() => handleMouseOut()} id='4' className='detail-link warzone-lesser'>LIBRARIES PAGE</p>
+                  <p onMouseOver={(event) => handleMouseOver(event)} onMouseOut={() => handleMouseOut()} id='4' className='detail-link warzone-lesser'>LIBRARIES</p>
                 </Link>
               </div>
-              <div className='descript-container'>
-                <p className='description'>{currentDescription}</p>
+              <div className='full-descript'>
+                <div className='descript-title'>{currentTitle}</div>
+                <div className='descript-container'>
+                  <p className='description'>{currentDescription}</p>
+                </div>
+                <p className='description-info'>| hover buttons for details |</p>
               </div>
             </div>
           </section>
