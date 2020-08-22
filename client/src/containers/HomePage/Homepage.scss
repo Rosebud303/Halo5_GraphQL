@@ -85,10 +85,11 @@
   color: white;
   font-weight: bolder;
   text-shadow: 15px 16px 19px #0c0c0c73;
-  box-shadow: inset 0px 0px 9px 7px #0000003b;
-  border-radius: 2px;
+  /* box-shadow: inset 0px 0px 9px 7px #0000003b; */
+  /* border-radius: 2px; */
   font-family: 'Orbitron', sans-serif;
-  background: #5b8582;
+  /* background: #5b8582; */
+  filter: drop-shadow(4px 6px 7px black)
 }
 
 .homepage-links:hover {
@@ -138,6 +139,9 @@
   border-radius: 1px;
   box-shadow: 0px 0px 5px 0px #9a9898;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .descript-title {
@@ -146,5 +150,7 @@
 }
 
 .description-info {
-  font-size: 12px;
+  font-size: 15px;
+  color: #4e5caa;
+  font-weight: bolder
 }
