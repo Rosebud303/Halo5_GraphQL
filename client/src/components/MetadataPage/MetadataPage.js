@@ -63,11 +63,11 @@ class MetadataPage extends Component {
 
     return (
       <div className='metadata-body'>
-        <Header title={'Information Center'} button1={'warzone'} button2={'arena'} button3={'details page'} />
+        <Header title={'Information Center'} button1={'warzone'} button2={'arena'} button3={'details page'} button4={'details'} />
         <LibrarySelector changeLibrary={changeLibrary} />
         <LibraryCardsFilters selectedLibraryFilters={selectedLibraryFilters} filterChosenLibrary={filterChosenLibrary} />
         <LibraryCardsContainer selectedLibraryName={selectedLibraryName} selectedLibrary={selectedLibrary} />
-        <div className='testt'>{!selectedLibraryName && <EmptyContent message={metadataMessage} />}</div>
+        <div className='notice-container'>{!selectedLibraryName && <EmptyContent message={metadataMessage} />}</div>
       </div>
     );
   }
