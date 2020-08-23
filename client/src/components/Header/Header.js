@@ -23,7 +23,7 @@ const Header = ({ title, header, button1, button2, button3, currentPlayer }) => 
             <p id='buttons' className='detail-link arena-button'>{`${button2} Page`}</p>
           </Link>
           <Link to={`/${button3}`} className='homepage-links hpl2'>
-            <p id='buttons' className='detail-link arena-button'>{`${button3} Page`}</p>
+            <p id='buttons' className='detail-link arena-button'>{`${button3}`}</p>
           </Link>
         </div>
       </div>
