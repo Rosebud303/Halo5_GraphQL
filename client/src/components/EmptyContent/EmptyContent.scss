@@ -25,6 +25,7 @@
     // border: solid 1px black;
     padding: 0;
     letter-spacing: 2px;
+    margin-bottom: 0;
     // max-height: 5rem;
     // z-index: -3;
 
@@ -33,6 +34,7 @@
       display: inline-block;
       color: black;
       z-index: 1;
+      margin-bottom: 0;
     
 
       &::before,
@@ -67,13 +69,17 @@
 
 .no-content-message {
     // background-color: #7f8c7d;
-    width: 70%;
+    width: 60%;
     height: 50%;
     padding: 3%;
     // overflow-y: scroll;
     color: black;
     font-weight: bolder;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
+
+    p {
+      margin-top: 10px;
+    }
 
     p::before {
       content: 'h';
