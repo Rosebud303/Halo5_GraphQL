@@ -29,7 +29,7 @@
   // background: #1F1F1F;
   margin-top: 40px;
   border-radius: 10px;
-  transition: background 0.3s;
+  // transition: background 3s;
 }
 
 .details-page-section {
@@ -37,8 +37,8 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  border: solid 2px #ffffff;
-  border-collapse: collapse;
+  border: solid 1px #ffffff;
+  // border-collapse: collapse;
   opacity: 0.8;
   background: linear-gradient(399deg, #2c6382a8, #030219bf);
   padding-bottom: 20px;
@@ -50,14 +50,13 @@
 
   &:hover {
     background: linear-gradient(399deg, #10425fa8, #060519bf); 
-    border: solid 4px #f7f9c6;
+    border: solid 1px #f7f9c6;
     opacity: 1;
 
     .csr-container h4,
     .details-page-csr,
     #details-spartan-pic,
-    .details-spartan-name,
-    .div-medal {
+    .details-spartan-name {
       filter: drop-shadow(1px 1px 5px blanchedalmond);
     }
 
