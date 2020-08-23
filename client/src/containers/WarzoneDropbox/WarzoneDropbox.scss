@@ -1,5 +1,4 @@
 .whole-page {
-  // background: aliceblue;
   height: 100vh;
   background-image: url(https://wallpaperplay.com/walls/full/0/a/1/111571.jpg);
   background-attachment: fixed;
@@ -24,12 +23,6 @@
   filter: drop-shadow(2px 4px 6px black);
   z-index: 100;
 }
-
-// .weapon-container h3 {
-//   color: black;
-//   text-align: right;
-//   font-size: 30px;
-// }
 
 .wz-drop-down {
   margin: auto;
@@ -94,7 +87,6 @@
 .main-container {
   display: flex;
   flex-direction: column;
-  // justify-content: space-between;
   width: 60%;
   margin: auto;
   top: 50%;
