@@ -63,7 +63,7 @@ class Detailspage extends Component {
     const parsedWeaponsMetadata = JSON.parse(localStorage.getItem('weaponsMetadata'));
 
     return (<>
-      <Header header={'Details Page'} button1={'warzone'} button2={'arena'} button3={'information center'} />
+      <Header header={'Details Page'} button1={'warzone'} button2={'arena'} button3={'information center'} button4={'libraries'} />
       <div className='details-page-container'>
         <main className='details-page-body'>
           <Query query={ACCUMULATIVE_ARENA_QUERY} variables={{ player_name }}>

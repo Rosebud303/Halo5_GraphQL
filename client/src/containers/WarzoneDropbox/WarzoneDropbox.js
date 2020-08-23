@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { Query } from 'react-apollo';
 import Header from '../../components/Header/Header';
 import { WARZONE_DROPDOWN_QUERY, MAP_QUERY } from '../../Queries/GraphQLQueries';
+import EmptyContent from '../../components/EmptyContent/EmptyContent';
 
 class WarzoneDropbox extends Component {
   constructor() {
@@ -36,11 +37,12 @@ class WarzoneDropbox extends Component {
     const player_name = currentPlayer;
     const GameBaseVariantId = warzoneGameVariantId;
     const MapId = currentMapVariantId;
+    const dropboxMessage = 'To get started, make a selection from the maps dropbox above this notice.  The options included are tailored around maps your profile has played on this Warzone variant.'
 
     return (
       <div className='whole-page'>
         <div>
-          <Header title={currentMapVariantName} header={'Warzone Variant'} button1={'warzone'} button2={'arena'} button3={'information center'} />
+          <Header title={currentMapVariantName} header={'Warzone Variant'} button1={'warzone'} button2={'arena'} button3={'information center'} button4={'libraries'} />
           <Query query={WARZONE_DROPDOWN_QUERY} variables={{ player_name, GameBaseVariantId }}>
             {({ loading, error, data }) => {
               if (loading) return <option>Loading...</option>;
@@ -129,6 +131,9 @@ class WarzoneDropbox extends Component {
               );
           }}
         </Query>
+        <div className='notice-container'>
+          {!currentMapVariantName && <EmptyContent message={dropboxMessage} />}
+        </div>
       </div>
     );
   }

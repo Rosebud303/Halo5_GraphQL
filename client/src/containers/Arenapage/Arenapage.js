@@ -39,7 +39,7 @@ class Arenapage extends Component {
     const parsedMedalsMetadata = JSON.parse(localStorage.getItem('medalsMetadata'));
     const parsedCsrMetadata = JSON.parse(localStorage.getItem('csrMetadata'));
     const parsedSeasonsMetadata = JSON.parse(localStorage.getItem('seasonsMetadata'));
-    const arenaMessage = 'To get started, make a selection from the playlist at the top left of the page.  The playlists included are taylored around your players stats.'
+    const arenaMessage = 'To get started, make a selection from the playlist at the top left of the page.  The playlists included are tailored around your players stats.'
 
     return (
       <div className='arena-page'>
