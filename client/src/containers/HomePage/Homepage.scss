@@ -52,6 +52,10 @@
   font-family: 'Orbitron', sans-serif
 }
 
+.arena-button {
+  color: white;
+}
+
 .homepage-links:hover {
   cursor: pointer;
   transition: transform 100ms ease-in;
@@ -63,6 +67,10 @@
 
 .homepage-links:focus {
   outline: none;
+}
+
+.hpl2:hover {
+  background-color: #5c5a5a;
 }
 
 .buttons-descriptions-section {

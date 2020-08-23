@@ -13,16 +13,16 @@ const Header = ({ title, header, button1, button2, button3, currentPlayer }) => 
       <div className='heading-right-side'>
         <p id='header-player-name'>{currentPlayer}</p>
         <div className='buttons-container'>
-          <Link to='/homepage' className='homepage-links'>
+          <Link to='/homepage' className='homepage-links hpl2'>
             <p id='buttons' className='detail-link arena-button'>HOMEPAGE</p>
           </Link>
-          <Link to={`/${button1}`} className='homepage-links'>
+          <Link to={`/${button1}`} className='homepage-links hpl2'>
             <p id='buttons' className='detail-link arena-button'>{`${button1} Page`}</p>
           </Link>
-          <Link to={`/${button2}`} className='homepage-links'>
+          <Link to={`/${button2}`} className='homepage-links hpl2'>
             <p id='buttons' className='detail-link arena-button'>{`${button2} Page`}</p>
           </Link>
-          <Link to={`/${button3}`} className='homepage-links'>
+          <Link to={`/${button3}`} className='homepage-links hpl2'>
             <p id='buttons' className='detail-link arena-button'>{`${button3} Page`}</p>
           </Link>
         </div>

@@ -92,16 +92,16 @@ class Arenapage extends Component {
             {!this.state.currentGameVariantName && <p className='start-instructions'>(select playlist on the left to get started)</p>}
           </div>
           <div className='buttons-container'>
-            <Link to='/homepage' className='homepage-links'>
+            <Link to='/homepage' className='homepage-links hpl2'>
               <p className='detail-link arena-button'>HOMEPAGE</p>
             </Link>
-            <Link to='/details' className='homepage-links'>
+            <Link to='/details' className='homepage-links hpl2'>
               <p className='detail-link arena-button'>DETAILS PAGE</p>
             </Link>
-            <Link to='/warzone' className='homepage-links'>
+            <Link to='/warzone' className='homepage-links hpl2'>
               <p className='detail-link arena-button'>WARZONE PAGE</p>
             </Link>
-            <Link to='/libraries' className='homepage-links'>
+            <Link to='/libraries' className='homepage-links hpl2'>
               <p className='detail-link arena-button'>LIBRARIES PAGE</p>
             </Link>
           </div>
