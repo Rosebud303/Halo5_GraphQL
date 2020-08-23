@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import './Header.scss';
 
-const Header = ({ title, header, button1, button2, button3, currentPlayer }) => {
+const Header = ({ title, header, button1, button2, button3, button4, currentPlayer }) => {
 
   return (
     <header id='header-all' className='arena-header header-all'>
@@ -22,7 +22,7 @@ const Header = ({ title, header, button1, button2, button3, currentPlayer }) => 
           <Link to={`/${button2}`} className='homepage-links hpl2'>
             <p id='buttons' className='detail-link arena-button'>{`${button2} Page`}</p>
           </Link>
-          <Link to={`/${button3}`} className='homepage-links hpl2'>
+          <Link to={`/${button4}`} className='homepage-links hpl2'>
             <p id='buttons' className='detail-link arena-button'>{`${button3}`}</p>
           </Link>
         </div>
