@@ -1,24 +1,37 @@
 .no-content-container {
-  background-color: gray;
+  background-color: white;
+  // border: solid 1px black;
   width: 40%;
   height: 30%;
+  min-height: 300px;
+  min-width: 430px;
   margin-top: 5rem;
   text-align: center;
   display: flex;
   align-items: center;
   flex-direction: column;
-  padding: 2%;
-  justify-content: space-between;
-
+  padding: 1%;
+  justify-content: space-around;
+  border-radius: 2px;
 }
 
 .no-content-title {
-  background-color: teal;
-  width: 80%;
+    background-color: #28560b;
+    width: 80%;
+    color: white;
+    text-decoration: underline;
+    font-family: 'Black Ops One', cursive;
+    font-size: 1.2rem;
+    border: solid 1px black;
+    padding: 0;
 }
 
 .no-content-message {
-  background-color: yellow;
-  width: 70%;
-  height: 60%;
+    background-color: #7f8c7d;
+    width: 70%;
+    height: 50%;
+    padding: 3%;
+    // overflow-y: scroll;
+    color: white;
+    font-weight: bolder;
 }
