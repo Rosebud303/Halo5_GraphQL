@@ -105,21 +105,21 @@ class WarzoneDropbox extends Component {
                   </div>
                   <div className='second-row'>
                     <div className='weapon-info'>
-                      <p className='heading-details'>Most Used Tool</p>
+                      <p className='heading-details'><span className='most-used-tool'>Most Used Tool:</span> <span id='wz-best-wep'>{foundWeapon.name}</span></p>
                       <p>
-                        <span>{foundWeapon.name}</span> Kills: {data.mapStats.WeaponWithMostKills.TotalKills}
+                        Kills: {data.mapStats.WeaponWithMostKills.TotalKills}
                       </p>
                       <p>
-                        <span>{foundWeapon.name}</span> Headshots: {data.mapStats.WeaponWithMostKills.TotalHeadshots}
+                        Headshots: {data.mapStats.WeaponWithMostKills.TotalHeadshots}
                       </p>
                       <p>
-                        <span>{foundWeapon.name}</span> Damage Dealt: {data.mapStats.WeaponWithMostKills.TotalDamageDealt.toFixed(2)}
+                        Damage Dealt: {data.mapStats.WeaponWithMostKills.TotalDamageDealt.toFixed(2)}
                       </p>
                       <p>
-                        <span>{foundWeapon.name}</span> Shots Fired: {data.mapStats.WeaponWithMostKills.TotalShotsFired}
+                        Shots Fired: {data.mapStats.WeaponWithMostKills.TotalShotsFired}
                       </p>
                       <p>
-                        <span>{foundWeapon.name}</span> Shots Landed: {data.mapStats.WeaponWithMostKills.TotalShotsLanded}
+                        Shots Landed: {data.mapStats.WeaponWithMostKills.TotalShotsLanded}
                       </p>
                     </div>
                     <div className='weapon-container-b'>
