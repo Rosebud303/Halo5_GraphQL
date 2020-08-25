@@ -17,10 +17,10 @@ const Header = ({ title, header, button1, button2, button3, button4, currentPlay
             <p id='buttons' className='detail-link arena-button'>HOMEPAGE</p>
           </Link>
           <Link to={`/${button1}`} className='homepage-links hpl2'>
-            <p id='buttons' className='detail-link arena-button'>{`${button1} Page`}</p>
+            <p id='buttons' className='detail-link arena-button'>{`${button1}`}</p>
           </Link>
           <Link to={`/${button2}`} className='homepage-links hpl2'>
-            <p id='buttons' className='detail-link arena-button'>{`${button2} Page`}</p>
+            <p id='buttons' className='detail-link arena-button'>{`${button2}`}</p>
           </Link>
           <Link to={`/${button4}`} className='homepage-links hpl2'>
             <p id='buttons' className='detail-link arena-button'>{`${button3}`}</p>
