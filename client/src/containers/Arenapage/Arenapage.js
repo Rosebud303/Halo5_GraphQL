@@ -95,8 +95,8 @@ class Arenapage extends Component {
             <Link to='/homepage' className='homepage-links hpl2'>
               <p className='detail-link arena-button'>HOMEPAGE</p>
             </Link>
-            <Link to='/details' className='homepage-links hpl2'>
-              <p className='detail-link arena-button'>DETAILS PAGE</p>
+            <Link to='/overview' className='homepage-links hpl2'>
+              <p className='detail-link arena-button'>OVERVIEW</p>
             </Link>
             <Link to='/warzone' className='homepage-links hpl2'>
               <p className='detail-link arena-button'>WARZONE PAGE</p>

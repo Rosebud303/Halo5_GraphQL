@@ -83,7 +83,7 @@ class WarzoneDropbox extends Component {
             });
 
             return !data.mapStats ? (
-              <p>Select From Dropdown...</p>
+              <p></p>
             ) : (
                 <div className='main-container'>
                   <div className='dropbox-container'>

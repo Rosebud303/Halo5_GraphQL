@@ -136,7 +136,7 @@ class Homepage extends Component {
               <div className='buttons-descriptions-section'>
                 <h1 id='nav-links'> Navigation Links </h1>
                 <div className='button-links-home'>
-                  <Link onMouseOver={(event) => handleMouseOver(event)} onMouseOut={() => handleMouseOut()} id='1' to='/details' className='homepage-links'>
+                  <Link onMouseOver={(event) => handleMouseOver(event)} onMouseOut={() => handleMouseOut()} id='1' to='/overview' className='homepage-links'>
                     <p onMouseOver={(event) => handleMouseOver(event)} onMouseOut={() => handleMouseOut()} id='1' className='detail-link details'>OVERVIEW</p>
                   </Link>
                   <Link onMouseOver={(event) => handleMouseOver(event)} onMouseOut={() => handleMouseOut()} id='2' to='/arena' className='homepage-links'>
