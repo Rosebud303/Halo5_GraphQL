@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { Query } from 'react-apollo';
 import Header from '../../components/Header/Header';
 import { WARZONE_DROPDOWN_QUERY, MAP_QUERY } from '../../Queries/GraphQLQueries';
+import EmptyContent from '../../components/EmptyContent/EmptyContent';
 
 class WarzoneDropbox extends Component {
   constructor() {
@@ -36,11 +37,12 @@ class WarzoneDropbox extends Component {
     const player_name = currentPlayer;
     const GameBaseVariantId = warzoneGameVariantId;
     const MapId = currentMapVariantId;
+    const dropboxMessage = 'To get started, make a selection from the maps dropbox above this notice.  The options included are tailored around maps your profile has played on this Warzone variant.'
 
     return (
       <div className='whole-page'>
         <div>
-          <Header title={currentMapVariantName} header={'Warzone Variant'} button1={'warzone'} button2={'arena'} button3={'libraries'} />
+          <Header title={currentMapVariantName} header={'Warzone Variant'} button1={'warzone'} button2={'arena'} button3={'information center'} button4={'libraries'} />
           <Query query={WARZONE_DROPDOWN_QUERY} variables={{ player_name, GameBaseVariantId }}>
             {({ loading, error, data }) => {
               if (loading) return <option>Loading...</option>;
@@ -81,7 +83,7 @@ class WarzoneDropbox extends Component {
             });
 
             return !data.mapStats ? (
-              <p>Select From Dropdown...</p>
+              <p></p>
             ) : (
                 <div className='main-container'>
                   <div className='dropbox-container'>
@@ -90,34 +92,34 @@ class WarzoneDropbox extends Component {
                       {MapId && <img src={foundMap.imageUrl} className='images' alt='selected halo 5 map' />}
                     </div>
                     <div className='dropbox-data-content'>
-                      <p className='heading-details'>Record/Stats</p>
-                      <p>Total Games Won: {data.mapStats.TotalGamesWon}</p>
-                      <p>Total Games Lost: {data.mapStats.TotalGamesLost}</p>
-                      <p>Total Games Tied: {data.mapStats.TotalGamesTied}</p>
-                      <p>Total Kills: {data.mapStats.TotalKills}</p>
-                      <p>Total Headshots: {data.mapStats.TotalHeadshots}</p>
-                      <p>Total Weapon Damage: {data.mapStats.TotalWeaponDamage.toFixed(2)}</p>
-                      <p>Total Shots Fired: {data.mapStats.TotalShotsFired}</p>
-                      <p>Total Shots Landed: {data.mapStats.TotalShotsLanded}</p>
+                      <p className='heading-details'>Record/Stats Totals</p>
+                      <p>Games Won: {data.mapStats.TotalGamesWon}</p>
+                      <p>Games Lost: {data.mapStats.TotalGamesLost}</p>
+                      <p>Games Tied: {data.mapStats.TotalGamesTied}</p>
+                      <p>Kills: {data.mapStats.TotalKills}</p>
+                      <p>Headshots: {data.mapStats.TotalHeadshots}</p>
+                      <p>Weapon Damage: {(parseInt(data.mapStats.TotalWeaponDamage.toFixed(2)).toLocaleString())}</p>
+                      <p>Shots Fired: {data.mapStats.TotalShotsFired}</p>
+                      <p>Shots Landed: {data.mapStats.TotalShotsLanded}</p>
                     </div>
                   </div>
                   <div className='second-row'>
                     <div className='weapon-info'>
-                      <p className='heading-details'>Most Used Tool</p>
+                      <p className='heading-details'><span className='most-used-tool'>Most Used Tool:</span> <span id='wz-best-wep'>{foundWeapon.name}</span></p>
                       <p>
-                        {foundWeapon.name} Kills: {data.mapStats.WeaponWithMostKills.TotalKills}
+                        Kills: {data.mapStats.WeaponWithMostKills.TotalKills}
                       </p>
                       <p>
-                        {foundWeapon.name} Headshots: {data.mapStats.WeaponWithMostKills.TotalHeadshots}
+                        Headshots: {data.mapStats.WeaponWithMostKills.TotalHeadshots}
                       </p>
                       <p>
-                        {foundWeapon.name} Damage Dealt: {data.mapStats.WeaponWithMostKills.TotalDamageDealt.toFixed(2)}
+                        Damage Dealt: {(parseInt(data.mapStats.WeaponWithMostKills.TotalDamageDealt.toFixed(2)).toLocaleString())}
                       </p>
                       <p>
-                        {foundWeapon.name} Shots Fired: {data.mapStats.WeaponWithMostKills.TotalShotsFired}
+                        Shots Fired: {data.mapStats.WeaponWithMostKills.TotalShotsFired}
                       </p>
                       <p>
-                        {foundWeapon.name} Shots Landed: {data.mapStats.WeaponWithMostKills.TotalShotsLanded}
+                        Shots Landed: {data.mapStats.WeaponWithMostKills.TotalShotsLanded}
                       </p>
                     </div>
                     <div className='weapon-container-b'>
@@ -129,6 +131,9 @@ class WarzoneDropbox extends Component {
               );
           }}
         </Query>
+        <div className='notice-container'>
+          {!currentMapVariantName && <EmptyContent message={dropboxMessage} />}
+        </div>
       </div>
     );
   }

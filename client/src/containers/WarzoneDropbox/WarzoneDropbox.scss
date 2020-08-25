@@ -1,7 +1,6 @@
 .whole-page {
-  // background: aliceblue;
   height: 100vh;
-  background-image: url(https://wallpaperplay.com/walls/full/0/a/1/111571.jpg);
+  background-image: url(http://i.imgur.com/nfuwDtz.jpg);
   background-attachment: fixed;
   overflow-y: scroll;
 }
@@ -25,12 +24,6 @@
   z-index: 100;
 }
 
-// .weapon-container h3 {
-//   color: black;
-//   text-align: right;
-//   font-size: 30px;
-// }
-
 .wz-drop-down {
   margin: auto;
   margin-top: 30px;
@@ -46,6 +39,13 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
+
+  #wz-best-wep {
+    color: palegreen;
+    text-decoration: none;
+    font-weight: bolder;
+    font-size: 1.5rem;
+  }
 }
 
 .weapon-info,
@@ -94,7 +94,6 @@
 .main-container {
   display: flex;
   flex-direction: column;
-  // justify-content: space-between;
   width: 60%;
   margin: auto;
   top: 50%;
@@ -121,7 +120,7 @@
   font-weight: bolder;
   font-size: 50px;
   text-align: center;
-  text-decoration: underline;
+  // text-decoration: underline;
 }
 
 #imageHolderName {
@@ -132,4 +131,15 @@
 #playlist {
   font-size: 25px;
   color: white;
+}
+
+.most-used-tool {
+  text-decoration: underline;
+}
+
+.notice-container {
+  p {
+    filter: drop-shadow(1px 1px black);
+    color: white;
+  }
 }

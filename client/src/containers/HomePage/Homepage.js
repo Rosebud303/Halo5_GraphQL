@@ -9,7 +9,7 @@ import axios from 'axios';
 import Spinner from '../../Spinner/Spinner';
 
 const descriptions = [
-  'come explore our newly developed application based on the wildly popular game, Halo 5! Feel free to search your personal profile and explore your very own history in this online multiplayer game! Thank you for trying out Halo 5 Search!',
+  'Come explore our newly developed application based on the wildly popular game, Halo 5! Feel free to search your personal profile and explore your very own history in this online multiplayer game! Thank you for trying out Halo 5 Search!',
   'This page gives you a quick overview of your entire Halo 5 history! Totaling your records all on one page. Our overview feature allows for a quick glance into your personal stats accumulated over your Halo 5 play time. Come see your accolades throughout your Halo 5 career.',
   "Check out how well you performed in Halo 5's most popular PvP mode, ARENA! Scroll through your own personal playlist and find out how well you did on every map you ever played! Other information such as most used weapon and most won medals will also be available for each played map.",
   "Grunts, Elites, and Bosses, you've slayed them all! Want to know how many of them you took down? Look no further! Our Warzone feature will allow you to see just how much damage you caused to your enemies! Click link to find out how well you did in this multiplayer PvE mode",
@@ -136,7 +136,7 @@ class Homepage extends Component {
               <div className='buttons-descriptions-section'>
                 <h1 id='nav-links'> Navigation Links </h1>
                 <div className='button-links-home'>
-                  <Link onMouseOver={(event) => handleMouseOver(event)} onMouseOut={() => handleMouseOut()} id='1' to='/details' className='homepage-links'>
+                  <Link onMouseOver={(event) => handleMouseOver(event)} onMouseOut={() => handleMouseOut()} id='1' to='/overview' className='homepage-links'>
                     <p onMouseOver={(event) => handleMouseOver(event)} onMouseOut={() => handleMouseOut()} id='1' className='detail-link details'>OVERVIEW</p>
                   </Link>
                   <Link onMouseOver={(event) => handleMouseOver(event)} onMouseOut={() => handleMouseOut()} id='2' to='/arena' className='homepage-links'>

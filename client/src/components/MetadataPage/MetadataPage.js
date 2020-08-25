@@ -4,6 +4,7 @@ import Header from '../Header/Header';
 import LibrarySelector from '../LibrarySelector/LibrarySelector';
 import LibraryCardsContainer from '../LibraryCardsContainer/LibraryCardsContainer';
 import { LibraryCardsFilters } from '../LibraryCardsFilters/LibraryCardsFilters';
+import EmptyContent from '../EmptyContent/EmptyContent';
 
 class MetadataPage extends Component {
   constructor(props) {
@@ -58,13 +59,15 @@ class MetadataPage extends Component {
 
   render() {
     const { state: { selectedLibrary, selectedLibraryFilters, selectedLibraryName }, changeLibrary, filterChosenLibrary } = this;
+    const metadataMessage = 'To get started, select the type of Halo 5 content you\'d like to see.  Once selected, you will find category filters below if available.  Hover over images to display detailed information.'
 
     return (
       <div className='metadata-body'>
-        <Header title={'Libraries'} button1={'warzone'} button2={'arena'} button3={'details'} />
+        <Header title={'Information Center'} button1={'warzone'} button2={'arena'} button3={'details page'} button4={'details'} />
         <LibrarySelector changeLibrary={changeLibrary} />
         <LibraryCardsFilters selectedLibraryFilters={selectedLibraryFilters} filterChosenLibrary={filterChosenLibrary} />
         <LibraryCardsContainer selectedLibraryName={selectedLibraryName} selectedLibrary={selectedLibrary} />
+        <div className='notice-container'>{!selectedLibraryName && <EmptyContent message={metadataMessage} />}</div>
       </div>
     );
   }

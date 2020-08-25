@@ -1,0 +1,91 @@
+.no-content-container {
+  background-color: inherit;
+  width: 40%;
+  height: 30%;
+  min-height: 300px;
+  min-width: 430px;
+  margin-top: 5rem;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 1%;
+  justify-content: space-around;
+  border-radius: 2px;
+}
+
+.no-content-title {
+    width: 80%;
+    font-family: 'Black Ops One', cursive;
+    font-size: 2rem;
+    padding: 0;
+    letter-spacing: 2px;
+    margin-bottom: 0;
+
+    h2 {
+      position: relative;
+      display: inline-block;
+      color: black;
+      z-index: 1;
+      margin-bottom: 0;
+    
+
+      &::before,
+      &::after {
+        content: '';
+        height: 50%;
+        display: block;
+        position: absolute;
+      }
+
+      &::before {
+        background-color: white;
+        width: 130%;
+        height: 100%;
+        z-index: -1;
+        left: -30px;
+      }
+
+      &::after {
+        background-color: #28560b;
+        width: 300%;
+        left: 50%;
+        top: 20%;
+        transform: translate(-50%);
+        z-index: -2;
+      }
+    }
+}
+
+.no-content-message {
+    width: 60%;
+    height: 50%;
+    padding: 3%;
+    color: black;
+    font-weight: bolder;
+    font-size: 1.2rem;
+
+    p {
+      margin-top: 10px;
+      background-color: inherit;
+    }
+
+    p::before {
+      content: 'h';
+      background: #7f8c7d;
+      color: #7f8c7d;
+      font-size: 10px;
+      font-weight: 900;
+      display: block;
+      margin-bottom: 10px;
+    }
+    p::after {
+      content: 'h';
+      background: #7f8c7d;
+      font-size: 10px;
+      font-weight: 900;
+      display: block;
+      color: #7f8c7d;
+      margin-top: 10px;
+    }
+}

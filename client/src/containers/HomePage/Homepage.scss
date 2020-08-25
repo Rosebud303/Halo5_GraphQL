@@ -5,16 +5,16 @@
   align-items: center;
   flex-direction: column;
   background: linear-gradient(0.25turn, #000000, #789bab, #000000);
-  // overflow-y: scroll;
+  overflow-y: scroll;
 }
 
 .lesser-spartan-details {
   display: flex;
   height: 50vh;
-  background-image: url(https://i.imgur.com/bAljxNV.png);
+  background-image: url(https://i.imgur.com/pbE8A5Y.png);
   background-position: center;
   background-repeat: no-repeat;
-  background-size: 500px;
+  background-size: 400px;
 }
 
 .spartan-gfx {
@@ -52,6 +52,10 @@
   font-family: 'Orbitron', sans-serif
 }
 
+.arena-button {
+  color: white;
+}
+
 .homepage-links:hover {
   cursor: pointer;
   transition: transform 100ms ease-in;
@@ -63,6 +67,10 @@
 
 .homepage-links:focus {
   outline: none;
+}
+
+.hpl2:hover {
+  background-color: #5c5a5a;
 }
 
 .buttons-descriptions-section {

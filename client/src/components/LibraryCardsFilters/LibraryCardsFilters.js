@@ -5,7 +5,7 @@ export const LibraryCardsFilters = ({ selectedLibraryFilters, filterChosenLibrar
   let filters = selectedLibraryFilters.map(filter => <div className='filter-border'><p onClick={(event) => filterChosenLibrary(event)} >{filter}</p></div>)
   return (
     <div className='filter-buttons'>
-      <p onClick={(event) => filterChosenLibrary(event)}>ALL</p>
+      <div className='filter-border'><p onClick={(event) => filterChosenLibrary(event)}>ALL</p></div>
       {filters}
     </div>
   )

@@ -1,4 +1,14 @@
 .metadata-body {
-  background: black;
+  background: linear-gradient(0.25turn, #000000, #789bab, #000000);
   height: 100vh;
+}
+
+.notice-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+
+  .no-content-container {
+    margin-top: 0;
+  }
 }
