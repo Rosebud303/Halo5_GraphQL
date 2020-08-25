@@ -98,7 +98,7 @@ class WarzoneDropbox extends Component {
                       <p>Games Tied: {data.mapStats.TotalGamesTied}</p>
                       <p>Kills: {data.mapStats.TotalKills}</p>
                       <p>Headshots: {data.mapStats.TotalHeadshots}</p>
-                      <p>Weapon Damage: {data.mapStats.TotalWeaponDamage.toFixed(2)}</p>
+                      <p>Weapon Damage: {(parseInt(data.mapStats.TotalWeaponDamage.toFixed(2)).toLocaleString())}</p>
                       <p>Shots Fired: {data.mapStats.TotalShotsFired}</p>
                       <p>Shots Landed: {data.mapStats.TotalShotsLanded}</p>
                     </div>
@@ -113,7 +113,7 @@ class WarzoneDropbox extends Component {
                         Headshots: {data.mapStats.WeaponWithMostKills.TotalHeadshots}
                       </p>
                       <p>
-                        Damage Dealt: {data.mapStats.WeaponWithMostKills.TotalDamageDealt.toFixed(2)}
+                        Damage Dealt: {(parseInt(data.mapStats.WeaponWithMostKills.TotalDamageDealt.toFixed(2)).toLocaleString())}
                       </p>
                       <p>
                         Shots Fired: {data.mapStats.WeaponWithMostKills.TotalShotsFired}
