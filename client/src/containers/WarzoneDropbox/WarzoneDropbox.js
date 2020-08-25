@@ -107,19 +107,19 @@ class WarzoneDropbox extends Component {
                     <div className='weapon-info'>
                       <p className='heading-details'>Most Used Tool</p>
                       <p>
-                        {foundWeapon.name} Kills: {data.mapStats.WeaponWithMostKills.TotalKills}
+                        <span>{foundWeapon.name}</span> Kills: {data.mapStats.WeaponWithMostKills.TotalKills}
                       </p>
                       <p>
-                        {foundWeapon.name} Headshots: {data.mapStats.WeaponWithMostKills.TotalHeadshots}
+                        <span>{foundWeapon.name}</span> Headshots: {data.mapStats.WeaponWithMostKills.TotalHeadshots}
                       </p>
                       <p>
-                        {foundWeapon.name} Damage Dealt: {data.mapStats.WeaponWithMostKills.TotalDamageDealt.toFixed(2)}
+                        <span>{foundWeapon.name}</span> Damage Dealt: {data.mapStats.WeaponWithMostKills.TotalDamageDealt.toFixed(2)}
                       </p>
                       <p>
-                        {foundWeapon.name} Shots Fired: {data.mapStats.WeaponWithMostKills.TotalShotsFired}
+                        <span>{foundWeapon.name}</span> Shots Fired: {data.mapStats.WeaponWithMostKills.TotalShotsFired}
                       </p>
                       <p>
-                        {foundWeapon.name} Shots Landed: {data.mapStats.WeaponWithMostKills.TotalShotsLanded}
+                        <span>{foundWeapon.name}</span> Shots Landed: {data.mapStats.WeaponWithMostKills.TotalShotsLanded}
                       </p>
                     </div>
                     <div className='weapon-container-b'>
