@@ -92,15 +92,15 @@ class WarzoneDropbox extends Component {
                       {MapId && <img src={foundMap.imageUrl} className='images' alt='selected halo 5 map' />}
                     </div>
                     <div className='dropbox-data-content'>
-                      <p className='heading-details'>Record/Stats</p>
-                      <p>Total Games Won: {data.mapStats.TotalGamesWon}</p>
-                      <p>Total Games Lost: {data.mapStats.TotalGamesLost}</p>
-                      <p>Total Games Tied: {data.mapStats.TotalGamesTied}</p>
-                      <p>Total Kills: {data.mapStats.TotalKills}</p>
-                      <p>Total Headshots: {data.mapStats.TotalHeadshots}</p>
-                      <p>Total Weapon Damage: {data.mapStats.TotalWeaponDamage.toFixed(2)}</p>
-                      <p>Total Shots Fired: {data.mapStats.TotalShotsFired}</p>
-                      <p>Total Shots Landed: {data.mapStats.TotalShotsLanded}</p>
+                      <p className='heading-details'>Record/Stats Totals</p>
+                      <p>Games Won: {data.mapStats.TotalGamesWon}</p>
+                      <p>Games Lost: {data.mapStats.TotalGamesLost}</p>
+                      <p>Games Tied: {data.mapStats.TotalGamesTied}</p>
+                      <p>Kills: {data.mapStats.TotalKills}</p>
+                      <p>Headshots: {data.mapStats.TotalHeadshots}</p>
+                      <p>Weapon Damage: {data.mapStats.TotalWeaponDamage.toFixed(2)}</p>
+                      <p>Shots Fired: {data.mapStats.TotalShotsFired}</p>
+                      <p>Shots Landed: {data.mapStats.TotalShotsLanded}</p>
                     </div>
                   </div>
                   <div className='second-row'>
