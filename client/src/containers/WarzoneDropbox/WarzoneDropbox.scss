@@ -136,3 +136,10 @@
 .most-used-tool {
   text-decoration: underline;
 }
+
+.notice-container {
+  p {
+    filter: drop-shadow(1px 1px black);
+    color: white;
+  }
+}
