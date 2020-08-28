@@ -10,6 +10,7 @@
   overflow: hidden;
   box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.08);
   border: 1px solid rgba(255, 255, 255, 0.6);
+  position: relative;
 }
 
 .accordion-section figure {
@@ -70,7 +71,7 @@
   border: 0;
   padding: 0;
   opacity: 0;
-  z-index: 100;
+  z-index: 99;
   appearance: none;
 }
 
@@ -252,4 +253,19 @@ figure {
 
 #arrow-background {
   opacity: 1;
+}
+
+.empty-wz {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+
+  .no-content-title h2 {
+
+  }
+
+  .no-content-message p {
+    color: black;
+    background: white;
+  }
 }
