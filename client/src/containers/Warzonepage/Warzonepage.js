@@ -6,6 +6,7 @@ import { Query } from 'react-apollo';
 import { setWarzoneId } from '../../actions';
 import Header from '../../components/Header/Header';
 import { GAME_VARIANT_WARZONE_QUERY } from '../../Queries/GraphQLQueries';
+import EmptyContent from '../../components/EmptyContent/EmptyContent';
 
 class Warzonepage extends Component {
   constructor() {
@@ -123,6 +124,7 @@ class Warzonepage extends Component {
     const firefightVariantId = 'dfd51ee3-9060-46c3-b131-08d946c4c7b9';
     const assaultVariantId = '42f97cca-2cb4-497a-a0fd-ceef1ba46bcc';
     const regularVariantId = 'f6de5351-3797-41e9-8053-7fb111a3a1a0';
+    const noDataMessage = 'Missing AF'
 
     return (
       <div className='warzone-page'>
@@ -144,7 +146,7 @@ class Warzonepage extends Component {
                         (Firefight Maps)
                       </span>
                     </Link>
-                    {createContent(data, firefightVariantId)}
+                    {data.scenarioStats.length ? createContent(data, firefightVariantId) : <EmptyContent message={noDataMessage}/>}
                   </figcaption>
                   <figure>
                     <label>Assault</label>
@@ -156,7 +158,7 @@ class Warzonepage extends Component {
                           (Assault Maps)
                         </span>
                       </Link>
-                      {createContent(data, assaultVariantId)}
+                      {data.scenarioStats.length ? createContent(data, assaultVariantId) : <EmptyContent message={noDataMessage} />}
                     </figcaption>
                     <figure>
                       <label>Regular</label>
@@ -168,7 +170,7 @@ class Warzonepage extends Component {
                             (Regular Maps)
                           </span>
                         </Link>
-                        {createContent(data, regularVariantId)}
+                        {data.scenarioStats.length ? createContent(data, regularVariantId) : <EmptyContent message={noDataMessage} />}
                       </figcaption>
                       <figure className='opening-selection'>
                         <div id='arrow-background'>
