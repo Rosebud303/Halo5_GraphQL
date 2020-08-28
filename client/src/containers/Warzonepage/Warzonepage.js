@@ -132,8 +132,7 @@ class Warzonepage extends Component {
         <Query query={GAME_VARIANT_WARZONE_QUERY} variables={{ player_name }}>
           {({ loading, error, data }) => {
             if (loading) return '';
-            if (error) console.log(error);
-            console.log(data);
+            if (!data.scenarioStats.length) return <div className='empty-wz'><EmptyContent message={noDataMessage} /></div>;
             return (
               <div className='accordion-section'>
                 <figure>
@@ -146,7 +145,7 @@ class Warzonepage extends Component {
                         (Firefight Maps)
                       </span>
                     </Link>
-                    {data.scenarioStats.length ? createContent(data, firefightVariantId) : <EmptyContent message={noDataMessage}/>}
+                    {createContent(data, firefightVariantId)}
                   </figcaption>
                   <figure>
                     <label>Assault</label>
@@ -158,7 +157,7 @@ class Warzonepage extends Component {
                           (Assault Maps)
                         </span>
                       </Link>
-                      {data.scenarioStats.length ? createContent(data, assaultVariantId) : <EmptyContent message={noDataMessage} />}
+                      {createContent(data, assaultVariantId)}
                     </figcaption>
                     <figure>
                       <label>Regular</label>
@@ -170,7 +169,7 @@ class Warzonepage extends Component {
                             (Regular Maps)
                           </span>
                         </Link>
-                        {data.scenarioStats.length ? createContent(data, regularVariantId) : <EmptyContent message={noDataMessage} />}
+                        {createContent(data, regularVariantId)}
                       </figcaption>
                       <figure className='opening-selection'>
                         <div id='arrow-background'>
