@@ -24,30 +24,30 @@ const LibraryCardsContainer = ({ selectedLibrary, selectedLibraryName }) => {
     if (selectedLibraryName === 'skulls') {
       return (
         <li id='library-skull'>
-          <a>
+          <a href='libraries'>
             <span>{name} <p className='library-card-description'>{description}</p></span>
-            <img src={largeIconImageUrl || imageUrl} />
+            <img alt='Available skullls' src={largeIconImageUrl || imageUrl} />
           </a>
         </li>
       );
     }
     if (selectedLibraryName === 'weapons' && type === 'Vehicle') {
-      return 
+      return ''
     }
-      return (
-        <li>
-          <a>
-            <span>
-              {name}
-              <p className='library-card-description'>{description}</p>
-              <p className='library-card-description'>{faction}</p>
-              <p className='library-card-description'>{type}</p>
-            </span>
+    return (
+      <li>
+        <a href='/libraries'>
+          <span>
+            {name}
+            <p className='library-card-description'>{description}</p>
+            <p className='library-card-description'>{faction}</p>
+            <p className='library-card-description'>{type}</p>
+          </span>
 
-            <img src={largeIconImageUrl || imageUrl} />
-          </a>
-        </li>
-      );
+          <img alt='weapon display' src={largeIconImageUrl || imageUrl} />
+        </a>
+      </li>
+    );
   });
 
   return (
