@@ -24,7 +24,7 @@ const LibraryCardsContainer = ({ selectedLibrary, selectedLibraryName }) => {
     if (selectedLibraryName === 'skulls') {
       return (
         <li id='library-skull'>
-          <a href='libraries'>
+          <a href='/libraries'>
             <span>{name} <p className='library-card-description'>{description}</p></span>
             <img alt='Available skullls' src={largeIconImageUrl || imageUrl} />
           </a>
