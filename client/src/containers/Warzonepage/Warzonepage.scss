@@ -121,6 +121,8 @@
   color: #fff;
   background: rgba(41, 171, 233, 0.81);
   text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
+  border: solid 2px white;
+  border-radius: 15px;
   &:hover {
     transition: 0.1s;
     background: rgba(96, 125, 139, 0.81);
