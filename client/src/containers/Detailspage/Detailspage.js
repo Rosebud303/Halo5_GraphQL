@@ -131,7 +131,7 @@ class Detailspage extends Component {
                         <p>Total Assists: </p><span className='neutral-text'>{Number(TotalAssists).toLocaleString()}</span>
                       </div>
                       <div className='details-text-aligner'>
-                        <p>Shooting Accuracy: </p><span className='green-text'>{(TotalShotsLanded / TotalShotsFired).toFixed(4) * 100}%</span>
+                        <p>Shooting Accuracy: </p><span className='green-text'>{(TotalShotsLanded / TotalShotsFired * 100).toFixed(2)}%</span>
                       </div>
                       <div className='details-text-aligner'>
                         <p>Assassinations: </p><span className='neutral-text'>{TotalAssassinations.toLocaleString()}</span>
