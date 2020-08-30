@@ -20,7 +20,7 @@ class Detailspage extends Component {
     let medalWithDifficulty = medalsArray.map((medal) => {
       let foundMedal = this.parsedMedalsMetadata.find((found) => found.id === medal.MedalId) || {};
       const { id, name, description, difficulty, spriteLocation } = foundMedal
-      if (difficulty === 0) return;
+      if (difficulty === 0) return '';
       return {
         Id: id,
         Name: name,
@@ -91,8 +91,8 @@ class Detailspage extends Component {
               } = data.accumulativeArenaStats;
 
               const foundWeapon = parsedWeaponsMetadata.find((weapon) => weapon.id === WeaponWithMostKills.WeaponId.StockId);
-              const foundRank = parsedCsrMetadata.find((rank) => rank.id == HighestCsrAttained.DesignationId);
-              const foundTier = foundRank.tiers.find((tier) => tier.id == HighestCsrAttained.Tier).iconImageUrl;
+              const foundRank = parsedCsrMetadata.find((rank) => parseInt(rank.id) === HighestCsrAttained.DesignationId);
+              const foundTier = foundRank.tiers.find((tier) => parseInt(tier.id) === HighestCsrAttained.Tier).iconImageUrl;
 
               return (
                 <>
@@ -180,7 +180,7 @@ class Detailspage extends Component {
                           <section className='details-page-section warzone-section'>
                             <h1 className='details-page-heading'>WARZONE STATISTICS</h1>
                             <div className='grouped-details-info warzone-images-container'>
-                              <img id='details-spartan-pic' src={this.props.currentImgUrlSpartan} />
+                              <img id='details-spartan-pic' alt='Users Spartan' src={this.props.currentImgUrlSpartan} />
                               <h2 className='details-spartan-name'>{this.props.currentPlayer}</h2>
                               <div className='details-spartan-container' style={emblemStyle}>
                               </div>
