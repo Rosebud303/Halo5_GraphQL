@@ -46,7 +46,7 @@ class WelcomePage extends Component {
     return (
       <div className='welcome'>
         <header className='welcome-banner'>
-          <img src='https://i.imgur.com/z1qbHFr.png'/>
+          <img alt='Application name' src='https://i.imgur.com/z1qbHFr.png' />
         </header>
         <div className='welcome-page'>
           <form className='welcome-form' onSubmit={handleSubmit}>
