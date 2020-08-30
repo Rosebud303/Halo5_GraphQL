@@ -61,7 +61,7 @@ class Warzonepage extends Component {
   createContent = (wholeData, id) => {
     const { reduceTotals, findMostEffectiveWeapon, findMostObtainedMedals, parsedGameBaseVariants, parsedWeaponsMetadata } = this;
     const data = wholeData.scenarioStats.filter((item) => item.GameBaseVariantId === id);
-    const foundWeapon = parsedWeaponsMetadata.find((weapon) => weapon.id === findMostEffectiveWeapon(data).WeaponId.StockId);
+    const foundWeapon = parsedWeaponsMetadata.find((weapon) =>  weapon.id === findMostEffectiveWeapon(data).WeaponId.StockId);
 
     return (
       <div>
@@ -118,13 +118,18 @@ class Warzonepage extends Component {
     );
   };
 
+  filterAllWzVariants = (data, id) => {
+    console.log(data)
+    return data.scenarioStats.filter(variant => variant.GameBaseVariantId === id)
+  }
+
   render() {
     const { createContent, props: { currentPlayer, setWarzoneId, } } = this;
     let player_name = currentPlayer;
     const firefightVariantId = 'dfd51ee3-9060-46c3-b131-08d946c4c7b9';
     const assaultVariantId = '42f97cca-2cb4-497a-a0fd-ceef1ba46bcc';
     const regularVariantId = 'f6de5351-3797-41e9-8053-7fb111a3a1a0';
-    const noDataMessage = 'Missing AF'
+    const noDataMessage = 'Not enough Warzone games played, please search for another Spartan.'
 
     return (
       <div className='warzone-page'>
@@ -145,7 +150,7 @@ class Warzonepage extends Component {
                         (Firefight Maps)
                       </span>
                     </Link>
-                    {createContent(data, firefightVariantId)}
+                    {this.filterAllWzVariants(data, firefightVariantId).length ? createContent(data, firefightVariantId) : <EmptyContent message={noDataMessage} />}
                   </figcaption>
                   <figure>
                     <label>Assault</label>
@@ -157,7 +162,7 @@ class Warzonepage extends Component {
                           (Assault Maps)
                         </span>
                       </Link>
-                      {createContent(data, assaultVariantId)}
+                      {this.filterAllWzVariants(data, assaultVariantId).length ? createContent(data, assaultVariantId) : <EmptyContent message={noDataMessage} />}
                     </figcaption>
                     <figure>
                       <label>Regular</label>
@@ -169,7 +174,7 @@ class Warzonepage extends Component {
                             (Regular Maps)
                           </span>
                         </Link>
-                        {createContent(data, regularVariantId)}
+                        {this.filterAllWzVariants(data, regularVariantId).length ? createContent(data, regularVariantId) : <EmptyContent message={noDataMessage} />}
                       </figcaption>
                       <figure className='opening-selection'>
                         <div id='arrow-background'>
