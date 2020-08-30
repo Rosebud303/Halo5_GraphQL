@@ -61,7 +61,7 @@ class Warzonepage extends Component {
   createContent = (wholeData, id) => {
     const { reduceTotals, findMostEffectiveWeapon, findMostObtainedMedals, parsedGameBaseVariants, parsedWeaponsMetadata } = this;
     const data = wholeData.scenarioStats.filter((item) => item.GameBaseVariantId === id);
-    const foundWeapon = parsedWeaponsMetadata.find((weapon) =>  weapon.id === findMostEffectiveWeapon(data).WeaponId.StockId);
+    const foundWeapon = parsedWeaponsMetadata.find((weapon) => weapon.id === findMostEffectiveWeapon(data).WeaponId.StockId);
 
     return (
       <div>
@@ -148,11 +148,12 @@ class Warzonepage extends Component {
                   <img className='game-variant-image' src='https://i.imgur.com/x0qQq4E.jpg' alt='Warzone Firefight Background' />
                   <input type='radio' name='radio-set' defaultChecked='checked' />
                   <figcaption>
-                    <Link to='/warzone/variant'>
-                      <span onClick={(e) => setWarzoneId(e.target.id)} id={firefightVariantId}>
-                        (Firefight Maps)
-                      </span>
-                    </Link>
+                    {this.filterAllWzVariants(data, firefightVariantId).length &&
+                      (<Link to='/warzone/variant'>
+                        <span onClick={(e) => setWarzoneId(e.target.id)} id={firefightVariantId}>
+                          (Firefight Maps)
+                        </span>
+                      </Link>)}
                     {this.filterAllWzVariants(data, firefightVariantId).length ? createContent(data, firefightVariantId) : <div className='wz-variant-error'><EmptyContent message={noDataMessageFireFight} /></div>}
                   </figcaption>
                   <figure>
@@ -162,10 +163,10 @@ class Warzonepage extends Component {
                     <figcaption>
                       {this.filterAllWzVariants(data, assaultVariantId).length &&
                         (<Link to='/warzone/variant'>
-                        <span onClick={(e) => setWarzoneId(e.target.id)} id={assaultVariantId}>
-                          (Assault Maps)
-                        </span>
-                      </Link>)}
+                          <span onClick={(e) => setWarzoneId(e.target.id)} id={assaultVariantId}>
+                            (Assault Maps)
+                          </span>
+                        </Link>)}
                       {this.filterAllWzVariants(data, assaultVariantId).length ? createContent(data, assaultVariantId) : <div className='wz-variant-error'><EmptyContent message={noDataMessageAssault} /></div>}
                     </figcaption>
                     <figure>
@@ -173,11 +174,12 @@ class Warzonepage extends Component {
                       <img className='game-variant-image' src='https://i.imgur.com/QdthRRG.jpg' alt='Warzone Regular Background' />
                       <input type='radio' name='radio-set' defaultChecked='checked' />
                       <figcaption>
-                        <Link to='/warzone/variant'>
-                          <span onClick={(e) => setWarzoneId(e.target.id)} id={regularVariantId}>
-                            (Regular Maps)
-                          </span>
-                        </Link>
+                        {this.filterAllWzVariants(data, regularVariantId).length &&
+                          (<Link to='/warzone/variant'>
+                            <span onClick={(e) => setWarzoneId(e.target.id)} id={regularVariantId}>
+                              (Regular Maps)
+                            </span>
+                          </Link>)}
                         {this.filterAllWzVariants(data, regularVariantId).length ? createContent(data, regularVariantId) : <div className='wz-variant-error'><EmptyContent message={noDataMessageRegular} /></div>}
                       </figcaption>
                       <figure className='opening-selection'>
