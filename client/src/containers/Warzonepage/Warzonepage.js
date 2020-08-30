@@ -130,6 +130,9 @@ class Warzonepage extends Component {
     const assaultVariantId = '42f97cca-2cb4-497a-a0fd-ceef1ba46bcc';
     const regularVariantId = 'f6de5351-3797-41e9-8053-7fb111a3a1a0';
     const noDataMessage = 'Not enough Warzone games played, please search for another Spartan.'
+    const noDataMessageRegular = 'Not enough Regular Warzone Maps/Matches played'
+    const noDataMessageFireFight = 'Not enough Firefight Warzone Maps/Matches played'
+    const noDataMessageAssault = 'Not enough Assault Warzone Maps/Matches played'
 
     return (
       <div className='warzone-page'>
@@ -150,19 +153,20 @@ class Warzonepage extends Component {
                         (Firefight Maps)
                       </span>
                     </Link>
-                    {this.filterAllWzVariants(data, firefightVariantId).length ? createContent(data, firefightVariantId) : <EmptyContent message={noDataMessage} />}
+                    {this.filterAllWzVariants(data, firefightVariantId).length ? createContent(data, firefightVariantId) : <div className='wz-variant-error'><EmptyContent message={noDataMessageFireFight} /></div>}
                   </figcaption>
                   <figure>
                     <label>Assault</label>
                     <img className='game-variant-image' src='https://i.imgur.com/rV8gvLj.jpg' alt='Warzone Assault Background' />
                     <input type='radio' name='radio-set' defaultChecked='checked' placeholder='Warzone Assault' />
                     <figcaption>
-                      <Link to='/warzone/variant'>
+                      {this.filterAllWzVariants(data, assaultVariantId).length &&
+                        (<Link to='/warzone/variant'>
                         <span onClick={(e) => setWarzoneId(e.target.id)} id={assaultVariantId}>
                           (Assault Maps)
                         </span>
-                      </Link>
-                      {this.filterAllWzVariants(data, assaultVariantId).length ? createContent(data, assaultVariantId) : <EmptyContent message={noDataMessage} />}
+                      </Link>)}
+                      {this.filterAllWzVariants(data, assaultVariantId).length ? createContent(data, assaultVariantId) : <div className='wz-variant-error'><EmptyContent message={noDataMessageAssault} /></div>}
                     </figcaption>
                     <figure>
                       <label>Regular</label>
@@ -174,7 +178,7 @@ class Warzonepage extends Component {
                             (Regular Maps)
                           </span>
                         </Link>
-                        {this.filterAllWzVariants(data, regularVariantId).length ? createContent(data, regularVariantId) : <EmptyContent message={noDataMessage} />}
+                        {this.filterAllWzVariants(data, regularVariantId).length ? createContent(data, regularVariantId) : <div className='wz-variant-error'><EmptyContent message={noDataMessageRegular} /></div>}
                       </figcaption>
                       <figure className='opening-selection'>
                         <div id='arrow-background'>

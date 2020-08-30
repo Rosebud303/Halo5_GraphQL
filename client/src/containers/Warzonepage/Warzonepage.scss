@@ -269,3 +269,16 @@ figure {
     background: white;
   }
 }
+
+.wz-variant-error {
+  width: 100%;
+  height: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .no-content-message p {
+    color: black;
+    background: white;
+  }
+}
