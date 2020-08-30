@@ -151,7 +151,7 @@ class Warzonepage extends Component {
                     {this.filterAllWzVariants(data, firefightVariantId).length &&
                       (<Link to='/warzone/variant'>
                         <span onClick={(e) => setWarzoneId(e.target.id)} id={firefightVariantId}>
-                          (Firefight Maps)
+                          STATS BY MAP
                         </span>
                       </Link>)}
                     {this.filterAllWzVariants(data, firefightVariantId).length ? createContent(data, firefightVariantId) : <div className='wz-variant-error'><EmptyContent message={noDataMessageFireFight} /></div>}
@@ -164,7 +164,7 @@ class Warzonepage extends Component {
                       {this.filterAllWzVariants(data, assaultVariantId).length &&
                         (<Link to='/warzone/variant'>
                           <span onClick={(e) => setWarzoneId(e.target.id)} id={assaultVariantId}>
-                            (Assault Maps)
+                            STATS BY MAP
                           </span>
                         </Link>)}
                       {this.filterAllWzVariants(data, assaultVariantId).length ? createContent(data, assaultVariantId) : <div className='wz-variant-error'><EmptyContent message={noDataMessageAssault} /></div>}
@@ -177,7 +177,7 @@ class Warzonepage extends Component {
                         {this.filterAllWzVariants(data, regularVariantId).length &&
                           (<Link to='/warzone/variant'>
                             <span onClick={(e) => setWarzoneId(e.target.id)} id={regularVariantId}>
-                              (Regular Maps)
+                              STATS BY MAP
                             </span>
                           </Link>)}
                         {this.filterAllWzVariants(data, regularVariantId).length ? createContent(data, regularVariantId) : <div className='wz-variant-error'><EmptyContent message={noDataMessageRegular} /></div>}
