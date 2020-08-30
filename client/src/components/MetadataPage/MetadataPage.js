@@ -44,12 +44,12 @@ class MetadataPage extends Component {
       const correctBtnText = lowerCasedBtnText.charAt(0).toUpperCase() + lowerCasedBtnText.slice(1)
 
       var newLibrary = this.state.selectedLibrary.filter(library => {
-        if (!library[filterProp]) return
+        if (!library[filterProp]) return ''
         else return library[filterProp].includes(correctBtnText)
       })
     } else {
-      var newLibrary = this.state.selectedLibrary.filter(library => {
-        return library[filterProp].toUpperCase() == btnText
+      newLibrary = this.state.selectedLibrary.filter(library => {
+        return library[filterProp].toUpperCase() === btnText
       })
     }
 

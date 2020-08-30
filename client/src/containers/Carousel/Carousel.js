@@ -27,7 +27,7 @@ export default class Carousel extends Component {
             <div className='article-info'>
               <h3>{title}</h3>
               <p>{summary}</p>
-              <a href={url} target='_blank'>Click Here to Read More..</a>
+              <a href={url} target='_blank' rel='noopener noreferrer'>Click Here to Read More..</a>
             </div>
           </div>
         </div>

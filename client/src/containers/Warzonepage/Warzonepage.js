@@ -6,6 +6,7 @@ import { Query } from 'react-apollo';
 import { setWarzoneId } from '../../actions';
 import Header from '../../components/Header/Header';
 import { GAME_VARIANT_WARZONE_QUERY } from '../../Queries/GraphQLQueries';
+import EmptyContent from '../../components/EmptyContent/EmptyContent';
 
 class Warzonepage extends Component {
   constructor() {
@@ -117,12 +118,21 @@ class Warzonepage extends Component {
     );
   };
 
+  filterAllWzVariants = (data, id) => {
+    console.log(data)
+    return data.scenarioStats.filter(variant => variant.GameBaseVariantId === id)
+  }
+
   render() {
     const { createContent, props: { currentPlayer, setWarzoneId, } } = this;
     let player_name = currentPlayer;
     const firefightVariantId = 'dfd51ee3-9060-46c3-b131-08d946c4c7b9';
     const assaultVariantId = '42f97cca-2cb4-497a-a0fd-ceef1ba46bcc';
     const regularVariantId = 'f6de5351-3797-41e9-8053-7fb111a3a1a0';
+    const noDataMessage = 'Not enough Warzone games played, please search for another Spartan.'
+    const noDataMessageRegular = 'Not enough Regular Warzone Maps/Matches played'
+    const noDataMessageFireFight = 'Not enough Firefight Warzone Maps/Matches played'
+    const noDataMessageAssault = 'Not enough Assault Warzone Maps/Matches played'
 
     return (
       <div className='warzone-page'>
@@ -130,8 +140,7 @@ class Warzonepage extends Component {
         <Query query={GAME_VARIANT_WARZONE_QUERY} variables={{ player_name }}>
           {({ loading, error, data }) => {
             if (loading) return '';
-            if (error) console.log(error);
-            console.log(data);
+            if (!data.scenarioStats.length) return <div className='empty-wz'><EmptyContent message={noDataMessage} /></div>;
             return (
               <div className='accordion-section'>
                 <figure>
@@ -139,36 +148,39 @@ class Warzonepage extends Component {
                   <img className='game-variant-image' src='https://i.imgur.com/x0qQq4E.jpg' alt='Warzone Firefight Background' />
                   <input type='radio' name='radio-set' defaultChecked='checked' />
                   <figcaption>
-                    <Link to='/warzone/variant'>
-                      <span onClick={(e) => setWarzoneId(e.target.id)} id={firefightVariantId}>
-                        (Firefight Maps)
-                      </span>
-                    </Link>
-                    {createContent(data, firefightVariantId)}
+                    {this.filterAllWzVariants(data, firefightVariantId).length &&
+                      (<Link to='/warzone/variant'>
+                        <span onClick={(e) => setWarzoneId(e.target.id)} id={firefightVariantId}>
+                          (Firefight Maps)
+                        </span>
+                      </Link>)}
+                    {this.filterAllWzVariants(data, firefightVariantId).length ? createContent(data, firefightVariantId) : <div className='wz-variant-error'><EmptyContent message={noDataMessageFireFight} /></div>}
                   </figcaption>
                   <figure>
                     <label>Assault</label>
                     <img className='game-variant-image' src='https://i.imgur.com/rV8gvLj.jpg' alt='Warzone Assault Background' />
                     <input type='radio' name='radio-set' defaultChecked='checked' placeholder='Warzone Assault' />
                     <figcaption>
-                      <Link to='/warzone/variant'>
-                        <span onClick={(e) => setWarzoneId(e.target.id)} id={assaultVariantId}>
-                          (Assault Maps)
-                        </span>
-                      </Link>
-                      {createContent(data, assaultVariantId)}
+                      {this.filterAllWzVariants(data, assaultVariantId).length &&
+                        (<Link to='/warzone/variant'>
+                          <span onClick={(e) => setWarzoneId(e.target.id)} id={assaultVariantId}>
+                            (Assault Maps)
+                          </span>
+                        </Link>)}
+                      {this.filterAllWzVariants(data, assaultVariantId).length ? createContent(data, assaultVariantId) : <div className='wz-variant-error'><EmptyContent message={noDataMessageAssault} /></div>}
                     </figcaption>
                     <figure>
                       <label>Regular</label>
                       <img className='game-variant-image' src='https://i.imgur.com/QdthRRG.jpg' alt='Warzone Regular Background' />
                       <input type='radio' name='radio-set' defaultChecked='checked' />
                       <figcaption>
-                        <Link to='/warzone/variant'>
-                          <span onClick={(e) => setWarzoneId(e.target.id)} id={regularVariantId}>
-                            (Regular Maps)
-                          </span>
-                        </Link>
-                        {createContent(data, regularVariantId)}
+                        {this.filterAllWzVariants(data, regularVariantId).length &&
+                          (<Link to='/warzone/variant'>
+                            <span onClick={(e) => setWarzoneId(e.target.id)} id={regularVariantId}>
+                              (Regular Maps)
+                            </span>
+                          </Link>)}
+                        {this.filterAllWzVariants(data, regularVariantId).length ? createContent(data, regularVariantId) : <div className='wz-variant-error'><EmptyContent message={noDataMessageRegular} /></div>}
                       </figcaption>
                       <figure className='opening-selection'>
                         <div id='arrow-background'>

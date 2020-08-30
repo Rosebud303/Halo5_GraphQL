@@ -115,14 +115,14 @@ class Arenapage extends Component {
             {({ loading, error, data }) => {
               if (loading) return '';
               if (error) console.log(error);
-              const { TotalGamesWon, TotalGamesLost, TotalGamesTied, TotalGamesCompleted, TotalKills, TotalDeaths, TotalAssists, WeaponWithMostKills, TotalAssassinations, TotalMeleeKills, TotalGroundPoundKills, TotalShoulderBashKills, TotalGrenadeKills, TotalPowerWeaponKills, TotalHeadshots, TotalWeaponDamage, TotalShotsFired, TotalShotsLanded, Impulses, MedalAwards, FlexibleStats } = data.arenaStats
+              const { TotalGamesWon, TotalGamesLost, TotalGamesTied, TotalGamesCompleted, TotalKills, TotalDeaths, TotalAssists, WeaponWithMostKills, TotalAssassinations, TotalMeleeKills, TotalGroundPoundKills, TotalShoulderBashKills, TotalGrenadeKills, TotalPowerWeaponKills, TotalHeadshots, TotalWeaponDamage, TotalShotsFired, TotalShotsLanded, MedalAwards } = data.arenaStats
               const foundWeapon = parsedWeaponsMetadata.find((weapon) => weapon.id === WeaponWithMostKills.WeaponId.StockId);
 
               const findBestMedals = () => {
                 let medalWithDifficulty = MedalAwards.map(medal => {
                   let foundMedal = parsedMedalsMetadata.find(found => found.id === medal.MedalId) || {}
                   const { difficulty, id, name, description, spriteLocation } = foundMedal
-                  if (difficulty === 0) return
+                  if (difficulty === 0) return ''
                   return {
                     Id: id,
                     Name: name,
@@ -221,8 +221,8 @@ class Arenapage extends Component {
                           if (loading) return <p>Loading...</p>;
                           if (error) console.log(error);
                           const { HighestCsrAttained, HighestCsrPlaylistId, HighestCsrSeasonId } = data.arenaCsr
-                          const foundRank = parsedCsrMetadata.find(rank => rank.id == HighestCsrAttained.DesignationId)
-                          const foundTier = foundRank.tiers.find(tier => tier.id == HighestCsrAttained.Tier).iconImageUrl
+                          const foundRank = parsedCsrMetadata.find(rank => parseInt(rank.id) === HighestCsrAttained.DesignationId)
+                          const foundTier = foundRank.tiers.find(tier => parseInt(tier.id) === HighestCsrAttained.Tier).iconImageUrl
                           const foundPlaylist = parsedSeasonsMetadata.find(playlist => playlist.id === HighestCsrSeasonId)
                           const foundGameMode = foundPlaylist.playlists.find(playlist => playlist.id === HighestCsrPlaylistId)
 

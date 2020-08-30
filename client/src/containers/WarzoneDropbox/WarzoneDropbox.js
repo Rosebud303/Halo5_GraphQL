@@ -80,6 +80,7 @@ class WarzoneDropbox extends Component {
               if (data.mapStats) {
                 return weapon.id === data.mapStats.WeaponWithMostKills.WeaponId.StockId;
               }
+              return ''
             });
 
             return !data.mapStats ? (
