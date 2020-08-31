@@ -4,6 +4,7 @@ import { Query } from 'react-apollo';
 import { connect } from 'react-redux';
 import Header from '../../components/Header/Header';
 import { ACCUMULATIVE_ARENA_QUERY, ACCUMULATIVE_WARZONE_QUERY } from '../../Queries/GraphQLQueries';
+import EmptyContent from '../../components/EmptyContent/EmptyContent';
 
 class Detailspage extends Component {
   constructor() {
@@ -70,7 +71,7 @@ class Detailspage extends Component {
             {({ loading, error, data }) => {
               if (loading) return <p>Loading...</p>;
               if (error) console.log(error);
-
+              console.log(data)
               const {
                 HighestCsrAttained,
                 TotalGamesWon,
@@ -89,6 +90,11 @@ class Detailspage extends Component {
                 TotalShoulderBashKills,
                 MedalAwards,
               } = data.accumulativeArenaStats;
+              if (!TotalGamesCompleted) return (
+                <div className='overview-no-data-container'>
+                  <EmptyContent />
+                </div>
+              )
 
               const foundWeapon = parsedWeaponsMetadata.find((weapon) => weapon.id === WeaponWithMostKills.WeaponId.StockId);
               const foundRank = parsedCsrMetadata.find((rank) => parseInt(rank.id) === HighestCsrAttained.DesignationId);
