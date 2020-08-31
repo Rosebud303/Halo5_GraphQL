@@ -16,48 +16,6 @@ export const metadataQueryList = [
     `,
   },
   {
-    name: "campaignsMetadata",
-    query: gql`
-      query CampaignsQuery {
-        campaignsMetadata {
-          missionNumber
-          name
-          description
-          imageUrl
-          type
-          id
-        }
-      }
-    `,
-  },
-  {
-    name: "skullsMetadata",
-    query: gql`
-      query SkullsQuery {
-        skullsMetadata {
-          name
-          description
-          imageUrl
-          missionId
-          id
-        }
-      }
-    `,
-  },
-  {
-    name: "vehiclesMetadata",
-    query: gql`
-      query VehiclesQuery {
-        vehiclesMetadata {
-          name
-          description
-          largeIconImageUrl
-          id
-        }
-      }
-    `,
-  },
-  {
     name: "medalsMetadata",
     query: gql`
       query MedalsQuery {
@@ -117,6 +75,51 @@ export const metadataQueryList = [
         }
       }
     `,
+  }
+];
+
+export const metadataQueryListB = [
+  {
+    name: "campaignsMetadata",
+    query: gql`
+      query CampaignsQuery {
+        campaignsMetadata {
+          missionNumber
+          name
+          description
+          imageUrl
+          type
+          id
+        }
+      }
+    `,
+  },
+  {
+    name: "vehiclesMetadata",
+    query: gql`
+      query VehiclesQuery {
+        vehiclesMetadata {
+          name
+          description
+          largeIconImageUrl
+          id
+        }
+      }
+    `,
+  },
+  {
+    name: "skullsMetadata",
+    query: gql`
+      query SkullsQuery {
+        skullsMetadata {
+          name
+          description
+          imageUrl
+          missionId
+          id
+        }
+      }
+    `,
   },
   {
     name: "enemiesMetadata",
@@ -131,9 +134,5 @@ export const metadataQueryList = [
         }
       }
     `,
-  },
-];
-
-export const metadataQueryListB = [
-  
+  }
 ]
