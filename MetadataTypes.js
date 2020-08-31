@@ -18,6 +18,27 @@ const MapMetadataType = new GraphQLObjectType({
     id: { type: GraphQLString },
   }),
 });
+//**************************************************** CSR METADATA */
+
+const CsrMetadataType = new GraphQLObjectType({
+  name: 'CsrMetadata',
+  fields: () => ({
+    bannerImageUrl: { type: GraphQLString },
+    contentId: { type: GraphQLString },
+    id: { type: GraphQLString },
+    name: { type: GraphQLString },
+    tiers: { type: new GraphQLList(TiersType) },
+  }),
+});
+
+const TiersType = new GraphQLObjectType({
+  name: 'CsrTiers',
+  fields: () => ({
+    contentId: { type: GraphQLString },
+    iconImageUrl: { type: GraphQLString },
+    id: { type: GraphQLString },
+  })
+})
 
 //**************************************************** SEASONS METADATA */
 
@@ -170,5 +191,6 @@ module.exports = {
   CampaignsType,
   SkullsType,
   VehiclesType,
-  EnemiesType
+  EnemiesType,
+  CsrMetadataType
 };
