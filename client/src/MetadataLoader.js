@@ -1,18 +1,18 @@
 import React from 'react';
 import { Query } from 'react-apollo';
 import Spinner from './Spinner/Spinner';
-import { metadataQueryList } from './Queries/MetadataQueries';
+// import { metadataQueryList } from './Queries/MetadataQueries';
 
-export default function MetadataLoader() {
+export default function MetadataLoader({ metadataSet }) {
   return (
     <div>
-      {metadataQueryList.map((metadata) => {
+      {metadataSet.map((metadata) => {
         return localStorage[metadata.name] ? (
           console.log(`metadata for ${metadata.name} already exists`)
         ) : (
             <Query
               query={metadata.query}
-              key={metadataQueryList.indexOf(metadata)}
+              key={metadataSet.indexOf(metadata)}
             >
               {({ loading, error, data }) => {
                 if (loading) return <Spinner name={metadata.name} />;

@@ -1,6 +1,8 @@
 import gql from "graphql-tag";
+import React from 'react'
 
-export const metadataQueryList = [
+
+export const metadataQueryListA = [
   {
     name: "mapsMetadata",
     query: gql`
@@ -78,7 +80,7 @@ export const metadataQueryList = [
   }
 ];
 
-export const metadataQueryListB = [
+export const AB = [
   {
     name: "campaignsMetadata",
     query: gql`
