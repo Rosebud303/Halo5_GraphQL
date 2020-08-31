@@ -57,6 +57,12 @@ class Arenapage extends Component {
                 const parsedGameVariantMetadata = JSON.parse(
                   localStorage.getItem('gameBaseVariantsMetadata')
                 );
+                if (!data.arenaGameBases.length) return (
+                  <div className='arena-no-data-container'>
+                    <p className='arena-no-data'>PLAYER HAS NO DATA!</p>
+                    <p>Return to homepage to select a different spartan.</p>
+                  </div>
+                )
 
                 return (
                   <div className='arena-dropbox-container'>
