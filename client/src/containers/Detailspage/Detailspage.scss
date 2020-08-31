@@ -29,6 +29,7 @@
   // background: #1F1F1F;
   margin-top: 40px;
   border-radius: 10px;
+  justify-content: center;
   // transition: background 3s;
 }
 
@@ -223,4 +224,16 @@
   font-size: 1.5rem;
   margin-bottom: 10px;
   text-decoration: underline;
+}
+
+.overview-no-data-container {
+  width: 50%;
+
+  .no-content-container {
+    margin-top: 1rem;
+
+    .no-content-message {
+      color:white;
+    }
+  }
 }
