@@ -97,9 +97,9 @@
 
   a {
     position: absolute;
-    width: 30%;
+    width: 23%;
     top: 15%;
-    margin-left: 6%;
+    margin-left: 9%;
   }
 }
 
@@ -124,8 +124,10 @@
   border: solid 2px white;
   border-radius: 15px;
   &:hover {
-    transition: 0.1s;
-    background: rgba(96, 125, 139, 0.81);
+    transition: 0s;
+    // background: rgba(96, 125, 139, 0.81);
+    background: white;
+    color: rgba(41, 171, 233, 0.81);
   }
 }
 
