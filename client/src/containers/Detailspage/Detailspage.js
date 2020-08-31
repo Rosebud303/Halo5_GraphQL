@@ -4,6 +4,7 @@ import { Query } from 'react-apollo';
 import { connect } from 'react-redux';
 import Header from '../../components/Header/Header';
 import { ACCUMULATIVE_ARENA_QUERY, ACCUMULATIVE_WARZONE_QUERY } from '../../Queries/GraphQLQueries';
+import EmptyContent from '../../components/EmptyContent/EmptyContent';
 
 class Detailspage extends Component {
   constructor() {
@@ -61,6 +62,7 @@ class Detailspage extends Component {
     const player_name = this.props.currentPlayer;
     const parsedCsrMetadata = JSON.parse(localStorage.getItem('csrMetadata'));
     const parsedWeaponsMetadata = JSON.parse(localStorage.getItem('weaponsMetadata'));
+    const noDataMessage = 'This player does not have enough Arena and/or Warzone data to generate a data display.  Please return to homepage to search for a different Spartan.'
 
     return (<>
       <Header header={'Details Page'} button1={'warzone'} button2={'arena'} button3={'information center'} button4={'libraries'} />
@@ -70,7 +72,7 @@ class Detailspage extends Component {
             {({ loading, error, data }) => {
               if (loading) return <p>Loading...</p>;
               if (error) console.log(error);
-
+              console.log(data)
               const {
                 HighestCsrAttained,
                 TotalGamesWon,
@@ -89,6 +91,12 @@ class Detailspage extends Component {
                 TotalShoulderBashKills,
                 MedalAwards,
               } = data.accumulativeArenaStats;
+              if (!TotalGamesCompleted) return (
+                <section className='details-page-section arena-section overview-no-data-container'>
+                  <EmptyContent message={noDataMessage} />
+                </section>
+
+              )
 
               const foundWeapon = parsedWeaponsMetadata.find((weapon) => weapon.id === WeaponWithMostKills.WeaponId.StockId);
               const foundRank = parsedCsrMetadata.find((rank) => parseInt(rank.id) === HighestCsrAttained.DesignationId);

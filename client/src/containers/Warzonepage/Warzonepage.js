@@ -124,7 +124,7 @@ class Warzonepage extends Component {
   }
 
   render() {
-    const { createContent, props: { currentPlayer, setWarzoneId, } } = this;
+    const { createContent, filterAllWzVariants, props: { currentPlayer, setWarzoneId, } } = this;
     let player_name = currentPlayer;
     const firefightVariantId = 'dfd51ee3-9060-46c3-b131-08d946c4c7b9';
     const assaultVariantId = '42f97cca-2cb4-497a-a0fd-ceef1ba46bcc';
@@ -148,39 +148,39 @@ class Warzonepage extends Component {
                   <img className='game-variant-image' src='https://i.imgur.com/x0qQq4E.jpg' alt='Warzone Firefight Background' />
                   <input type='radio' name='radio-set' defaultChecked='checked' />
                   <figcaption>
-                    {this.filterAllWzVariants(data, firefightVariantId).length &&
+                    {filterAllWzVariants(data, firefightVariantId).length &&
                       (<Link to='/warzone/variant'>
                         <span onClick={(e) => setWarzoneId(e.target.id)} id={firefightVariantId}>
                           STATS BY MAP
                         </span>
                       </Link>)}
-                    {this.filterAllWzVariants(data, firefightVariantId).length ? createContent(data, firefightVariantId) : <div className='wz-variant-error'><EmptyContent message={noDataMessageFireFight} /></div>}
+                    {filterAllWzVariants(data, firefightVariantId).length ? createContent(data, firefightVariantId) : <div className='wz-variant-error'><EmptyContent message={noDataMessageFireFight} /></div>}
                   </figcaption>
                   <figure>
                     <label>Assault</label>
                     <img className='game-variant-image' src='https://i.imgur.com/rV8gvLj.jpg' alt='Warzone Assault Background' />
                     <input type='radio' name='radio-set' defaultChecked='checked' placeholder='Warzone Assault' />
                     <figcaption>
-                      {this.filterAllWzVariants(data, assaultVariantId).length &&
+                      {filterAllWzVariants(data, assaultVariantId).length &&
                         (<Link to='/warzone/variant'>
                           <span onClick={(e) => setWarzoneId(e.target.id)} id={assaultVariantId}>
                             STATS BY MAP
                           </span>
                         </Link>)}
-                      {this.filterAllWzVariants(data, assaultVariantId).length ? createContent(data, assaultVariantId) : <div className='wz-variant-error'><EmptyContent message={noDataMessageAssault} /></div>}
+                      {filterAllWzVariants(data, assaultVariantId).length ? createContent(data, assaultVariantId) : <div className='wz-variant-error'><EmptyContent message={noDataMessageAssault} /></div>}
                     </figcaption>
                     <figure>
                       <label>Regular</label>
                       <img className='game-variant-image' src='https://i.imgur.com/QdthRRG.jpg' alt='Warzone Regular Background' />
                       <input type='radio' name='radio-set' defaultChecked='checked' />
                       <figcaption>
-                        {this.filterAllWzVariants(data, regularVariantId).length &&
+                        {filterAllWzVariants(data, regularVariantId).length &&
                           (<Link to='/warzone/variant'>
                             <span onClick={(e) => setWarzoneId(e.target.id)} id={regularVariantId}>
                               STATS BY MAP
                             </span>
                           </Link>)}
-                        {this.filterAllWzVariants(data, regularVariantId).length ? createContent(data, regularVariantId) : <div className='wz-variant-error'><EmptyContent message={noDataMessageRegular} /></div>}
+                        {filterAllWzVariants(data, regularVariantId).length ? createContent(data, regularVariantId) : <div className='wz-variant-error'><EmptyContent message={noDataMessageRegular} /></div>}
                       </figcaption>
                       <figure className='opening-selection'>
                         <div id='arrow-background'>
