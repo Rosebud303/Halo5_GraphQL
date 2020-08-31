@@ -80,7 +80,7 @@ export const metadataQueryListA = [
   }
 ];
 
-export const AB = [
+export const metadataQueryListB = [
   {
     name: "campaignsMetadata",
     query: gql`
