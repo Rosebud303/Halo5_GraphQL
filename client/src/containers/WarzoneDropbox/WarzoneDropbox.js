@@ -38,6 +38,9 @@ class WarzoneDropbox extends Component {
     const GameBaseVariantId = warzoneGameVariantId;
     const MapId = currentMapVariantId;
     const dropboxMessage = 'To get started, make a selection from the maps dropbox above this notice.  The options included are tailored around maps your profile has played on this Warzone variant.'
+    const parsedMapsMetadata = JSON.parse(localStorage.getItem('mapsMetadata'));
+    const parsedWeaponsMetadata = JSON.parse(localStorage.getItem('weaponsMetadata'));
+
 
     return (
       <div className='whole-page'>
@@ -47,7 +50,6 @@ class WarzoneDropbox extends Component {
             {({ loading, error, data }) => {
               if (loading) return <option>Loading...</option>;
               if (error) console.log(error);
-              const parsedMapsMetadata = JSON.parse(localStorage.getItem('mapsMetadata'));
 
               return (
                 <div className='wz-drop-down'>
@@ -73,8 +75,6 @@ class WarzoneDropbox extends Component {
           {({ loading, error, data }) => {
             if (loading) return <p>Loading...</p>;
             if (error) console.log(error);
-            const parsedMapsMetadata = JSON.parse(localStorage.getItem('mapsMetadata'));
-            const parsedWeaponsMetadata = JSON.parse(localStorage.getItem('weaponsMetadata'));
             const foundMap = parsedMapsMetadata.find((map) => map.id === MapId);
             const foundWeapon = parsedWeaponsMetadata.find((weapon) => {
               if (data.mapStats) {
