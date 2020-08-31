@@ -39,6 +39,7 @@ class Arenapage extends Component {
     const parsedMedalsMetadata = JSON.parse(localStorage.getItem('medalsMetadata'));
     const parsedCsrMetadata = JSON.parse(localStorage.getItem('csrMetadata'));
     const parsedSeasonsMetadata = JSON.parse(localStorage.getItem('seasonsMetadata'));
+    const parsedGameVariantMetadata = JSON.parse(localStorage.getItem('gameBaseVariantsMetadata'));
     const arenaMessage = 'To get started, make a selection from the playlist at the top left of the page.  The playlists included are tailored around your players stats.'
 
     return (
@@ -54,9 +55,6 @@ class Arenapage extends Component {
               {({ loading, error, data }) => {
                 if (loading) return <option>Loading...</option>;
                 if (error) console.log(error);
-                const parsedGameVariantMetadata = JSON.parse(
-                  localStorage.getItem('gameBaseVariantsMetadata')
-                );
                 if (!data.arenaGameBases.length) return (
                   <div className='arena-no-data-container'>
                     <p className='arena-no-data'>PLAYER HAS NO DATA!</p>

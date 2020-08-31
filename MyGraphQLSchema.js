@@ -18,6 +18,7 @@ const {
   SkullsType,
   VehiclesType,
   EnemiesType,
+  CsrMetadataType,
 } = require('./MetadataTypes');
 const { WarzoneStatType, ScenarioStatsType } = require('./WarzoneTypes');
 const {
@@ -57,6 +58,14 @@ const RootQuery = new GraphQLObjectType({
       resolve() {
         return instanceWithAcceptedLanguage
           .get(`metadata/h5/metadata/seasons`)
+          .then((res) => res.data);
+      },
+    },
+    csrMetadata: {
+      type: new GraphQLList(CsrMetadataType),
+      resolve() {
+        return instanceWithAcceptedLanguage
+          .get(`metadata/h5/metadata/csr-designations`)
           .then((res) => res.data);
       },
     },

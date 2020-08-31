@@ -1,6 +1,8 @@
 import gql from "graphql-tag";
+import React from 'react'
 
-export const metadataQueryList = [
+
+export const metadataQueryListA = [
   {
     name: "mapsMetadata",
     query: gql`
@@ -10,48 +12,6 @@ export const metadataQueryList = [
           description
           supportedGameModes
           imageUrl
-          id
-        }
-      }
-    `,
-  },
-  {
-    name: "campaignsMetadata",
-    query: gql`
-      query CampaignsQuery {
-        campaignsMetadata {
-          missionNumber
-          name
-          description
-          imageUrl
-          type
-          id
-        }
-      }
-    `,
-  },
-  {
-    name: "skullsMetadata",
-    query: gql`
-      query SkullsQuery {
-        skullsMetadata {
-          name
-          description
-          imageUrl
-          missionId
-          id
-        }
-      }
-    `,
-  },
-  {
-    name: "vehiclesMetadata",
-    query: gql`
-      query VehiclesQuery {
-        vehiclesMetadata {
-          name
-          description
-          largeIconImageUrl
           id
         }
       }
@@ -103,28 +63,6 @@ export const metadataQueryList = [
     `,
   },
   {
-    name: "flexibleStatsMetadata",
-    query: gql`
-      query FlexibleStatsQuery {
-        flexibleStatsMetadata {
-          name
-          id
-        }
-      }
-    `,
-  },
-  {
-    name: "impulsesMetadata",
-    query: gql`
-      query ImpulsesQuery {
-        impulsesMetadata {
-          internalName
-          id
-        }
-      }
-    `,
-  },
-  {
     name: "seasonsMetadata",
     query: gql`
       query SeasonsQuery {
@@ -135,6 +73,51 @@ export const metadataQueryList = [
             id
           }
           name
+          id
+        }
+      }
+    `,
+  }
+];
+
+export const metadataQueryListB = [
+  {
+    name: "campaignsMetadata",
+    query: gql`
+      query CampaignsQuery {
+        campaignsMetadata {
+          missionNumber
+          name
+          description
+          imageUrl
+          type
+          id
+        }
+      }
+    `,
+  },
+  {
+    name: "vehiclesMetadata",
+    query: gql`
+      query VehiclesQuery {
+        vehiclesMetadata {
+          name
+          description
+          largeIconImageUrl
+          id
+        }
+      }
+    `,
+  },
+  {
+    name: "skullsMetadata",
+    query: gql`
+      query SkullsQuery {
+        skullsMetadata {
+          name
+          description
+          imageUrl
+          missionId
           id
         }
       }
@@ -153,5 +136,5 @@ export const metadataQueryList = [
         }
       }
     `,
-  },
-];
+  }
+]

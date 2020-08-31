@@ -5,6 +5,8 @@ import LibrarySelector from '../LibrarySelector/LibrarySelector';
 import LibraryCardsContainer from '../LibraryCardsContainer/LibraryCardsContainer';
 import { LibraryCardsFilters } from '../LibraryCardsFilters/LibraryCardsFilters';
 import EmptyContent from '../EmptyContent/EmptyContent';
+import MetadataLoader from '../../MetadataLoader';
+import { metadataQueryListB } from '../../Queries/MetadataQueries.js'
 
 class MetadataPage extends Component {
   constructor(props) {
@@ -63,6 +65,7 @@ class MetadataPage extends Component {
 
     return (
       <div className='metadata-body'>
+        <MetadataLoader metadataSet={metadataQueryListB} />
         <Header title={'Information Center'} button1={'warzone'} button2={'arena'} button3={'details page'} button4={'details'} />
         <LibrarySelector changeLibrary={changeLibrary} />
         <LibraryCardsFilters selectedLibraryFilters={selectedLibraryFilters} filterChosenLibrary={filterChosenLibrary} />
