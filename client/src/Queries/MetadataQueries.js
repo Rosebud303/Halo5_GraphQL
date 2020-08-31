@@ -103,28 +103,6 @@ export const metadataQueryList = [
     `,
   },
   {
-    name: "flexibleStatsMetadata",
-    query: gql`
-      query FlexibleStatsQuery {
-        flexibleStatsMetadata {
-          name
-          id
-        }
-      }
-    `,
-  },
-  {
-    name: "impulsesMetadata",
-    query: gql`
-      query ImpulsesQuery {
-        impulsesMetadata {
-          internalName
-          id
-        }
-      }
-    `,
-  },
-  {
     name: "seasonsMetadata",
     query: gql`
       query SeasonsQuery {
@@ -155,3 +133,7 @@ export const metadataQueryList = [
     `,
   },
 ];
+
+export const metadataQueryListB = [
+  
+]
