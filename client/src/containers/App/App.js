@@ -8,13 +8,14 @@ import Warzonepage from '../Warzonepage/Warzonepage';
 import MetadataLoader from '../../MetadataLoader';
 import WarzoneVariant from '../WarzoneVariant/WarzoneVariant';
 import MetadataPage from '../../components/MetadataPage/MetadataPage';
+import { metadataQueryListA } from '../../Queries/MetadataQueries.js';
 
 export default class App extends Component {
   render() {
     return (
       <>
         <div>
-          <MetadataLoader />
+          <MetadataLoader metadataSet={metadataQueryListA} />
           <Switch>
             <Route exact path='/' component={WelcomePage} />
             <Route exact path='/homepage' component={Homepage} />
