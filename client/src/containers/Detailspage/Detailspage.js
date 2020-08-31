@@ -62,6 +62,7 @@ class Detailspage extends Component {
     const player_name = this.props.currentPlayer;
     const parsedCsrMetadata = JSON.parse(localStorage.getItem('csrMetadata'));
     const parsedWeaponsMetadata = JSON.parse(localStorage.getItem('weaponsMetadata'));
+    const noDataMessage = 'This player does not have enough Arena and/or Warzone data to generate a data display.  Please return to homepage to search for a different Spartan.'
 
     return (<>
       <Header header={'Details Page'} button1={'warzone'} button2={'arena'} button3={'information center'} button4={'libraries'} />
@@ -91,9 +92,10 @@ class Detailspage extends Component {
                 MedalAwards,
               } = data.accumulativeArenaStats;
               if (!TotalGamesCompleted) return (
-                <div className='overview-no-data-container'>
-                  <EmptyContent />
-                </div>
+                <section className='details-page-section arena-section overview-no-data-container'>
+                  <EmptyContent message={noDataMessage} />
+                </section>
+
               )
 
               const foundWeapon = parsedWeaponsMetadata.find((weapon) => weapon.id === WeaponWithMostKills.WeaponId.StockId);
