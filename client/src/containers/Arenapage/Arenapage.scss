@@ -173,7 +173,12 @@ label {
 .box-h {
   grid-area: h;
   animation-delay: calc(6 * 70ms);
+
+  h4 {
+    font-size: 1.3rem;
+  }
 }
+
 .box-i {
   grid-area: i;
   background: inherit;
