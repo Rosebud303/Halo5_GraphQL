@@ -2,6 +2,8 @@ const express = require("express");
 const graphqlHTTP = require("express-graphql");
 const MyGraphQLSchema = require("./MyGraphQLSchema");
 const cors = require("cors");
+const path = require('path');
+
 
 const app = express();
 
@@ -14,6 +16,9 @@ app.use(
     graphiql: true,
   })
 );
+
+app.use(express.static('public'))
+
 
 const PORT = process.env.PORT || 5000;
 
