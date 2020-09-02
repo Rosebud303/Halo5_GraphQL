@@ -4,8 +4,7 @@ import './WelcomePage.scss';
 import { Redirect } from 'react-router-dom';
 import * as actions from '../../actions';
 import axios from 'axios';
-let api_key = process.env.api_key
-
+import { api_key } from '../../apikey';
 
 class WelcomePage extends Component {
   constructor() {
