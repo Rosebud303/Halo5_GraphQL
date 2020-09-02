@@ -1,4 +1,3 @@
-// const { api_key } = require('./client/src/apikey');
 let api_key = process.env.api_key
 
 const axios = require('axios');

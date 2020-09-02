@@ -4,7 +4,6 @@ import './WelcomePage.scss';
 import { Redirect } from 'react-router-dom';
 import * as actions from '../../actions';
 import axios from 'axios';
-// import { api_key } from '../../apikey';
 let api_key = process.env.api_key
 
 
