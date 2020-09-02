@@ -16,3 +16,16 @@ This application allows for users to
 5. Launch server: `npm run dev`
 6. Visit [localhost:3000](localhost:3000) to view the application in your browser
 
+## Walkthrough
+ 1. Visit the production or localhost application and enter your address and click Begin  
+ ![Home page]()
+ 2. Enter a hypothetical solar array configuration. Commonly-encountered settings are suggested through the use of placeholder text in each input field, and then click Submit  
+ ![Configure page]()
+ 3. (Optional) Enter historical energy usage for the past twelve months (tip: check your utility bill history). If this information is not available, click Skip, otherwise click Submit.  
+ ![Historical page]()
+ 4. Results are displayed in a table.  
+ ![Results page]()
+ 5. Click on "Graph It" to view the same data in charts.  
+ ![Charts page]()
+ 6. The FAQ is available from the home page by clicking "What is Solarizer?"
+ ![FAQ]()
