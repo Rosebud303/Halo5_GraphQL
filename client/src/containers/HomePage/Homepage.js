@@ -4,9 +4,12 @@ import { connect } from 'react-redux';
 import './Homepage.scss';
 import * as actions from '../../actions';
 import Carousel from '../Carousel/Carousel';
-import { api_key, proxyurl } from '../../apikey';
+
 import axios from 'axios';
 import Spinner from '../../Spinner/Spinner';
+
+let api_key = process.env.api_key
+let proxyurl = process.env.proxyurl
 
 const descriptions = [
   'Come explore our newly developed application based on the wildly popular game, Halo 5! Feel free to search your personal profile and explore your very own history in this online multiplayer game! Thank you for trying out Halo 5 Search!',

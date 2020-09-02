@@ -18,7 +18,7 @@ const store = createStore(
 );
 
 const client = new ApolloClient({
-  uri: "http://localhost:5000/graphql",
+  uri: "/graphql",
 });
 
 const router = (
