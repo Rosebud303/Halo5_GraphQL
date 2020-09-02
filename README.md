@@ -33,3 +33,9 @@ This application allows for users to
 ## Backend & Storage
 Halo 5 GraphQL's frontend is supported by multiple endpoints developed and structured in the GraphQL backend created for this application.  
 
+## Contributors
+* [Jeremy Poulter](https://github.com/J-Poulter) (frontend & backend)
+* [Duy Vu](https://github.com/Rosebud303) (frontend & backend)
+
+## Acknowledgements
+This project was made possible by the collection and publication of Halo 5 statistics, metadata, and profile data by 343 Industries ([343 Industries](https://developer.haloapi.com/))
