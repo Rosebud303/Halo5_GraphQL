@@ -29,3 +29,7 @@ This application allows for users to
  ![Charts page]()
  6. The FAQ is available from the home page by clicking "What is Solarizer?"
  ![FAQ]()
+
+## Backend & Storage
+Halo 5 GraphQL's frontend is supported by multiple endpoints developed and structured in the GraphQL backend created for this application.  
+
