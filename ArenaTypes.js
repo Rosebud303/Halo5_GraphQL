@@ -136,8 +136,6 @@ const ArenaFlexibleMedalType = new GraphQLObjectType({
   }),
 });
 
-
-
 module.exports = {
   ArenaGameBasesType,
   ArenaStatsType,
