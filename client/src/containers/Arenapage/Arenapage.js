@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { Query } from 'react-apollo';
 import { ARENA_DROPDOWN_QUERY, SELECTED_VARIANT_QUERY, ARENA_CSR_QUERY } from '../../Queries/GraphQLQueries';
 import EmptyContent from '../../components/EmptyContent/EmptyContent';
+import { MetadataHelmet } from '../../components/MetadataHelmet/MetadataHelmet';
 
 class Arenapage extends Component {
   constructor() {
@@ -44,6 +45,7 @@ class Arenapage extends Component {
 
     return (
       <div className='arena-page'>
+        <MetadataHelmet title={'Arena Page'}/>
         <header className='arena-header'>
           <div className='dropdown-container'>
             <p id='header-player-name'>{player_name}</p>

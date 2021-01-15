@@ -2,11 +2,13 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import './Header.scss';
+import { MetadataHelmet } from '../MetadataHelmet/MetadataHelmet';
 
 const Header = ({ title, header, button1, button2, button3, button4, currentPlayer }) => {
 
   return (
     <header id='header-all' className='arena-header header-all'>
+      <MetadataHelmet title={header}/>
       <div>
         <h1 className='arena-title header-title'>{title || header}</h1>
       </div>
