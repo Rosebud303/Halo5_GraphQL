@@ -99,13 +99,13 @@ class Arenapage extends Component {
           </div>
           <div className='buttons-container'>
             <Link to='/homepage' className='homepage-links hpl2'>
-              <p className='detail-link arena-button'>HOMEPAGE</p>
+              <p className='detail-link arena-button'>HOME</p>
             </Link>
             <Link to='/overview' className='homepage-links hpl2'>
               <p className='detail-link arena-button'>OVERVIEW</p>
             </Link>
             <Link to='/warzone' className='homepage-links hpl2'>
-              <p className='detail-link arena-button'>WARZONE PAGE</p>
+              <p className='detail-link arena-button'>WARZONE</p>
             </Link>
             <Link to='/libraries' className='homepage-links hpl2'>
               <p className='detail-link arena-button'>INFORMATION CENTER</p>

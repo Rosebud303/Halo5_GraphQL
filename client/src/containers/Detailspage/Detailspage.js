@@ -65,7 +65,7 @@ class Detailspage extends Component {
     const noDataMessage = 'This player does not have enough Arena and/or Warzone data to generate a data display.  Please return to homepage to search for a different Spartan.'
 
     return (<>
-      <Header header={'Details Page'} button1={'warzone'} button2={'arena'} button3={'information center'} button4={'libraries'} />
+      <Header header={'Overview'} button1={'warzone'} button2={'arena'} button3={'information center'} button4={'libraries'} />
       <div className='details-page-container'>
         <main className='details-page-body'>
           <Query query={ACCUMULATIVE_ARENA_QUERY} variables={{ player_name }}>

@@ -66,7 +66,7 @@ class MetadataPage extends Component {
     return (
       <div className='metadata-body'>
         <MetadataLoader metadataSet={metadataQueryListB} />
-        <Header header={'Information Center'} button1={'warzone'} button2={'arena'} button3={'details page'} button4={'overview'} />
+        <Header header={'Information Center'} button1={'warzone'} button2={'arena'} button3={'overview'} button4={'overview'} />
         <LibrarySelector changeLibrary={changeLibrary} />
         <LibraryCardsFilters selectedLibraryFilters={selectedLibraryFilters} filterChosenLibrary={filterChosenLibrary} />
         <LibraryCardsContainer selectedLibraryName={selectedLibraryName} selectedLibrary={selectedLibrary} />

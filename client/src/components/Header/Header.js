@@ -16,7 +16,7 @@ const Header = ({ title, header, button1, button2, button3, button4, currentPlay
         <p id='header-player-name'>{currentPlayer}</p>
         <div className='buttons-container'>
           <Link to='/homepage' className='homepage-links hpl2'>
-            <p id='buttons' className='detail-link arena-button'>HOMEPAGE</p>
+            <p id='buttons' className='detail-link arena-button'>HOME</p>
           </Link>
           <Link to={`/${button1}`} className='homepage-links hpl2'>
             <p id='buttons' className='detail-link arena-button'>{`${button1}`}</p>
