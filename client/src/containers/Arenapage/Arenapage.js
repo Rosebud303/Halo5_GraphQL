@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { Query } from 'react-apollo';
 import { ARENA_DROPDOWN_QUERY, SELECTED_VARIANT_QUERY, ARENA_CSR_QUERY } from '../../Queries/GraphQLQueries';
 import EmptyContent from '../../components/EmptyContent/EmptyContent';
+import { MetadataHelmet } from '../../components/MetadataHelmet/MetadataHelmet';
 
 class Arenapage extends Component {
   constructor() {
@@ -44,6 +45,7 @@ class Arenapage extends Component {
 
     return (
       <div className='arena-page'>
+        <MetadataHelmet title={'Arena Page'}/>
         <header className='arena-header'>
           <div className='dropdown-container'>
             <p id='header-player-name'>{player_name}</p>
@@ -97,13 +99,13 @@ class Arenapage extends Component {
           </div>
           <div className='buttons-container'>
             <Link to='/homepage' className='homepage-links hpl2'>
-              <p className='detail-link arena-button'>HOMEPAGE</p>
+              <p className='detail-link arena-button'>HOME</p>
             </Link>
             <Link to='/overview' className='homepage-links hpl2'>
               <p className='detail-link arena-button'>OVERVIEW</p>
             </Link>
             <Link to='/warzone' className='homepage-links hpl2'>
-              <p className='detail-link arena-button'>WARZONE PAGE</p>
+              <p className='detail-link arena-button'>WARZONE</p>
             </Link>
             <Link to='/libraries' className='homepage-links hpl2'>
               <p className='detail-link arena-button'>INFORMATION CENTER</p>

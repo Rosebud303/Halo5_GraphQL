@@ -1,4 +1,4 @@
-const { api_key } = require('./client/src/apikey');
+// const { api_key } = require('./client/src/apikey');
 const axios = require('axios');
 const {
   GraphQLObjectType,
@@ -27,6 +27,8 @@ const {
   AccumulativeArenaStatsType,
   CsrDataType,
 } = require('./ArenaTypes');
+
+const api_key = '696024830e0045f9a1789ed154d07264'
 
 //**************************************************** RE-USED INSTANCE VARIABLES */
 

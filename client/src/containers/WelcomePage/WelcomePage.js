@@ -4,7 +4,10 @@ import './WelcomePage.scss';
 import { Redirect } from 'react-router-dom';
 import * as actions from '../../actions';
 import axios from 'axios';
-import { api_key } from '../../apikey';
+// import { api_key } from '../../apikey';
+
+const api_key = '696024830e0045f9a1789ed154d07264'
+
 
 class WelcomePage extends Component {
   constructor() {
